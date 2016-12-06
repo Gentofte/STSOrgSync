@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:callctx="http://serviceplatformen.dk/xml/schemas/CallContext/1/" xmlns:tns="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/" xmlns:authctx="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" xmlns:orgenhed="urn:oio:sts:organisation:organisationenhed:1.1.1" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="CallContext_1.xsd" namespace="http://serviceplatformen.dk/xml/schemas/CallContext/1/" />
+  <xsd:import schemaLocation="AuthorityContext_1.xsd" namespace="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" />
+  <xsd:import schemaLocation="xsd/1.1.STS-1/OrganisationEnhedOperationer.xsd" namespace="urn:oio:sts:organisation:organisationenhed:1.1.1" />
+  <xsd:element name="OrganisationEnhedImporterRequest" type="tns:OrganisationEnhedImporterRequestType" />
+  <xsd:complexType name="OrganisationEnhedImporterRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="orgenhed:ImportInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedImporterResponse" type="tns:OrganisationEnhedImporterResponseType" />
+  <xsd:complexType name="OrganisationEnhedImporterResponseType">
+    <xsd:sequence>
+      <xsd:element ref="orgenhed:ImportOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedListeRequest" type="tns:OrganisationEnhedListeRequestType" />
+  <xsd:complexType name="OrganisationEnhedListeRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="orgenhed:ListInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedListeResponse" type="tns:OrganisationEnhedListeResponseType" />
+  <xsd:complexType name="OrganisationEnhedListeResponseType">
+    <xsd:sequence>
+      <xsd:element ref="orgenhed:ListOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedLaesRequest" type="tns:OrganisationEnhedLaesRequestType" />
+  <xsd:complexType name="OrganisationEnhedLaesRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="orgenhed:LaesInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedLaesResponse" type="tns:OrganisationEnhedLaesResponseType" />
+  <xsd:complexType name="OrganisationEnhedLaesResponseType">
+    <xsd:sequence>
+      <xsd:element ref="orgenhed:LaesOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedOpretRequest" type="tns:OrganisationEnhedOpretRequestType" />
+  <xsd:complexType name="OrganisationEnhedOpretRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="orgenhed:OpretInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedOpretResponse" type="tns:OrganisationEnhedOpretResponseType" />
+  <xsd:complexType name="OrganisationEnhedOpretResponseType">
+    <xsd:sequence>
+      <xsd:element ref="orgenhed:OpretOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedPassiverRequest" type="tns:OrganisationEnhedPassiverRequestType" />
+  <xsd:complexType name="OrganisationEnhedPassiverRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="orgenhed:PassiverInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedPassiverResponse" type="tns:OrganisationEnhedPassiverResponseType" />
+  <xsd:complexType name="OrganisationEnhedPassiverResponseType">
+    <xsd:sequence>
+      <xsd:element ref="orgenhed:PassiverOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedRetRequest" type="tns:OrganisationEnhedRetRequestType" />
+  <xsd:complexType name="OrganisationEnhedRetRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="orgenhed:RetInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedRetResponse" type="tns:OrganisationEnhedRetResponseType" />
+  <xsd:complexType name="OrganisationEnhedRetResponseType">
+    <xsd:sequence>
+      <xsd:element ref="orgenhed:RetOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedSletRequest" type="tns:OrganisationEnhedSletRequestType" />
+  <xsd:complexType name="OrganisationEnhedSletRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="orgenhed:SletInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedSletResponse" type="tns:OrganisationEnhedSletResponseType" />
+  <xsd:complexType name="OrganisationEnhedSletResponseType">
+    <xsd:sequence>
+      <xsd:element ref="orgenhed:SletOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedSoegRequest" type="tns:OrganisationEnhedSoegRequestType" />
+  <xsd:complexType name="OrganisationEnhedSoegRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="orgenhed:SoegInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationEnhedSoegResponse" type="tns:OrganisationEnhedSoegResponseType" />
+  <xsd:complexType name="OrganisationEnhedSoegResponseType">
+    <xsd:sequence>
+      <xsd:element ref="orgenhed:SoegOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

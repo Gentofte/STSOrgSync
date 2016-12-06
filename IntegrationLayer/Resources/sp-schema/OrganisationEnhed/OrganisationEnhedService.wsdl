@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="OrganisationEnhedService"
+                  targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/"
+                  xmlns:tns="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/"
+                  xmlns:spf="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/"
+				  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:wsa="http://www.w3.org/2005/08/addressing"
+                  xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702"
+                  xmlns:wsp="http://www.w3.org/ns/ws-policy">
+
+  <!-- Draft of Organisation/OrganisationEnhed serviceintegration for the Service Platform, May 2015 -->
+
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/">
+      <xsd:include schemaLocation="OrganisationEnhedServiceMsg.xsd"/>
+
+      <xsd:import namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/"
+                  schemaLocation="ServiceplatformFault_1.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="OrganisationEnhedImporterRequestMessage">
+    <wsdl:part name="request" element="tns:OrganisationEnhedImporterRequest"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedImporterResponseMessage">
+    <wsdl:part name="response" element="tns:OrganisationEnhedImporterResponse"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedListeRequestMessage">
+    <wsdl:part name="request" element="tns:OrganisationEnhedListeRequest"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedListeResponseMessage">
+    <wsdl:part name="response" element="tns:OrganisationEnhedListeResponse"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedLaesRequestMessage">
+    <wsdl:part name="request" element="tns:OrganisationEnhedLaesRequest"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedLaesResponseMessage">
+    <wsdl:part name="response" element="tns:OrganisationEnhedLaesResponse"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedOpretRequestMessage">
+    <wsdl:part name="request" element="tns:OrganisationEnhedOpretRequest"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedOpretResponseMessage">
+    <wsdl:part name="response" element="tns:OrganisationEnhedOpretResponse"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedPassiverRequestMessage">
+    <wsdl:part name="request" element="tns:OrganisationEnhedPassiverRequest"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedPassiverResponseMessage">
+    <wsdl:part name="response" element="tns:OrganisationEnhedPassiverResponse"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedRetRequestMessage">
+    <wsdl:part name="request" element="tns:OrganisationEnhedRetRequest"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedRetResponseMessage">
+    <wsdl:part name="response" element="tns:OrganisationEnhedRetResponse"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedSletRequestMessage">
+    <wsdl:part name="request" element="tns:OrganisationEnhedSletRequest"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedSletResponseMessage">
+    <wsdl:part name="response" element="tns:OrganisationEnhedSletResponse"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedSoegRequestMessage">
+    <wsdl:part name="request" element="tns:OrganisationEnhedSoegRequest"/>
+  </wsdl:message>
+  <wsdl:message name="OrganisationEnhedSoegResponseMessage">
+    <wsdl:part name="response" element="tns:OrganisationEnhedSoegResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ServiceplatformFault">
+    <wsdl:part name="error" element="spf:ServiceplatformFault"/>
+  </wsdl:message>
+
+  <wsdl:portType name="OrganisationEnhedPortType">
+    <wsdl:operation name="opret">
+      <wsdl:input message="tns:OrganisationEnhedOpretRequestMessage"/>
+      <wsdl:output message="tns:OrganisationEnhedOpretResponseMessage"/>
+      <wsdl:fault message="tns:ServiceplatformFault" name="ServiceplatformFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="importer">
+      <wsdl:input message="tns:OrganisationEnhedImporterRequestMessage"/>
+      <wsdl:output message="tns:OrganisationEnhedImporterResponseMessage"/>
+      <wsdl:fault message="tns:ServiceplatformFault" name="ServiceplatformFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="passiver">
+      <wsdl:input message="tns:OrganisationEnhedPassiverRequestMessage"/>
+      <wsdl:output message="tns:OrganisationEnhedPassiverResponseMessage"/>
+      <wsdl:fault message="tns:ServiceplatformFault" name="ServiceplatformFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="laes">
+      <wsdl:input message="tns:OrganisationEnhedLaesRequestMessage"/>
+      <wsdl:output message="tns:OrganisationEnhedLaesResponseMessage"/>
+      <wsdl:fault message="tns:ServiceplatformFault" name="ServiceplatformFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="ret">
+      <wsdl:input message="tns:OrganisationEnhedRetRequestMessage"/>
+      <wsdl:output message="tns:OrganisationEnhedRetResponseMessage"/>
+      <wsdl:fault message="tns:ServiceplatformFault" name="ServiceplatformFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="slet">
+      <wsdl:input message="tns:OrganisationEnhedSletRequestMessage"/>
+      <wsdl:output message="tns:OrganisationEnhedSletResponseMessage"/>
+      <wsdl:fault message="tns:ServiceplatformFault" name="ServiceplatformFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="soeg">
+      <wsdl:input message="tns:OrganisationEnhedSoegRequestMessage"/>
+      <wsdl:output message="tns:OrganisationEnhedSoegResponseMessage"/>
+      <wsdl:fault message="tns:ServiceplatformFault" name="ServiceplatformFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="list">
+      <wsdl:input message="tns:OrganisationEnhedListeRequestMessage"/>
+      <wsdl:output message="tns:OrganisationEnhedListeResponseMessage"/>
+      <wsdl:fault message="tns:ServiceplatformFault" name="ServiceplatformFault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="OrganisationEnhed" type="tns:OrganisationEnhedPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="opret">
+      <soap:operation soapAction="http://kombit.dk/sts/opoc/organisationenhed/opret"/>
+      <wsdl:input>
+        <!-- input policy reference -->
+        <wsp:PolicyReference URI="#Input_Policy"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceplatformFault"><soap:fault name="ServiceplatformFault" use="literal" /></wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="importer">
+      <soap:operation soapAction="http://kombit.dk/sts/opoc/organisationenhed/importer"/>
+      <wsdl:input>
+        <!-- input policy reference -->
+        <wsp:PolicyReference URI="#Input_Policy"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceplatformFault"><soap:fault name="ServiceplatformFault" use="literal" /></wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="passiver">
+      <soap:operation soapAction="http://kombit.dk/sts/opoc/organisationenhed/passiver"/>
+      <wsdl:input>
+        <!-- input policy reference -->
+        <wsp:PolicyReference URI="#Input_Policy"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceplatformFault"><soap:fault name="ServiceplatformFault" use="literal" /></wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="laes">
+      <soap:operation soapAction="http://kombit.dk/sts/opoc/organisationenhed/laes"/>
+      <wsdl:input>
+        <!-- input policy reference -->
+        <wsp:PolicyReference URI="#Input_Policy"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceplatformFault"><soap:fault name="ServiceplatformFault" use="literal" /></wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="ret">
+      <soap:operation soapAction="http://kombit.dk/sts/opoc/organisationenhed/ret"/>
+      <wsdl:input>
+        <!-- input policy reference -->
+        <wsp:PolicyReference URI="#Input_Policy"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceplatformFault"><soap:fault name="ServiceplatformFault" use="literal" /></wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="slet">
+      <soap:operation soapAction="http://kombit.dk/sts/opoc/organisationenhed/slet"/>
+      <wsdl:input>
+        <!-- input policy reference -->
+        <wsp:PolicyReference URI="#Input_Policy"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceplatformFault"><soap:fault name="ServiceplatformFault" use="literal" /></wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="soeg">
+      <soap:operation soapAction="http://kombit.dk/sts/opoc/organisationenhed/soeg"/>
+      <wsdl:input>
+        <!-- input policy reference -->
+        <wsp:PolicyReference URI="#Input_Policy"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceplatformFault"><soap:fault name="ServiceplatformFault" use="literal" /></wsdl:fault>
+    </wsdl:operation>
+
+    <wsdl:operation name="list">
+      <soap:operation soapAction="http://kombit.dk/sts/opoc/organisationenhed/list"/>
+      <wsdl:input>
+        <!-- input policy reference -->
+        <wsp:PolicyReference URI="#Input_Policy"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceplatformFault"><soap:fault name="ServiceplatformFault" use="literal" /></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <!-- Input policy for signing input -->
+  <wsp:Policy wsu:Id="Input_Policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts>
+          <sp:Body/>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="Framework" Namespace="urn:liberty:sb"/>
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <!-- KOMBIT SAML policy -->
+  <wsp:Policy wsu:Id="STS_SAML_Token_policy">
+    <sp:SignedSupportingTokens xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+      <wsp:Policy wsp:Optional="false">
+        <sp:IssuedToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+          <!-- TODO Nedenstående Issuer address er pt. ikke rigtig idet STS endpoint ikke kendt-->
+          <sp:Issuer>
+            <wsa:Address>https://url-til-sts</wsa:Address>
+          </sp:Issuer>
+          <sp:RequestSecurityTokenTemplate>
+            <trust:TokenType xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">urn:oasis:names:tc:SAML:2.0:assertion</trust:TokenType>
+          </sp:RequestSecurityTokenTemplate>
+        </sp:IssuedToken>
+        <sp:IncludeTimestamp/>
+        <sp:ProtectTokens />
+        <sp:OnlySignEntireHeadersAndBody/>
+      </wsp:Policy>
+    </sp:SignedSupportingTokens>
+  </wsp:Policy>
+  <!-- TLS policy for communicating with SP -->
+  <wsp:Policy wsu:Id="TLS_policy">
+    <sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+      <wsp:Policy>
+        <sp:TransportToken>
+          <wsp:Policy>
+            <sp:HttpsToken RequireClientCertificate="true"/>
+          </wsp:Policy>
+        </sp:TransportToken>
+      </wsp:Policy>
+    </sp:TransportBinding>
+  </wsp:Policy>
+  <wsdl:service name="OrganisationEnhed">
+    <wsdl:port name="OrganisationEnhed" binding="tns:OrganisationEnhed">
+      <soap:address location="http://localhost:8080/service/Organisation/OrganisationEnhed/1"/>
+      <wsp:PolicyReference URI="#STS_SAML_Token_policy"/>
+      <wsp:PolicyReference URI="#TLS_policy"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

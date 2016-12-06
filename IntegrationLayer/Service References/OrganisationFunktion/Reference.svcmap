@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ac71f502-d394-4664-9942-4c6f60be154b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="\\vmware-host\Shared Folders\brian\projects\organisation-synchronisation-component\IntegrationLayer\Resources\sp-schema\OrganisationFunktion\OrganisationFunktionService.wsdl" Protocol="file" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OrganisationFunktionServiceMsg.xsd" MetadataType="Schema" ID="b613fded-803d-422f-8ddf-716f0df0adc2" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/OrganisationFunktion/OrganisationFunktionServiceMsg.xsd" />
+    <MetadataFile FileName="OrganisationFunktionOperationer.xsd" MetadataType="Schema" ID="6eaaf29d-ce94-425d-b11f-f2a20b1f7b96" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/OrganisationFunktion/xsd/1.1.STS-1/OrganisationFunktionOperationer.xsd" />
+    <MetadataFile FileName="Part.xsd" MetadataType="Schema" ID="64037165-d875-47a5-a3eb-3c8aa9366fb9" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/OrganisationFunktion/xsd/1.1.STS-1/Part.xsd" />
+    <MetadataFile FileName="ServiceplatformFault_1.xsd" MetadataType="Schema" ID="4a175a9b-ec0a-4df1-9b24-05869c91a6a1" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/OrganisationFunktion/ServiceplatformFault_1.xsd" />
+    <MetadataFile FileName="SagDokObjekt.xsd" MetadataType="Schema" ID="620592c5-eb08-4942-be1a-06cd3148f985" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/OrganisationFunktion/xsd/1.1.STS-1/SagDokObjekt.xsd" />
+    <MetadataFile FileName="AuthorityContext_1.xsd" MetadataType="Schema" ID="bb8677de-8ced-4f76-9b3f-a814d4d46b88" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/OrganisationFunktion/AuthorityContext_1.xsd" />
+    <MetadataFile FileName="OrganisationFunktion.xsd" MetadataType="Schema" ID="aba2634c-ece9-41f1-bcb1-94b33ab0970d" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/OrganisationFunktion/xsd/1.1.STS-1/OrganisationFunktion.xsd" />
+    <MetadataFile FileName="CallContext_1.xsd" MetadataType="Schema" ID="9a26afde-cc57-4afd-8d6a-95e69a75095d" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/OrganisationFunktion/CallContext_1.xsd" />
+    <MetadataFile FileName="OrganisationFunktionService.wsdl" MetadataType="Wsdl" ID="983d93d6-5636-4108-bb3d-f74d5dd8f57c" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/OrganisationFunktion/OrganisationFunktionService.wsdl" />
+    <MetadataFile FileName="OrganisationFaelles.xsd" MetadataType="Schema" ID="9aad779a-af66-4ded-b809-a303dec0463e" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/OrganisationFunktion/xsd/1.1.STS-1/OrganisationFaelles.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

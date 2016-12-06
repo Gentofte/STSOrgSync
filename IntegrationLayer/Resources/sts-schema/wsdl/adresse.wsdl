@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:header="http://kombit.dk/xml/schemas/RequestHeader/1/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:tns="urn:oio:sts:organisation:wsdl:1.1.1" xmlns:type="urn:oio:sts:organisation:adresse:1.1.1" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AdresseService" targetNamespace="urn:oio:sts:organisation:wsdl:1.1.1">
+  <wsdl:types>
+<xsd:schema>
+		
+  <xsd:import namespace="urn:oio:sts:organisation:adresse:1.1.1" schemaLocation="../xsd/adresse.1.xsd"/>
+        
+  <xsd:import namespace="urn:oio:sts:organisation:adresse:1.1.1" schemaLocation="../xsd/adresse.4.xsd"/>
+        
+  <xsd:import namespace="urn:oio:sts:organisation:adresse:1.1.1" schemaLocation="../xsd/adresse.5.xsd"/>
+        
+  <xsd:import namespace="urn:oio:sts:organisation:1.1.1" schemaLocation="../xsd/adresse.6.xsd"/>
+        
+  <xsd:import namespace="urn:oio:sts:part:1.1.1" schemaLocation="../xsd/adresse.7.xsd"/>
+        
+  <xsd:import namespace="urn:oio:sts:1.1.1" schemaLocation="../xsd/adresse.3.xsd"/>
+        
+  <xsd:import namespace="urn:oio:sagdok:3.0.0" schemaLocation="../xsd/adresse.2.xsd"/>
+  <xsd:import namespace="http://kombit.dk/xml/schemas/RequestHeader/1/" schemaLocation="../xsd/adresse.8.xsd"/>
+      
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="AdresseOpretRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:OpretInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseRetRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:RetInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseSletResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:SletOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseRetResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:RetOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseSoegResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:SoegOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdressePassiverResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:PassiverOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseImporterResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:ImportOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseOpretResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:OpretOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdressePassiverRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:PassiverInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseListeResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:ListOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseLaesRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:LaesInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseImporterRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:ImportInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseSletRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:SletInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseSoegRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:SoegInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseListeRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:ListInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AdresseLaesResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:LaesOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AdressePortType">
+    <wsdl:operation name="opret">
+      <wsdl:input message="tns:AdresseOpretRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:AdresseOpretResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="importer">
+      <wsdl:input message="tns:AdresseImporterRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:AdresseImporterResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="passiver">
+      <wsdl:input message="tns:AdressePassiverRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:AdressePassiverResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="laes">
+      <wsdl:input message="tns:AdresseLaesRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:AdresseLaesResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ret">
+      <wsdl:input message="tns:AdresseRetRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:AdresseRetResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="slet">
+      <wsdl:input message="tns:AdresseSletRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:AdresseSletResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="soeg">
+      <wsdl:input message="tns:AdresseSoegRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:AdresseSoegResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="list">
+      <wsdl:input message="tns:AdresseListeRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:AdresseListeResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Adresse" type="tns:AdressePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsp:PolicyReference URI="#ServicePortBindingPolicy"/>
+    <wsdl:operation name="opret">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/adresse/opret"/>
+      <wsdl:input>
+        <soap:header message="tns:AdresseOpretRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:AdresseOpretResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="importer">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/adresse/importer"/>
+      <wsdl:input>
+        <soap:header message="tns:AdresseImporterRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:AdresseImporterRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="passiver">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/adresse/passiver"/>
+      <wsdl:input>
+        <soap:header message="tns:AdressePassiverRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:AdressePassiverResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="laes">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/adresse/laes"/>
+      <wsdl:input>
+        <soap:header message="tns:AdresseLaesRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:AdresseLaesResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ret">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/adresse/ret"/>
+      <wsdl:input>
+        <soap:header message="tns:AdresseRetRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:AdresseRetResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="slet">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/adresse/slet"/>
+      <wsdl:input>
+        <soap:header message="tns:AdresseSletRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:AdresseSletResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="soeg">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/adresse/soeg"/>
+      <wsdl:input>
+        <soap:header message="tns:AdresseSoegRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:AdresseSoegResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="list">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/adresse/list"/>
+      <wsdl:input>
+        <soap:header message="tns:AdresseListeRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:AdresseListeResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdresseService">
+    <wsdl:port binding="tns:Adresse" name="Adresse">
+      <soap:address location="https://organisation.eksterntest-stoettesystemerne.dk/sts-soap-organisation/adresse"/>
+    </wsdl:port>
+  </wsdl:service>
+    <wsp:Policy wsu:Id="ServicePortBindingPolicy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsam:Addressing wsp:Optional="false"><wsp:Policy /></wsam:Addressing><sp:AsymmetricBinding>
+          <wsp:Policy>
+            <sp:InitiatorToken>
+              <wsp:Policy>
+                <sp:IssuedToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+                  <sp:RequestSecurityTokenTemplate>
+                  </sp:RequestSecurityTokenTemplate>
+                  <wsp:Policy>
+                    <sp:RequireInternalReference/>
+                  </wsp:Policy>
+                </sp:IssuedToken>
+              </wsp:Policy>
+            </sp:InitiatorToken>
+            <sp:RecipientToken>
+              <wsp:Policy>
+                <sp:X509Token sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/Never">
+                  <wsp:Policy>
+                    <sp:WssX509V3Token10/>
+                    <sp:RequireIssuerSerialReference/>
+                  </wsp:Policy>
+                </sp:X509Token>
+              </wsp:Policy>
+            </sp:RecipientToken>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+            <sp:ProtectTokens/>
+            <sp:OnlySignEntireHeadersAndBody/>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+          </wsp:Policy>
+        </sp:AsymmetricBinding>
+        <sp:Wss10>
+          <wsp:Policy>
+            <sp:MustSupportRefKeyIdentifier/>
+            <sp:MustSupportRefIssuerSerial/>
+          </wsp:Policy>
+        </sp:Wss10>
+        <sp:Trust13>
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens/>
+            <sp:RequireClientEntropy/>
+            <sp:RequireServerEntropy/>
+          </wsp:Policy>
+        </sp:Trust13>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+    <wsp:Policy wsu:Id="ServicePortBinding_ping_Input_Policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts>
+          <sp:Body/>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="AckRequested" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="Sequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="CreateSequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="Framework" Namespace="urn:liberty:sb:2006-08"/>
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+    <wsp:Policy wsu:Id="ServicePortBinding_ping_Output_Policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts>
+          <sp:Body/>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="AckRequested" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="Sequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="CreateSequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="Framework" Namespace="urn:liberty:sb:2006-08"/>
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+</wsdl:definitions>

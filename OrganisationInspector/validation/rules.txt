@@ -1,0 +1,93 @@
+﻿OrganisationEnhed
+  - Attribute fields that MUST be filled out
+    - ... none ...
+  - Relations that must NOT be filled out
+    - Ansatte
+    - Branche
+    - Produktionsenhed
+    - Skatteenhed
+    - TilknyttedeBrugere
+    - TilknyttedeEnheder
+    - TilknyttedeInteressefællesskaber
+    - TilknyttedeOrganisationer
+    - TilknyttedePersoner
+    - TilknyttedeItSystemer
+  - Relationships that must be validated IF filled out
+    - TilknyttedeFunktioner
+      - special validation rules, the only two types of functions allowed are PAYOUT_UNIT and CONTACT_UNIT
+        - validation rule for PAYOUT_UNIT
+          - there can only be one such relationships (but 0 are allowed)
+        - validation rule for CONTACT_UNIT
+          - there can be multiple such relationships (but 0 are allowed)
+          - very important (and a bit hard to perform) validation rule: there cannot be overlapping functions for KLE codes
+            from the same OrgUnit
+    - Adresser (the role/type attributes on the relation should be validated to be known types (as for Bruger)
+ - Relationships that MUST be be filled out
+    - Tilhører (and it MUST point to the configured OrganisationUUID)
+
+OrganisationFunktion
+  - Attribute fields that MUST be filled out
+    ... none ...
+  - Relations that must NOT be filled out
+    - TilknyttedeInteresseFaellesskaber
+    - TilknyttedePersoner
+  - Relations that MUST be filled out
+    - Funktionstype (and it must be validated that this points to one of the four known types)
+      - the four known types are POSITION, IT_USAGE, PAYOUT_UNIT, CONTACT_UNIT
+After this, we validate depending on the type
+  - Type = POSITION
+    - Allowed Relationships
+       - TilknyttedeBrugere (optional, so 0 or more is allowed)
+       - TilknytedeEnheder (exactly 1 requried)       
+    - Prohibited Relationships
+       - TilknyttedeItSystemer
+       - Opgaver
+  - Type = IT_USAGE
+    - Allowed Relationships
+       - TilknyttedeItSystemer (exactly 1 required)
+	   - TilknytedeEnheder
+    - Prohibited Relationships
+       - Opgaver
+       - TilknyttedeBrugere
+  - Type = PAYOUT_UNIT
+    - Allowed Relationships
+       - TilknytedeEnheder (exactly 1 is required)
+         - the OrgUnit that is referenced must be read, and it must be validated that the Unit has a LOSShortName address relationship
+    - Prohibited Relationships
+       - TilknyttedeItSystemer
+       - Opgaver
+       - TilknyttedeBrugere
+  - TYPE = CONTACT_UNIT
+    - Allowed Relationships
+       - Opgaver (at least 1 relationship is required, more is allowed)
+       - TilknytedeEnheder (exactly 1 is required)
+    - Prohibited Relationships
+       - TilknyttedeItSystemer
+       - TilknyttedeBrugere
+Adresse
+  - Attribute fields that MUST be filled out
+    - AdresseTekst
+
+Person
+  - Attribute fields that MUST be filled out
+    - NavnTekst
+
+Bruger
+  - Attribute fields that MUST be filled out
+    - ... none ...
+  - Attribute fields that must NOT be filled out
+    - BrugerTypeTekst
+  - Relations that MUST be filled out
+    - Tilhører (and it MUST point to the configured OrganisationUUID)
+    - TilknyttedePersoner (either 0 or 1 is allowed, but not more than 1)
+  - Relations that must NOT be filled out
+    - BrugerTyper
+    - Opgaver
+    - TilknyttedeEnheder
+    - TilknyttedeFunktioner
+    - TilknyttedeInteresseFaellesskaber
+    - TilknyttedeOrganisationer
+    - TilknyttedeItSystemer
+  - Relations that have to be validated if they are filled out
+    - Adresser (the role/type attributes on the relation should be validated to be known types)
+

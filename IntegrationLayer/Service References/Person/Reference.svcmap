@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a2f79b5f-0b7e-4041-83d7-344ea15797e5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="\\vmware-host\Shared Folders\brian\projects\organisation-synchronisation-component\IntegrationLayer\Resources\sp-schema\Person\PersonService.wsdl" Protocol="file" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PersonService.wsdl" MetadataType="Wsdl" ID="77cc0a3c-aebc-4283-9251-cd7ef7a3fdc6" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/PersonService.wsdl" />
+    <MetadataFile FileName="GenerelleDefinitioner.xsd" MetadataType="Schema" ID="48c9ff2c-8b87-4926-b7c6-a86efd3759ab" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/xsd/1.1.STS-1/GenerelleDefinitioner.xsd" />
+    <MetadataFile FileName="PersonOperationer.xsd" MetadataType="Schema" ID="2efcd472-46e2-45a2-b147-d909e2306c82" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/xsd/1.1.STS-1/PersonOperationer.xsd" />
+    <MetadataFile FileName="PersonServiceMsg.xsd" MetadataType="Schema" ID="8c64e3f7-002f-4cb1-a2b5-5ea75c4ad419" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/PersonServiceMsg.xsd" />
+    <MetadataFile FileName="AuthorityContext_1.xsd" MetadataType="Schema" ID="265ac8aa-216f-46f8-80cc-fdb0be8bd175" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/AuthorityContext_1.xsd" />
+    <MetadataFile FileName="CallContext_1.xsd" MetadataType="Schema" ID="596aed7e-29b3-45ae-8e10-13df5b260970" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/CallContext_1.xsd" />
+    <MetadataFile FileName="SagDokObjekt.xsd" MetadataType="Schema" ID="e338c58d-dfdb-407f-a2e0-53aba887ef1a" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/xsd/1.1.STS-1/SagDokObjekt.xsd" />
+    <MetadataFile FileName="Part.xsd" MetadataType="Schema" ID="6b8c71dd-c9ec-4252-98f7-e3b9d51edf37" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/xsd/1.1.STS-1/Part.xsd" />
+    <MetadataFile FileName="ServiceplatformFault_1.xsd" MetadataType="Schema" ID="3a463c12-714a-4be1-aa12-c6332b8fdaef" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/ServiceplatformFault_1.xsd" />
+    <MetadataFile FileName="Person.xsd" MetadataType="Schema" ID="a80ae807-f9b0-4f65-8515-85eb87b0f37b" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/xsd/1.1.STS-1/Person.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

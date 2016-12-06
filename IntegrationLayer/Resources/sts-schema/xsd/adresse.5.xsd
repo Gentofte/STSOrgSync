@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:adresse="urn:oio:sts:organisation:adresse:1.1.1" xmlns:oio="urn:oio:definitions:1.0.0" xmlns:sd="urn:oio:sagdok:3.0.0" attributeFormDefault="unqualified" elementFormDefault="qualified" oio:mapping="urn:oio:sagdok:MPD:3.0.0" targetNamespace="urn:oio:sts:organisation:adresse:1.1.1">
+
+    <import namespace="urn:oio:sagdok:3.0.0" schemaLocation="../xsd/adresse.2.xsd"/>
+    <import namespace="urn:oio:sts:1.1.1" schemaLocation="../xsd/adresse.3.xsd"/>
+    <include schemaLocation="../xsd/adresse.4.xsd"/>
+    
+    <element name="RegistreringBesked" oio:definition="urn:oio:sts:adresseregistreringbesked:ADD:1.0.0" type="adresse:RegistreringBeskedType"/>
+    <complexType name="RegistreringBeskedType" oio:definition="urn:oio:sts:adresseregistreringbesked:ADD:1.0.0">
+        <sequence>
+            <element name="ObjektID" oio:definition="urn:oio:sagdok:referenceid:ASDD:1.0.0" type="sd:UnikIdType"/>
+            <element minOccurs="1" oio:content="registrering" ref="adresse:Registrering"/>
+        </sequence>
+    </complexType>
+</schema>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:callctx="http://serviceplatformen.dk/xml/schemas/CallContext/1/" xmlns:org="urn:oio:sts:organisation:organisationfunktion:1.1.1" xmlns:tns="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationFunktion/1/" xmlns:authctx="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationFunktion/1/" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="CallContext_1.xsd" namespace="http://serviceplatformen.dk/xml/schemas/CallContext/1/" />
+  <xsd:import schemaLocation="AuthorityContext_1.xsd" namespace="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" />
+  <xsd:import schemaLocation="xsd/1.1.STS-1/OrganisationFunktionOperationer.xsd" namespace="urn:oio:sts:organisation:organisationfunktion:1.1.1" />
+  <xsd:element name="OrganisationFunktionImporterRequest" type="tns:OrganisationFunktionImporterRequestType" />
+  <xsd:complexType name="OrganisationFunktionImporterRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="org:ImportInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionImporterResponse" type="tns:OrganisationFunktionImporterResponseType" />
+  <xsd:complexType name="OrganisationFunktionImporterResponseType">
+    <xsd:sequence>
+      <xsd:element ref="org:ImportOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionListeRequest" type="tns:OrganisationFunktionListeRequestType" />
+  <xsd:complexType name="OrganisationFunktionListeRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="org:ListInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionListeResponse" type="tns:OrganisationFunktionListeResponseType" />
+  <xsd:complexType name="OrganisationFunktionListeResponseType">
+    <xsd:sequence>
+      <xsd:element ref="org:ListOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionLaesRequest" type="tns:OrganisationFunktionLaesRequestType" />
+  <xsd:complexType name="OrganisationFunktionLaesRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="org:LaesInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionLaesResponse" type="tns:OrganisationFunktionLaesResponseType" />
+  <xsd:complexType name="OrganisationFunktionLaesResponseType">
+    <xsd:sequence>
+      <xsd:element ref="org:LaesOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionOpretRequest" type="tns:OrganisationFunktionOpretRequestType" />
+  <xsd:complexType name="OrganisationFunktionOpretRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="org:OpretInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionOpretResponse" type="tns:OrganisationFunktionOpretResponseType" />
+  <xsd:complexType name="OrganisationFunktionOpretResponseType">
+    <xsd:sequence>
+      <xsd:element ref="org:OpretOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionPassiverRequest" type="tns:OrganisationFunktionPassiverRequestType" />
+  <xsd:complexType name="OrganisationFunktionPassiverRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="org:PassiverInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionPassiverResponse" type="tns:OrganisationFunktionPassiverResponseType" />
+  <xsd:complexType name="OrganisationFunktionPassiverResponseType">
+    <xsd:sequence>
+      <xsd:element ref="org:PassiverOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionRetRequest" type="tns:OrganisationFunktionRetRequestType" />
+  <xsd:complexType name="OrganisationFunktionRetRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="org:RetInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionRetResponse" type="tns:OrganisationFunktionRetResponseType" />
+  <xsd:complexType name="OrganisationFunktionRetResponseType">
+    <xsd:sequence>
+      <xsd:element ref="org:RetOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionSletRequest" type="tns:OrganisationFunktionSletRequestType" />
+  <xsd:complexType name="OrganisationFunktionSletRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="org:SletInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionSletResponse" type="tns:OrganisationFunktionSletResponseType" />
+  <xsd:complexType name="OrganisationFunktionSletResponseType">
+    <xsd:sequence>
+      <xsd:element ref="org:SletOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionSoegRequest" type="tns:OrganisationFunktionSoegRequestType" />
+  <xsd:complexType name="OrganisationFunktionSoegRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" ref="callctx:CallContext" />
+      <xsd:element minOccurs="0" ref="authctx:AuthorityContext" />
+      <xsd:element ref="org:SoegInput" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OrganisationFunktionSoegResponse" type="tns:OrganisationFunktionSoegResponseType" />
+  <xsd:complexType name="OrganisationFunktionSoegResponseType">
+    <xsd:sequence>
+      <xsd:element ref="org:SoegOutput" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

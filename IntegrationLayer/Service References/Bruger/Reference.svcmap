@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a0ef5435-6deb-4caa-a6e6-e51cf70be7c7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="\\vmware-host\Shared Folders\brian\projects\organisation-synchronisation-component\IntegrationLayer\Resources\sp-schema\Bruger\BrugerService.wsdl" Protocol="file" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AuthorityContext_1.xsd" MetadataType="Schema" ID="ee47aeff-bbb2-4466-9ef2-5fdab54253ec" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/AuthorityContext_1.xsd" />
+    <MetadataFile FileName="BrugerService.wsdl" MetadataType="Wsdl" ID="6f2a3371-0511-418e-9b29-df9dedb51d92" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/BrugerService.wsdl" />
+    <MetadataFile FileName="CallContext_1.xsd" MetadataType="Schema" ID="6b504d32-6c5d-4076-994b-823dad1a7c38" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/CallContext_1.xsd" />
+    <MetadataFile FileName="Part.xsd" MetadataType="Schema" ID="4dd97cc8-2db8-4b30-b319-8df630e775c9" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/xsd/1.1.STS-1/Part.xsd" />
+    <MetadataFile FileName="BrugerOperationer.xsd" MetadataType="Schema" ID="d0a45ca6-9e0c-4a73-90d5-f01a39615807" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/xsd/1.1.STS-1/BrugerOperationer.xsd" />
+    <MetadataFile FileName="SagDokObjekt.xsd" MetadataType="Schema" ID="a7e0659d-b7ae-410b-9de5-4157a589149a" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/xsd/1.1.STS-1/SagDokObjekt.xsd" />
+    <MetadataFile FileName="BrugerServiceMsg.xsd" MetadataType="Schema" ID="2f531a60-2586-4f33-80ea-c5b97d04aa75" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/BrugerServiceMsg.xsd" />
+    <MetadataFile FileName="Bruger.xsd" MetadataType="Schema" ID="bd940a6e-fcb2-44cd-a79b-df7b0b91098f" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/xsd/1.1.STS-1/Bruger.xsd" />
+    <MetadataFile FileName="OrganisationFaelles.xsd" MetadataType="Schema" ID="658f347b-f36f-42f0-ac7f-f423648fc5f5" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/xsd/1.1.STS-1/OrganisationFaelles.xsd" />
+    <MetadataFile FileName="ServiceplatformFault_1.xsd" MetadataType="Schema" ID="099d4199-51e0-4a02-be77-412a9836bb1a" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/ServiceplatformFault_1.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

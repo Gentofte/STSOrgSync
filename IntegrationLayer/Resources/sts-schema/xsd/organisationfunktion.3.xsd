@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:oio="urn:oio:definitions:1.0.0" xmlns:orgfaelles="urn:oio:sts:organisation:1.1.1" xmlns:orgfunk="urn:oio:sts:organisation:organisationfunktion:1.1.1" xmlns:sd="urn:oio:sagdok:3.0.0" attributeFormDefault="unqualified" elementFormDefault="qualified" oio:mapping="urn:oio:sagdok:MPD:3.0.0" targetNamespace="urn:oio:sts:organisation:organisationfunktion:1.1.1">
+
+    <import namespace="urn:oio:sts:organisation:1.1.1" schemaLocation="../xsd/organisationfunktion.4.xsd"/>
+    <import namespace="urn:oio:sagdok:3.0.0" schemaLocation="../xsd/organisationfunktion.2.xsd"/>
+
+    <element name="OrganisationFunktion" oio:definition="urn:oio:sagdok:organisationfunktion:ADD:2.0.0" type="orgfunk:OrganisationFunktionType"/>
+    <complexType name="OrganisationFunktionType" oio:definition="urn:oio:sagdok:organisationfunktion:ADD:2.0.0">
+        <complexContent>
+            <extension base="orgfaelles:AktoerType">
+                <sequence>
+                    <element maxOccurs="unbounded" oio:content="registreringer" ref="orgfunk:Registrering"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <element name="AttributListe" oio:definition="urn:oio:sagdok:organisationfunktionattributliste:ADD:2.0.0" type="orgfunk:AttributListeType"/>
+    <complexType name="AttributListeType" oio:definition="urn:oio:sagdok:organisationfunktionattributliste:ADD:2.0.0">
+        <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" oio:content="egenskaber" ref="orgfunk:Egenskab"/>
+            <element minOccurs="0" oio:content="lokaludvidelse" ref="sd:LokalUdvidelse"/>
+        </sequence>
+    </complexType>
+
+    <element name="TilstandListe" oio:definition="urn:oio:sagdok:organisationfunktiontilstandliste:ADD:2.0.0" type="orgfunk:TilstandListeType"/>
+    <complexType name="TilstandListeType" oio:definition="urn:oio:sagdok:organisationfunktiontilstandliste:ADD:2.0.0">
+        <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" oio:content="gyldighed" ref="orgfaelles:Gyldighed"/>
+            <element minOccurs="0" oio:content="lokaludvidelse" ref="sd:LokalUdvidelse"/>
+        </sequence>
+    </complexType>
+
+    <element name="RelationListe" oio:definition="urn:oio:sagdok:organisationfunktionrelationliste:ADD:2.0.0" type="orgfunk:RelationListeType"/>
+    <complexType name="RelationListeType" oio:definition="urn:oio:sagdok:organisationfunktionrelationliste:ADD:2.0.0">
+        <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" oio:content="adresser" ref="sd:Adresser"/>
+            <element minOccurs="0" oio:content="funktionstype" ref="sd:Funktionstype"/>
+            <element maxOccurs="unbounded" minOccurs="0" oio:content="opgaver" ref="sd:Opgaver"/>
+            <element maxOccurs="unbounded" minOccurs="0" oio:content="tilknyttedebrugere" ref="sd:TilknyttedeBrugere"/>
+            <element maxOccurs="unbounded" minOccurs="0" oio:content="tilknyttedeenheder" ref="sd:TilknyttedeEnheder"/>
+            <element maxOccurs="unbounded" minOccurs="0" oio:content="tilknyttedeinteressefaellesskaber" ref="sd:TilknyttedeInteressefaellesskaber"/>
+            <element maxOccurs="unbounded" minOccurs="0" oio:content="tilknyttedeorganisationer" ref="sd:TilknyttedeOrganisationer"/>
+            <element maxOccurs="unbounded" minOccurs="0" oio:content="tilknyttedepersoner" ref="sd:TilknyttedePersoner"/>
+            <element maxOccurs="unbounded" minOccurs="0" oio:content="tilknyttedeitsystemer" ref="sd:TilknyttedeItSystemer"/>
+            <element minOccurs="0" oio:content="lokaludvidelse" ref="sd:LokalUdvidelse"/>
+        </sequence>
+    </complexType>
+
+    <element name="Registrering" oio:definition="urn:oio:sagdok:organisationfunktionregistrering:ADD:2.0.0" type="orgfunk:RegistreringType"/>
+    <complexType name="RegistreringType" oio:definition="urn:oio:sagdok:organisationfunktionregistrering:ADD:2.0.0">
+        <complexContent>
+            <extension base="sd:RegistreringType">
+                <sequence>
+                    <element oio:content="attributter" ref="orgfunk:AttributListe"/>
+                    <element oio:content="tilstande" ref="orgfunk:TilstandListe"/>
+                    <element oio:content="relationer" ref="orgfunk:RelationListe"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <element name="Egenskab" oio:definition="urn:oio:sagdok:organisationfunktionegenskaber:ADD:1.0.0" type="orgfunk:EgenskabType"/>
+    <complexType name="EgenskabType" oio:definition="urn:oio:sagdok:organisationfunktionegenskaber:ADD:1.0.0">
+        <sequence>
+            <element minOccurs="0" oio:content="virkning" ref="sd:Virkning"/>
+            <element minOccurs="0" oio:content="brugervendtnoegle" ref="sd:BrugervendtNoegleTekst"/>
+            <element minOccurs="0" oio:content="organisationfunktionsnavn" ref="sd:FunktionNavn"/>
+        </sequence>
+    </complexType>
+
+</schema>

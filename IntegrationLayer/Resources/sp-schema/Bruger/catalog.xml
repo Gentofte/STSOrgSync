@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE catalog
+        PUBLIC "-//OASIS//DTD XML Catalogs V1.1//EN"
+        "http://www.oasis-open.org/committees/entity/release/1.1/catalog.dtd">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+    <systemSuffix systemIdSuffix="SagDokObjekt.xsd"
+                  uri="maven:com.systematic.kombit:STSServices-sharedcontracts!/xsd/1.1.STS-1/SagDokObjekt.xsd"/>
+
+</catalog>

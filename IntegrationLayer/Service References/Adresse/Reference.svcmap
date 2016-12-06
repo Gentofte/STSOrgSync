@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bf51c32e-aee9-49a3-b896-dfbe3e9b2b02" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="\\vmware-host\Shared Folders\brian\projects\organisation-synchronisation-component\IntegrationLayer\Resources\sp-schema\Adresse\AdresseService.wsdl" Protocol="file" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AdresseService.wsdl" MetadataType="Wsdl" ID="c946b560-3011-4356-aa5a-c76653e9487d" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Adresse/AdresseService.wsdl" />
+    <MetadataFile FileName="AdresseOperationer.xsd" MetadataType="Schema" ID="ea21425e-d152-48fd-a138-a12f78fb4d14" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Adresse/xsd/1.1.STS-1/AdresseOperationer.xsd" />
+    <MetadataFile FileName="SagDokObjekt.xsd" MetadataType="Schema" ID="9dd69f3f-1d37-447e-9ee8-b8b41351acc4" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Adresse/xsd/1.1.STS-1/SagDokObjekt.xsd" />
+    <MetadataFile FileName="AdresseServiceMsg.xsd" MetadataType="Schema" ID="0b6e480e-9fd7-4993-b0bc-2136c119c029" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Adresse/AdresseServiceMsg.xsd" />
+    <MetadataFile FileName="Adresse.xsd" MetadataType="Schema" ID="9075cd35-4c25-4a99-b296-25512976a2de" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Adresse/xsd/1.1.STS-1/Adresse.xsd" />
+    <MetadataFile FileName="GenerelleDefinitioner.xsd" MetadataType="Schema" ID="fbee1d6a-b7e1-45ed-b346-c0c63ffe9be2" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Adresse/xsd/1.1.STS-1/GenerelleDefinitioner.xsd" />
+    <MetadataFile FileName="ServiceplatformFault_1.xsd" MetadataType="Schema" ID="d3f81ad5-c5f7-4ebc-97f4-2e8efeb1f967" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Adresse/ServiceplatformFault_1.xsd" />
+    <MetadataFile FileName="CallContext_1.xsd" MetadataType="Schema" ID="304e8582-54f8-4387-8ac1-39606d484d04" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Adresse/CallContext_1.xsd" />
+    <MetadataFile FileName="AuthorityContext_1.xsd" MetadataType="Schema" ID="fc37eb03-5ca5-46b9-a6a5-c7da1d7d8c4c" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Adresse/AuthorityContext_1.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

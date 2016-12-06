@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:header="http://kombit.dk/xml/schemas/RequestHeader/1/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:tns="urn:oio:sts:organisation:wsdl:1.1.1" xmlns:type="urn:oio:sts:organisation:bruger:1.1.1" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BrugerService" targetNamespace="urn:oio:sts:organisation:wsdl:1.1.1">
+  <wsdl:types>
+<xsd:schema>
+		
+  <xsd:import namespace="urn:oio:sts:organisation:bruger:1.1.1" schemaLocation="../xsd/bruger.1.xsd"/>
+        
+  <xsd:import namespace="urn:oio:sts:organisation:bruger:1.1.1" schemaLocation="../xsd/bruger.3.xsd"/>
+        
+  <xsd:import namespace="urn:oio:sts:organisation:bruger:1.1.1" schemaLocation="../xsd/bruger.6.xsd"/>
+        
+  <xsd:import namespace="urn:oio:sts:organisation:1.1.1" schemaLocation="../xsd/bruger.4.xsd"/>
+        
+  <xsd:import namespace="urn:oio:sts:part:1.1.1" schemaLocation="../xsd/bruger.5.xsd"/>
+        
+  <xsd:import namespace="urn:oio:sts:1.1.1" schemaLocation="../xsd/bruger.7.xsd"/>
+        
+  <xsd:import namespace="urn:oio:sagdok:3.0.0" schemaLocation="../xsd/bruger.2.xsd"/>
+        
+  <xsd:import namespace="http://kombit.dk/xml/schemas/RequestHeader/1/" schemaLocation="../xsd/bruger.8.xsd"/>
+      
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="BrugerPassiverResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:PassiverOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerListeRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:ListInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerLaesResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:LaesOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerOpretResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:OpretOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerImporterRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:ImportInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerImporterResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:ImportOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerRetRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:RetInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerRetResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:RetOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerOpretRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:OpretInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerLaesRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:LaesInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerSletRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:SletInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerListeResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:ListOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerSletResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:SletOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerSoegRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:SoegInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerPassiverRequestMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:PassiverInput" name="request">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BrugerSoegResponseMessage">
+    <wsdl:part element="header:RequestHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="type:SoegOutput" name="response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="BrugerPortType">
+    <wsdl:operation name="opret">
+      <wsdl:input message="tns:BrugerOpretRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:BrugerOpretResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="importer">
+      <wsdl:input message="tns:BrugerImporterRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:BrugerImporterResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="passiver">
+      <wsdl:input message="tns:BrugerPassiverRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:BrugerPassiverResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="laes">
+      <wsdl:input message="tns:BrugerLaesRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:BrugerLaesResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ret">
+      <wsdl:input message="tns:BrugerRetRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:BrugerRetResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="slet">
+      <wsdl:input message="tns:BrugerSletRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:BrugerSletResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="soeg">
+      <wsdl:input message="tns:BrugerSoegRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:BrugerSoegResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="list">
+      <wsdl:input message="tns:BrugerListeRequestMessage">
+    </wsdl:input>
+      <wsdl:output message="tns:BrugerListeResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Bruger" type="tns:BrugerPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsp:PolicyReference URI="#ServicePortBindingPolicy"/>
+    <wsdl:operation name="opret">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/bruger/opret"/>
+      <wsdl:input>
+        <soap:header message="tns:BrugerOpretRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:BrugerOpretResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="importer">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/bruger/importer"/>
+      <wsdl:input>
+        <soap:header message="tns:BrugerImporterRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:BrugerImporterResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="passiver">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/bruger/passiver"/>
+      <wsdl:input>
+        <soap:header message="tns:BrugerPassiverRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:BrugerPassiverResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="laes">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/bruger/laes"/>
+      <wsdl:input>
+        <soap:header message="tns:BrugerLaesRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:BrugerLaesResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ret">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/bruger/ret"/>
+      <wsdl:input>
+        <soap:header message="tns:BrugerRetRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:BrugerRetResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="slet">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/bruger/slet"/>
+      <wsdl:input>
+        <soap:header message="tns:BrugerSletRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:BrugerSletResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="soeg">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/bruger/soeg"/>
+      <wsdl:input>
+        <soap:header message="tns:BrugerSoegRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:BrugerSoegResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="list">
+      <soap:operation soapAction="http://kombit.dk/sts/organisation/bruger/list"/>
+      <wsdl:input>
+        <soap:header message="tns:BrugerListeRequestMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="request" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Input_Policy"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="tns:BrugerListeResponseMessage" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="response" use="literal"/>
+    <wsp:PolicyReference URI="#ServicePortBinding_ping_Output_Policy"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BrugerService">
+    <wsdl:port binding="tns:Bruger" name="Bruger">
+      <soap:address location="https://organisation.eksterntest-stoettesystemerne.dk/sts-soap-organisation/bruger"/>
+    </wsdl:port>
+  </wsdl:service>
+    <wsp:Policy wsu:Id="ServicePortBindingPolicy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsam:Addressing wsp:Optional="false"><wsp:Policy /></wsam:Addressing><sp:AsymmetricBinding>
+          <wsp:Policy>
+            <sp:InitiatorToken>
+              <wsp:Policy>
+                <sp:IssuedToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+                  <sp:RequestSecurityTokenTemplate>
+                  </sp:RequestSecurityTokenTemplate>
+                  <wsp:Policy>
+                    <sp:RequireInternalReference/>
+                  </wsp:Policy>
+                </sp:IssuedToken>
+              </wsp:Policy>
+            </sp:InitiatorToken>
+            <sp:RecipientToken>
+              <wsp:Policy>
+                <sp:X509Token sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/Never">
+                  <wsp:Policy>
+                    <sp:WssX509V3Token10/>
+                    <sp:RequireIssuerSerialReference/>
+                  </wsp:Policy>
+                </sp:X509Token>
+              </wsp:Policy>
+            </sp:RecipientToken>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+            <sp:ProtectTokens/>
+            <sp:OnlySignEntireHeadersAndBody/>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+          </wsp:Policy>
+        </sp:AsymmetricBinding>
+        <sp:Wss10>
+          <wsp:Policy>
+            <sp:MustSupportRefKeyIdentifier/>
+            <sp:MustSupportRefIssuerSerial/>
+          </wsp:Policy>
+        </sp:Wss10>
+        <sp:Trust13>
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens/>
+            <sp:RequireClientEntropy/>
+            <sp:RequireServerEntropy/>
+          </wsp:Policy>
+        </sp:Trust13>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+    <wsp:Policy wsu:Id="ServicePortBinding_ping_Input_Policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts>
+          <sp:Body/>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="AckRequested" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="Sequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="CreateSequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="Framework" Namespace="urn:liberty:sb:2006-08"/>
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+    <wsp:Policy wsu:Id="ServicePortBinding_ping_Output_Policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts>
+          <sp:Body/>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="AckRequested" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="Sequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="CreateSequence" Namespace="http://docs.oasis-open.org/ws-rx/wsrm/200702"/>
+          <sp:Header Name="Framework" Namespace="urn:liberty:sb:2006-08"/>
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+</wsdl:definitions>

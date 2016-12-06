@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<policies xmlns:wsp="http://www.w3.org/ns/ws-policy"
+          xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+          xmlns:wsa="http://www.w3.org/2005/08/addressing"
+          xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+
+    <!-- KOMBIT SAML policy -->
+    <wsp:Policy wsu:Id="STS_SAML_Token_policy">
+        <sp:SignedSupportingTokens xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+            <wsp:Policy wsp:Optional="false">
+                <sp:IssuedToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+                    <!-- Nedenst�ende Issuer address er pt. ikke rigtig idet STS endpoint ikke kendt-->
+                    <sp:Issuer>
+                        <wsa:Address>https://url-til-sts</wsa:Address>
+                    </sp:Issuer>
+                    <sp:RequestSecurityTokenTemplate>
+                        <trust:TokenType xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">urn:oasis:names:tc:SAML:2.0:assertion</trust:TokenType>
+                    </sp:RequestSecurityTokenTemplate>
+                </sp:IssuedToken>
+                <sp:IncludeTimestamp/>
+                <sp:ProtectTokens/>
+                <sp:OnlySignEntireHeadersAndBody/>
+            </wsp:Policy>
+        </sp:SignedSupportingTokens>
+    </wsp:Policy>
+
+    <wsp:Policy wsu:Id="STS_SAML_Token_policy_optional">
+        <sp:SignedSupportingTokens xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+            <wsp:Policy wsp:Optional="true">
+                <sp:IssuedToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+                    <!-- Nedenst�ende Issuer address er pt. ikke rigtig idet STS endpoint ikke kendt-->
+                    <sp:Issuer>
+                        <wsa:Address>https://url-til-sts</wsa:Address>
+                    </sp:Issuer>
+                    <sp:RequestSecurityTokenTemplate>
+                        <trust:TokenType xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">urn:oasis:names:tc:SAML:2.0:assertion</trust:TokenType>
+                    </sp:RequestSecurityTokenTemplate>
+                </sp:IssuedToken>
+                <sp:IncludeTimestamp/>
+                <sp:ProtectTokens/>
+                <sp:OnlySignEntireHeadersAndBody/>
+            </wsp:Policy>
+        </sp:SignedSupportingTokens>
+    </wsp:Policy>
+  
+  <!-- Input policy for signing input -->
+  <wsp:Policy wsu:Id="Input_Policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts>
+          <sp:Body/>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="Framework" Namespace="urn:liberty:sb"/>
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  
+  <!-- TLS policy for communicating with SP -->
+  <wsp:Policy wsu:Id="TLS_policy">
+    <sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+      <wsp:Policy>
+        <sp:TransportToken>
+          <wsp:Policy>
+            <sp:HttpsToken RequireClientCertificate="true"/>
+          </wsp:Policy>
+        </sp:TransportToken>
+      </wsp:Policy>
+    </sp:TransportBinding>
+  </wsp:Policy>
+</policies>

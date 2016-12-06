@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:oio="urn:oio:definitions:1.0.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:oio:sts:1.1.1" oio:mapping="urn:oio:sagdok:MPD:3.0.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element oio:definition="urn:oio:sts:cvrnummer:BDD:1.1.1" name="CVR-NummerTekst" type="string" />
+  <element oio:definition="urn:oio:sts:senummer:BDD:1.1.1" name="SE-NummerTekst" type="string" />
+  <element oio:definition="urn:oio:sts:pnummer:BDD:1.1.1" name="P-NummerTekst" type="string" />
+  <element oio:definition="urn:oio:sts:cprnummer:BDD:1.1.1" name="CPR-NummerTekst" type="string" />
+  <element oio:definition="urn:oio:sts:navn:BDD:1.1.1" name="NavnTekst" type="string" />
+  <element oio:definition="urn:oio:sts:email:BDD:1.1.1" name="AdresseTekst" type="string" />
+</schema>

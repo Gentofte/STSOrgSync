@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Organisationsrapport</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+
+        <h1>Organisationshierarki</h1>
+        <pre>@Model.AsciiTreeRepresentation</pre>
+
+        <h1>Organisationsenheder</h1>
+        @foreach(var ou in Model.OUs) {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th colspan="2" style="text-align:center;">@ou.Name (@ou.Uuid)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="col-md-3">Brugervendt Nøgle</th>
+                    <td class="col-md-9">
+                        @ou.BrugervendtNoegle
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-md-3">Adresser</th>
+                    <td class="col-md-9">
+                        <pre>@ou.AddressDetails</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Stillinger</th>
+                    <td>
+                        <pre>@ou.EmployeesDetails</pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        }
+
+        <h1>Medarbejdere</h1>
+        @foreach(var user in Model.Users) {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th colspan="2" style="text-align:center;">@user.Name (@user.Uuid)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="col-md-3">BrugerID</th>
+                        <td class="col-md-9">
+                            @user.UserId
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="col-md-3">CPR</th>
+                        <td class="col-md-9">
+                            @user.Cpr
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="col-md-3">Brugervendt Nøgle</th>
+                        <td class="col-md-9">
+                            @user.ShortKey
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Adresser</th>
+                        <td>
+                            <pre>@user.AddressDetails</pre>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    </div>
+</body>
+</html>
