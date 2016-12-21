@@ -175,12 +175,16 @@ namespace Organisation.ReportTool
             List<OU> result = new List<OU>();
             foreach (string uuid in ous)
             {
-                OU ou = inspectorService.ReadOUObject(uuid);
+                OU ou = inspectorService.ReadOUObject(uuid, ReadAddresses.YES, ReadParentDetails.NO, ReadPayoutUnit.YES, ReadPositions.YES);
                 result.Add(ou);
 
                 if (count++ % pixelStep == 0)
                 {
                     log.Text += "*";
+                    log.Invalidate();
+                    log.Update();
+                    log.Refresh();
+                    Application.DoEvents();
                 }
             }
 

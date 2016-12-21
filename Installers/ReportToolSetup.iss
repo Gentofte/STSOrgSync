@@ -4,7 +4,7 @@
 #define AppId "{{99fc06ec-8285-4bd1-a018-58c74fca4987}"
 #define AppSourceDir "\\vmware-host\Shared Folders\brian\projects\organisation-synchronisation-component\ReportTool\bin\Debug\"
 #define AppName "ReportTool"
-#define AppVersion "1.0"
+#define AppVersion "1.0.1"
 #define AppPublisher "Digital Identity"
 #define AppURL "http://digital-identity.dk/"
 #define AppExeName "ReportTool.exe"

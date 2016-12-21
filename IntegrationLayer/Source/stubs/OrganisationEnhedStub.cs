@@ -266,7 +266,7 @@ namespace Organisation.IntegrationLayer
                     else
                     {
                         // attempt to terminate the existing relationship (it might already be terminated)
-                        if (StubUtil.TerminateVirkning(registration.RelationListe.Overordnet, unit.Timestamp))
+                        if (StubUtil.TerminateVirkning(registration.RelationListe.Overordnet.Virkning, unit.Timestamp))
                         {
                             changes = true;
                         }
@@ -515,6 +515,7 @@ namespace Organisation.IntegrationLayer
             soegInput.SoegRegistrering = new SoegRegistreringType();
             soegInput.SoegVirkning = new SoegVirkningType();
             soegInput.TilstandListe = new TilstandListeType();
+            soegInput.MaksimalAntalKvantitet = "5000"; // the default limit is 500, and for the report tool, we need to extract ALL OUs/Users, which can be a higher number
 
             // TODO: This is not working - it appears that we get the full list, even those where the Virkning on the reference is not valid
             // we are only interested in relationships that are currently valid

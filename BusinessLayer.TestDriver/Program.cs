@@ -13,8 +13,10 @@ namespace Organisation.BusinessLayer.TestDriver
         {
             Initializer.Init();
 
+            //BuildKorsbaek();
+
             // TODO: this is a small method to build some useful sample data for manuel testing
-            //            BuildTestData();
+            //BuildTestData();
 
             TestCreateAndUpdateFullUser();
             TestCreateAndUpdateFullOU();
@@ -25,6 +27,131 @@ namespace Organisation.BusinessLayer.TestDriver
             TestPayoutUnits();
 
             Environment.Exit(0);
+        }
+
+        private static void BuildKorsbaek()
+        {
+            OrgUnitRegistration korsbaekKommune = new OrgUnitRegistration();
+            korsbaekKommune.ShortKey = "Korsbæk Kommune";
+            korsbaekKommune.Name = "Korsbæk Kommune";
+            korsbaekKommune.Uuid = "b9e45b18-b6ba-4434-bce4-844214aaaae8";
+            orgUnitService.Create(korsbaekKommune);
+
+            OrgUnitRegistration socialOgSundhedsforvaltningen = new OrgUnitRegistration();
+            socialOgSundhedsforvaltningen.ShortKey = "Social og Sundhedsforvaltningen";
+            socialOgSundhedsforvaltningen.Name = "Social og Sundhedsforvaltningen";
+            socialOgSundhedsforvaltningen.Uuid = "9e491092-be32-4a74-a8b6-a3868386958d";
+            socialOgSundhedsforvaltningen.ParentOrgUnitUuid = korsbaekKommune.Uuid;
+            orgUnitService.Create(socialOgSundhedsforvaltningen);
+
+            OrgUnitRegistration beskaeftigelsesOmraadet = new OrgUnitRegistration();
+            beskaeftigelsesOmraadet.ShortKey = "Beskæftigelsesområdet";
+            beskaeftigelsesOmraadet.Name = "Beskæftigelsesområdet";
+            beskaeftigelsesOmraadet.Uuid = "6bbd954b-ef5f-426e-b387-aa92a0acc8ac";
+            beskaeftigelsesOmraadet.ParentOrgUnitUuid = socialOgSundhedsforvaltningen.Uuid;
+            orgUnitService.Create(beskaeftigelsesOmraadet);
+
+            OrgUnitRegistration sundhedUdviklingServiceOgOekonomi = new OrgUnitRegistration();
+            sundhedUdviklingServiceOgOekonomi.ShortKey = "Sundhed, Udvikling, Service og Økonomi";
+            sundhedUdviklingServiceOgOekonomi.Name = "Sundhed, Udvikling, Service og Økonomi";
+            sundhedUdviklingServiceOgOekonomi.Uuid = "e0fb33b7-ee59-43f4-af5b-faf67de2c549";
+            sundhedUdviklingServiceOgOekonomi.ParentOrgUnitUuid = socialOgSundhedsforvaltningen.Uuid;
+            orgUnitService.Create(sundhedUdviklingServiceOgOekonomi);
+
+            OrgUnitRegistration ungeOmraadet = new OrgUnitRegistration();
+            ungeOmraadet.ShortKey = "Ungeområdet";
+            ungeOmraadet.Name = "Ungeområdet";
+            ungeOmraadet.Uuid = "e5044026-9fc9-485a-a3bb-428a004c0483";
+            ungeOmraadet.ParentOrgUnitUuid = beskaeftigelsesOmraadet.Uuid;
+            orgUnitService.Create(ungeOmraadet);
+
+            OrgUnitRegistration jobcenter = new OrgUnitRegistration();
+            jobcenter.ShortKey = "Jobcenter";
+            jobcenter.Name = "Jobcenter";
+            jobcenter.Uuid = "e265f56e-031f-46b5-a403-6ded21e8d3e2";
+            jobcenter.ParentOrgUnitUuid = beskaeftigelsesOmraadet.Uuid;
+            orgUnitService.Create(jobcenter);
+
+            OrgUnitRegistration ydelseOgRaadighed = new OrgUnitRegistration();
+            ydelseOgRaadighed.ShortKey = "Ydelse og Rådighed";
+            ydelseOgRaadighed.Name = "Ydelse og Rådighed";
+            ydelseOgRaadighed.Uuid = "bd145a83-5386-40c8-b0e6-4fa5f6298c95";
+            ydelseOgRaadighed.ParentOrgUnitUuid = jobcenter.Uuid;
+            orgUnitService.Create(ydelseOgRaadighed);
+
+            OrgUnitRegistration jobOgRessourcer = new OrgUnitRegistration();
+            jobOgRessourcer.ShortKey = "Job og Ressourcer";
+            jobOgRessourcer.Name = "Job og Ressourcer";
+            jobOgRessourcer.Uuid = "b1f926f5-47fd-4b3e-a4fc-01f21bc5d7e1";
+            jobOgRessourcer.ParentOrgUnitUuid = jobcenter.Uuid;
+            orgUnitService.Create(jobOgRessourcer);
+
+            OrgUnitRegistration jobOgKompetencer = new OrgUnitRegistration();
+            jobOgKompetencer.ShortKey = "Job og Ressourcer";
+            jobOgKompetencer.Name = "Job og Ressourcer";
+            jobOgKompetencer.Uuid = "03d0923b-fa25-4991-84ed-b060379c7a31";
+            jobOgKompetencer.ParentOrgUnitUuid = jobcenter.Uuid;
+            orgUnitService.Create(jobOgKompetencer);
+
+            UserRegistration userRegistration = new UserRegistration();
+            userRegistration.UserUuid = "fb5281bd-2d00-4426-97ae-927f7eddf8aa";
+            userRegistration.UserShortKey = "PIASTE";
+            userRegistration.UserId = "PIASTE";
+            userRegistration.PersonName = "Pia Stenberg";
+            userRegistration.Email.Value = "piaste@korsbaek.dk";
+            userRegistration.PositionName = "YR. Medarb. 01";
+            userRegistration.PositionShortKey = "YR. Medarb. 01";
+            userRegistration.PositionUuid = "0b9dcfc6-fcbe-4856-a4ac-de0c979ec47a";
+            userRegistration.PositionOrgUnitUuid = ydelseOgRaadighed.Uuid;
+            userService.Create(userRegistration);
+
+            userRegistration = new UserRegistration();
+            userRegistration.PositionUuid = "a3a1a3c8-7519-43c1-ad49-2cbb284632ad";
+            userRegistration.PositionName = "YR. Medarb. 02";
+            userRegistration.PositionShortKey = "YR. Medarb. 02";
+            userRegistration.PositionOrgUnitUuid = ydelseOgRaadighed.Uuid;
+            userRegistration.UserUuid = "18cddc45-ccb4-4753-8b42-6a9f62dc2d83";
+            userRegistration.UserShortKey = "AMCATK";
+            userRegistration.UserId = "AMCATK";
+            userRegistration.PersonName = "Catrine Kristensen";
+            userRegistration.Email.Value = "amcatk@korsbaek.dk";
+            userService.Create(userRegistration);
+
+            userRegistration = new UserRegistration();
+            userRegistration.PositionUuid = "99d0d6be-1ca9-4367-8fe6-6ec761dfe3a5";
+            userRegistration.PositionName = "YR. Medarb. 03";
+            userRegistration.PositionShortKey = "YR. Medarb. 03";
+            userRegistration.PositionOrgUnitUuid = ydelseOgRaadighed.Uuid;
+            userRegistration.UserUuid = "530d688e-ff9b-4437-8c9b-1dbb651e13e2";
+            userRegistration.UserShortKey = "BEDOLG";
+            userRegistration.UserId = "BEDOLG";
+            userRegistration.PersonName = "Dorthe Langager";
+            userRegistration.Email.Value = "bedolg@korsbaek.dk";
+            userService.Create(userRegistration);
+
+            userRegistration = new UserRegistration();
+            userRegistration.PositionUuid = "8a82772e-ac4e-438e-8a95-d495a6cbc90d";
+            userRegistration.PositionName = "JR. Medarb. 01";
+            userRegistration.PositionShortKey = "JR. Medarb. 01";
+            userRegistration.PositionOrgUnitUuid = jobOgRessourcer.Uuid;
+            userRegistration.UserUuid = "f8985e8f-f4da-413e-b819-febdd7767b94";
+            userRegistration.UserShortKey = "HENJAC";
+            userRegistration.UserId = "HENJAC";
+            userRegistration.PersonName = "Henrik Jacobsen";
+            userRegistration.Email.Value = "henjac@korsbaek.dk";
+            userService.Create(userRegistration);
+
+            userRegistration = new UserRegistration();
+            userRegistration.PositionUuid = "7b0ace17-d54e-47bf-9c44-1353b134252d";
+            userRegistration.PositionName = "JR. Medarb. 02";
+            userRegistration.PositionShortKey = "JR. Medarb. 02";
+            userRegistration.PositionOrgUnitUuid = jobOgRessourcer.Uuid;
+            userRegistration.UserUuid = "ba4710c3-0304-457a-9924-f80f8d8563eb";
+            userRegistration.UserShortKey = "SOFJDM";
+            userRegistration.UserId = "SOFJDM";
+            userRegistration.PersonName = "Sofie Damager";
+            userRegistration.Email.Value = "sofjdm@korsbaek.dk";
+            userService.Create(userRegistration);
         }
 
         private static void TestPayoutUnits()
@@ -103,6 +230,9 @@ namespace Organisation.BusinessLayer.TestDriver
             OrgUnitRegistration administration = OUReg();
             administration.Name = "Administration";
             administration.ParentOrgUnitUuid = root.Uuid;
+            administration.ItSystemUuids.Add("95d4db6e-219a-4d72-a6c7-f20f02e850b1");
+            administration.ItSystemUuids.Add("93f1f053-7c6c-48e8-8146-752c8b9f74b5");
+            administration.ItSystemUuids.Add("09dfb4a5-aa5c-47d9-91db-b8780dcba37e");
             orgUnitService.Update(administration);
 
             OrgUnitRegistration economics = OUReg();
@@ -126,12 +256,15 @@ namespace Organisation.BusinessLayer.TestDriver
 
             OrgUnitRegistration borgerservice = OUReg();
             borgerservice.Name = "Borgerservice";
+            borgerservice.LOSShortName.Value = "BS"; // BorgerService is a payout unit
             borgerservice.ParentOrgUnitUuid = administration.Uuid;
+            borgerservice.ItSystemUuids.Add("09dfb4a5-aa5c-47d9-91db-b8780dcba37e");
             orgUnitService.Update(borgerservice);
 
             user = UserReg();
             user.PersonName = "Karen Hjælpsom";
             user.UserId = "khj";
+            user.Email.Value = "khj@mail.dk";
             user.PositionName = "Sagsbehandler";
             user.PositionOrgUnitUuid = borgerservice.Uuid;
             userService.Update(user);
@@ -139,6 +272,7 @@ namespace Organisation.BusinessLayer.TestDriver
             user = UserReg();
             user.PersonName = "Søren Sørensen";
             user.UserId = "ssø";
+            user.Phone.Value = "12345678";
             user.PositionName = "Sagsbehandler";
             user.PositionOrgUnitUuid = borgerservice.Uuid;
             userService.Update(user);
@@ -146,12 +280,16 @@ namespace Organisation.BusinessLayer.TestDriver
             user = UserReg();
             user.PersonName = "Viggo Mortensen";
             user.UserId = "vmort";
+            user.PersonCpr = "0101010101";
             user.PositionName = "Sagsbehandler";
             user.PositionOrgUnitUuid = borgerservice.Uuid;
             userService.Update(user);
 
             OrgUnitRegistration jobcenter = OUReg();
             jobcenter.Name = "Jobcenter Centralkontor";
+            jobcenter.PayoutUnitUuid = borgerservice.Uuid;
+            jobcenter.Ean.Value = "12312312312312";
+            jobcenter.EmailRemarks.Value = "Some remark";
             jobcenter.ParentOrgUnitUuid = administration.Uuid;
             orgUnitService.Update(jobcenter);
 
@@ -181,6 +319,7 @@ namespace Organisation.BusinessLayer.TestDriver
 
             OrgUnitRegistration itDepartment = OUReg();
             itDepartment.Name = "IT Department";
+            itDepartment.PayoutUnitUuid = borgerservice.Uuid;
             itDepartment.ParentOrgUnitUuid = root.Uuid;
             orgUnitService.Update(itDepartment);
 
