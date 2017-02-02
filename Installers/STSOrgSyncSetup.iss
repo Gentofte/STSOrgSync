@@ -2,9 +2,9 @@
 ; To generate the installer, define the variable MyAppSourceDir MUST point to the Directory where the dll's should be copied from
 ; The script may be executed from the console-mode compiler - iscc "c:\isetup\samples\my script.iss" or from the Inno Setup Compiler UI
 #define AppId "{{0a90431b-110a-462f-8b19-b1edffda64a7}"
-#define AppSourceDir "\\vmware-host\Shared Folders\brian\projects\organisation-synchronisation-component\WindowsService\bin\Debug"
+#define AppSourceDir "\\vmware-host\Shared Folders\brian\projects\STSOrgSync\WindowsService\bin\Debug"
 #define AppName "STSOrgSync"
-#define AppVersion "1.1"
+#define AppVersion "1.1.0"
 #define AppPublisher "Digital Identity"
 #define AppURL "http://digital-identity.dk/"
 #define AppExeName "STSOrgSync.exe"
