@@ -9,6 +9,7 @@ namespace Organisation.ServiceLayer
 
         public string UPDATE_FAILED = "Could not update object";
         public string DELETE_FAILED = "Could not delete object";
+        public string READ_FAILED = "Could not read object";
 
         public string GetOuMessage(string message) {
             return string.Format("{0}, {1}",SERVICE_NAME_OU, message);

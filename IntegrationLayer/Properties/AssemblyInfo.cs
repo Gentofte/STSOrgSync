@@ -21,6 +21,7 @@ using System.Runtime.InteropServices;
 
 // make the BusinessLayer, SchedulingLayer and Report Tool friends
 [assembly: InternalsVisibleTo("BusinessLayer"),
+           InternalsVisibleTo("BusinessLayer.TestDriver"),
            InternalsVisibleTo("SchedulingLayer"),
            InternalsVisibleTo("ServiceLayer"),
            InternalsVisibleTo("ReportTool"),

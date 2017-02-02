@@ -12,6 +12,7 @@ namespace Organisation.IntegrationLayer
         public string ShortKey { get; set; }
         public string Name { get; set; }
         public string FunctionTypeUuid { get; set; }
+        public List<string> Tasks { get; set; } = new List<string>();
         public List<string> Users { get; set; } = new List<string>();
         public List<string> OrgUnits { get; set; } = new List<string>();
         public List<string> ItSystems { get; set; } = new List<string>();

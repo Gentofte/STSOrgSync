@@ -14,32 +14,32 @@ namespace Organisation.IntegrationLayer
         private BrugerStubHelper helper = new BrugerStubHelper();
         private OrganisationRegistryProperties registry = OrganisationRegistryProperties.GetInstance();
 
-        public void Importer(UserData bruger)
+        public void Importer(UserData user)
         {
             // create ShortKey if not supplied
-            EnsureKeys(bruger);
+            EnsureKeys(user);
 
-            log.Debug("Attempting Import on Bruger with uuid " + bruger.Uuid);
+            log.Debug("Attempting Import on Bruger with uuid " + user.Uuid);
 
             // create timestamp object to be used on all registrations, properties and relations
-            VirkningType virkning = helper.GetVirkning(bruger.Timestamp);
+            VirkningType virkning = helper.GetVirkning(user.Timestamp);
 
             // setup registration
-            RegistreringType1 registration = helper.CreateRegistration(bruger.Timestamp, LivscyklusKodeType.Importeret);
+            RegistreringType1 registration = helper.CreateRegistration(user.Timestamp, LivscyklusKodeType.Importeret);
 
             // add properties
-            helper.AddProperties(bruger.ShortKey, bruger.UserId, virkning, registration);
+            helper.AddProperties(user.ShortKey, user.UserId, virkning, registration);
 
             // setup relations
-            helper.AddAddressReferences(bruger.Addresses, virkning, registration);
-            helper.AddPersonRelationship(bruger.PersonUuid, virkning, registration);
+            helper.AddAddressReferences(user.Addresses, virkning, registration);
+            helper.AddPersonRelationship(user.PersonUuid, virkning, registration);
             helper.AddOrganisationRelation(StubUtil.GetMunicipalityOrganisationUUID(), virkning, registration);
 
             // set Tilstand to Active
-            helper.SetTilstandToActive(virkning, registration);
+            helper.SetTilstandToActive(virkning, registration, user.Timestamp);
 
             // wire everything together
-            BrugerType brugerType = helper.GetBrugerType(bruger.Uuid, registration);
+            BrugerType brugerType = helper.GetBrugerType(user.Uuid, registration);
             ImportInputType importInput = new ImportInputType();
             importInput.Bruger = brugerType;
 
@@ -66,7 +66,7 @@ namespace Organisation.IntegrationLayer
                     throw new SoapServiceException(message);
                 }
 
-                log.Debug("Import on Bruger with uuid " + bruger.Uuid + " succeeded");
+                log.Debug("Import on Bruger with uuid " + user.Uuid + " succeeded");
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
@@ -77,15 +77,15 @@ namespace Organisation.IntegrationLayer
             }
         }
 
-        // cuts the user of from the Organisation (this is the correct way to do a soft-delete)
-        public void Orphan(string uuid, DateTime timestamp)
+        // Deactivates the user by setting the Gyldighed attribute to Inactive
+        public void Deactivate(string uuid, DateTime timestamp)
         {
-            log.Debug("Attempting Orphan on Bruger with uuid " + uuid);
+            log.Debug("Attempting Deactivate on Bruger with uuid " + uuid);
 
             RegistreringType1 registration = GetLatestRegistration(uuid, false);
             if (registration == null)
             {
-                log.Debug("Cannot Orphan Bruger with uuid " + uuid + " because it does not exist in Organisation");
+                log.Debug("Cannot Deactivate Bruger with uuid " + uuid + " because it does not exist in Organisation");
                 return;
             }
 
@@ -100,11 +100,8 @@ namespace Organisation.IntegrationLayer
                 input.TilstandListe = registration.TilstandListe;
                 input.RelationListe = registration.RelationListe;
 
-                // cut relationship to Organisation
-                if (input.RelationListe.Tilhoerer != null)
-                {
-                    StubUtil.TerminateVirkning(input.RelationListe.Tilhoerer.Virkning, timestamp);
-                }
+                VirkningType virkning = helper.GetVirkning(timestamp);
+                helper.SetTilstandToInactive(virkning, registration, timestamp);
 
                 retRequest request = new retRequest();
                 request.BrugerRetRequest = new BrugerRetRequestType();
@@ -122,7 +119,7 @@ namespace Organisation.IntegrationLayer
                     throw new SoapServiceException(message);
                 }
 
-                log.Debug("Orphan on Bruger with uuid " +  uuid + " succeeded");
+                log.Debug("Deactivate on Bruger with uuid " +  uuid + " succeeded");
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
@@ -157,6 +154,9 @@ namespace Organisation.IntegrationLayer
                 input.AttributListe = registration.AttributListe;
                 input.TilstandListe = registration.TilstandListe;
                 input.RelationListe = registration.RelationListe;
+
+                // set Tilstand to Active (idempotent change - but it ensures that a previously deactived object is re-activated)
+                changes = helper.SetTilstandToActive(virkning, registration, user.Timestamp) | changes;
 
                 #region Update attributes
 
@@ -361,10 +361,22 @@ namespace Organisation.IntegrationLayer
             soegInput.TilstandListe = new TilstandListeType();
             soegInput.MaksimalAntalKvantitet = "5000"; // the default limit is 500, and for the report tool, we need to extract ALL OUs/Users, which can be a higher number
 
-            // TODO: This is not working - it appears that we get the full list, even those where the Virkning on the reference is not valid
-            // we are only interested in relationships that are currently valid
+            // TODO: This is not working because KMDs implementation does not take Virkning into consideration when searching. We are waiting for a fix from KMD
+            // only search in "actual state"
             soegInput.SoegVirkning.FraTidspunkt = new TidspunktType();
             soegInput.SoegVirkning.FraTidspunkt.Item = DateTime.Now;
+
+            // only search for Active users
+            // TODO: It shouldn't be required to add a Virkning to the individual fields in search(), but we get an errorcode 40 (bad request) if we leave it out (another bug @KMD I think)
+            // TODO: This code causes the KMD services to throw an SQL Exception - this has been reported to KMD, and we are waiting for a fix. This means that we get inactive users back when searching
+            /*
+            soegInput.TilstandListe.Gyldighed = new GyldighedType[1];
+            soegInput.TilstandListe.Gyldighed[0] = new GyldighedType();
+            soegInput.TilstandListe.Gyldighed[0].GyldighedStatusKode = GyldighedStatusKodeType.Aktiv;
+            soegInput.TilstandListe.Gyldighed[0].Virkning = new VirkningType();
+            soegInput.TilstandListe.Gyldighed[0].Virkning.FraTidspunkt = new TidspunktType();
+            soegInput.TilstandListe.Gyldighed[0].Virkning.FraTidspunkt.Item = DateTime.Now;
+            */
 
             // only return objects that have a Tilhører relationship top-level Organisation
             UnikIdType orgReference = StubUtil.GetReference<UnikIdType>(registry.MunicipalityOrganisationUUID, ItemChoiceType.UUIDIdentifikator);

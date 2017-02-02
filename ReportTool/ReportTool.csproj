@@ -64,7 +64,6 @@
     <Compile Include="Model.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="test\DataGenerator.cs" />
     <Compile Include="test\IOUtils.cs" />
     <Compile Include="TreeNode.cs" />
     <EmbeddedResource Include="ReportToolForm.resx">

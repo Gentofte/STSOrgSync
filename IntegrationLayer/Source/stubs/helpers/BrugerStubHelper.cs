@@ -23,11 +23,71 @@ namespace Organisation.IntegrationLayer
             registration.AttributListe.Egenskab = egenskab;
         }
 
-        internal void SetTilstandToActive(VirkningType virkning, RegistreringType1 registration)
+        internal bool SetTilstandToActive(VirkningType virkning, RegistreringType1 registration, DateTime timestamp)
         {
-            GyldighedType gyldighed = GetGyldighedType(GyldighedStatusKodeType.Aktiv, virkning);
-            registration.TilstandListe.Gyldighed = new GyldighedType[1];
-            registration.TilstandListe.Gyldighed[0] = gyldighed;
+            if (TerminateValidityOnGyldighedIfNotMatches(GyldighedStatusKodeType.Aktiv, registration, timestamp))
+            {
+                GyldighedType gyldighed = GetGyldighedType(GyldighedStatusKodeType.Aktiv, virkning);
+                SetTilstand(gyldighed, registration);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        internal bool SetTilstandToInactive(VirkningType virkning, RegistreringType1 registration, DateTime timestamp)
+        {
+            if (TerminateValidityOnGyldighedIfNotMatches(GyldighedStatusKodeType.Inaktiv, registration, timestamp))
+            {
+                GyldighedType gyldighed = GetGyldighedType(GyldighedStatusKodeType.Inaktiv, virkning);
+                SetTilstand(gyldighed, registration);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool TerminateValidityOnGyldighedIfNotMatches(GyldighedStatusKodeType statusCode, RegistreringType1 registration, DateTime timestamp)
+        {
+            if (registration.TilstandListe.Gyldighed != null && registration.TilstandListe.Gyldighed.Length > 0)
+            {
+                GyldighedType latestGyldighed = StubUtil.GetLatestGyldighed(registration.TilstandListe.Gyldighed);
+
+                if (statusCode.Equals(latestGyldighed.GyldighedStatusKode))
+                {
+                    // do nothing, state is already set to what we want
+                    return false;
+                }
+
+                // otherwise we should terminate the validity before we add a new one
+                StubUtil.TerminateVirkning(latestGyldighed.Virkning, timestamp);
+            }
+
+            return true;
+        }
+
+        private void SetTilstand(GyldighedType gyldighed, RegistreringType1 registration)
+        {
+            if (registration.TilstandListe.Gyldighed != null && registration.TilstandListe.Gyldighed.Length > 0)
+            {
+                GyldighedType[] newGyldighedsTyper = new GyldighedType[registration.TilstandListe.Gyldighed.Length + 1];
+                int i = 0;
+
+                foreach (GyldighedType oldGyldighed in registration.TilstandListe.Gyldighed)
+                {
+                    newGyldighedsTyper[i++] = oldGyldighed;
+                }
+
+                newGyldighedsTyper[i] = gyldighed;
+                registration.TilstandListe.Gyldighed = newGyldighedsTyper;
+            }
+            else
+            {
+                registration.TilstandListe.Gyldighed = new GyldighedType[1];
+                registration.TilstandListe.Gyldighed[0] = gyldighed;
+            }
         }
 
         internal void AddOrganisationRelation(string organisationUUID, VirkningType virkning, RegistreringType1 registration)

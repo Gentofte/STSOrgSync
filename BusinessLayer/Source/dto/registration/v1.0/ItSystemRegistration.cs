@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Organisation.BusinessLayer
+namespace Organisation.BusinessLayer.DTO.V1_0
 {
+    [Obsolete]
+    [Serializable]
     public class ItSystemRegistration
     {
         // attributes for ItSystem object

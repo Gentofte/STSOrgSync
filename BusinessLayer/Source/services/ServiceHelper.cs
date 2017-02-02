@@ -2,6 +2,8 @@
 using Organisation.IntegrationLayer;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Organisation.BusinessLayer.DTO.V1_1;
+using IntegrationLayer.OrganisationFunktion;
 
 namespace Organisation.BusinessLayer
 {
@@ -12,9 +14,9 @@ namespace Organisation.BusinessLayer
         private static AdresseStub adresseStub = new AdresseStub();
         private static PersonStub personStub = new PersonStub();
 
-        internal static List<string> FindUnitRolesForUser(string uuid)
+        internal static List<FiltreretOejebliksbilledeType> FindUnitRolesForUser(string uuid)
         {
-            return organisationFunktionStub.SoegAndGetUuids(UUIDConstants.ORGFUN_POSITION, uuid, null, null);
+            return organisationFunktionStub.SoegAndGetLatestRegistration(UUIDConstants.ORGFUN_POSITION, uuid, null, null);
         }
 
         internal static List<string> FindUnitRolesForOrgUnit(string uuid)
@@ -49,44 +51,127 @@ namespace Organisation.BusinessLayer
             uuid = addressData.Uuid;
         }
 
-        internal static void UpdatePosition(UserRegistration user, string unitRoleUuid)
+        internal static void UpdatePosition(UserRegistration user)
         {
-            if (unitRoleUuid != null && (user.PositionUuid == null || user.PositionUuid.Equals(unitRoleUuid)))
-            {
-                // This is the expected case for an update operation - see if we have updates for the referenced OrgFunction object
+            /*
+               1. fetch all positions that the user currently have
+               2. compare positions from organisation with the positions in the registration, using the following rules
+                  a) a position is a "match" if it points to the same unit (and no two positions can point to the same unit), or if it matches on UUID
+                  b) a position should be updated if the name/shortKey/ou-pointer has been changed
+                  c) a position should be removed if it no longer exist in the registration, but does in organisation
+                  d) a position should be added, if it exists in the registration, but not in organisation
+             */
 
-                organisationFunktionStub.Ret(new OrgFunctionData()
-                {
-                    Uuid = unitRoleUuid,
-                    ShortKey = user.PositionShortKey,
-                    Name = user.PositionName,
-                    FunctionTypeUuid = UUIDConstants.ORGFUN_POSITION,
-                    OrgUnits = new List<string>() { user.PositionOrgUnitUuid },
-                    Users = new List<string>() { user.UserUuid },
-                    Timestamp = user.Timestamp
-                }, UpdateIndicator.COMPARE, UpdateIndicator.COMPARE);
-            }
-            else
-            {
-                // this is either a Create case, with no existing position (OrgFunction), or we have changed position,
-                // in which case we need to Orphan the existing position
+            // fetch all the users existing positions
+            List<FiltreretOejebliksbilledeType> unitRoles = FindUnitRolesForUser(user.Uuid);
 
-                if (unitRoleUuid != null)
+            // loop through roles found in organisation, and find those that must be updated, and those that must be deleted
+            foreach (FiltreretOejebliksbilledeType unitRole in unitRoles)
+            {
+                RegistreringType1 existingRoleRegistration = unitRole.Registrering[0];
+
+                if (existingRoleRegistration.RelationListe.TilknyttedeEnheder.Length != 1)
                 {
-                    organisationFunktionStub.Orphan(unitRoleUuid, user.Timestamp);
+                    log.Warn("User '" + user.Uuid + "' has an existing position in Organisation with " + existingRoleRegistration.RelationListe.TilknyttedeEnheder.Length + " associated OrgUnits");
+                    continue;
                 }
 
-                organisationFunktionStub.Importer(new OrgFunctionData()
+                // figure out everything relevant about the position object in Organisation
+                EgenskabType latestProperty = StubUtil.GetLatestProperty(existingRoleRegistration.AttributListe.Egenskab);
+                string existingRoleUuid = unitRole.ObjektType.UUIDIdentifikator;
+                string existingRoleOUUuid = existingRoleRegistration.RelationListe.TilknyttedeEnheder[0].ReferenceID.Item;
+                string existingRoleName = latestProperty.FunktionNavn;
+                string existingRoleShortKey = latestProperty.BrugervendtNoegleTekst;
+
+                bool found = false;
+                foreach (DTO.V1_1.Position position in user.Positions)
                 {
-                    Uuid = user.PositionUuid,
-                    ShortKey = user.PositionShortKey,
-                    Name = user.PositionName,
-                    FunctionTypeUuid = UUIDConstants.ORGFUN_POSITION,
-                    OrgUnits = new List<string>() { user.PositionOrgUnitUuid },
-                    Users = new List<string>() { user.UserUuid },
-                    Timestamp = user.Timestamp
-                });
+                    // if the UUID of the function is controlled by the local system, the pointer to the OU could be changed,
+                    // so we also need to check for equality on the UUID of the function itself
+                    if (existingRoleUuid.Equals(position.Uuid) || (position.Uuid == null && existingRoleOUUuid.Equals(position.OrgUnitUuid)))
+                    {
+                        if (!existingRoleOUUuid.Equals(position.OrgUnitUuid) ||  // user has moved to a different OU
+                            !existingRoleName.Equals(position.Name) || // the users title has changed
+                            (position.ShortKey != null && existingRoleShortKey.Equals(position.ShortKey))) // there is a new ShortKey for the position
+                        {
+                            organisationFunktionStub.Ret(new OrgFunctionData()
+                            {
+                                Uuid = existingRoleUuid,
+                                ShortKey = (position.ShortKey != null) ? position.ShortKey : existingRoleShortKey,
+                                Name = position.Name,
+                                FunctionTypeUuid = UUIDConstants.ORGFUN_POSITION,
+                                OrgUnits = new List<string>() { position.OrgUnitUuid },
+                                Users = new List<string>() { user.Uuid },
+                                Timestamp = user.Timestamp
+                            }, UpdateIndicator.NONE, UpdateIndicator.COMPARE, UpdateIndicator.NONE);
+                        }
+
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    organisationFunktionStub.Deactivate(existingRoleUuid, user.Timestamp);
+                }
             }
+
+            // loop through all roles found in the local registration, and create all those that do not exist in Organisation
+            foreach (DTO.V1_1.Position position in user.Positions)
+            {
+                bool found = false;
+
+                foreach (FiltreretOejebliksbilledeType unitRole in unitRoles)
+                {
+                    RegistreringType1 existingRoleRegistration = unitRole.Registrering[0];
+
+                    if (existingRoleRegistration.RelationListe.TilknyttedeEnheder.Length != 1)
+                    {
+                        log.Warn("User '" + user.Uuid + "' has an existing position in Organisation with " + existingRoleRegistration.RelationListe.TilknyttedeEnheder.Length + " associated OrgUnits");
+                        continue;
+                    }
+
+                    string existingRoleUuid = unitRole.ObjektType.UUIDIdentifikator;
+                    string existingRoleOUUuid = existingRoleRegistration.RelationListe.TilknyttedeEnheder[0].ReferenceID.Item;
+
+                    if (existingRoleUuid.Equals(position.Uuid) || (position.Uuid == null && existingRoleOUUuid.Equals(position.OrgUnitUuid)))
+                    {
+                        found = true;
+                    }
+                }
+
+                if (!found)
+                {
+                    organisationFunktionStub.Importer(new OrgFunctionData()
+                    {
+                        Uuid = position.Uuid,
+                        ShortKey = position.ShortKey,
+                        Name = position.Name,
+                        FunctionTypeUuid = UUIDConstants.ORGFUN_POSITION,
+                        OrgUnits = new List<string>() { position.OrgUnitUuid },
+                        Users = new List<string>() { user.Uuid },
+                        Timestamp = user.Timestamp
+                    });
+                }
+            }
+        }
+
+        internal static string CreateContactPlace(OrgUnitRegistration orgUnit, DTO.V1_1.ContactPlace contactPlace)
+        {
+            string uuid = IdUtil.GenerateUuid();
+
+            organisationFunktionStub.Importer(new OrgFunctionData()
+            {
+                Uuid = uuid,
+                Name = "Henvendelsessted",
+                FunctionTypeUuid = UUIDConstants.ORGFUN_CONTACT_UNIT,
+                OrgUnits = new List<string>() { contactPlace.OrgUnitUuid },
+                Tasks = contactPlace.Tasks,
+                Timestamp = orgUnit.Timestamp
+            });
+
+            return uuid;
         }
 
         // this method must be synchronized, as we create a function on the first entry into this method, and return the same value on all other calls
@@ -116,14 +201,14 @@ namespace Organisation.BusinessLayer
 
         internal static void UpdatePerson(UserRegistration user, string orgPersonUuid)
         {
-            if (orgPersonUuid != null && (user.PersonUuid == null || orgPersonUuid.Equals(user.PersonUuid)))
+            if (orgPersonUuid != null && (user.Person.Uuid == null || orgPersonUuid.Equals(user.Person.Uuid)))
             {
                 // This is the expected case for an update operation - see if we have updates for the referenced Person object
 
-                personStub.Ret(orgPersonUuid, user.PersonName, user.PersonShortKey, user.PersonCpr, user.Timestamp);
+                personStub.Ret(orgPersonUuid, user.Person.Name, user.Person.ShortKey, user.Person.Cpr, user.Timestamp);
 
                 // ensure that we have the uuid of the person in the user object, as we will need it for later
-                user.PersonUuid = orgPersonUuid;
+                user.Person.Uuid = orgPersonUuid;
             }
             else
             {
@@ -133,18 +218,18 @@ namespace Organisation.BusinessLayer
 
                 PersonData personData = new PersonData()
                 {
-                    Cpr = user.PersonCpr,
-                    Name = user.PersonName,
-                    ShortKey = user.PersonShortKey,
+                    Cpr = user.Person.Cpr,
+                    Name = user.Person.Name,
+                    ShortKey = user.Person.ShortKey,
                     Timestamp = user.Timestamp,
-                    Uuid = user.PersonUuid
+                    Uuid = user.Person.Uuid
                 };
 
                 // TODO: this could potentially fail if we are re-using a Person object locally - but we really don't want to support that case
                 personStub.Importer(personData);
 
                 // ensure that we have the uuid of the person in the user object, as we will need it for later
-                user.PersonUuid = personData.Uuid;
+                user.Person.Uuid = personData.Uuid;
             }
         }
 
@@ -232,7 +317,7 @@ namespace Organisation.BusinessLayer
                         OrgUnits = new List<string>() { orgUnitUuid }
                     };
                 
-                    organisationFunktionStub.Ret(orgFunction, UpdateIndicator.NONE, UpdateIndicator.REMOVE);
+                    organisationFunktionStub.Ret(orgFunction, UpdateIndicator.NONE, UpdateIndicator.REMOVE, UpdateIndicator.NONE);
                 }
             }
             else
@@ -277,7 +362,7 @@ namespace Organisation.BusinessLayer
                 Uuid = orgFunctions[0], // there will ever only be one OrgFunction, but even if there are more, we just pick the first one (any will do)
                 OrgUnits = new List<string>() { orgUnitUuid }
             };
-            organisationFunktionStub.Ret(orgFunction, UpdateIndicator.NONE, UpdateIndicator.ADD);
+            organisationFunktionStub.Ret(orgFunction, UpdateIndicator.NONE, UpdateIndicator.ADD, UpdateIndicator.NONE);
         }
 
         internal static string GetItSystemForRole(string itSystemRole)
@@ -320,6 +405,16 @@ namespace Organisation.BusinessLayer
             }
 
             return itSystemsNewInUse;
+        }
+
+        internal static void UpdateContactPlace(string uuid, List<string> tasks, DateTime timestamp)
+        {
+            organisationFunktionStub.Ret(new OrgFunctionData()
+            {
+                Uuid = uuid,
+                Tasks = tasks,
+                Timestamp = timestamp
+            }, UpdateIndicator.NONE, UpdateIndicator.NONE, UpdateIndicator.COMPARE);
         }
 
         internal static List<string> GetItSystemsNoLongerInUse(List<string> itSystemsInOrg, List<string> itSystemsInLocal)

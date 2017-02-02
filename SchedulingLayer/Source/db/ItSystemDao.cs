@@ -1,14 +1,14 @@
-﻿using Organisation.BusinessLayer;
+﻿using Organisation.BusinessLayer.DTO.V1_1;
 using Organisation.IntegrationLayer;
 using System;
 using System.Data.SqlClient;
 using System.Data.SQLite;
-using System.Data.SqlTypes;
 
 namespace Organisation.SchedulingLayer
 {
     public class ItSystemDao
     {
+        /*
         private string connectionString = null;
         private bool useSqlLite = false;
 
@@ -197,5 +197,6 @@ namespace Organisation.SchedulingLayer
 
             return (string)reader[key];
         }
+        */
     }
 }

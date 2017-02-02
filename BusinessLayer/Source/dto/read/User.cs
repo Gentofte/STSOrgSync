@@ -5,25 +5,18 @@ using System.Runtime.Serialization;
 namespace Organisation.BusinessLayer
 {
     [Serializable]
-    [KnownType(typeof(Organisation.BusinessLayer.Email))]
-    [KnownType(typeof(Organisation.BusinessLayer.Location))]
-    [KnownType(typeof(Organisation.BusinessLayer.Address))]
-    [KnownType(typeof(Organisation.BusinessLayer.Phone))]
-    [KnownType(typeof(Organisation.BusinessLayer.LOSShortName))]
-    [DataContract]
+    [KnownType(typeof(Email))]
+    [KnownType(typeof(Location))]
+    [KnownType(typeof(Phone))]
     public class User
     {
-        [DataMember]
         public string Uuid { get; set; }
-        [DataMember]
         public string ShortKey { get; set; }
-        [DataMember]
+        public Status Status { get; set; }
         public string UserId { get; set; }
-        [DataMember]
         public Person Person { get; set; }
-        [DataMember]
-        public Position Position { get; set; }
-        [DataMember]
+        public DateTime Timestamp { get; set; }
+        public List<Position> Positions { get; set; }
         public List<AddressHolder> Addresses { get; set; }
     }
 }

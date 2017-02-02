@@ -66,5 +66,10 @@ namespace OrganisationInspector
                 webBrowser1.Navigate(Application.StartupPath + "\\" + HTMLUtils.TEMPORARY_ERRORS_PAGE);
             }
         }
+        
+        private void MainForm_FormClosed_1(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

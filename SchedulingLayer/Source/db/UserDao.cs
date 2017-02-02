@@ -1,9 +1,9 @@
-﻿using Organisation.BusinessLayer;
+﻿using Organisation.BusinessLayer.DTO.V1_1;
 using Organisation.IntegrationLayer;
 using System;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Data.SQLite;
+using System.Linq;
 
 namespace Organisation.SchedulingLayer
 {
@@ -39,6 +39,11 @@ namespace Organisation.SchedulingLayer
                     {
                         command.ExecuteNonQuery();
                     }
+
+                    using (SQLiteCommand command = new SQLiteCommand(UserStatements.CREATE_CHILD_TABLE_SQLITE, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
             else
@@ -51,43 +56,79 @@ namespace Organisation.SchedulingLayer
                     {
                         command.ExecuteNonQuery();
                     }
+
+                    using (SqlCommand command = new SqlCommand(UserStatements.CREATE_CHILD_TABLE_MSSQL, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
         }
 
         public void Save(UserRegistration user, OperationType operation)
         {
+            long user_id = 0;
+
             if (useSqlLite)
             {
                 using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                 {
                     connection.Open();
 
-                    using (SQLiteCommand command = new SQLiteCommand(UserStatements.INSERT, connection))
+                    using (SQLiteTransaction transaction = connection.BeginTransaction())
                     {
-                        command.Parameters.Add(new SQLiteParameter("@user_uuid", user.UserUuid));
-                        command.Parameters.Add(new SQLiteParameter("@user_shortkey", user.UserShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@user_id", user.UserId ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@user_phone_uuid", user.Phone?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@user_phone_shortkey", user.Phone?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@user_phone_value", user.Phone?.Value ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@person_shortkey", user.PersonShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@person_uuid", user.PersonUuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@person_name", user.PersonName ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@person_cpr", user.PersonCpr ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@user_email_uuid", user.Email?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@user_email_shortkey", user.Email?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@user_email_value", user.Email?.Value ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@user_location_shortkey", user.Location?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@user_location_value", user.Location?.Value ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@user_location_uuid", user.Location?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@position_uuid", user.PositionUuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@position_shortkey", user.PositionShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@position_orgunit_uuid", user.PositionOrgUnitUuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@position_name", user.PositionName ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@operation", operation.ToString()));
+                        try
+                        {
+                            using (SQLiteCommand command = new SQLiteCommand(UserStatements.INSERT_SQLITE, connection))
+                            {
+                                command.Transaction = transaction;
 
-                        command.ExecuteNonQuery();
+                                command.Parameters.Add(new SQLiteParameter("@user_uuid", user.Uuid));
+                                command.Parameters.Add(new SQLiteParameter("@user_shortkey", user.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@user_id", user.UserId ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@user_phone_uuid", user.Phone?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@user_phone_shortkey", user.Phone?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@user_phone_value", user.Phone?.Value ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@person_shortkey", user.Person.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@person_uuid", user.Person.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@person_name", user.Person.Name ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@person_cpr", user.Person.Cpr ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@user_email_uuid", user.Email?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@user_email_shortkey", user.Email?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@user_email_value", user.Email?.Value ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@user_location_shortkey", user.Location?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@user_location_value", user.Location?.Value ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@user_location_uuid", user.Location?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@operation", operation.ToString()));
+                                command.ExecuteNonQuery();
+
+                                user_id = connection.LastInsertRowId;
+                            }
+
+                            // insert positions
+                            foreach (Position position in user.Positions ?? Enumerable.Empty<Position>())
+                            {
+                                using (SQLiteCommand command = new SQLiteCommand(UserStatements.INSERT_POSITION, connection))
+                                {
+                                    command.Transaction = transaction;
+
+                                    command.Parameters.Add(new SQLiteParameter("@user_id", user_id));
+                                    command.Parameters.Add(new SQLiteParameter("@uuid", position.Uuid ?? (object)DBNull.Value));
+                                    command.Parameters.Add(new SQLiteParameter("@shortkey", position.ShortKey ?? (object)DBNull.Value));
+                                    command.Parameters.Add(new SQLiteParameter("@name", position.Name));
+                                    command.Parameters.Add(new SQLiteParameter("@orgunit_uuid", position.OrgUnitUuid));
+                                    command.ExecuteNonQuery();
+                                }
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+
+                            throw;
+                        }
                     }
                 }
             }
@@ -97,38 +138,69 @@ namespace Organisation.SchedulingLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand(UserStatements.INSERT, connection))
+                    using (SqlTransaction transaction = connection.BeginTransaction())
                     {
-                        command.Parameters.Add(new SqlParameter("@user_uuid", user.UserUuid));
-                        command.Parameters.Add(new SqlParameter("@user_shortkey", user.UserShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@user_id", user.UserId ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@user_phone_uuid", user.Phone?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@user_phone_shortkey", user.Phone?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@user_phone_value", user.Phone?.Value ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@person_shortkey", user.PersonShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@person_uuid", user.PersonUuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@person_name", user.PersonName ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@person_cpr", user.PersonCpr ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@user_email_uuid", user.Email?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@user_email_shortkey", user.Email?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@user_email_value", user.Email?.Value ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@user_location_shortkey", user.Location?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@user_location_value", user.Location?.Value ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@user_location_uuid", user.Location?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@position_uuid", user.PositionUuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@position_shortkey", user.PositionShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@position_orgunit_uuid", user.PositionOrgUnitUuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@position_name", user.PositionName ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@operation", operation.ToString()));
+                        try
+                        {
+                            using (SqlCommand command = new SqlCommand(UserStatements.INSERT_MSSQL, connection))
+                            {
+                                command.Transaction = transaction;
 
-                        command.ExecuteNonQuery();
+                                command.Parameters.Add(new SqlParameter("@user_uuid", user.Uuid));
+                                command.Parameters.Add(new SqlParameter("@user_shortkey", user.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@user_id", user.UserId ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@user_phone_uuid", user.Phone?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@user_phone_shortkey", user.Phone?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@user_phone_value", user.Phone?.Value ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@person_shortkey", user.Person.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@person_uuid", user.Person.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@person_name", user.Person.Name ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@person_cpr", user.Person.Cpr ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@user_email_uuid", user.Email?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@user_email_shortkey", user.Email?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@user_email_value", user.Email?.Value ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@user_location_shortkey", user.Location?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@user_location_value", user.Location?.Value ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@user_location_uuid", user.Location?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@operation", operation.ToString()));
+
+                                user_id = (long)command.ExecuteScalar();
+                            }
+
+                            // insert positions
+                            foreach (Position position in user.Positions ?? Enumerable.Empty<Position>())
+                            {
+                                using (SqlCommand command = new SqlCommand(UserStatements.INSERT_POSITION, connection))
+                                {
+                                    command.Transaction = transaction;
+
+                                    command.Parameters.Add(new SqlParameter("@user_id", user_id));
+                                    command.Parameters.Add(new SqlParameter("@uuid", position.Uuid ?? (object)DBNull.Value));
+                                    command.Parameters.Add(new SqlParameter("@shortkey", position.ShortKey ?? (object)DBNull.Value));
+                                    command.Parameters.Add(new SqlParameter("@name", position.Name));
+                                    command.Parameters.Add(new SqlParameter("@orgunit_uuid", position.OrgUnitUuid));
+                                    command.ExecuteNonQuery();
+                                }
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+
+                            throw;
+                        }
                     }
-                }
+                }   
             }
         }
 
         public UserRegistrationExtended GetOldestEntry()
         {
+            UserRegistrationExtended user = null;
+            long user_id = 0;
+
             if (useSqlLite)
             {
                 using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -141,7 +213,8 @@ namespace Organisation.SchedulingLayer
                         {
                             if (reader.Read())
                             {
-                                UserRegistrationExtended user = new UserRegistrationExtended();
+                                user = new UserRegistrationExtended();
+                                user_id = (long)reader["id"];
 
                                 if (GetValue(reader, "user_phone_value") != null)
                                 {
@@ -168,23 +241,51 @@ namespace Organisation.SchedulingLayer
                                 }
 
                                 user.UserId = GetValue(reader, "user_id");
-                                user.UserUuid = GetValue(reader, "user_uuid");
-                                user.UserShortKey = GetValue(reader, "user_shortkey");
+                                user.Uuid = GetValue(reader, "user_uuid");
+                                user.ShortKey = GetValue(reader, "user_shortkey");
 
-                                user.PersonShortKey = GetValue(reader, "person_shortkey");
-                                user.PersonUuid = GetValue(reader, "person_uuid");
-                                user.PersonName = GetValue(reader, "person_name");
-                                user.PersonCpr = GetValue(reader, "person_cpr");
+                                user.Person.ShortKey = GetValue(reader, "person_shortkey");
+                                user.Person.Uuid = GetValue(reader, "person_uuid");
+                                user.Person.Name = GetValue(reader, "person_name");
+                                user.Person.Cpr = GetValue(reader, "person_cpr");
 
-                                user.PositionUuid = GetValue(reader, "position_uuid");
-                                user.PositionShortKey = GetValue(reader, "position_shortkey");
-                                user.PositionOrgUnitUuid = GetValue(reader, "position_orgunit_uuid");
-                                user.PositionName = GetValue(reader, "position_name");
+                                // legacy read (TODO: remove this in some future version, when we remove these fields from the schema)
+                                Position position = new Position();
+                                position.Uuid = GetValue(reader, "position_uuid");
+                                position.ShortKey = GetValue(reader, "position_shortkey");
+                                position.OrgUnitUuid = GetValue(reader, "position_orgunit_uuid");
+                                position.Name = GetValue(reader, "position_name");
+
+                                if (!string.IsNullOrEmpty(position.OrgUnitUuid) && !string.IsNullOrEmpty(position.Name))
+                                {
+                                    user.Positions.Add(position);
+                                }
 
                                 user.Timestamp = (DateTime)reader["timestamp"];
                                 user.Operation = (OperationType)Enum.Parse(typeof(OperationType), GetValue(reader, "operation"));
+                            }
+                        }
+                    }
 
-                                return user;
+                    // read positions
+                    if (user != null)
+                    {
+                        using (SQLiteCommand command = new SQLiteCommand(UserStatements.SELECT_POSITIONS, connection))
+                        {
+                            command.Parameters.Add(new SQLiteParameter("@id", user_id));
+
+                            using (SQLiteDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    Position position = new Position();
+                                    position.Uuid = GetValue(reader, "uuid");
+                                    position.ShortKey = GetValue(reader, "shortkey");
+                                    position.OrgUnitUuid = GetValue(reader, "orgunit_uuid");
+                                    position.Name = GetValue(reader, "name");
+
+                                    user.Positions.Add(position);
+                                }
                             }
                         }
                     }
@@ -202,7 +303,8 @@ namespace Organisation.SchedulingLayer
                         {
                             if (reader.Read())
                             {
-                                UserRegistrationExtended user = new UserRegistrationExtended();
+                                user = new UserRegistrationExtended();
+                                user_id = (long)reader["id"];
 
                                 if (GetValue(reader, "user_phone_value") != null)
                                 {
@@ -229,18 +331,25 @@ namespace Organisation.SchedulingLayer
                                 }
 
                                 user.UserId = GetValue(reader, "user_id");
-                                user.UserUuid = GetValue(reader, "user_uuid");
-                                user.UserShortKey = GetValue(reader, "user_shortkey");
+                                user.Uuid = GetValue(reader, "user_uuid");
+                                user.ShortKey = GetValue(reader, "user_shortkey");
 
-                                user.PersonShortKey = GetValue(reader, "person_shortkey");
-                                user.PersonUuid = GetValue(reader, "person_uuid");
-                                user.PersonName = GetValue(reader, "person_name");
-                                user.PersonCpr = GetValue(reader, "person_cpr");
+                                user.Person.ShortKey = GetValue(reader, "person_shortkey");
+                                user.Person.Uuid = GetValue(reader, "person_uuid");
+                                user.Person.Name = GetValue(reader, "person_name");
+                                user.Person.Cpr = GetValue(reader, "person_cpr");
 
-                                user.PositionUuid = GetValue(reader, "position_uuid");
-                                user.PositionShortKey = GetValue(reader, "position_shortkey");
-                                user.PositionOrgUnitUuid = GetValue(reader, "position_orgunit_uuid");
-                                user.PositionName = GetValue(reader, "position_name");
+                                // legacy read (TODO: remove this in some future version, when we remove these fields from the schema)
+                                Position position = new Position();
+                                position.Uuid = GetValue(reader, "position_uuid");
+                                position.ShortKey = GetValue(reader, "position_shortkey");
+                                position.OrgUnitUuid = GetValue(reader, "position_orgunit_uuid");
+                                position.Name = GetValue(reader, "position_name");
+
+                                if (!string.IsNullOrEmpty(position.OrgUnitUuid) && !string.IsNullOrEmpty(position.Name))
+                                {
+                                    user.Positions.Add(position);
+                                }
 
                                 user.Timestamp = (DateTime)reader["timestamp"];
                                 user.Operation = (OperationType)Enum.Parse(typeof(OperationType), GetValue(reader, "operation"));
@@ -249,10 +358,33 @@ namespace Organisation.SchedulingLayer
                             }
                         }
                     }
+
+                    // read positions
+                    if (user != null)
+                    {
+                        using (SqlCommand command = new SqlCommand(UserStatements.SELECT_POSITIONS, connection))
+                        {
+                            command.Parameters.Add(new SqlParameter("@id", user_id));
+
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    Position position = new Position();
+                                    position.Uuid = GetValue(reader, "uuid");
+                                    position.ShortKey = GetValue(reader, "shortkey");
+                                    position.OrgUnitUuid = GetValue(reader, "orgunit_uuid");
+                                    position.Name = GetValue(reader, "name");
+
+                                    user.Positions.Add(position);
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
-            return null;
+            return user;
         }
 
         public void Delete(string uuid)

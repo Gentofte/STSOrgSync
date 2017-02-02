@@ -1,17 +1,18 @@
 ﻿using Organisation.BusinessLayer;
+using Organisation.BusinessLayer.DTO.V1_0;
 using Organisation.SchedulingLayer;
 using System;
 using System.Web.Http;
 
 namespace Organisation.ServiceLayer
 {
-    public class UserController : ApiController
+    public class UserV10Controller : ApiController
     {
         private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private ServiceMessages messages;
         private UserDao userDao;
 
-        public UserController()
+        public UserV10Controller()
         {
             Initializer.Init();
             messages = new ServiceMessages();
@@ -27,7 +28,7 @@ namespace Organisation.ServiceLayer
             {
                 try
                 {
-                    userDao.Save(user, OperationType.UPDATE);
+                    userDao.Save(user.ConvertToV1_1(), OperationType.UPDATE);
 
                     return Ok(user);
                 }
@@ -44,7 +45,7 @@ namespace Organisation.ServiceLayer
         public IHttpActionResult Delete(string uuid)
         {
             UserRegistrationExtended user = new UserRegistrationExtended();
-            user.UserUuid = uuid;
+            user.Uuid = uuid;
 
             try
             {

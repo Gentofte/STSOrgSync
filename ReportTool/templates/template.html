@@ -4,81 +4,75 @@
     <meta charset="UTF-8">
     <title>Organisationsrapport</title>
 
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="width: 1400px;">
 
         <h1>Organisationshierarki</h1>
         <pre>@Model.AsciiTreeRepresentation</pre>
 
         <h1>Organisationsenheder</h1>
-        @foreach(var ou in Model.OUs) {
-        <table class="table table-striped">
+        <table id="ou-table" class="table table-striped">
             <thead>
                 <tr>
-                    <th colspan="2" style="text-align:center;">@ou.Name (@ou.Uuid)</th>
+                    <th class="col-md-2">Navn</th>
+                    <th class="col-md-5">Adresser</th>
+                    <th class="col-md-5">Medarbejdere</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach(var ou in Model.OUs) {
                 <tr>
-                    <th class="col-md-3">Brugervendt Nøgle</th>
-                    <td class="col-md-9">
-                        @ou.BrugervendtNoegle
+                    <td>
+                        @ou.Name <br/>
+                        @ou.Uuid
                     </td>
-                </tr>
-                <tr>
-                    <th class="col-md-3">Adresser</th>
-                    <td class="col-md-9">
+                    <td>                        
                         <pre>@ou.AddressDetails</pre>
                     </td>
-                </tr>
-                <tr>
-                    <th>Stillinger</th>
                     <td>
                         <pre>@ou.EmployeesDetails</pre>
                     </td>
                 </tr>
+                }
             </tbody>
         </table>
-        }
 
         <h1>Medarbejdere</h1>
-        @foreach(var user in Model.Users) {
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th colspan="2" style="text-align:center;">@user.Name (@user.Uuid)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th class="col-md-3">BrugerID</th>
-                        <td class="col-md-9">
-                            @user.UserId
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="col-md-3">CPR</th>
-                        <td class="col-md-9">
-                            @user.Cpr
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="col-md-3">Brugervendt Nøgle</th>
-                        <td class="col-md-9">
-                            @user.ShortKey
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Adresser</th>
-                        <td>
-                            <pre>@user.AddressDetails</pre>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        }
+        <table id="user-table" class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-2">Navn</th>
+                    <th class="col-md-2">UserId</th>
+                    <th class="col-md-2">Cpr</th>
+                    <th class="col-md-6">Adresser</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var user in Model.Users) {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.UserId</td>
+                    <td>@user.Cpr</td>
+                    <td>
+                        <pre>@user.AddressDetails</pre>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
     </div>
+
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#ou-table').DataTable();
+            $('#user-table').DataTable();
+        });
+    </script>
 </body>
 </html>

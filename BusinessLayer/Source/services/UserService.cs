@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Organisation.IntegrationLayer;
+using Organisation.BusinessLayer.DTO.V1_1;
+using IntegrationLayer.OrganisationFunktion;
 
 namespace Organisation.BusinessLayer
 {
@@ -9,10 +11,11 @@ namespace Organisation.BusinessLayer
         private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private BrugerStub brugerStub = new BrugerStub();
         private OrganisationFunktionStub orgFunctionStub = new OrganisationFunktionStub();
+        private InspectorService inspectorService = new InspectorService();
 
         public void Create(UserRegistration user)
         {
-            log.Debug("Performing Create on User '" + user.UserUuid + "'");
+            log.Debug("Performing Create on User '" + user.Uuid + "'");
 
             ValidateAndEnforceCasing(user);
 
@@ -33,33 +36,33 @@ namespace Organisation.BusinessLayer
                 // create person object
                 ServiceHelper.UpdatePerson(user, null);
 
-                // create the position (relationship between user and orgunit) - note that the function points to the two parties, not the other way around
-                ServiceHelper.UpdatePosition(user, null);
+                // create the position
+                ServiceHelper.UpdatePosition(user);
 
                 // create User object
                 brugerStub.Importer(MapRegistrationToUserDTO(user));
 
-                log.Debug("Create successful on User '" + user.UserUuid + "'");
+                log.Debug("Create successful on User '" + user.Uuid + "'");
             }
             catch (Exception ex) when (ex is STSNotFoundException || ex is ServiceNotFoundException)
             {
-                log.Warn("Create on UserService failed for '" + user.UserUuid + "' due to unavailable KOMBIT services", ex);
+                log.Warn("Create on UserService failed for '" + user.Uuid + "' due to unavailable KOMBIT services", ex);
                 throw new TemporaryFailureException(ex.Message);
             }
         }
 
         public void Update(UserRegistration user)
         {
-            log.Debug("Performing Update on User '" + user.UserUuid + "'");
+            log.Debug("Performing Update on User '" + user.Uuid + "'");
 
             ValidateAndEnforceCasing(user);
 
             try
             {
-                var result = brugerStub.GetLatestRegistration(user.UserUuid, true);
+                var result = brugerStub.GetLatestRegistration(user.Uuid, true);
                 if (result == null)
                 {
-                    log.Debug("Update on User '" + user.UserUuid + "' changed to a Create because it does not exists as an active object within Organisation");
+                    log.Debug("Update on User '" + user.Uuid + "' changed to a Create because it does not exists as an active object within Organisation");
                     Create(user);
                 }
                 else
@@ -93,16 +96,7 @@ namespace Organisation.BusinessLayer
                     #endregion
 
                     #region Update Position if needed
-                    // TODO: this call also returns expired positions due to a bug at KMD, so this code is kinda buggy right now
-                    //       but should work once KMD has fixed it in their end.
-                    string unitRoleUuid = null;
-                    List<string> unitRoles = ServiceHelper.FindUnitRolesForUser(user.UserUuid);
-                    if (unitRoles != null && unitRoles.Count > 0)
-                    {
-                        // Bit of a hack, but because of the way the library work, we know that there is only a single function
-                        unitRoleUuid = unitRoles.ToArray()[0];
-                    }
-                    ServiceHelper.UpdatePosition(user, unitRoleUuid);
+                    ServiceHelper.UpdatePosition(user);
                     #endregion
 
                     #region Update Person reference if needed
@@ -118,12 +112,12 @@ namespace Organisation.BusinessLayer
                     // Update the User object (attributes and all relationships)
                     brugerStub.Ret(MapRegistrationToUserDTO(user));
 
-                    log.Debug("Update successful on User '" + user.UserUuid + "'");
+                    log.Debug("Update successful on User '" + user.Uuid + "'");
                 }
             }
             catch (Exception ex) when (ex is STSNotFoundException || ex is ServiceNotFoundException)
             {
-                log.Warn("Update on UserService failed for '" + user.UserUuid + "' due to unavailable KOMBIT services", ex);
+                log.Warn("Update on UserService failed for '" + user.Uuid + "' due to unavailable KOMBIT services", ex);
                 throw new TemporaryFailureException(ex.Message);
             }
         }
@@ -134,21 +128,103 @@ namespace Organisation.BusinessLayer
             {
                 // find the OrgFunctions that represents this users positions within the municipality
                 // for each of these OrgFunctions and drop the relationship to both User and OrgUnit from that Function
-                List<string> unitRoleUUIDs = ServiceHelper.FindUnitRolesForUser(uuid);
-                foreach (string unitRoleUUID in unitRoleUUIDs)
+                List<FiltreretOejebliksbilledeType> unitRoles = ServiceHelper.FindUnitRolesForUser(uuid);
+                foreach (FiltreretOejebliksbilledeType unitRole in unitRoles)
                 {
-                    orgFunctionStub.Orphan(unitRoleUUID, timestamp);
+                    orgFunctionStub.Deactivate(unitRole.ObjektType.UUIDIdentifikator, timestamp);
                 }
 
                 // update the user object by
                 //   -> terminating the users relationship to the Organisation
-                brugerStub.Orphan(uuid, timestamp);
+                brugerStub.Deactivate(uuid, timestamp);
             }
             catch (Exception ex) when (ex is STSNotFoundException || ex is ServiceNotFoundException)
             {
                 log.Warn("Delete on UserService failed for '" + uuid + "' due to unavailable KOMBIT services", ex);
                 throw new TemporaryFailureException(ex.Message);
             }
+        }
+
+        public List<string> List()
+        {
+            log.Debug("Performing List on Users");
+
+            var result = inspectorService.FindAllUsers();
+
+            log.Debug("Found " + result.Count + " Users");
+
+            return result;
+        }
+
+        public UserRegistration Read(string uuid)
+        {
+            log.Debug("Performing Read on User " + uuid);
+
+            UserRegistration registration = null;
+
+            User user = inspectorService.ReadUserObject(uuid, ReadAddresses.YES, ReadParentDetails.NO);
+            if (user != null)
+            {
+                registration = new UserRegistration();
+                registration.Uuid = uuid;
+                registration.UserId = user.UserId;
+                registration.ShortKey = user.ShortKey;
+                registration.Person = new DTO.V1_1.Person()
+                {
+                    Cpr = user.Person.Cpr,
+                    Name = user.Person.Name,
+                    ShortKey = user.Person.ShortKey,
+                    Uuid = user.Person.Uuid
+                };
+
+                foreach (var position in user.Positions)
+                {
+                    DTO.V1_1.Position userPosition = new DTO.V1_1.Position();
+
+                    userPosition.Name = position.Name;
+                    userPosition.OrgUnitUuid = position.OU.Uuid;
+                    userPosition.ShortKey = position.ShortKey;
+                    userPosition.Uuid = position.Uuid;
+
+                    registration.Positions.Add(userPosition);
+                }
+
+                foreach (var address in user.Addresses)
+                {
+                    if (address is Email)
+                    {
+                        registration.Email.Uuid = address.Uuid;
+                        registration.Email.Value = address.Value;
+                        registration.Email.ShortKey = address.ShortKey;
+                    }
+                    else if (address is Location)
+                    {
+                        registration.Location.Uuid = address.Uuid;
+                        registration.Location.Value = address.Value;
+                        registration.Location.ShortKey = address.ShortKey;
+                    }
+                    else if (address is Phone)
+                    {
+                        registration.Phone.Uuid = address.Uuid;
+                        registration.Phone.Value = address.Value;
+                        registration.Phone.ShortKey = address.ShortKey;
+                    }
+                    else
+                    {
+                        log.Warn("Trying to Read user " + uuid + " with unknown address type " + address.GetType().ToString());
+                    }
+                }
+
+                log.Debug("Found User " + uuid + " when reading");
+
+                registration.Timestamp = user.Timestamp;
+            }
+            else
+            {
+                log.Debug("Did not found User " + uuid + " when reading");
+            }
+
+            return registration;
         }
 
         private UserData MapRegistrationToUserDTO(UserRegistration registration)
@@ -182,11 +258,11 @@ namespace Organisation.BusinessLayer
 
             UserData user = new UserData();
             user.Addresses = addressRelations;
-            user.PersonUuid = registration.PersonUuid;
-            user.ShortKey = registration.UserShortKey;
+            user.PersonUuid = registration.Person.Uuid;
+            user.ShortKey = registration.ShortKey;
             user.Timestamp = registration.Timestamp;
             user.UserId = registration.UserId;
-            user.Uuid = registration.UserUuid;
+            user.Uuid = registration.Uuid;
 
             return user;
         }
@@ -195,19 +271,33 @@ namespace Organisation.BusinessLayer
         {
             List<string> errors = new List<string>();
 
-            if (string.IsNullOrEmpty(registration.PersonName))
+            if (string.IsNullOrEmpty(registration.Person.Name))
             {
                 errors.Add("personName");
             }
 
-            if (string.IsNullOrEmpty(registration.PositionName))
+            foreach (DTO.V1_1.Position position in registration.Positions)
             {
-                errors.Add("positionName");
-            }
+                if (string.IsNullOrEmpty(position.Name))
+                {
+                    errors.Add("positionName");
+                }
 
-            if (string.IsNullOrEmpty(registration.PositionOrgUnitUuid))
-            {
-                errors.Add("positionOrgUnitUuid");
+                if (string.IsNullOrEmpty(position.OrgUnitUuid))
+                {
+                    errors.Add("positionOrgUnitUuid");
+                }
+                else // we need to know there is an OrgUnitUuid to compare with, otherwise this check is pointless
+                {
+                    // O(n^2), I know, but we will have 1-3 positions on an object, so...
+                    foreach (DTO.V1_1.Position p2 in registration.Positions)
+                    {
+                        if (!position.Equals(p2) && position.OrgUnitUuid.Equals(p2.OrgUnitUuid))
+                        {
+                            errors.Add("two positions in " + position.OrgUnitUuid);
+                        }
+                    }
+                }
             }
 
             if (string.IsNullOrEmpty(registration.UserId))
@@ -215,7 +305,7 @@ namespace Organisation.BusinessLayer
                 errors.Add("userId");
             }
 
-            if (string.IsNullOrEmpty(registration.UserUuid))
+            if (string.IsNullOrEmpty(registration.Uuid))
             {
                 errors.Add("userUuid");
             }
@@ -260,24 +350,28 @@ namespace Organisation.BusinessLayer
                 registration.Phone.Uuid = registration.Phone.Uuid.ToLower();
             }
 
-            if (registration.PersonUuid != null)
+            if (registration.Person.Uuid != null)
             {
-                registration.PersonUuid = registration.PersonUuid.ToLower();
+                registration.Person.Uuid = registration.Person.Uuid.ToLower();
             }
 
-            if (registration.PositionUuid != null)
+            foreach (DTO.V1_1.Position position in registration.Positions)
             {
-                registration.PositionUuid = registration.PositionUuid.ToLower();
+                position.OrgUnitUuid = position.OrgUnitUuid.ToLower();
+
+                if (position.Uuid != null)
+                {
+                    position.Uuid = position.Uuid.ToLower();
+                }
             }
 
-            if (registration.PersonCpr != null)
+            if (registration.Person.Cpr != null)
             {
                 // strip dashes, so 010101-0101 becomes 010101010101 (KOMBIT requirement)
-                registration.PersonCpr = registration.PersonCpr.Replace("-", "");
+                registration.Person.Cpr = registration.Person.Cpr.Replace("-", "");
             }
 
-            registration.UserUuid = registration.UserUuid.ToLower();
-            registration.PositionOrgUnitUuid = registration.PositionOrgUnitUuid.ToLower();
+            registration.Uuid = registration.Uuid.ToLower();
         }
     }
 }

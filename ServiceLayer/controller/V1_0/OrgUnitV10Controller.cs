@@ -1,17 +1,17 @@
-﻿using Organisation.BusinessLayer;
+﻿using Organisation.BusinessLayer.DTO.V1_0;
 using Organisation.SchedulingLayer;
 using System;
 using System.Web.Http;
 
 namespace Organisation.ServiceLayer
 {
-    public class OrgUnitController : ApiController
+    public class OrgUnitV10Controller : ApiController
     {
         private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private ServiceMessages Messages;
         private OrgUnitDao OrgUnitDao;
 
-        public OrgUnitController()
+        public OrgUnitV10Controller()
         {
             Messages = new ServiceMessages();
             OrgUnitDao = new OrgUnitDao();
@@ -26,7 +26,7 @@ namespace Organisation.ServiceLayer
             {
                 try
                 {
-                    OrgUnitDao.Save(ou, OperationType.UPDATE);
+                    OrgUnitDao.Save(ou.ConvertToV1_1(), OperationType.UPDATE);
                     return Ok(ou);
                 }
                 catch (Exception ex)

@@ -1,10 +1,9 @@
-﻿using Organisation.BusinessLayer;
+﻿using Organisation.BusinessLayer.DTO.V1_1;
 using Organisation.IntegrationLayer;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SQLite;
-using System.Data.SqlTypes;
 using System.Linq;
 
 namespace Organisation.SchedulingLayer
@@ -38,6 +37,16 @@ namespace Organisation.SchedulingLayer
                     {
                         command.ExecuteNonQuery();
                     }
+
+                    using (SQLiteCommand command = new SQLiteCommand(OrgUnitStatements.CREATE_IT_SYSTEMS_TABLE_SQLITE, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    using (SQLiteCommand command = new SQLiteCommand(OrgUnitStatements.CREATE_CONTACT_PLACES_TABLE_SQLLITE, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
             else
@@ -47,6 +56,16 @@ namespace Organisation.SchedulingLayer
                     connection.Open();
 
                     using (SqlCommand command = new SqlCommand(OrgUnitStatements.CREATE_TABLE_MSSQL, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    using (SqlCommand command = new SqlCommand(OrgUnitStatements.CREATE_IT_SYSTEMS_TABLE_MSSQL, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    using (SqlCommand command = new SqlCommand(OrgUnitStatements.CREATE_CONTACT_PLACES_TABLE_MSSQL, connection))
                     {
                         command.ExecuteNonQuery();
                     }
@@ -64,73 +83,109 @@ namespace Organisation.SchedulingLayer
                 {
                     connection.Open();
 
-                    using (SQLiteCommand command = new SQLiteCommand(OrgUnitStatements.INSERT_SQLITE, connection))
+                    using (SQLiteTransaction transaction = connection.BeginTransaction())
                     {
-                        command.Parameters.Add(new SQLiteParameter("@uuid", ou.Uuid));
-                        command.Parameters.Add(new SQLiteParameter("@shortkey", ou.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@name", ou.Name ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@parent_ou_uuid", ou.ParentOrgUnitUuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@payout_ou_uuid", ou.PayoutUnitUuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@operation", operation.ToString()));
-
-                        command.Parameters.Add(new SQLiteParameter("@los_shortname_uuid", ou.LOSShortName?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@los_shortname_shortkey", ou.LOSShortName?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@los_shortname_value", ou.LOSShortName?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SQLiteParameter("@phone_uuid", ou.Phone?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@phone_shortkey", ou.Phone?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@phone_value", ou.Phone?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SQLiteParameter("@email_uuid", ou.Email?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@email_shortkey", ou.Email?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@email_value", ou.Email?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SQLiteParameter("@location_uuid", ou.Location?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@location_shortkey", ou.Location?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@location_value", ou.Location?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SQLiteParameter("@ean_uuid", ou.Ean?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@ean_shortkey", ou.Ean?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@ean_value", ou.Ean?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SQLiteParameter("@contact_open_hours_uuid", ou.ContactOpenHours?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@contact_open_hours_shortkey", ou.ContactOpenHours?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@contact_open_hours_value", ou.ContactOpenHours?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SQLiteParameter("@email_remarks_uuid", ou.EmailRemarks?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@email_remarks_shortkey", ou.EmailRemarks?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@email_remarks_value", ou.EmailRemarks?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SQLiteParameter("@contact_uuid", ou.Contact?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@contact_shortkey", ou.Contact?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@contact_value", ou.Contact?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SQLiteParameter("@post_return_uuid", ou.PostReturn?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@post_return_shortkey", ou.PostReturn?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@post_return_value", ou.PostReturn?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SQLiteParameter("@phone_open_hours_uuid", ou.PhoneOpenHours?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@phone_open_hours_shortkey", ou.PhoneOpenHours?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@phone_open_hours_value", ou.PhoneOpenHours?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SQLiteParameter("@post_uuid", ou.Post?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@post_shortkey", ou.Post?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SQLiteParameter("@post_value", ou.Post?.Value ?? (object) DBNull.Value));
-
-                        command.ExecuteNonQuery();
-
-                        orgunit_id = connection.LastInsertRowId;
-                    }
-
-                    // insert itsystems
-                    foreach (string itSystemUuid in ou.ItSystemUuids ?? Enumerable.Empty<string>())
-                    {
-                        using (SQLiteCommand command = new SQLiteCommand(OrgUnitStatements.INSERT_ITSYSTEMS, connection))
+                        try
                         {
-                            command.Parameters.Add(new SQLiteParameter("@orgunit_id", orgunit_id));
-                            command.Parameters.Add(new SQLiteParameter("@itsystem_uuid", itSystemUuid));
+                            using (SQLiteCommand command = new SQLiteCommand(OrgUnitStatements.INSERT_SQLITE, connection))
+                            {
+                                command.Transaction = transaction;
 
-                            command.ExecuteNonQuery();
+                                command.Parameters.Add(new SQLiteParameter("@uuid", ou.Uuid));
+                                command.Parameters.Add(new SQLiteParameter("@shortkey", ou.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@name", ou.Name ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@parent_ou_uuid", ou.ParentOrgUnitUuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@payout_ou_uuid", ou.PayoutUnitUuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@operation", operation.ToString()));
+
+                                command.Parameters.Add(new SQLiteParameter("@los_shortname_uuid", ou.LOSShortName?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@los_shortname_shortkey", ou.LOSShortName?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@los_shortname_value", ou.LOSShortName?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SQLiteParameter("@phone_uuid", ou.Phone?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@phone_shortkey", ou.Phone?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@phone_value", ou.Phone?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SQLiteParameter("@email_uuid", ou.Email?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@email_shortkey", ou.Email?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@email_value", ou.Email?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SQLiteParameter("@location_uuid", ou.Location?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@location_shortkey", ou.Location?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@location_value", ou.Location?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SQLiteParameter("@ean_uuid", ou.Ean?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@ean_shortkey", ou.Ean?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@ean_value", ou.Ean?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SQLiteParameter("@contact_open_hours_uuid", ou.ContactOpenHours?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@contact_open_hours_shortkey", ou.ContactOpenHours?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@contact_open_hours_value", ou.ContactOpenHours?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SQLiteParameter("@email_remarks_uuid", ou.EmailRemarks?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@email_remarks_shortkey", ou.EmailRemarks?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@email_remarks_value", ou.EmailRemarks?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SQLiteParameter("@contact_uuid", ou.Contact?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@contact_shortkey", ou.Contact?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@contact_value", ou.Contact?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SQLiteParameter("@post_return_uuid", ou.PostReturn?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@post_return_shortkey", ou.PostReturn?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@post_return_value", ou.PostReturn?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SQLiteParameter("@phone_open_hours_uuid", ou.PhoneOpenHours?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@phone_open_hours_shortkey", ou.PhoneOpenHours?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@phone_open_hours_value", ou.PhoneOpenHours?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SQLiteParameter("@post_uuid", ou.Post?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@post_shortkey", ou.Post?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SQLiteParameter("@post_value", ou.Post?.Value ?? (object)DBNull.Value));
+
+                                command.ExecuteNonQuery();
+
+                                orgunit_id = connection.LastInsertRowId;
+                            }
+
+                            // insert itsystems
+                            foreach (string itSystemUuid in ou.ItSystemUuids ?? Enumerable.Empty<string>())
+                            {
+                                using (SQLiteCommand command = new SQLiteCommand(OrgUnitStatements.INSERT_ITSYSTEMS, connection))
+                                {
+                                    command.Transaction = transaction;
+
+                                    command.Parameters.Add(new SQLiteParameter("@orgunit_id", orgunit_id));
+                                    command.Parameters.Add(new SQLiteParameter("@itsystem_uuid", itSystemUuid));
+
+                                    command.ExecuteNonQuery();
+                                }
+                            }
+
+                            // insert contact places
+                            foreach (ContactPlace contactPlace in ou.ContactPlaces ?? Enumerable.Empty<ContactPlace>())
+                            {
+                                foreach (string task in contactPlace.Tasks ?? Enumerable.Empty<string>())
+                                {
+                                    using (SQLiteCommand command = new SQLiteCommand(OrgUnitStatements.INSERT_CONTACT_PLACES, connection))
+                                    {
+                                        command.Transaction = transaction;
+
+                                        command.Parameters.Add(new SQLiteParameter("@orgunit_id", orgunit_id));
+                                        command.Parameters.Add(new SQLiteParameter("@contact_place_uuid", contactPlace.OrgUnitUuid));
+                                        command.Parameters.Add(new SQLiteParameter("@task", task));
+
+                                        command.ExecuteNonQuery();
+                                    }
+                                }
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+
+                            throw;
                         }
                     }
                 }
@@ -141,71 +196,107 @@ namespace Organisation.SchedulingLayer
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand(OrgUnitStatements.INSERT_MSSQL, connection))
+                    using (SqlTransaction transaction = connection.BeginTransaction())
                     {
-                        command.Parameters.Add(new SqlParameter("@uuid", ou.Uuid));
-                        command.Parameters.Add(new SqlParameter("@shortkey", ou.ShortKey)); // ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@name", ou.Name ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@parent_ou_uuid", ou.ParentOrgUnitUuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@payout_ou_uuid", ou.PayoutUnitUuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@operation", operation.ToString()));
-
-                        command.Parameters.Add(new SqlParameter("@los_shortname_uuid", ou.LOSShortName?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@los_shortname_shortkey", ou.LOSShortName?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@los_shortname_value", ou.LOSShortName?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SqlParameter("@phone_uuid", ou.Phone?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@phone_shortkey", ou.Phone?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@phone_value", ou.Phone?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SqlParameter("@email_uuid", ou.Email?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@email_shortkey", ou.Email?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@email_value", ou.Email?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SqlParameter("@location_uuid", ou.Location?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@location_shortkey", ou.Location?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@location_value", ou.Location?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SqlParameter("@ean_uuid", ou.Ean?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@ean_shortkey", ou.Ean?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@ean_value", ou.Ean?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SqlParameter("@contact_open_hours_uuid", ou.ContactOpenHours?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@contact_open_hours_shortkey", ou.ContactOpenHours?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@contact_open_hours_value", ou.ContactOpenHours?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SqlParameter("@email_remarks_uuid", ou.EmailRemarks?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@email_remarks_shortkey", ou.EmailRemarks?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@email_remarks_value", ou.EmailRemarks?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SqlParameter("@contact_uuid", ou.Contact?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@contact_shortkey", ou.Contact?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@contact_value", ou.Contact?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SqlParameter("@post_return_uuid", ou.PostReturn?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@post_return_shortkey", ou.PostReturn?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@post_return_value", ou.PostReturn?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SqlParameter("@phone_open_hours_uuid", ou.PhoneOpenHours?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@phone_open_hours_shortkey", ou.PhoneOpenHours?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@phone_open_hours_value", ou.PhoneOpenHours?.Value ?? (object) DBNull.Value));
-
-                        command.Parameters.Add(new SqlParameter("@post_uuid", ou.Post?.Uuid ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@post_shortkey", ou.Post?.ShortKey ?? (object) DBNull.Value));
-                        command.Parameters.Add(new SqlParameter("@post_value", ou.Post?.Value ?? (object) DBNull.Value));
-
-                        orgunit_id = (long)command.ExecuteScalar();
-                    }
-
-                    // insert itsystems
-                    foreach (string itSystemUuid in ou.ItSystemUuids ?? Enumerable.Empty<string>())
-                    {
-                        using (SqlCommand command = new SqlCommand(OrgUnitStatements.INSERT_ITSYSTEMS, connection))
+                        try
                         {
-                            command.Parameters.Add(new SqlParameter("@orgunit_id", orgunit_id));
-                            command.Parameters.Add(new SqlParameter("@itsystem_uuid", itSystemUuid));
+                            using (SqlCommand command = new SqlCommand(OrgUnitStatements.INSERT_MSSQL, connection))
+                            {
+                                command.Transaction = transaction;
 
-                            command.ExecuteNonQuery();
+                                command.Parameters.Add(new SqlParameter("@uuid", ou.Uuid));
+                                command.Parameters.Add(new SqlParameter("@shortkey", ou.ShortKey)); // ?? (object) DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@name", ou.Name ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@parent_ou_uuid", ou.ParentOrgUnitUuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@payout_ou_uuid", ou.PayoutUnitUuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@operation", operation.ToString()));
+
+                                command.Parameters.Add(new SqlParameter("@los_shortname_uuid", ou.LOSShortName?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@los_shortname_shortkey", ou.LOSShortName?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@los_shortname_value", ou.LOSShortName?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SqlParameter("@phone_uuid", ou.Phone?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@phone_shortkey", ou.Phone?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@phone_value", ou.Phone?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SqlParameter("@email_uuid", ou.Email?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@email_shortkey", ou.Email?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@email_value", ou.Email?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SqlParameter("@location_uuid", ou.Location?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@location_shortkey", ou.Location?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@location_value", ou.Location?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SqlParameter("@ean_uuid", ou.Ean?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@ean_shortkey", ou.Ean?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@ean_value", ou.Ean?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SqlParameter("@contact_open_hours_uuid", ou.ContactOpenHours?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@contact_open_hours_shortkey", ou.ContactOpenHours?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@contact_open_hours_value", ou.ContactOpenHours?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SqlParameter("@email_remarks_uuid", ou.EmailRemarks?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@email_remarks_shortkey", ou.EmailRemarks?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@email_remarks_value", ou.EmailRemarks?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SqlParameter("@contact_uuid", ou.Contact?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@contact_shortkey", ou.Contact?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@contact_value", ou.Contact?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SqlParameter("@post_return_uuid", ou.PostReturn?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@post_return_shortkey", ou.PostReturn?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@post_return_value", ou.PostReturn?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SqlParameter("@phone_open_hours_uuid", ou.PhoneOpenHours?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@phone_open_hours_shortkey", ou.PhoneOpenHours?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@phone_open_hours_value", ou.PhoneOpenHours?.Value ?? (object)DBNull.Value));
+
+                                command.Parameters.Add(new SqlParameter("@post_uuid", ou.Post?.Uuid ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@post_shortkey", ou.Post?.ShortKey ?? (object)DBNull.Value));
+                                command.Parameters.Add(new SqlParameter("@post_value", ou.Post?.Value ?? (object)DBNull.Value));
+
+                                orgunit_id = (long)command.ExecuteScalar();
+                            }
+
+                            // insert itsystems
+                            foreach (string itSystemUuid in ou.ItSystemUuids ?? Enumerable.Empty<string>())
+                            {
+                                using (SqlCommand command = new SqlCommand(OrgUnitStatements.INSERT_ITSYSTEMS, connection))
+                                {
+                                    command.Transaction = transaction;
+
+                                    command.Parameters.Add(new SqlParameter("@orgunit_id", orgunit_id));
+                                    command.Parameters.Add(new SqlParameter("@itsystem_uuid", itSystemUuid));
+
+                                    command.ExecuteNonQuery();
+                                }
+                            }
+
+                            // insert contact places
+                            foreach (ContactPlace contactPlace in ou.ContactPlaces ?? Enumerable.Empty<ContactPlace>())
+                            {
+                                foreach (string task in contactPlace.Tasks ?? Enumerable.Empty<string>())
+                                {
+                                    using (SqlCommand command = new SqlCommand(OrgUnitStatements.INSERT_CONTACT_PLACES, connection))
+                                    {
+                                        command.Transaction = transaction;
+
+                                        command.Parameters.Add(new SqlParameter("@orgunit_id", orgunit_id));
+                                        command.Parameters.Add(new SqlParameter("@contact_place_uuid", contactPlace.OrgUnitUuid));
+                                        command.Parameters.Add(new SqlParameter("@task", task));
+
+                                        command.ExecuteNonQuery();
+                                    }
+                                }
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+
+                            throw;
                         }
                     }
                 }
@@ -316,6 +407,45 @@ namespace Organisation.SchedulingLayer
                             }
                         }
                     }
+
+                    // read contact places
+                    if (orgUnit != null)
+                    {
+                        using (SQLiteCommand command = new SQLiteCommand(OrgUnitStatements.SELECT_CONTACT_PLACES, connection))
+                        {
+                            command.Parameters.Add(new SQLiteParameter("@id", orgUnitId));
+
+                            using (SQLiteDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    string contactPlaceUuid = GetValue(reader, "contact_place_uuid");
+                                    string task = GetValue(reader, "task");
+
+                                    ContactPlace contactPlace = null;
+                                    foreach (ContactPlace cp in orgUnit.ContactPlaces)
+                                    {
+                                        if (cp.OrgUnitUuid.Equals(contactPlaceUuid))
+                                        {
+                                            contactPlace = cp;
+                                            break;
+                                        }
+                                    }
+
+                                    if (contactPlace == null)
+                                    {
+                                        contactPlace = new ContactPlace();
+                                        contactPlace.OrgUnitUuid = contactPlaceUuid;
+                                        contactPlace.Tasks = new List<string>();
+
+                                        orgUnit.ContactPlaces.Add(contactPlace);
+                                    }
+
+                                    contactPlace.Tasks.Add(task);
+                                }
+                            }
+                        }
+                    }
                 }
             }
             else
@@ -412,6 +542,43 @@ namespace Organisation.SchedulingLayer
                                 while (reader.Read())
                                 {
                                     orgUnit.ItSystemUuids.Add(GetValue(reader, "itsystem_uuid"));
+                                }
+                            }
+                        }
+                    }
+
+                    // read contact places
+                    if (orgUnit != null)
+                    {
+                        using (SqlCommand command = new SqlCommand(OrgUnitStatements.SELECT_CONTACT_PLACES, connection))
+                        {
+                            command.Parameters.Add(new SqlParameter("@id", orgUnitId));
+
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    string contactPlaceUuid = GetValue(reader, "contact_place_uuid");
+                                    string task = GetValue(reader, "task");
+
+                                    ContactPlace contactPlace = null;
+                                    foreach (ContactPlace cp in orgUnit.ContactPlaces)
+                                    {
+                                        if (cp.OrgUnitUuid.Equals(contactPlaceUuid))
+                                        {
+                                            contactPlace = cp;
+                                            break;
+                                        }
+                                    }
+
+                                    if (contactPlace == null)
+                                    {
+                                        contactPlace = new ContactPlace();
+                                        contactPlace.Tasks = new List<string>();
+                                        orgUnit.ContactPlaces.Add(contactPlace);
+                                    }
+
+                                    contactPlace.Tasks.Add(task);
                                 }
                             }
                         }

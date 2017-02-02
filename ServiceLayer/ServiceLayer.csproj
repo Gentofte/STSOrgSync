@@ -79,12 +79,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="controller\ItSystemController.cs" />
+    <Compile Include="controller\V1_0\ItSystemV10Controller.cs" />
     <Compile Include="controller\HealthController.cs" />
+    <Compile Include="controller\V1_1\OrgUnitV11Controller.cs" />
+    <Compile Include="controller\V1_1\UserV11Controller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="controller\OrgUnitController.cs" />
+    <Compile Include="controller\V1_0\OrgUnitV10Controller.cs" />
     <Compile Include="config\ServiceMessages.cs" />
-    <Compile Include="controller\UserController.cs" />
+    <Compile Include="controller\V1_0\UserV10Controller.cs" />
     <Compile Include="config\Startup.cs" />
     <Compile Include="service\ServiceInitializer.cs" />
   </ItemGroup>
@@ -106,6 +108,7 @@
       <Name>SchedulingLayer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

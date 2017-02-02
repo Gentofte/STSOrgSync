@@ -65,7 +65,7 @@ namespace Organisation.SchedulingLayer
                 {
                     if (user.Operation.Equals(OperationType.DELETE))
                     {
-                        service.Delete(user.UserUuid, user.Timestamp);
+                        service.Delete(user.Uuid, user.Timestamp);
                     }
                     else
                     {
@@ -73,17 +73,17 @@ namespace Organisation.SchedulingLayer
                     }
 
                     count++;
-                    dao.Delete(user.UserUuid);
+                    dao.Delete(user.Uuid);
                 }
                 catch (TemporaryFailureException ex)
                 {
-                    log.Error("Could not handle user '" + user.UserUuid + "' at the moment, will try later" , ex);
+                    log.Error("Could not handle user '" + user.Uuid + "' at the moment, will try later" , ex);
                     break;
                 }
                 catch (Exception ex)
                 {
-                    log.Error("Could not handle user '" + user.UserUuid + "'", ex);
-                    dao.Delete(user.UserUuid);
+                    log.Error("Could not handle user '" + user.Uuid + "'", ex);
+                    dao.Delete(user.Uuid);
                 }
             }
 

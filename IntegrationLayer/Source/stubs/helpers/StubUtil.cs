@@ -86,6 +86,21 @@ namespace Organisation.IntegrationLayer
             return default(EgenskabType);
         }
 
+        public static GyldighedType GetLatestGyldighed<GyldighedType>(GyldighedType[] states)
+        {
+            foreach (dynamic state in states)
+            {
+                // find the first open-ended GyldighedType - objects created by this library does not have end-times associated with them as a rule
+                object endTime = state.Virkning.TilTidspunkt.Item;
+                if (!(endTime is DateTime))
+                {
+                    return state;
+                }
+            }
+
+            return default(GyldighedType);
+        }
+
         public static bool TerminateObjectsInOrgNoLongerPresentLocally(dynamic orgArray, dynamic localArray, DateTime timestamp, bool uuidSubReference)
         {
             bool changes = false;

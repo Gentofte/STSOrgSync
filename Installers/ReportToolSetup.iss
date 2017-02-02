@@ -4,7 +4,7 @@
 #define AppId "{{99fc06ec-8285-4bd1-a018-58c74fca4987}"
 #define AppSourceDir "\\vmware-host\Shared Folders\brian\projects\organisation-synchronisation-component\ReportTool\bin\Debug\"
 #define AppName "ReportTool"
-#define AppVersion "1.0.1"
+#define AppVersion "1.0"
 #define AppPublisher "Digital Identity"
 #define AppURL "http://digital-identity.dk/"
 #define AppExeName "ReportTool.exe"
@@ -64,6 +64,9 @@ Source: "templates/template.html"; DestDir: "{app}\templates\"; Flags: ignorever
 Source: "{#AppSourceDir}\..\..\..\Resources\di.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#AppSourceDir}\..\..\..\Resources\cert\sts.cer"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#AppSourceDir}\..\..\..\Resources\cert\organisation.cer"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#AppSourceDir}\..\..\..\Resources\cert\oces-test-intermedicate-ca.cer"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#AppSourceDir}\..\..\..\Resources\cert\oces-test-root-ca.cer"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#AppSourceDir}\..\..\..\Resources\cert\serviceplatform.cer"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#AppSourceDir}\..\..\..\Resources\cert\InstallCert.bat"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]

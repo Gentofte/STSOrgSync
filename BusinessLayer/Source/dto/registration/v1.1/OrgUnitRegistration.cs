@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Organisation.BusinessLayer
+namespace Organisation.BusinessLayer.DTO.V1_1
 {
+    [Serializable]
     public class OrgUnitRegistration
     {
         public string Uuid { get; set; }
@@ -10,6 +11,7 @@ namespace Organisation.BusinessLayer
         public string Name { get; set; }
         public string ParentOrgUnitUuid { get; set; }
         public string PayoutUnitUuid { get; set; }
+        public List<ContactPlace> ContactPlaces { get; set; } = new List<ContactPlace>();
         public DateTime Timestamp { get; set; } = DateTime.Now.AddMinutes(-5);
         public Address Phone { get; set; } = new Address();
         public Address Email { get; set; } = new Address();

@@ -49,7 +49,7 @@
             // 
             // runButton
             // 
-            this.runButton.Location = new System.Drawing.Point(723, 425);
+            this.runButton.Location = new System.Drawing.Point(835, 678);
             this.runButton.Name = "runButton";
             this.runButton.Size = new System.Drawing.Size(112, 23);
             this.runButton.TabIndex = 0;
@@ -62,7 +62,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(19, 44);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(934, 375);
+            this.webBrowser1.Size = new System.Drawing.Size(1046, 628);
             this.webBrowser1.TabIndex = 1;
             // 
             // textBox1
@@ -92,7 +92,7 @@
             // 
             // validateButton
             // 
-            this.validateButton.Location = new System.Drawing.Point(841, 425);
+            this.validateButton.Location = new System.Drawing.Point(953, 678);
             this.validateButton.Name = "validateButton";
             this.validateButton.Size = new System.Drawing.Size(112, 23);
             this.validateButton.TabIndex = 5;
@@ -107,7 +107,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(967, 480);
+            this.tabControl1.Size = new System.Drawing.Size(1079, 733);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage1
@@ -122,7 +122,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(959, 454);
+            this.tabPage1.Size = new System.Drawing.Size(1071, 707);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Home";
             // 
@@ -136,7 +136,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(959, 454);
+            this.tabPage2.Size = new System.Drawing.Size(1071, 707);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             // 
@@ -176,11 +176,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(991, 496);
+            this.ClientSize = new System.Drawing.Size(1103, 757);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Organisation Object Inspector";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed_1);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

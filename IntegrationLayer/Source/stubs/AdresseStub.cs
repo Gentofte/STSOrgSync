@@ -53,6 +53,7 @@ namespace Organisation.IntegrationLayer
                 {
                     if (statusCode == 49) // object already exists is the most likely scenario here
                     {
+                        // TODO: a better approach would be to try the read-then-update-if-exists-else-create approach we use elsewhere
                         log.Info("Skipping import on Address " + address.Uuid + " as Organisation returned status 49. The most likely cause is that the object already exists");
                         return;
                     }

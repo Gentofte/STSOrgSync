@@ -37,7 +37,7 @@ namespace Organisation.IntegrationLayer
             helper.AddTilknyttedeFunktioner(unit.OrgFunctionUuids, virkning, registration);
 
             // set Tilstand to Active
-            helper.SetTilstandToActive(virkning, registration);
+            helper.SetTilstandToActive(virkning, registration, unit.Timestamp);
 
             // wire everything together
             OrganisationEnhedType organisationEnhedType = helper.GetOrganisationEnhedType(unit.Uuid, registration);
@@ -101,6 +101,8 @@ namespace Organisation.IntegrationLayer
                 input.AttributListe = registration.AttributListe;
                 input.TilstandListe = registration.TilstandListe;
                 input.RelationListe = registration.RelationListe;
+
+                changes = helper.SetTilstandToActive(virkning, registration, unit.Timestamp) | changes;
 
                 #region Update attributes
 
@@ -280,7 +282,7 @@ namespace Organisation.IntegrationLayer
                 }
                 #endregion
 
-                #region Update payout units
+                #region Update function references (PayoutUnits and ContactPlaces)
                 // terminate the Virkning on all functions (currently there is only one, the payout unit, but this will work for all kinds of functions)
                 changes = StubUtil.TerminateObjectsInOrgNoLongerPresentLocally(input.RelationListe.TilknyttedeFunktioner, unit.OrgFunctionUuids, unit.Timestamp, false) || changes;
 
@@ -303,14 +305,11 @@ namespace Organisation.IntegrationLayer
 
                     foreach (string uuidToAdd in functionUuidsToAdd)
                     {
-                        foreach (var functionsInLocal in unit.OrgFunctionUuids)
-                        {
-                            OrganisationFunktionFlerRelationType newFunction = new OrganisationFunktionFlerRelationType();
-                            newFunction.ReferenceID = StubUtil.GetReference<UnikIdType>(functionsInLocal, ItemChoiceType.UUIDIdentifikator);
-                            newFunction.Virkning = virkning;
+                        OrganisationFunktionFlerRelationType newFunction = new OrganisationFunktionFlerRelationType();
+                        newFunction.ReferenceID = StubUtil.GetReference<UnikIdType>(uuidToAdd, ItemChoiceType.UUIDIdentifikator);
+                        newFunction.Virkning = virkning;
 
-                            newFunctions[i++] = newFunction;
-                        }
+                        newFunctions[i++] = newFunction;
                     }
 
                     input.RelationListe.TilknyttedeFunktioner = newFunctions;
@@ -435,14 +434,14 @@ namespace Organisation.IntegrationLayer
             }
         }
 
-        public void Orphan(string uuid, DateTime timestamp)
+        public void Deactivate(string uuid, DateTime timestamp)
         {
-            log.Debug("Attempting Orphan on OrganisationEnhed with uuid " + uuid);
+            log.Debug("Attempting Deactivate on OrganisationEnhed with uuid " + uuid);
 
             RegistreringType1 registration = GetLatestRegistration(uuid, false);
             if (registration == null)
             {
-                log.Debug("Cannot Orphan OrganisationEnhed with uuid " + uuid + " because it does not exist in Organisation");
+                log.Debug("Cannot Deactivate OrganisationEnhed with uuid " + uuid + " because it does not exist in Organisation");
                 return;
             }
 
@@ -457,26 +456,23 @@ namespace Organisation.IntegrationLayer
                 input.TilstandListe = registration.TilstandListe;
                 input.RelationListe = registration.RelationListe;
 
-                // cut relationship to Organisation
-                if (input.RelationListe.Tilhoerer != null)
-                {
-                    StubUtil.TerminateVirkning(input.RelationListe.Tilhoerer.Virkning, timestamp);
-                }
-
                 // cut relationship to Parent
                 if (input.RelationListe.Overordnet != null)
                 {
                     StubUtil.TerminateVirkning(input.RelationListe.Overordnet.Virkning, timestamp);
                 }
 
-                // cut relationship to all functions within the Organisation (payout unit references)
+                // cut relationship to all functions (payout unit references and contact places)
                 if (input.RelationListe.TilknyttedeFunktioner != null && input.RelationListe.TilknyttedeFunktioner.Length > 0)
-                {
+                { 
                     foreach (OrganisationFunktionFlerRelationType funktion in input.RelationListe.TilknyttedeFunktioner)
                     {
                         StubUtil.TerminateVirkning(funktion.Virkning, timestamp);
                     }
                 }
+
+                VirkningType virkning = helper.GetVirkning(timestamp);
+                helper.SetTilstandToInactive(virkning, registration, timestamp);
 
                 retRequest request = new retRequest();
                 request.OrganisationEnhedRetRequest = new OrganisationEnhedRetRequestType();
@@ -494,7 +490,7 @@ namespace Organisation.IntegrationLayer
                     throw new SoapServiceException(message);
                 }
 
-                log.Debug("Orphan successful on OrganisationEnhed with uuid " + uuid);
+                log.Debug("Deactivate successful on OrganisationEnhed with uuid " + uuid);
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
@@ -521,6 +517,18 @@ namespace Organisation.IntegrationLayer
             // we are only interested in relationships that are currently valid
             soegInput.SoegVirkning.FraTidspunkt = new TidspunktType();
             soegInput.SoegVirkning.FraTidspunkt.Item = DateTime.Now;
+
+            // only search for Active units
+            // TODO: It shouldn't be required to add a Virkning to the individual fields in search(), but we get an errorcode 40 (bad request) if we leave it out (another bug @KMD I think)
+            // TODO: This code causes the KMD services to throw an SQL Exception - this has been reported to KMD, and we are waiting for a fix. This means that we get inactive users back when searching
+            /*
+            soegInput.TilstandListe.Gyldighed = new GyldighedType[1];
+            soegInput.TilstandListe.Gyldighed[0] = new GyldighedType();
+            soegInput.TilstandListe.Gyldighed[0].GyldighedStatusKode = GyldighedStatusKodeType.Aktiv;
+            soegInput.TilstandListe.Gyldighed[0].Virkning = new VirkningType();
+            soegInput.TilstandListe.Gyldighed[0].Virkning.FraTidspunkt = new TidspunktType();
+            soegInput.TilstandListe.Gyldighed[0].Virkning.FraTidspunkt.Item = DateTime.Now;
+            */
 
             // only return objects that have a Tilhører relationship top-level Organisation
             UnikIdType orgReference = StubUtil.GetReference<UnikIdType>(registry.MunicipalityOrganisationUUID, ItemChoiceType.UUIDIdentifikator);

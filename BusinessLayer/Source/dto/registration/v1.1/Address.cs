@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Organisation.BusinessLayer
+namespace Organisation.BusinessLayer.DTO.V1_1
 {
     [Serializable]
     public class Address

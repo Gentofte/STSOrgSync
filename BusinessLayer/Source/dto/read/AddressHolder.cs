@@ -34,6 +34,8 @@ namespace Organisation.BusinessLayer
         [DataMember]
         public string Uuid { get; set; }
         [DataMember]
+        public string ShortKey { get; set; }
+        [DataMember]
         public string Value { get; set; }
     }
 }

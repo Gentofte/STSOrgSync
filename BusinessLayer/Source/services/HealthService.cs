@@ -6,7 +6,8 @@ namespace Organisation.BusinessLayer
     {
         private Health health = new Health();
 
-        public HealthStatus Status() {
+        public HealthStatus Status()
+        {
             HealthStatus status = new HealthStatus();
             status.STSstatus = IsStsReachable();
             status.ServiceStatus = AreServicesReachable();
@@ -14,11 +15,13 @@ namespace Organisation.BusinessLayer
             return status;
         }
 
-        private bool IsStsReachable() {
+        private bool IsStsReachable()
+        {
             return health.IsStsReachable();
         }
 
-        private bool AreServicesReachable() {
+        private bool AreServicesReachable()
+        {
             return health.AreServicesReachable();
         }
     }

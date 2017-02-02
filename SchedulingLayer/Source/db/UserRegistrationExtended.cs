@@ -1,4 +1,4 @@
-﻿using Organisation.BusinessLayer;
+﻿using Organisation.BusinessLayer.DTO.V1_1;
 
 namespace Organisation.SchedulingLayer
 {

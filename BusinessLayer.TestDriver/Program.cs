@@ -1,4 +1,7 @@
 ﻿using System;
+using Organisation.BusinessLayer.DTO.V1_1;
+using Organisation.IntegrationLayer;
+using System.Collections.Generic;
 
 namespace Organisation.BusinessLayer.TestDriver
 {
@@ -13,11 +16,11 @@ namespace Organisation.BusinessLayer.TestDriver
         {
             Initializer.Init();
 
-            //BuildKorsbaek();
-
-            // TODO: this is a small method to build some useful sample data for manuel testing
+            // This is a small method to build some useful sample data for manuel testing
             //BuildTestData();
 
+            TestListAndReadOUs();
+            TestListAndReadUsers();
             TestCreateAndUpdateFullUser();
             TestCreateAndUpdateFullOU();
             TestCreateDeleteUpdateUser();
@@ -25,133 +28,440 @@ namespace Organisation.BusinessLayer.TestDriver
             TestUpdateWithoutChanges();
             TestItSystemUsage();
             TestPayoutUnits();
+            TestPositions();
+            TestContactPlaces();
 
-            Environment.Exit(0);
+            System.Environment.Exit(0);
         }
 
-        private static void BuildKorsbaek()
+        private static void TestListAndReadUsers()
         {
-            OrgUnitRegistration korsbaekKommune = new OrgUnitRegistration();
-            korsbaekKommune.ShortKey = "Korsbæk Kommune";
-            korsbaekKommune.Name = "Korsbæk Kommune";
-            korsbaekKommune.Uuid = "b9e45b18-b6ba-4434-bce4-844214aaaae8";
-            orgUnitService.Create(korsbaekKommune);
+            // small hack to ensure this test passes (the search parameters will find all users in the organisation, and we need to test that it hits the required amount)
+            OrganisationRegistryProperties properties = OrganisationRegistryProperties.GetInstance();
+            string oldUuid = properties.MunicipalityOrganisationUUID;
+            properties.MunicipalityOrganisationUUID = Uuid();
 
-            OrgUnitRegistration socialOgSundhedsforvaltningen = new OrgUnitRegistration();
-            socialOgSundhedsforvaltningen.ShortKey = "Social og Sundhedsforvaltningen";
-            socialOgSundhedsforvaltningen.Name = "Social og Sundhedsforvaltningen";
-            socialOgSundhedsforvaltningen.Uuid = "9e491092-be32-4a74-a8b6-a3868386958d";
-            socialOgSundhedsforvaltningen.ParentOrgUnitUuid = korsbaekKommune.Uuid;
-            orgUnitService.Create(socialOgSundhedsforvaltningen);
+            UserRegistration registration1 = UserReg();
+            registration1.UserId = "userId1";
+            registration1.Email.Value = "email1@email.com";
+            registration1.Person.Name = "Name of Person 1";
+            registration1.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 1",
+                OrgUnitUuid = Uuid()
+            });
+            registration1.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 2",
+                OrgUnitUuid = Uuid()
+            });
+            userService.Update(registration1);
 
-            OrgUnitRegistration beskaeftigelsesOmraadet = new OrgUnitRegistration();
-            beskaeftigelsesOmraadet.ShortKey = "Beskæftigelsesområdet";
-            beskaeftigelsesOmraadet.Name = "Beskæftigelsesområdet";
-            beskaeftigelsesOmraadet.Uuid = "6bbd954b-ef5f-426e-b387-aa92a0acc8ac";
-            beskaeftigelsesOmraadet.ParentOrgUnitUuid = socialOgSundhedsforvaltningen.Uuid;
-            orgUnitService.Create(beskaeftigelsesOmraadet);
+            UserRegistration registration2 = UserReg();
+            registration2.UserId = "userId2";
+            registration2.Email.Value = "email2@email.com";
+            registration2.Person.Name = "Name of Person 2";
+            registration2.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 3",
+                OrgUnitUuid = Uuid()
+            });
+            registration2.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 4",
+                OrgUnitUuid = Uuid()
+            });
+            userService.Update(registration2);
 
-            OrgUnitRegistration sundhedUdviklingServiceOgOekonomi = new OrgUnitRegistration();
-            sundhedUdviklingServiceOgOekonomi.ShortKey = "Sundhed, Udvikling, Service og Økonomi";
-            sundhedUdviklingServiceOgOekonomi.Name = "Sundhed, Udvikling, Service og Økonomi";
-            sundhedUdviklingServiceOgOekonomi.Uuid = "e0fb33b7-ee59-43f4-af5b-faf67de2c549";
-            sundhedUdviklingServiceOgOekonomi.ParentOrgUnitUuid = socialOgSundhedsforvaltningen.Uuid;
-            orgUnitService.Create(sundhedUdviklingServiceOgOekonomi);
+            /* TODO: reenable this test once search takes Tilstand into consideration - it currently fails because of a bug @KMD
+            UserRegistration registration3 = UserReg();
+            registration3.UserId = "userId3";
+            registration3.Email.Value = "email3@email.com";
+            registration3.Person.Name = "Name of Person 3";
+            registration3.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 5",
+                OrgUnitUuid = Uuid()
+            });
+            userService.Update(registration3);
+            userService.Delete(registration3.Uuid, DateTime.Now);
+            */
 
-            OrgUnitRegistration ungeOmraadet = new OrgUnitRegistration();
-            ungeOmraadet.ShortKey = "Ungeområdet";
-            ungeOmraadet.Name = "Ungeområdet";
-            ungeOmraadet.Uuid = "e5044026-9fc9-485a-a3bb-428a004c0483";
-            ungeOmraadet.ParentOrgUnitUuid = beskaeftigelsesOmraadet.Uuid;
-            orgUnitService.Create(ungeOmraadet);
+            List<string> users = userService.List();
+            if (users.Count != 2)
+            {
+                throw new Exception("List() returned " + users.Count + " users, but 2 was expected");
+            }
 
-            OrgUnitRegistration jobcenter = new OrgUnitRegistration();
-            jobcenter.ShortKey = "Jobcenter";
-            jobcenter.Name = "Jobcenter";
-            jobcenter.Uuid = "e265f56e-031f-46b5-a403-6ded21e8d3e2";
-            jobcenter.ParentOrgUnitUuid = beskaeftigelsesOmraadet.Uuid;
-            orgUnitService.Create(jobcenter);
+            foreach (var uuid in users)
+            {
+                UserRegistration registration = userService.Read(uuid);
 
-            OrgUnitRegistration ydelseOgRaadighed = new OrgUnitRegistration();
-            ydelseOgRaadighed.ShortKey = "Ydelse og Rådighed";
-            ydelseOgRaadighed.Name = "Ydelse og Rådighed";
-            ydelseOgRaadighed.Uuid = "bd145a83-5386-40c8-b0e6-4fa5f6298c95";
-            ydelseOgRaadighed.ParentOrgUnitUuid = jobcenter.Uuid;
-            orgUnitService.Create(ydelseOgRaadighed);
+                if (uuid.Equals(registration1.Uuid))
+                {
+                    if (!registration1.UserId.Equals(registration.UserId))
+                    {
+                        throw new Exception("userId does not match");
+                    }
 
-            OrgUnitRegistration jobOgRessourcer = new OrgUnitRegistration();
-            jobOgRessourcer.ShortKey = "Job og Ressourcer";
-            jobOgRessourcer.Name = "Job og Ressourcer";
-            jobOgRessourcer.Uuid = "b1f926f5-47fd-4b3e-a4fc-01f21bc5d7e1";
-            jobOgRessourcer.ParentOrgUnitUuid = jobcenter.Uuid;
-            orgUnitService.Create(jobOgRessourcer);
+                    if (!registration1.Person.Name.Equals(registration.Person.Name))
+                    {
+                        throw new Exception("Name does not match");
+                    }
 
-            OrgUnitRegistration jobOgKompetencer = new OrgUnitRegistration();
-            jobOgKompetencer.ShortKey = "Job og Ressourcer";
-            jobOgKompetencer.Name = "Job og Ressourcer";
-            jobOgKompetencer.Uuid = "03d0923b-fa25-4991-84ed-b060379c7a31";
-            jobOgKompetencer.ParentOrgUnitUuid = jobcenter.Uuid;
-            orgUnitService.Create(jobOgKompetencer);
+                    if (!registration1.Email.Value.Equals(registration.Email.Value))
+                    {
+                        throw new Exception("Email does not match");
+                    }
 
-            UserRegistration userRegistration = new UserRegistration();
-            userRegistration.UserUuid = "fb5281bd-2d00-4426-97ae-927f7eddf8aa";
-            userRegistration.UserShortKey = "PIASTE";
-            userRegistration.UserId = "PIASTE";
-            userRegistration.PersonName = "Pia Stenberg";
-            userRegistration.Email.Value = "piaste@korsbaek.dk";
-            userRegistration.PositionName = "YR. Medarb. 01";
-            userRegistration.PositionShortKey = "YR. Medarb. 01";
-            userRegistration.PositionUuid = "0b9dcfc6-fcbe-4856-a4ac-de0c979ec47a";
-            userRegistration.PositionOrgUnitUuid = ydelseOgRaadighed.Uuid;
-            userService.Create(userRegistration);
+                    if (registration1.Positions.Count != registration.Positions.Count)
+                    {
+                        throw new Exception("Amount of positions does not match");
+                    }
 
-            userRegistration = new UserRegistration();
-            userRegistration.PositionUuid = "a3a1a3c8-7519-43c1-ad49-2cbb284632ad";
-            userRegistration.PositionName = "YR. Medarb. 02";
-            userRegistration.PositionShortKey = "YR. Medarb. 02";
-            userRegistration.PositionOrgUnitUuid = ydelseOgRaadighed.Uuid;
-            userRegistration.UserUuid = "18cddc45-ccb4-4753-8b42-6a9f62dc2d83";
-            userRegistration.UserShortKey = "AMCATK";
-            userRegistration.UserId = "AMCATK";
-            userRegistration.PersonName = "Catrine Kristensen";
-            userRegistration.Email.Value = "amcatk@korsbaek.dk";
-            userService.Create(userRegistration);
+                    foreach (var position in registration1.Positions)
+                    {
+                        bool found = false;
 
-            userRegistration = new UserRegistration();
-            userRegistration.PositionUuid = "99d0d6be-1ca9-4367-8fe6-6ec761dfe3a5";
-            userRegistration.PositionName = "YR. Medarb. 03";
-            userRegistration.PositionShortKey = "YR. Medarb. 03";
-            userRegistration.PositionOrgUnitUuid = ydelseOgRaadighed.Uuid;
-            userRegistration.UserUuid = "530d688e-ff9b-4437-8c9b-1dbb651e13e2";
-            userRegistration.UserShortKey = "BEDOLG";
-            userRegistration.UserId = "BEDOLG";
-            userRegistration.PersonName = "Dorthe Langager";
-            userRegistration.Email.Value = "bedolg@korsbaek.dk";
-            userService.Create(userRegistration);
+                        foreach (var readPosition in registration.Positions)
+                        {
+                            if (readPosition.Name.Equals(position.Name) && readPosition.OrgUnitUuid.Equals(position.OrgUnitUuid))
+                            {
+                                found = true;
+                            }
+                        }
 
-            userRegistration = new UserRegistration();
-            userRegistration.PositionUuid = "8a82772e-ac4e-438e-8a95-d495a6cbc90d";
-            userRegistration.PositionName = "JR. Medarb. 01";
-            userRegistration.PositionShortKey = "JR. Medarb. 01";
-            userRegistration.PositionOrgUnitUuid = jobOgRessourcer.Uuid;
-            userRegistration.UserUuid = "f8985e8f-f4da-413e-b819-febdd7767b94";
-            userRegistration.UserShortKey = "HENJAC";
-            userRegistration.UserId = "HENJAC";
-            userRegistration.PersonName = "Henrik Jacobsen";
-            userRegistration.Email.Value = "henjac@korsbaek.dk";
-            userService.Create(userRegistration);
+                        if (!found)
+                        {
+                            throw new Exception("Missing position");
+                        }
+                    }
+                }
+                else if (uuid.Equals(registration2.Uuid))
+                {
+                    if (!registration2.UserId.Equals(registration.UserId))
+                    {
+                        throw new Exception("userId does not match");
+                    }
 
-            userRegistration = new UserRegistration();
-            userRegistration.PositionUuid = "7b0ace17-d54e-47bf-9c44-1353b134252d";
-            userRegistration.PositionName = "JR. Medarb. 02";
-            userRegistration.PositionShortKey = "JR. Medarb. 02";
-            userRegistration.PositionOrgUnitUuid = jobOgRessourcer.Uuid;
-            userRegistration.UserUuid = "ba4710c3-0304-457a-9924-f80f8d8563eb";
-            userRegistration.UserShortKey = "SOFJDM";
-            userRegistration.UserId = "SOFJDM";
-            userRegistration.PersonName = "Sofie Damager";
-            userRegistration.Email.Value = "sofjdm@korsbaek.dk";
-            userService.Create(userRegistration);
+                    if (!registration2.Person.Name.Equals(registration.Person.Name))
+                    {
+                        throw new Exception("Name does not match");
+                    }
+
+                    if (!registration2.Email.Value.Equals(registration.Email.Value))
+                    {
+                        throw new Exception("Email does not match");
+                    }
+
+                    if (registration2.Positions.Count != registration.Positions.Count)
+                    {
+                        throw new Exception("Amount of positions does not match");
+                    }
+
+                    foreach (var position in registration2.Positions)
+                    {
+                        bool found = false;
+
+                        foreach (var readPosition in registration.Positions)
+                        {
+                            if (readPosition.Name.Equals(position.Name) && readPosition.OrgUnitUuid.Equals(position.OrgUnitUuid))
+                            {
+                                found = true;
+                            }
+                        }
+
+                        if (!found)
+                        {
+                            throw new Exception("Missing position");
+                        }
+                    }
+                }
+                else
+                {
+                    throw new Exception("List returned the uuid of an unexpected user");
+                }
+            }
+
+            properties.MunicipalityOrganisationUUID = oldUuid;
+        }
+
+        private static void TestListAndReadOUs()
+        {
+            // small hack to ensure this test passes (the search parameters will find all ous in the organisation, and we need to test that it hits the required amount)
+            OrganisationRegistryProperties properties = OrganisationRegistryProperties.GetInstance();
+            string oldUuid = properties.MunicipalityOrganisationUUID;
+            properties.MunicipalityOrganisationUUID = Uuid();
+
+            OrgUnitRegistration registration1 = OUReg();
+            registration1.Name = "ou1";
+            registration1.Email.Value = "email1@email.com";
+            registration1.ParentOrgUnitUuid = Uuid();
+            registration1.ItSystemUuids.Add(Uuid());
+            registration1.ItSystemUuids.Add(Uuid());
+            orgUnitService.Update(registration1);
+
+            OrgUnitRegistration registration2 = OUReg();
+            registration2.Name = "ou2";
+            registration2.Email.Value = "email2@email.com";
+            registration2.ParentOrgUnitUuid = Uuid();
+            registration2.ItSystemUuids.Add(Uuid());
+            registration2.ItSystemUuids.Add(Uuid());
+            orgUnitService.Update(registration2);
+
+            /* TODO: reenable this test once search takes Tilstand into consideration - it currently fails because of a bug @KMD
+            OrgUnitRegistration registration3 = OUReg();
+            registration3.Name = "ou3";
+            registration3.Email.Value = "email3@email.com";
+            registration3.ParentOrgUnitUuid = Uuid();
+            registration3.ItSystemUuids.Add(Uuid());
+            registration3.ItSystemUuids.Add(Uuid());
+            orgUnitService.Update(registration3);
+            orgUnitService.Delete(registration3, DateTime.Now);
+            */
+
+            List<string> ous = orgUnitService.List();
+            if (ous.Count != 2)
+            {
+                throw new Exception("List() returned " + ous.Count + " ous, but 2 was expected");
+            }
+
+            foreach (var uuid in ous)
+            {
+                OrgUnitRegistration registration = orgUnitService.Read(uuid);
+
+                if (uuid.Equals(registration1.Uuid))
+                {
+                    if (!registration1.Name.Equals(registration.Name))
+                    {
+                        throw new Exception("Name does not match");
+                    }
+
+                    if (!registration1.ParentOrgUnitUuid.Equals(registration.ParentOrgUnitUuid))
+                    {
+                        throw new Exception("ParentOU UUID does not match");
+                    }
+
+                    if (!registration1.Email.Value.Equals(registration.Email.Value))
+                    {
+                        throw new Exception("Email does not match");
+                    }
+
+                    if (registration1.ItSystemUuids.Count != registration.ItSystemUuids.Count)
+                    {
+                        throw new Exception("Amount of ItSystems does not match");
+                    }
+
+                    foreach (var itSystem in registration1.ItSystemUuids)
+                    {
+                        bool found = false;
+
+                        foreach (var readItSystems in registration.ItSystemUuids)
+                        {
+                            if (readItSystems.Equals(itSystem))
+                            {
+                                found = true;
+                            }
+                        }
+
+                        if (!found)
+                        {
+                            throw new Exception("Missing ItSystem");
+                        }
+                    }
+                }
+                else if (uuid.Equals(registration2.Uuid))
+                {
+                    if (!registration2.Name.Equals(registration.Name))
+                    {
+                        throw new Exception("Name does not match");
+                    }
+
+                    if (!registration2.ParentOrgUnitUuid.Equals(registration.ParentOrgUnitUuid))
+                    {
+                        throw new Exception("ParentOU UUID does not match");
+                    }
+
+                    if (!registration2.Email.Value.Equals(registration.Email.Value))
+                    {
+                        throw new Exception("Email does not match");
+                    }
+
+                    if (registration2.ItSystemUuids.Count != registration.ItSystemUuids.Count)
+                    {
+                        throw new Exception("Amount of ItSystems does not match");
+                    }
+
+                    foreach (var itSystem in registration2.ItSystemUuids)
+                    {
+                        bool found = false;
+
+                        foreach (var readItSystems in registration.ItSystemUuids)
+                        {
+                            if (readItSystems.Equals(itSystem))
+                            {
+                                found = true;
+                            }
+                        }
+
+                        if (!found)
+                        {
+                            throw new Exception("Missing ItSystem");
+                        }
+                    }
+                }
+                else
+                {
+                    throw new Exception("List returned the uuid of an unexpected ou");
+                }
+            }
+
+            properties.MunicipalityOrganisationUUID = oldUuid;
+        }
+
+        private static void TestContactPlaces()
+        {
+            OrgUnitRegistration registration = OUReg();
+            registration.ContactPlaces.Add(new DTO.V1_1.ContactPlace()
+            {
+                OrgUnitUuid = Guid.NewGuid().ToString().ToLower(),
+                Tasks = new List<string>() { Guid.NewGuid().ToString().ToLower(), Guid.NewGuid().ToString().ToLower() }
+            });
+
+            orgUnitService.Update(registration);
+            OU ou = inspectorService.ReadOUObject(registration.Uuid);
+
+            // 1 contact place with 2 KLE's
+            Validate(ou, registration);
+
+            registration.ContactPlaces.Add(new DTO.V1_1.ContactPlace()
+            {
+                OrgUnitUuid = Guid.NewGuid().ToString().ToLower(),
+                Tasks = new List<string>() { Guid.NewGuid().ToString().ToLower(), Guid.NewGuid().ToString().ToLower() }
+            });
+
+            orgUnitService.Update(registration);
+            ou = inspectorService.ReadOUObject(registration.Uuid);
+
+            // 2 contact places (1 new) with 2 KLE's, same KLE as before in the old one, and new in the new one
+            Validate(ou, registration);
+
+            registration.ContactPlaces.Clear();
+            orgUnitService.Update(registration);
+            ou = inspectorService.ReadOUObject(registration.Uuid);
+
+            // removed the two old contact places, so now we have zero
+            Validate(ou, registration);
+
+            registration.ContactPlaces.Add(new DTO.V1_1.ContactPlace()
+            {
+                OrgUnitUuid = Guid.NewGuid().ToString().ToLower(),
+                Tasks = new List<string>() { Guid.NewGuid().ToString().ToLower(), Guid.NewGuid().ToString().ToLower() }
+            });
+            orgUnitService.Update(registration);
+            ou = inspectorService.ReadOUObject(registration.Uuid);
+
+            // added a new one
+            Validate(ou, registration);
+
+            registration.ContactPlaces[0].Tasks.Clear();
+            registration.ContactPlaces[0].Tasks.Add(Guid.NewGuid().ToString().ToLower());
+
+            orgUnitService.Update(registration);
+            ou = inspectorService.ReadOUObject(registration.Uuid);
+
+            // changed the tasks on the single contact place
+            Validate(ou, registration);
+        }
+
+        private static void TestPositions()
+        {
+            string orgUnitUuid1 = Uuid();
+            string orgUnitUuid2 = Uuid();
+            string orgUnitUuid3 = Uuid();
+
+            // simple employement
+            UserRegistration registration = UserReg();
+            registration.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 1",
+                OrgUnitUuid = orgUnitUuid1
+            });
+
+            userService.Update(registration);
+            User user = inspectorService.ReadUserObject(registration.Uuid);
+            Validate(user, registration);
+
+            // fire from current position, but give two new positions instead
+            registration.Positions.Clear();
+            registration.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 2",
+                OrgUnitUuid = orgUnitUuid2
+            });
+            registration.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 3",
+                OrgUnitUuid = orgUnitUuid3
+            });
+
+            userService.Update(registration);
+            user = inspectorService.ReadUserObject(registration.Uuid);
+            Validate(user, registration);
+
+            // now fire one of those positions
+            registration.Positions.Clear();
+            registration.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 2",
+                OrgUnitUuid = orgUnitUuid2
+            });
+            userService.Update(registration);
+            user = inspectorService.ReadUserObject(registration.Uuid);
+            Validate(user, registration);
+
+            // fresh user, this time we want to control the UUID of the positions
+            string positionUuid1 = Uuid();
+            string positionUuid2 = Uuid();
+            string positionUuid3 = Uuid();
+
+            // start with two jobs
+            registration = UserReg();
+            registration.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 1",
+                OrgUnitUuid = orgUnitUuid1,
+                Uuid = positionUuid1
+            });
+            registration.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 2",
+                OrgUnitUuid = orgUnitUuid2,
+                Uuid = positionUuid2
+            });
+
+            userService.Update(registration);
+            user = inspectorService.ReadUserObject(registration.Uuid);
+            Validate(user, registration);
+
+            // modify one of these positions
+            registration.Positions.Clear();
+            registration.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 2",
+                OrgUnitUuid = orgUnitUuid2,
+                Uuid = positionUuid2
+            });
+            registration.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "Position 3",
+                OrgUnitUuid = orgUnitUuid3,
+                Uuid = positionUuid1 // reusing position 1 to point to new OU
+            });
+
+            userService.Update(registration);
+            user = inspectorService.ReadUserObject(registration.Uuid);
+            Validate(user, registration);
         }
 
         private static void TestPayoutUnits()
@@ -221,10 +531,12 @@ namespace Organisation.BusinessLayer.TestDriver
             orgUnitService.Update(root);
 
             UserRegistration user = UserReg();
-            user.PersonName = "Mads Langkilde";
+            user.Person.Name = "Mads Langkilde";
             user.UserId = "mlk";
-            user.PositionName = "Mayor";
-            user.PositionOrgUnitUuid = root.Uuid;
+            DTO.V1_1.Position position = new DTO.V1_1.Position();
+            user.Positions.Add(position);
+            position.Name = "Mayor";
+            position.OrgUnitUuid = root.Uuid;
             userService.Update(user);
 
             OrgUnitRegistration administration = OUReg();
@@ -240,18 +552,35 @@ namespace Organisation.BusinessLayer.TestDriver
             economics.ParentOrgUnitUuid = administration.Uuid;
             orgUnitService.Update(economics);
 
+            OrgUnitRegistration fireDepartment = OUReg();
+            fireDepartment.Name = "Brandvæsenet";
+            fireDepartment.ParentOrgUnitUuid = administration.Uuid;
+            orgUnitService.Update(fireDepartment);
+
             user = UserReg();
-            user.PersonName = "Bente Blankocheck";
+            user.Person.Name = "Bente Blankocheck";
             user.UserId = "bbcheck";
-            user.PositionName = "Leder";
-            user.PositionOrgUnitUuid = economics.Uuid;
+            position = new DTO.V1_1.Position()
+            {
+                Name = "Leder",
+                OrgUnitUuid = economics.Uuid
+            };
+            user.Positions.Add(position);
+            position = new DTO.V1_1.Position()
+            {
+                Name = "Brandmand",
+                OrgUnitUuid = fireDepartment.Uuid
+            };
+            user.Positions.Add(position);
             userService.Update(user);
 
             user = UserReg();
-            user.PersonName = "Morten Massepenge";
+            user.Person.Name = "Morten Massepenge";
             user.UserId = "mpenge";
-            user.PositionName = "Økonomimedarbejder";
-            user.PositionOrgUnitUuid = economics.Uuid;
+            position = new DTO.V1_1.Position();
+            user.Positions.Add(position);
+            position.Name = "Økonomimedarbejder";
+            position.OrgUnitUuid = economics.Uuid;
             userService.Update(user);
 
             OrgUnitRegistration borgerservice = OUReg();
@@ -262,27 +591,33 @@ namespace Organisation.BusinessLayer.TestDriver
             orgUnitService.Update(borgerservice);
 
             user = UserReg();
-            user.PersonName = "Karen Hjælpsom";
+            user.Person.Name = "Karen Hjælpsom";
             user.UserId = "khj";
             user.Email.Value = "khj@mail.dk";
-            user.PositionName = "Sagsbehandler";
-            user.PositionOrgUnitUuid = borgerservice.Uuid;
+            position = new DTO.V1_1.Position();
+            user.Positions.Add(position);
+            position.Name = "Sagsbehandler";
+            position.OrgUnitUuid = borgerservice.Uuid;
             userService.Update(user);
 
             user = UserReg();
-            user.PersonName = "Søren Sørensen";
+            user.Person.Name = "Søren Sørensen";
             user.UserId = "ssø";
             user.Phone.Value = "12345678";
-            user.PositionName = "Sagsbehandler";
-            user.PositionOrgUnitUuid = borgerservice.Uuid;
+            position = new DTO.V1_1.Position();
+            user.Positions.Add(position);
+            position.Name = "Sagsbehandler";
+            position.OrgUnitUuid = borgerservice.Uuid;
             userService.Update(user);
 
             user = UserReg();
-            user.PersonName = "Viggo Mortensen";
+            user.Person.Name = "Viggo Mortensen";
             user.UserId = "vmort";
-            user.PersonCpr = "0101010101";
-            user.PositionName = "Sagsbehandler";
-            user.PositionOrgUnitUuid = borgerservice.Uuid;
+            user.Person.Cpr = "0101010101";
+            position = new DTO.V1_1.Position();
+            user.Positions.Add(position);
+            position.Name = "Sagsbehandler";
+            position.OrgUnitUuid = borgerservice.Uuid;
             userService.Update(user);
 
             OrgUnitRegistration jobcenter = OUReg();
@@ -294,27 +629,41 @@ namespace Organisation.BusinessLayer.TestDriver
             orgUnitService.Update(jobcenter);
 
             user = UserReg();
-            user.PersonName = "Johan Jensen";
+            user.Person.Name = "Johan Jensen";
             user.UserId = "jojens";
-            user.PositionName = "Leder";
-            user.PositionOrgUnitUuid = jobcenter.Uuid;
+            position = new DTO.V1_1.Position();
+            user.Positions.Add(position);
+            position.Name = "Leder";
+            position.OrgUnitUuid = jobcenter.Uuid;
             userService.Update(user);
 
             OrgUnitRegistration jobcenter1 = OUReg();
             jobcenter1.Name = "Jobcenter Vest";
             jobcenter1.ParentOrgUnitUuid = jobcenter.Uuid;
+            jobcenter1.ContactPlaces.Add(new DTO.V1_1.ContactPlace()
+            {
+                OrgUnitUuid = jobcenter.Uuid,
+                Tasks = new List<string>() { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() }
+            });
             orgUnitService.Update(jobcenter1);
 
             user = UserReg();
-            user.PersonName = "Julie Jensen";
+            user.Person.Name = "Julie Jensen";
             user.UserId = "juljen";
-            user.PositionName = "Sagsbehandler";
-            user.PositionOrgUnitUuid = jobcenter1.Uuid;
+            position = new DTO.V1_1.Position();
+            user.Positions.Add(position);
+            position.Name = "Sagsbehandler";
+            position.OrgUnitUuid = jobcenter1.Uuid;
             userService.Update(user);
 
             OrgUnitRegistration jobcenter2 = OUReg();
             jobcenter2.Name = "Jobcenter Øst";
             jobcenter2.ParentOrgUnitUuid = jobcenter.Uuid;
+            jobcenter2.ContactPlaces.Add(new DTO.V1_1.ContactPlace()
+            {
+                OrgUnitUuid = jobcenter.Uuid,
+                Tasks = new List<string>() { Guid.NewGuid().ToString(), Guid.NewGuid().ToString() }
+            });
             orgUnitService.Update(jobcenter2);
 
             OrgUnitRegistration itDepartment = OUReg();
@@ -329,17 +678,21 @@ namespace Organisation.BusinessLayer.TestDriver
             orgUnitService.Update(operations);
 
             user = UserReg();
-            user.PersonName = "Steven Sørensen";
+            user.Person.Name = "Steven Sørensen";
             user.UserId = "ssøren";
-            user.PositionName = "Administrator";
-            user.PositionOrgUnitUuid = operations.Uuid;
+            position = new DTO.V1_1.Position();
+            user.Positions.Add(position);
+            position.Name = "Administrator";
+            position.OrgUnitUuid = operations.Uuid;
             userService.Update(user);
 
             user = UserReg();
-            user.PersonName = "Marie Marolle";
+            user.Person.Name = "Marie Marolle";
             user.UserId = "marolle";
-            user.PositionName = "Administrator";
-            user.PositionOrgUnitUuid = operations.Uuid;
+            position = new DTO.V1_1.Position();
+            user.Positions.Add(position);
+            position.Name = "Administrator";
+            position.OrgUnitUuid = operations.Uuid;
             userService.Update(user);
 
             OrgUnitRegistration projects = OUReg();
@@ -348,10 +701,12 @@ namespace Organisation.BusinessLayer.TestDriver
             orgUnitService.Update(projects);
 
             user = UserReg();
-            user.PersonName = "Henrik Jeppesen";
+            user.Person.Name = "Henrik Jeppesen";
             user.UserId = "jeppe";
-            user.PositionName = "Projektleder";
-            user.PositionOrgUnitUuid = projects.Uuid;
+            position = new DTO.V1_1.Position();
+            user.Positions.Add(position);
+            position.Name = "Projektleder";
+            position.OrgUnitUuid = projects.Uuid;
             userService.Update(user);
         }
 
@@ -362,8 +717,11 @@ namespace Organisation.BusinessLayer.TestDriver
             orgUnitService.Update(orgUnitRegistration);
 
             UserRegistration userRegistration = UserReg();
-            userRegistration.PositionName = "PositionNameValue";
-            userRegistration.PositionOrgUnitUuid = orgUnitRegistration.Uuid;
+            DTO.V1_1.Position position = new DTO.V1_1.Position();
+            userRegistration.Positions.Add(position);
+            position.Name = "PositionNameValue";
+            position.OrgUnitUuid = orgUnitRegistration.Uuid;
+
             userService.Update(userRegistration);
             userService.Update(userRegistration);
         }
@@ -416,17 +774,18 @@ namespace Organisation.BusinessLayer.TestDriver
             orgUnitService.Update(parentRegistration);
 
             UserRegistration registration = UserReg();
-            registration.PositionName = "PositionNameValue";
-            registration.PositionOrgUnitUuid = parentRegistration.Uuid;
-            registration.Timestamp = DateTime.Now.AddMinutes(-5);
+            DTO.V1_1.Position position = new DTO.V1_1.Position();
+            registration.Positions.Add(position);
+            position.Name = "PositionNameValue";
+            position.OrgUnitUuid = parentRegistration.Uuid;
 
             userService.Update(registration);
-            userService.Delete(registration.UserUuid, DateTime.Now.AddMinutes(-3));
+            userService.Delete(registration.Uuid, DateTime.Now.AddMinutes(-3));
 
             registration.Timestamp = DateTime.Now.AddMinutes(-1);
             userService.Update(registration);
 
-            User user = inspectorService.ReadUserObject(registration.UserUuid);
+            User user = inspectorService.ReadUserObject(registration.Uuid);
             Validate(user, registration);
         }
 
@@ -448,7 +807,13 @@ namespace Organisation.BusinessLayer.TestDriver
             registration.EmailRemarks.Value = "EmailRemark";
             registration.Contact.Value = "Contact";
             registration.PostReturn.Value = "PostReturn";
-            registration.ItSystemUuids = null; // TODO: cannot do this until we have official UUIDs from KOMBIT
+            registration.ItSystemUuids.Add(Uuid());
+            registration.ItSystemUuids.Add(Uuid());
+            registration.ContactPlaces.Add(new DTO.V1_1.ContactPlace()
+            {
+                OrgUnitUuid = parentReg.Uuid,
+                Tasks = new List<string>() { Guid.NewGuid().ToString().ToLower(), Guid.NewGuid().ToString().ToLower() }
+            });
             registration.Location.Value = "LocationValue";
             registration.LOSShortName.Value = "LOSShortNameValue";
             registration.PayoutUnitUuid = parentReg.Uuid;
@@ -468,7 +833,12 @@ namespace Organisation.BusinessLayer.TestDriver
             registration.EmailRemarks.Value = "EmailOpenHoursValue2";
             registration.Contact.Value = "ContactValue2";
             registration.PostReturn.Value = "PostReturnValue2";
-            registration.ItSystemUuids = null; // TODO: cannot do this until we have official UUIDs from KOMBIT
+            registration.ItSystemUuids.Add(Uuid());
+            registration.ContactPlaces.Add(new DTO.V1_1.ContactPlace()
+            {
+                OrgUnitUuid = parentReg2.Uuid,
+                Tasks = new List<string>() { Guid.NewGuid().ToString().ToLower(), Guid.NewGuid().ToString().ToLower() }
+            });
             registration.Location.Value = "LocationValue2";
             registration.LOSShortName.Value = "LOSShortNameValue2";
             registration.PayoutUnitUuid = parentReg2.Uuid;
@@ -493,28 +863,33 @@ namespace Organisation.BusinessLayer.TestDriver
             UserRegistration registration = UserReg();
             registration.Email.Value = "EmailValue";
             registration.Location.Value = "LocationValue";
-            registration.PersonCpr = "0000000000";
-            registration.PersonName = "PersonNameValue";
+            registration.Person.Cpr = "0000000000";
+            registration.Person.Name = "PersonNameValue";
             registration.Phone.Value = "PhoneValue";
-            registration.PositionName = "PositionNameValue";
-            registration.PositionOrgUnitUuid = parentReg.Uuid;
+            DTO.V1_1.Position position = new DTO.V1_1.Position();
+            registration.Positions.Add(position);
+            position.Name = "PositionNameValue";
+            position.OrgUnitUuid = parentReg.Uuid;
             registration.UserId = "UserIdValue";
             userService.Update(registration);
 
-            User user = inspectorService.ReadUserObject(registration.UserUuid);
+            User user = inspectorService.ReadUserObject(registration.Uuid);
             Validate(user, registration);
 
             registration.Email.Value = "EmailValue2";
             registration.Location.Value = "LocationValue2";
-            registration.PersonCpr = "0000000001";
-            registration.PersonName = "PersonNameValue2";
+            registration.Person.Cpr = "0000000001";
+            registration.Person.Name = "PersonNameValue2";
             registration.Phone.Value = "PhoneValue2";
-            registration.PositionName = "PositionNameValue2";
-            registration.PositionOrgUnitUuid = parentReg.Uuid;
+            position = new DTO.V1_1.Position();
+            registration.Positions.Clear();
+            registration.Positions.Add(position);
+            position.Name = "PositionNameValue2";
+            position.OrgUnitUuid = parentReg.Uuid;
             registration.UserId = "UserIdValue2";
             userService.Update(registration);
 
-            user = inspectorService.ReadUserObject(registration.UserUuid);
+            user = inspectorService.ReadUserObject(registration.Uuid);
             Validate(user, registration);
         }
 
@@ -530,9 +905,9 @@ namespace Organisation.BusinessLayer.TestDriver
         private static UserRegistration UserReg()
         {
             UserRegistration registration = new UserRegistration();
-            registration.UserUuid = Uuid();
+            registration.Uuid = Uuid();
             registration.UserId = "DefaultUserID";
-            registration.PersonName = "DefaultPersonName";
+            registration.Person.Name = "DefaultPersonName";
 
             return registration;
         }
@@ -544,12 +919,12 @@ namespace Organisation.BusinessLayer.TestDriver
 
         private static void Validate(User user, UserRegistration registration)
         {
-            if (!string.Equals(user.Person?.Cpr, registration.PersonCpr))
+            if (!string.Equals(user.Person?.Cpr, registration.Person.Cpr))
             {
                 throw new Exception("CPR is not the same");
             }
 
-            if (!string.Equals(user.Person?.Name, registration.PersonName))
+            if (!string.Equals(user.Person?.Name, registration.Person.Name))
             {
                 throw new Exception("Name is not the same");
             }
@@ -559,14 +934,42 @@ namespace Organisation.BusinessLayer.TestDriver
                 throw new Exception("UserId is not the same");
             }
 
-            if (!string.Equals(user.Position?.Name, registration.PositionName))
+            foreach (var positionInOrg in user.Positions)
             {
-                throw new Exception("PositionName is not the same");
+                bool found = false;
+
+                foreach (var positionInLocal in registration.Positions)
+                {
+                    if (positionInOrg.OU.Uuid.Equals(positionInLocal.OrgUnitUuid) && positionInOrg.Name.Equals(positionInLocal.Name))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    throw new Exception("Position in organisation '" + positionInOrg.Uuid + "' did not exist in local registration");
+                }
             }
 
-            if (!string.Equals(user.Position?.OU?.Uuid, registration.PositionOrgUnitUuid))
+            foreach (var positionInLocal in registration.Positions)
             {
-                throw new Exception("PositionOU reference is not the same");
+                bool found = false;
+
+                foreach (var positionInOrg in user.Positions)
+                {
+                    if (positionInOrg.OU.Uuid.Equals(positionInLocal.OrgUnitUuid) && positionInOrg.Name.Equals(positionInLocal.Name))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    throw new Exception("Position in local registration '" + positionInLocal.Uuid + "' did not exist in organisation");
+                }
             }
 
             // bit one sided, but probably enough for rough testing
@@ -605,6 +1008,7 @@ namespace Organisation.BusinessLayer.TestDriver
                 throw new Exception("PayoutUnit reference is not the same");
             }
 
+            // TODO: validation the other way around as well
             if (registration.ItSystemUuids != null)
             {
                 foreach (string uuid in registration.ItSystemUuids)
@@ -625,6 +1029,57 @@ namespace Organisation.BusinessLayer.TestDriver
                     if (!found)
                     {
                         throw new Exception("ItSystem with uuid " + uuid + " should be in Organisation, but is not!");
+                    }
+                }
+            }
+
+            // TODO: validation the other way around as well
+            if (registration.ContactPlaces != null)
+            {
+                foreach (DTO.V1_1.ContactPlace contactPlace in registration.ContactPlaces)
+                {
+                    bool found = false;
+
+                    if (orgUnit.ContactPlaces != null)
+                    {
+                        foreach (ContactPlace orgContactPlace in orgUnit.ContactPlaces)
+                        {
+                            if (orgContactPlace.OrgUnit.Uuid.Equals(contactPlace.OrgUnitUuid))
+                            {
+                                if (orgContactPlace.Tasks == null || contactPlace.Tasks == null)
+                                {
+                                    if (orgContactPlace.Tasks == contactPlace.Tasks)
+                                    {
+                                        found = true; // both are null - which is kinda of a match
+                                    }
+                                }
+                                else // both a non-null
+                                {
+                                    if (orgContactPlace.Tasks.Count == contactPlace.Tasks.Count) // if not same size, not match
+                                    {
+                                        bool allMatch = true;
+
+                                        foreach (string task in orgContactPlace.Tasks)
+                                        {
+                                            if (!contactPlace.Tasks.Contains(task))
+                                            {
+                                                allMatch = false;
+                                            }
+                                        }
+
+                                        if (allMatch)
+                                        {
+                                            found = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        throw new Exception("ContactPlace that points to OU = " + contactPlace.OrgUnitUuid + " should be in Organisation, but it is not!");
                     }
                 }
             }

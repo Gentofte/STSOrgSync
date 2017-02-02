@@ -34,12 +34,13 @@ namespace Organisation.IntegrationLayer
             helper.AddTilknyttedeBrugere(orgFunction.Users, virkning, registration);
             helper.AddTilknyttedeEnheder(orgFunction.OrgUnits, virkning, registration);
             helper.AddTilknyttedeItSystemer(orgFunction.ItSystems, virkning, registration);
+            helper.AddOpgaver(orgFunction.Tasks, virkning, registration);
             helper.AddOrganisationRelation(StubUtil.GetMunicipalityOrganisationUUID(), virkning, registration);
             helper.AddAddressReferences(orgFunction.Addresses, virkning, registration);
             helper.SetFunktionsType(orgFunction.FunctionTypeUuid, virkning, registration);
 
             // set Tilstand to Active
-            helper.SetTilstandToActive(virkning, registration);
+            helper.SetTilstandToActive(virkning, registration, orgFunction.Timestamp);
 
             // wire everything together
             OrganisationFunktionType organisationFunktionType = helper.GetOrganisationFunktionType(orgFunction.Uuid, registration);
@@ -79,7 +80,7 @@ namespace Organisation.IntegrationLayer
             }
         }
 
-        public void Ret(OrgFunctionData orgFunction, UpdateIndicator userIndicator, UpdateIndicator unitIndicator)
+        public void Ret(OrgFunctionData orgFunction, UpdateIndicator userIndicator, UpdateIndicator unitIndicator, UpdateIndicator taskIndicator)
         {
             log.Debug("Attempting Ret on OrganisationFunction with uuid " + orgFunction.Uuid);
 
@@ -104,6 +105,8 @@ namespace Organisation.IntegrationLayer
                 input.AttributListe = registration.AttributListe;
                 input.TilstandListe = registration.TilstandListe;
                 input.RelationListe = registration.RelationListe;
+
+                changes = helper.SetTilstandToActive(virkning, registration, orgFunction.Timestamp) | changes;
 
                 #region Update attributes if needed
                 EgenskabType latestProperty = StubUtil.GetLatestProperty(input.AttributListe.Egenskab);
@@ -136,6 +139,47 @@ namespace Organisation.IntegrationLayer
                     input.AttributListe.Egenskab[oldProperties.Length] = newProperty;
 
                     changes = true;
+                }
+                #endregion
+
+                #region update tasks if needed
+                if (taskIndicator.Equals(UpdateIndicator.COMPARE))
+                {
+                    // terminate the Virkning on all address relationships that no longer exists locally
+                    changes = StubUtil.TerminateObjectsInOrgNoLongerPresentLocally(input.RelationListe.Opgaver, orgFunction.Tasks, orgFunction.Timestamp, true) || changes;
+
+                    // add references to address objects that are new
+                    List<string> taskUuidsToAdd = StubUtil.FindAllObjectsInLocalNotInOrg(input.RelationListe.Opgaver, orgFunction.Tasks, true);
+
+                    if (taskUuidsToAdd.Count > 0)
+                    {
+                        int size = taskUuidsToAdd.Count + ((input.RelationListe.Opgaver != null) ? input.RelationListe.Opgaver.Length : 0);
+                        KlasseFlerRelationType[] newTasks = new KlasseFlerRelationType[size];
+
+                        int i = 0;
+                        if (input.RelationListe.Opgaver != null)
+                        {
+                            foreach (var taskInOrg in input.RelationListe.Opgaver)
+                            {
+                                newTasks[i++] = taskInOrg;
+                            }
+                        }
+
+                        foreach (string uuidToAdd in taskUuidsToAdd)
+                        {
+                            foreach (var taskInLocal in orgFunction.Tasks)
+                            {
+                                if (taskInLocal.Equals(uuidToAdd))
+                                {
+                                    KlasseFlerRelationType newTask = helper.CreateOpgaveRelation(uuidToAdd, virkning);
+                                    newTasks[i++] = newTask;
+                                }
+                            }
+                        }
+
+                        input.RelationListe.Opgaver = newTasks;
+                        changes = true;
+                    }
                 }
                 #endregion
 
@@ -254,6 +298,7 @@ namespace Organisation.IntegrationLayer
                 }
                 #endregion
 
+                // TODO: addresses are not currently used for functions, this is a left-over from the days of it-systems and JumpUrls
                 #region Update Address relationships
                 // terminate the Virkning on all address relationships that no longer exists locally
                 changes = StubUtil.TerminateObjectsInOrgNoLongerPresentLocally(input.RelationListe.Adresser, orgFunction.Addresses, orgFunction.Timestamp, true) || changes;
@@ -578,14 +623,14 @@ namespace Organisation.IntegrationLayer
             }
         }
 
-        public void Orphan(string uuid, DateTime timestamp)
+        public void Deactivate(string uuid, DateTime timestamp)
         {
-            log.Debug("Attempting Orphan on OrganisationFunktion with uuid " + uuid);
+            log.Debug("Attempting Deactivate on OrganisationFunktion with uuid " + uuid);
 
             RegistreringType1 registration = GetLatestRegistration(uuid, false);
             if (registration == null)
             {
-                log.Debug("Cannot call Orphan on OrganisationFunktion with uuid " + uuid + " because it does not exist in Organisation");
+                log.Debug("Cannot call Deactivate on OrganisationFunktion with uuid " + uuid + " because it does not exist in Organisation");
                 return;
             }
 
@@ -618,7 +663,7 @@ namespace Organisation.IntegrationLayer
                     }
                 }
 
-                // cut relationship to all ItSystems
+                // cut relationship to all itSystems
                 if (input.RelationListe.TilknyttedeItSystemer != null && input.RelationListe.TilknyttedeItSystemer.Length > 0)
                 {
                     foreach (var itSystem in input.RelationListe.TilknyttedeItSystemer)
@@ -627,14 +672,9 @@ namespace Organisation.IntegrationLayer
                     }
                 }
 
-                // cut relationship to Organisation
-                if (input.RelationListe.TilknyttedeOrganisationer != null && input.RelationListe.TilknyttedeOrganisationer.Length > 0)
-                {
-                    foreach (var organisation in input.RelationListe.TilknyttedeOrganisationer)
-                    {
-                        StubUtil.TerminateVirkning(organisation.Virkning, timestamp);
-                    }
-                }
+                // actually deactivate function
+                VirkningType virkning = helper.GetVirkning(timestamp);
+                helper.SetTilstandToInactive(virkning, registration, timestamp);
 
                 retRequest request = new retRequest();
                 request.OrganisationFunktionRetRequest = new OrganisationFunktionRetRequestType();
@@ -652,7 +692,7 @@ namespace Organisation.IntegrationLayer
                     throw new SoapServiceException(message);
                 }
 
-                log.Debug("Orphan on OrganisationFunktion with uuid " + uuid + " succeded");
+                log.Debug("Deactivate on OrganisationFunktion with uuid " + uuid + " succeded");
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Organisation.IntegrationLayer;
+using IntegrationLayer.OrganisationFunktion;
 
 namespace Organisation.BusinessLayer
 {
@@ -9,6 +10,7 @@ namespace Organisation.BusinessLayer
     public enum ReadPayoutUnit { YES, NO };
     public enum ReadPositions { YES, NO };
     public enum ReadItSystems { YES, NO };
+    public enum ReadContactPlaces { YES, NO };
 
     public class InspectorService
     {
@@ -110,15 +112,23 @@ namespace Organisation.BusinessLayer
 
             // TODO: perhaps map this to known types?
             string functionType = registration.RelationListe?.Funktionstype?.ReferenceID?.Item;
-            
+
             // TODO: depending on type, find relevant relations
+
+            Status status = Status.ACTIVE;
+            var latestState = StubUtil.GetLatestGyldighed(registration.TilstandListe.Gyldighed);
+            if (global::IntegrationLayer.OrganisationFunktion.GyldighedStatusKodeType.Inaktiv.Equals(latestState.GyldighedStatusKode))
+            {
+                status = Status.INACTIVE;
+            }
 
             return new Function()
             {
                 Uuid = uuid,
                 Name = name,
                 ShortKey = shortKey,
-                FunctionType = functionType
+                FunctionType = functionType,
+                Status = status
             };
         }
 
@@ -141,13 +151,16 @@ namespace Organisation.BusinessLayer
             };
         }
 
-        public OU ReadOUObject(string uuid, ReadAddresses readAddress = ReadAddresses.YES, ReadParentDetails readParentDetails = ReadParentDetails.YES, ReadPayoutUnit readPayoutUnit = ReadPayoutUnit.YES, ReadPositions readPositions = ReadPositions.YES, ReadItSystems readItSystems = ReadItSystems.YES)
+        public OU ReadOUObject(string uuid, ReadAddresses readAddress = ReadAddresses.YES, ReadParentDetails readParentDetails = ReadParentDetails.YES, ReadPayoutUnit readPayoutUnit = ReadPayoutUnit.YES, ReadPositions readPositions = ReadPositions.YES, ReadItSystems readItSystems = ReadItSystems.YES, ReadContactPlaces readContactPlaces = ReadContactPlaces.YES)
         {
             global::IntegrationLayer.OrganisationEnhed.RegistreringType1 registration = organisationEnhedStub.GetLatestRegistration(uuid, true);
             if (registration == null)
             {
                 throw new RegistrationNotFoundException("Could not locate OU with uuid '" + uuid + "'");
             }
+
+            DateTime timestamp = registration.Tidspunkt;
+
             global::IntegrationLayer.OrganisationEnhed.EgenskabType property = StubUtil.GetLatestProperty(registration.AttributListe.Egenskab);
 
             string ouName = (property != null) ? property.EnhedNavn : null;
@@ -163,12 +176,14 @@ namespace Organisation.BusinessLayer
                     global::IntegrationLayer.Adresse.RegistreringType1 addressRegistration = adresseStub.GetLatestRegistration(addressUuid, false);
 
                     string addressValue = "The address object does not exist in Organisation";
+                    string addressShortKey = "";
                     if (addressRegistration != null)
                     {
                         global::IntegrationLayer.Adresse.EgenskabType addressProperty = StubUtil.GetLatestProperty(addressRegistration.AttributListe);
                         if (addressProperty != null)
                         {
                             addressValue = addressProperty.AdresseTekst;
+                            addressShortKey = addressProperty.BrugervendtNoegleTekst;
                         }
                     }
 
@@ -177,6 +192,7 @@ namespace Organisation.BusinessLayer
                         addresses.Add(new Email()
                         {
                             Uuid = addressUuid,
+                            ShortKey = addressShortKey,
                             Value = addressValue
                         });
                     }
@@ -185,6 +201,7 @@ namespace Organisation.BusinessLayer
                         addresses.Add(new Location()
                         {
                             Uuid = addressUuid,
+                            ShortKey = addressShortKey,
                             Value = addressValue
                         });
                     }
@@ -193,6 +210,7 @@ namespace Organisation.BusinessLayer
                         addresses.Add(new Phone()
                         {
                             Uuid = addressUuid,
+                            ShortKey = addressShortKey,
                             Value = addressValue
                         });
                     }
@@ -201,6 +219,7 @@ namespace Organisation.BusinessLayer
                         addresses.Add(new LOSShortName()
                         {
                             Uuid = addressUuid,
+                            ShortKey = addressShortKey,
                             Value = addressValue
                         });
                     }
@@ -209,6 +228,7 @@ namespace Organisation.BusinessLayer
                         addresses.Add(new Ean()
                         {
                             Uuid = addressUuid,
+                            ShortKey = addressShortKey,
                             Value = addressValue
                         });
                     }
@@ -217,6 +237,7 @@ namespace Organisation.BusinessLayer
                         addresses.Add(new ContactHours()
                         {
                             Uuid = addressUuid,
+                            ShortKey = addressShortKey,
                             Value = addressValue
                         });
                     }
@@ -225,6 +246,7 @@ namespace Organisation.BusinessLayer
                         addresses.Add(new EmailRemarks()
                         {
                             Uuid = addressUuid,
+                            ShortKey = addressShortKey,
                             Value = addressValue
                         });
                     }
@@ -233,6 +255,7 @@ namespace Organisation.BusinessLayer
                         addresses.Add(new PostReturn()
                         {
                             Uuid = addressUuid,
+                            ShortKey = addressShortKey,
                             Value = addressValue
                         });
                     }
@@ -241,6 +264,7 @@ namespace Organisation.BusinessLayer
                         addresses.Add(new Contact()
                         {
                             Uuid = addressUuid,
+                            ShortKey = addressShortKey,
                             Value = addressValue
                         });
                     }
@@ -249,6 +273,7 @@ namespace Organisation.BusinessLayer
                         addresses.Add(new Post()
                         {
                             Uuid = addressUuid,
+                            ShortKey = addressShortKey,
                             Value = addressValue
                         });
                     }
@@ -257,6 +282,7 @@ namespace Organisation.BusinessLayer
                         addresses.Add(new PhoneHours()
                         {
                             Uuid = addressUuid,
+                            ShortKey = addressShortKey,
                             Value = addressValue
                         });
                     }
@@ -290,7 +316,8 @@ namespace Organisation.BusinessLayer
             }
 
             OUReference payoutOU = null;
-            if (readPayoutUnit.Equals(ReadPayoutUnit.YES))
+            List<ContactPlace> contactPlaces = new List<ContactPlace>();
+            if (readPayoutUnit.Equals(ReadPayoutUnit.YES) || readContactPlaces.Equals(ReadContactPlaces.YES))
             {
                 if (registration.RelationListe.TilknyttedeFunktioner != null)
                 {
@@ -300,12 +327,12 @@ namespace Organisation.BusinessLayer
 
                         if (functionState.RelationListe.Funktionstype != null)
                         {
-                            if (functionState.RelationListe.Funktionstype.ReferenceID.Item.Equals(UUIDConstants.ORGFUN_PAYOUT_UNIT))
+                            if (readPayoutUnit.Equals(ReadPayoutUnit.YES) && functionState.RelationListe.Funktionstype.ReferenceID.Item.Equals(UUIDConstants.ORGFUN_PAYOUT_UNIT))
                             {
                                 if (functionState.RelationListe.TilknyttedeEnheder != null && functionState.RelationListe.TilknyttedeEnheder.Length > 0)
                                 {
                                     string payoutUnitUuid = functionState.RelationListe.TilknyttedeEnheder[0].ReferenceID.Item;
-                                    string payoutUnitName = "The payout unit does not eixst in Organisation";
+                                    string payoutUnitName = "The payout unit does not exist in Organisation";
 
                                     global::IntegrationLayer.OrganisationEnhed.RegistreringType1 payoutUnitRegistration = organisationEnhedStub.GetLatestRegistration(payoutUnitUuid, true);
                                     if (payoutUnitRegistration != null)
@@ -323,9 +350,43 @@ namespace Organisation.BusinessLayer
                                         Name = payoutUnitName,
                                         Uuid = payoutUnitUuid
                                     };
-
-                                    break;
                                 }
+                            }
+                            else if (readContactPlaces.Equals(ReadContactPlaces.YES) && functionState.RelationListe.Funktionstype.ReferenceID.Item.Equals(UUIDConstants.ORGFUN_CONTACT_UNIT))
+                            {
+                                List<string> tasks = new List<string>();
+                                OUReference contactUnit = new OUReference();
+
+                                if (functionState.RelationListe.Opgaver != null && functionState.RelationListe.Opgaver.Length > 0)
+                                {
+                                    foreach (var opgave in functionState.RelationListe.Opgaver)
+                                    {
+                                        tasks.Add(opgave.ReferenceID.Item);
+                                    }
+                                }
+
+                                if (functionState.RelationListe.TilknyttedeEnheder != null && functionState.RelationListe.TilknyttedeEnheder.Length > 0)
+                                {
+                                    contactUnit.Uuid = functionState.RelationListe.TilknyttedeEnheder[0].ReferenceID.Item;
+                                    contactUnit.Name = "The contact unit does not exist in Organisation";
+
+                                    global::IntegrationLayer.OrganisationEnhed.RegistreringType1 payoutUnitRegistration = organisationEnhedStub.GetLatestRegistration(contactUnit.Uuid, true);
+                                    if (payoutUnitRegistration != null)
+                                    {
+                                        global::IntegrationLayer.OrganisationEnhed.EgenskabType payoutUnitProperty = StubUtil.GetLatestProperty(payoutUnitRegistration.AttributListe.Egenskab);
+
+                                        if (payoutUnitProperty != null)
+                                        {
+                                            contactUnit.Name = payoutUnitProperty.EnhedNavn;
+                                        }
+                                    }
+                                }
+
+                                contactPlaces.Add(new ContactPlace()
+                                {
+                                    OrgUnit = contactUnit,
+                                    Tasks = tasks
+                                });
                             }
                         }
                     }
@@ -383,6 +444,13 @@ namespace Organisation.BusinessLayer
                 itSystems = ServiceHelper.FindItSystemsForOrgUnit(uuid);
             }
 
+            Status status = Status.ACTIVE;
+            var latestState = StubUtil.GetLatestGyldighed(registration.TilstandListe.Gyldighed);
+            if (global::IntegrationLayer.OrganisationEnhed.GyldighedStatusKodeType.Inaktiv.Equals(latestState.GyldighedStatusKode))
+            {
+                status = Status.INACTIVE;
+            }
+
             return new OU()
             {
                 Name = ouName,
@@ -392,7 +460,10 @@ namespace Organisation.BusinessLayer
                 Positions = positions,
                 PayoutOU = payoutOU,
                 Addresses = addresses,
-                ItSystems = itSystems
+                ItSystems = itSystems,
+                ContactPlaces = contactPlaces,
+                Status = status,
+                Timestamp = timestamp
             };
         }
 
@@ -403,6 +474,9 @@ namespace Organisation.BusinessLayer
             {
                 throw new RegistrationNotFoundException("Could not locate User with uuid '" + uuid + "'");
             }
+
+            DateTime timestamp = registration.Tidspunkt;
+
             global::IntegrationLayer.Bruger.EgenskabType property = StubUtil.GetLatestProperty(registration.AttributListe.Egenskab);
 
             string userId = (property != null) ? property.BrugerNavn : null;
@@ -419,6 +493,7 @@ namespace Organisation.BusinessLayer
                         global::IntegrationLayer.Adresse.RegistreringType1 addressRegistration = adresseStub.GetLatestRegistration(addressUuid, false);
 
                         string addressValue = "The address object does not exist in Organisation";
+                        string addressShortKey = "";
                         if (addressRegistration != null)
                         {
                             global::IntegrationLayer.Adresse.EgenskabType addressProperty = StubUtil.GetLatestProperty(addressRegistration.AttributListe);
@@ -426,6 +501,7 @@ namespace Organisation.BusinessLayer
                             if (addressProperty != null)
                             {
                                 addressValue = addressProperty.AdresseTekst;
+                                addressShortKey = addressProperty.BrugervendtNoegleTekst;
                             }
                         }
 
@@ -434,6 +510,7 @@ namespace Organisation.BusinessLayer
                             addresses.Add(new Email()
                             {
                                 Uuid = addressUuid,
+                                ShortKey = addressShortKey,
                                 Value = addressValue
                             });
                         }
@@ -442,6 +519,7 @@ namespace Organisation.BusinessLayer
                             addresses.Add(new Location()
                             {
                                 Uuid = addressUuid,
+                                ShortKey = addressShortKey,
                                 Value = addressValue
                             });
                         }
@@ -450,6 +528,7 @@ namespace Organisation.BusinessLayer
                             addresses.Add(new Phone()
                             {
                                 Uuid = addressUuid,
+                                ShortKey = addressShortKey,
                                 Value = addressValue
                             });
                         }
@@ -489,59 +568,71 @@ namespace Organisation.BusinessLayer
                 };
             }
 
-            Position position = null;
-            List<string> unitRoles = ServiceHelper.FindUnitRolesForUser(uuid);
+            List<Position> positions = new List<Position>();
+            List<FiltreretOejebliksbilledeType> unitRoles = ServiceHelper.FindUnitRolesForUser(uuid);
             if (unitRoles != null && unitRoles.Count > 0)
             {
-                string orgFunctionName = "OrgFunction object does not exist in Organisation";
-                string orgFunctionShortKey = "OrgFunction object does not exist in Organisation";
-                OUReference ou = new OUReference()
+                foreach (var unitRole in unitRoles)
                 {
-                    Uuid = null,
-                    Name = "OrgUnit object does not exist in Organisation"
-                };
-
-                // only pick the first one
-                string positionUuid = unitRoles.ToArray()[0];
-                global::IntegrationLayer.OrganisationFunktion.RegistreringType1 orgFunctionRegistration = orgFunctionStub.GetLatestRegistration(positionUuid, true);
-                if (orgFunctionRegistration != null)
-                {
-                    global::IntegrationLayer.OrganisationFunktion.EgenskabType orgFunctionProperty = StubUtil.GetLatestProperty(orgFunctionRegistration.AttributListe.Egenskab);
-
-                    if (orgFunctionProperty != null)
+                    string orgFunctionName = "OrgFunction object does not exist in Organisation";
+                    string orgFunctionShortKey = "OrgFunction object does not exist in Organisation";
+                    OUReference ou = new OUReference()
                     {
-                        orgFunctionName = orgFunctionProperty.FunktionNavn;
-                        orgFunctionShortKey = orgFunctionProperty.BrugervendtNoegleTekst;
-                    }
+                        Uuid = null,
+                        Name = "OrgUnit object does not exist in Organisation"
+                    };
 
-                    if (orgFunctionRegistration.RelationListe.TilknyttedeEnheder != null && orgFunctionRegistration.RelationListe.TilknyttedeEnheder.Length > 0)
+                    // TODO: rewrite this to make the inspector show all positions
+                    string positionUuid = unitRole.ObjektType.UUIDIdentifikator;
+                    RegistreringType1 orgFunctionRegistration = unitRole.Registrering[0];
+                    if (orgFunctionRegistration != null)
                     {
-                        global::IntegrationLayer.OrganisationFunktion.OrganisationEnhedFlerRelationType parentOu = orgFunctionRegistration.RelationListe.TilknyttedeEnheder[0];
-                        string parentOuUuid = parentOu.ReferenceID.Item;
-                        ou.Uuid = parentOuUuid;
+                        global::IntegrationLayer.OrganisationFunktion.EgenskabType orgFunctionProperty = StubUtil.GetLatestProperty(orgFunctionRegistration.AttributListe.Egenskab);
 
-                        if (readParentDetails.Equals(ReadParentDetails.YES))
+                        if (orgFunctionProperty != null)
                         {
-                            global::IntegrationLayer.OrganisationEnhed.RegistreringType1 parentRegistration = organisationEnhedStub.GetLatestRegistration(parentOuUuid, true);
-                            if (parentRegistration != null)
+                            orgFunctionName = orgFunctionProperty.FunktionNavn;
+                            orgFunctionShortKey = orgFunctionProperty.BrugervendtNoegleTekst;
+                        }
+
+                        if (orgFunctionRegistration.RelationListe.TilknyttedeEnheder != null && orgFunctionRegistration.RelationListe.TilknyttedeEnheder.Length > 0)
+                        {
+                            global::IntegrationLayer.OrganisationFunktion.OrganisationEnhedFlerRelationType parentOu = orgFunctionRegistration.RelationListe.TilknyttedeEnheder[0];
+                            string parentOuUuid = parentOu.ReferenceID.Item;
+                            ou.Uuid = parentOuUuid;
+
+                            if (readParentDetails.Equals(ReadParentDetails.YES))
                             {
-                                global::IntegrationLayer.OrganisationEnhed.EgenskabType parentProperties = StubUtil.GetLatestProperty(parentRegistration.AttributListe.Egenskab);
-                                if (parentProperties != null)
+                                global::IntegrationLayer.OrganisationEnhed.RegistreringType1 parentRegistration = organisationEnhedStub.GetLatestRegistration(parentOuUuid, true);
+                                if (parentRegistration != null)
                                 {
-                                    ou.Name = parentProperties.EnhedNavn;
+                                    global::IntegrationLayer.OrganisationEnhed.EgenskabType parentProperties = StubUtil.GetLatestProperty(parentRegistration.AttributListe.Egenskab);
+                                    if (parentProperties != null)
+                                    {
+                                        ou.Name = parentProperties.EnhedNavn;
+                                    }
                                 }
                             }
                         }
                     }
-                }
 
-                position = new Position()
-                {
-                    Name = orgFunctionName,
-                    OU = ou,
-                    ShortKey = orgFunctionShortKey,
-                    Uuid = positionUuid
-                };
+                    Position position = new Position()
+                    {
+                        Name = orgFunctionName,
+                        OU = ou,
+                        ShortKey = orgFunctionShortKey,
+                        Uuid = positionUuid
+                    };
+
+                    positions.Add(position);
+                }
+            }
+
+            Status status = Status.ACTIVE;
+            var latestState = StubUtil.GetLatestGyldighed(registration.TilstandListe.Gyldighed);
+            if (global::IntegrationLayer.Bruger.GyldighedStatusKodeType.Inaktiv.Equals(latestState.GyldighedStatusKode))
+            {
+                status = Status.INACTIVE;
             }
 
             return new User()
@@ -551,7 +642,9 @@ namespace Organisation.BusinessLayer
                 UserId = userId,
                 Addresses = addresses,
                 Person = person,
-                Position = position
+                Positions = positions,
+                Status = status,
+                Timestamp = timestamp
             };
         }
 

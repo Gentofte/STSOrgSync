@@ -104,7 +104,7 @@ namespace Organisation.ReportTool
 
             foreach (AddressHolder address in addresses)
             {
-                sb.AppendLine("\t" + address.GetType().Name + " = " + address.Value);
+                sb.AppendLine(address.GetType().Name + " = " + address.Value);
             }
 
             return sb.ToString();
@@ -128,11 +128,11 @@ namespace Organisation.ReportTool
                         }
                     }
 
-                    sb.AppendLine("\t" + position.Name + " (" + position.ShortKey + "), besat af " + employeeName + " (" + position.User.Uuid + ")");
+                    sb.AppendLine("\t" + position.Name + ", besat af " + employeeName);
                 }
                 else
                 {
-                    sb.AppendLine("\t" + position.Name + " (" + position.ShortKey + "), ubesat stilling");
+                    sb.AppendLine(position.Name + ", ubesat stilling");
                 }
             }
 
@@ -156,6 +156,10 @@ namespace Organisation.ReportTool
                 if (count++ % pixelStep == 0)
                 {
                     log.Text += "*";
+                    log.Invalidate();
+                    log.Update();
+                    log.Refresh();
+                    Application.DoEvents();
                 }
             }
 

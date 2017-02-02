@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Organisation.IntegrationLayer;
+using Organisation.BusinessLayer.DTO.V1_1;
 
 namespace Organisation.BusinessLayer
 {
@@ -8,6 +9,8 @@ namespace Organisation.BusinessLayer
     {
         private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private OrganisationEnhedStub organisationEnhedStub = new OrganisationEnhedStub();
+        private OrganisationFunktionStub organisationFunktionStub = new OrganisationFunktionStub();
+        private InspectorService inspectorService = new InspectorService();
 
         /// <summary>
         /// This method will create the object in Organisation - note that if the object already exists, this method
@@ -58,7 +61,10 @@ namespace Organisation.BusinessLayer
                 ServiceHelper.ImportAddress(registration.Post, registration.Timestamp, out uuid);
                 if (uuid != null) { registration.Post.Uuid = uuid; }
 
-                // Update functions for it-usage
+                // mapping the unit must come after the addresses, as importing the address might set a UUID on the addresses if not supplied by the caller
+                OrgUnitData orgUnitData = MapRegistrationToOrgUnitDTO(registration);
+
+                // flag all it-systems that we use within this OU
                 if (registration.ItSystemUuids != null)
                 {
                     foreach (string itSystemUuid in registration.ItSystemUuids)
@@ -67,8 +73,16 @@ namespace Organisation.BusinessLayer
                     }
                 }
 
-                // mapping the unit must come after the addresses, as importing the address might set a UUID on the addresses if not supplied by the caller
-                OrgUnitData orgUnitData = MapRegistrationToOrgUnitDTO(registration);
+                // create relations to all ContactPlaces
+                if (registration.ContactPlaces != null)
+                {
+                    foreach (DTO.V1_1.ContactPlace contactPlace in registration.ContactPlaces)
+                    {
+                        string contactPlaceUuid = ServiceHelper.CreateContactPlace(registration, contactPlace);
+
+                        orgUnitData.OrgFunctionUuids.Add(contactPlaceUuid);
+                    }
+                }
 
                 // if this unit is a working unit, that does payouts in behalf of a payout unit, create a reference to that payout unit
                 if (!string.IsNullOrEmpty(registration.PayoutUnitUuid))
@@ -110,8 +124,11 @@ namespace Organisation.BusinessLayer
                     }
                 }
 
+                // TODO: should we also find ContactPlace functions and terminate them, as they are not shared with anyone else (lifecycle should be tied to this object)
+                //       when updating how objects are terminated (KOMBIT pending change), look into this...
+
                 // drop all relationsships from the OU to anything else
-                organisationEnhedStub.Orphan(uuid, timestamp);
+                organisationEnhedStub.Deactivate(uuid, timestamp);
 
                 log.Debug("Delete successful on OrgUnit '" + uuid + "'");
             }
@@ -211,6 +228,9 @@ namespace Organisation.BusinessLayer
                     ServiceHelper.UpdateAddress(registration.Post, orgPostUuid, registration.Timestamp);
                     #endregion
 
+                    // this must happen after addresses have been imported, as it might result in UUID's being created
+                    OrgUnitData orgUnitData = MapRegistrationToOrgUnitDTO(registration);
+
                     #region Update it-usage
                     List<string> itSystemsInOrg = ServiceHelper.FindItSystemsForOrgUnit(registration.Uuid);
 
@@ -226,16 +246,89 @@ namespace Organisation.BusinessLayer
                     }
                     #endregion
 
-                    // this must happen after addresses have been imported, as it might result in UUID's being created
-                    OrgUnitData orgUnitData = MapRegistrationToOrgUnitDTO(registration);
-
                     #region Update payout units
-                    // if this unit is a working unit, that does payouts in behalf of a payout unit, create a reference to that payout unit
+                    // if this unit handles payouts on behalf of a payout unit, create a reference to that payout unit
                     if (!string.IsNullOrEmpty(registration.PayoutUnitUuid))
                     {
                         string payoutUnitFunctionUuid = ServiceHelper.EnsurePayoutUnitFunctionExists(registration.PayoutUnitUuid, registration.Timestamp);
 
                         orgUnitData.OrgFunctionUuids.Add(payoutUnitFunctionUuid);
+                    }
+                    #endregion
+
+                    #region Update ContactPlaces
+                    /*
+                     * 1. iterate over all existing functions
+                     *    1a) read the function
+                     *    1b) compare to local list of OU's
+                     *        1ba) if match, compare KLE and update if needed (history, sigh) - save UUID of function for later use
+                     *        1bb) if not match, do nothing for now (but add TODO, as we might want to delete it in a later update of the code)
+                     *    1c) any local contact place not already existing is created, and UUID of function is stored for later use
+                     *    1d) all UUIDs of functinos (created, skipped or updated (but not deleted)) are added to the update
+                     *  2. the ret() method already performs the correct update
+                     */
+                    List<string> foundContactPlaces = new List<string>(); // use this for keeping track of already existing ContactPlaces
+
+                    // compare all existing functions, to see which to update (and to grab the UUID of the functions)
+                    if (result.RelationListe?.Opgaver != null)
+                    {
+                        foreach (var opgave in result.RelationListe.Opgaver)
+                        {
+                            string functionUuid = opgave.ReferenceID.Item;
+                            string orgUnitUuid = null;
+
+                            // see if we can read the existing function
+                            var orgContactPlace = organisationFunktionStub.GetLatestRegistration(functionUuid, true);
+                            if (orgContactPlace == null)
+                            {
+                                log.Warn("OrgUnit " + registration.Uuid + " has a relation to a ContactPlaces function " + functionUuid + " that does not exist");
+                                continue;
+                            }
+
+                            // figure out which OrgUnit this function points to
+                            var tilknyttedeEnheder = orgContactPlace.RelationListe?.TilknyttedeEnheder;
+                            if (tilknyttedeEnheder != null && tilknyttedeEnheder.Length == 1)
+                            {
+                                orgUnitUuid = tilknyttedeEnheder[0].ReferenceID?.Item;
+                            }
+                            if (orgUnitUuid == null)
+                            {
+                                log.Warn("OrgUnit " + registration.Uuid + " has a relation to a ContactPlaces function " + functionUuid + " that does not have a single OrgUnit reference");
+                                continue;
+                            }
+
+                            // let us see if this is one of the locally supplied ContactPlaces (we might need to update the one stored in Org, and we need the UUID if it already exists)
+                            if (registration.ContactPlaces != null)
+                            {
+                                foreach (DTO.V1_1.ContactPlace localContactPlace in registration.ContactPlaces)
+                                {
+                                    if (localContactPlace.OrgUnitUuid.Equals(orgUnitUuid))
+                                    {
+                                        ServiceHelper.UpdateContactPlace(functionUuid, localContactPlace.Tasks, registration.Timestamp);
+
+                                        // store a reference, so this function is not deleted
+                                        orgUnitData.OrgFunctionUuids.Add(functionUuid);
+
+                                        // and flag it as found, so we do not create a new one
+                                        foundContactPlaces.Add(localContactPlace.OrgUnitUuid);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // create all *new* ContactPlaces
+                    if (registration.ContactPlaces != null)
+                    {
+                        foreach (DTO.V1_1.ContactPlace contactPlace in registration.ContactPlaces)
+                        {
+                            if (!foundContactPlaces.Contains(contactPlace.OrgUnitUuid))
+                            {
+                                string contactPlaceUuid = ServiceHelper.CreateContactPlace(registration, contactPlace);
+
+                                orgUnitData.OrgFunctionUuids.Add(contactPlaceUuid);
+                            }
+                        }
                     }
                     #endregion
 
@@ -249,6 +342,125 @@ namespace Organisation.BusinessLayer
                 log.Warn("Update on OrgUnitService failed for '" + registration.Uuid + "' due to unavailable KOMBIT services", ex);
                 throw new TemporaryFailureException(ex.Message);
             }
+        }
+
+        public List<string> List()
+        {
+            log.Debug("Performing List on OrgUnits");
+
+            var result = inspectorService.FindAllOUs();
+
+            log.Debug("Found " + result.Count + " OrgUnits");
+
+            return result;
+        }
+
+        public OrgUnitRegistration Read(string uuid)
+        {
+            log.Debug("Performing Read on OrgUnit " + uuid);
+
+            OrgUnitRegistration registration = null;
+
+            OU ou = inspectorService.ReadOUObject(uuid, ReadAddresses.YES, ReadParentDetails.NO, ReadPayoutUnit.YES, ReadPositions.NO, ReadItSystems.YES, ReadContactPlaces.YES);
+            if (ou != null)
+            {
+                registration = new OrgUnitRegistration();
+
+                registration.Name = ou.Name;
+                registration.ParentOrgUnitUuid = ou.ParentOU?.Uuid;
+                registration.PayoutUnitUuid = ou.PayoutOU?.Uuid;
+                registration.ShortKey = ou.ShortKey;
+                registration.Uuid = uuid;
+
+                foreach (var itSystem in ou.ItSystems)
+                {
+                    registration.ItSystemUuids.Add(itSystem);
+                }
+
+                foreach (var address in ou.Addresses)
+                {
+                    if (address is Email)
+                    {
+                        registration.Email.Uuid = address.Uuid;
+                        registration.Email.Value = address.Value;
+                        registration.Email.ShortKey = address.ShortKey;
+                    }
+                    else if (address is Location)
+                    {
+                        registration.Location.Uuid = address.Uuid;
+                        registration.Location.Value = address.Value;
+                        registration.Location.ShortKey = address.ShortKey;
+                    }
+                    else if (address is Phone)
+                    {
+                        registration.Phone.Uuid = address.Uuid;
+                        registration.Phone.Value = address.Value;
+                        registration.Phone.ShortKey = address.ShortKey;
+                    }
+                    else if (address is LOSShortName)
+                    {
+                        registration.LOSShortName.Uuid = address.Uuid;
+                        registration.LOSShortName.Value = address.Value;
+                        registration.LOSShortName.ShortKey = address.ShortKey;
+                    }
+                    else if (address is PostReturn)
+                    {
+                        registration.PostReturn.Uuid = address.Uuid;
+                        registration.PostReturn.Value = address.Value;
+                        registration.PostReturn.ShortKey = address.ShortKey;
+                    }
+                    else if (address is Contact)
+                    {
+                        registration.Contact.Uuid = address.Uuid;
+                        registration.Contact.Value = address.Value;
+                        registration.Contact.ShortKey = address.ShortKey;
+                    }
+                    else if (address is EmailRemarks)
+                    {
+                        registration.EmailRemarks.Uuid = address.Uuid;
+                        registration.EmailRemarks.Value = address.Value;
+                        registration.EmailRemarks.ShortKey = address.ShortKey;
+                    }
+                    else if (address is PhoneHours)
+                    {
+                        registration.PhoneOpenHours.Uuid = address.Uuid;
+                        registration.PhoneOpenHours.Value = address.Value;
+                        registration.PhoneOpenHours.ShortKey = address.ShortKey;
+                    }
+                    else if (address is ContactHours)
+                    {
+                        registration.ContactOpenHours.Uuid = address.Uuid;
+                        registration.ContactOpenHours.Value = address.Value;
+                        registration.ContactOpenHours.ShortKey = address.ShortKey;
+                    }
+                    else if (address is Ean)
+                    {
+                        registration.Ean.Uuid = address.Uuid;
+                        registration.Ean.Value = address.Value;
+                        registration.Ean.ShortKey = address.ShortKey;
+                    }
+                    else if (address is Post)
+                    {
+                        registration.Post.Uuid = address.Uuid;
+                        registration.Post.Value = address.Value;
+                        registration.Post.ShortKey = address.ShortKey;
+                    }
+                    else
+                    {
+                        log.Warn("Trying to Read OrgUnit " + uuid + " with unknown address type " + address.GetType().ToString());
+                    }
+                }
+
+                registration.Timestamp = ou.Timestamp;
+
+                log.Debug("Found OrgUnit " + uuid + " when reading");
+            }
+            else
+            {
+                log.Debug("Did not find OrgUnit " + uuid + " when reading");
+            }
+
+            return registration;
         }
 
         private OrgUnitData MapRegistrationToOrgUnitDTO(OrgUnitRegistration registration)
@@ -374,6 +586,17 @@ namespace Organisation.BusinessLayer
                 errors.Add("timestamp");
             }
 
+            if (registration.ContactPlaces != null)
+            {
+                foreach (var contactPlace in registration.ContactPlaces)
+                {
+                    if (string.IsNullOrEmpty(contactPlace.OrgUnitUuid) || contactPlace.Tasks == null || contactPlace.Tasks.Count == 0)
+                    {
+                        errors.Add("contactPlace");
+                    }
+                }
+            }
+
             if (errors.Count > 0)
             {
                 throw new InvalidFieldsException("Invalid registration object - the following fields are invalid: " + string.Join(",", errors));
@@ -479,6 +702,14 @@ namespace Organisation.BusinessLayer
                 }
 
                 registration.ItSystemUuids = lowerCaseValues;
+            }
+
+            if (registration.ContactPlaces != null)
+            {
+                foreach (var contactPlace in registration.ContactPlaces)
+                {
+                    contactPlace.OrgUnitUuid = contactPlace.OrgUnitUuid.ToLower();
+                }
             }
 
             registration.Uuid = registration.Uuid.ToLower();
