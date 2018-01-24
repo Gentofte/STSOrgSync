@@ -18,6 +18,15 @@ Initial release of STSOrgSync as installed in Gentofte, Syddjurs and Favrskov
 * added an official API for reading data from Organisation
 * changed how objects are 'deleted' according to new version of KOMBITs registration requirements
 
+
+### 25.01.2018 Release 1.2.0
+* added support for new registration-practice regarding the Organisation object and the root OrganisationEnhed object
+* added latest "registration practice" document from KOMBIT, and aligned code with guidelines
+* updated code to use the latest version of the SOAP interface on the Serviceplatform
+* support for PROD environment
+* fixed wrong UUID on address objects
+* fixed bug with database-queue, which might skip multiple registrations on same object
+
 #### License (in danish)
 
 Copyright Gentofte Kommune/OS2 Offentlig Digitaliseringsfællesskab. Dette værk er licensieret under opensource
