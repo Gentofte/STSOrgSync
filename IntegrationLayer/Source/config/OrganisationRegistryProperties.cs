@@ -19,17 +19,12 @@ namespace Organisation.IntegrationLayer
 
         private static OrganisationRegistryProperties instance;
 
-        public string StsBaseAddress { get; set; }
-        public string StsCertAlias { get; set; }
-        public string StsCertThumbprint { get; set; }
         public string ClientCertThumbprint { get; set; }
         public string ServicesBaseUrl { get; set; }
-        public string ServiceCertThumbprint { get; set; }
         public bool LogRequestResponse { get; set; }
         public bool DisableRevocationCheck { get; set; }
         public string ServiceCertAlias { get; set; }
         public string MunicipalityOrganisationUUID { get; set; }
-        public string StsEntityIdBase { get; set; }
         public string Municipality { get; set; }
         public string DBConnectionString { get; set; }
         public bool UseSSL { get; set; }
@@ -84,30 +79,19 @@ namespace Organisation.IntegrationLayer
 
             Environment environment = null;
             string environmentKey = (string)key.GetValue(ENVIRONMENT_KEY);
-            if (environmentKey.Equals("STS"))
-            {
-                throw new Exception("STS environment has been deprecated");
-                //environment = new STSEnvironment();
-            }
-            else if (environmentKey.Equals("TEST"))
+            if (environmentKey.Equals("TEST"))
             {
                 environment = new TestEnvironment();
             }
             else if (environmentKey.Equals("PROD"))
             {
-                throw new Exception("Prod environment has not been implemented yet");
+                environment = new ProdEnvironment();
             }
             else
             {
-                throw new Exception("Invalid registry setting for Environment (" + environmentKey + ") - TEST, PROD or STS allowed");
+                throw new Exception("Invalid registry setting for Environment (" + environmentKey + ") - TEST or PROD allowed");
             }
 
-            StsBaseAddress = environment.GetSTSBaseUrl();
-            StsCertAlias = environment.GetSTSCertAlias();
-            StsCertThumbprint = environment.GetSTSCertThumbprint();
-            StsEntityIdBase = environment.GetEntityIdBase();
-            ServiceCertAlias = environment.GetServicesCertAlias();
-            ServiceCertThumbprint = environment.GetServicesCertThumbprint();
             ServicesBaseUrl = environment.GetServicesBaseUrl();
         }
     }

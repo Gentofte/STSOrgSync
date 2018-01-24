@@ -1,7 +1,6 @@
 ﻿using IntegrationLayer.OrganisationFunktion;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens;
 using System.IO;
 using System.Net;
 using System.ServiceModel;
@@ -49,23 +48,22 @@ namespace Organisation.IntegrationLayer
 
             // construct request
             importerRequest request = new importerRequest();
-            request.OrganisationFunktionImporterRequest = new OrganisationFunktionImporterRequestType();
-            request.OrganisationFunktionImporterRequest.ImportInput = importInput;
-            request.OrganisationFunktionImporterRequest.AuthorityContext = new AuthorityContextType();
-            request.OrganisationFunktionImporterRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            request.ImporterRequest1 = new ImporterRequestType();
+            request.ImporterRequest1.ImportInput = importInput;
+            request.ImporterRequest1.AuthorityContext = new AuthorityContextType();
+            request.ImporterRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
             // send request
-            SecurityToken token = TokenCache.IssueToken(OrganisationFunktionStubHelper.SERVICE);
-            OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "Import", helper.CreatePort(), token);
+            OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "Import", helper.CreatePort());
 
             try
             {
                 importerResponse result = channel.importer(request);
 
-                int statusCode = Int32.Parse(result.OrganisationFunktionImporterResponse.ImportOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(result.ImporterResponse1.ImportOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
-                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Import", OrganisationFunktionStubHelper.SERVICE, result.OrganisationFunktionImporterResponse.ImportOutput.StandardRetur.FejlbeskedTekst);
+                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Import", OrganisationFunktionStubHelper.SERVICE, result.ImporterResponse1.ImportOutput.StandardRetur.FejlbeskedTekst);
                     log.Error(message);
                     throw new SoapServiceException(message);
                 }
@@ -93,8 +91,7 @@ namespace Organisation.IntegrationLayer
 
             VirkningType virkning = helper.GetVirkning(orgFunction.Timestamp);
 
-            SecurityToken token = TokenCache.IssueToken(OrganisationFunktionStubHelper.SERVICE);
-            OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "Ret", helper.CreatePort(), token);
+            OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "Ret", helper.CreatePort());
 
             try
             {
@@ -357,17 +354,17 @@ namespace Organisation.IntegrationLayer
 
                 // send Ret request
                 retRequest request = new retRequest();
-                request.OrganisationFunktionRetRequest = new OrganisationFunktionRetRequestType();
-                request.OrganisationFunktionRetRequest.RetInput = input;
-                request.OrganisationFunktionRetRequest.AuthorityContext = new AuthorityContextType();
-                request.OrganisationFunktionRetRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+                request.RetRequest1 = new RetRequestType();
+                request.RetRequest1.RetInput = input;
+                request.RetRequest1.AuthorityContext = new AuthorityContextType();
+                request.RetRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
                 retResponse response = channel.ret(request);
 
-                int statusCode = Int32.Parse(response.OrganisationFunktionRetResponse.RetOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.RetResponse1.RetOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
-                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Ret", OrganisationFunktionStubHelper.SERVICE, response.OrganisationFunktionRetResponse.RetOutput.StandardRetur.FejlbeskedTekst);
+                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Ret", OrganisationFunktionStubHelper.SERVICE, response.RetResponse1.RetOutput.StandardRetur.FejlbeskedTekst);
                     log.Error(message);
                     throw new SoapServiceException(message);
                 }
@@ -514,8 +511,7 @@ namespace Organisation.IntegrationLayer
         // TODO: I've made the method private, so it cannot be called outside this class - instead use the filtered versions above (they remove the wrong results from Soeg())
         private List<string> Soeg(string functionsTypeUuid, string userUuid, string unitUuid, string itSystemUuid)
         {
-            SecurityToken token = TokenCache.IssueToken(OrganisationFunktionStubHelper.SERVICE);
-            OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "Soeg", helper.CreatePort(), token);
+            OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "Soeg", helper.CreatePort());
 
             SoegInputType1 soegInput = new SoegInputType1();
             soegInput.AttributListe = new AttributListeType();
@@ -588,18 +584,18 @@ namespace Organisation.IntegrationLayer
 
             // search
             soegRequest request = new soegRequest();
-            request.OrganisationFunktionSoegRequest = new OrganisationFunktionSoegRequestType();
-            request.OrganisationFunktionSoegRequest.SoegInput = soegInput;
-            request.OrganisationFunktionSoegRequest.AuthorityContext = new AuthorityContextType();
-            request.OrganisationFunktionSoegRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            request.SoegRequest1 = new SoegRequestType();
+            request.SoegRequest1.SoegInput = soegInput;
+            request.SoegRequest1.AuthorityContext = new AuthorityContextType();
+            request.SoegRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
             try
             {
                 soegResponse response = channel.soeg(request);
-                int statusCode = Int32.Parse(response.OrganisationFunktionSoegResponse.SoegOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.SoegResponse1.SoegOutput.StandardRetur.StatusKode);
                 if (statusCode != 20 && statusCode != 44) // 44 is empty search result
                 {
-                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Soeg", OrganisationFunktionStubHelper.SERVICE, response.OrganisationFunktionSoegResponse.SoegOutput.StandardRetur.FejlbeskedTekst);
+                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Soeg", OrganisationFunktionStubHelper.SERVICE, response.SoegResponse1.SoegOutput.StandardRetur.FejlbeskedTekst);
                     log.Error(message);
                     throw new SoapServiceException(message);
                 }
@@ -607,7 +603,7 @@ namespace Organisation.IntegrationLayer
                 List<string> functions = new List<string>();
                 if (statusCode == 20)
                 {
-                    foreach (string id in response.OrganisationFunktionSoegResponse.SoegOutput.IdListe)
+                    foreach (string id in response.SoegResponse1.SoegOutput.IdListe)
                     {
                         functions.Add(id);
                     }
@@ -634,8 +630,7 @@ namespace Organisation.IntegrationLayer
                 return;
             }
 
-            SecurityToken token = TokenCache.IssueToken(OrganisationFunktionStubHelper.SERVICE);
-            OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "Ret", helper.CreatePort(), token);
+            OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "Ret", helper.CreatePort());
 
             try
             {
@@ -677,17 +672,17 @@ namespace Organisation.IntegrationLayer
                 helper.SetTilstandToInactive(virkning, registration, timestamp);
 
                 retRequest request = new retRequest();
-                request.OrganisationFunktionRetRequest = new OrganisationFunktionRetRequestType();
-                request.OrganisationFunktionRetRequest.RetInput = input;
-                request.OrganisationFunktionRetRequest.AuthorityContext = new AuthorityContextType();
-                request.OrganisationFunktionRetRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+                request.RetRequest1 = new RetRequestType();
+                request.RetRequest1.RetInput = input;
+                request.RetRequest1.AuthorityContext = new AuthorityContextType();
+                request.RetRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
                 retResponse response = channel.ret(request);
 
-                int statusCode = Int32.Parse(response.OrganisationFunktionRetResponse.RetOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.RetResponse1.RetOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
-                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Ret", OrganisationFunktionStubHelper.SERVICE, response.OrganisationFunktionRetResponse.RetOutput.StandardRetur.FejlbeskedTekst);
+                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Ret", OrganisationFunktionStubHelper.SERVICE, response.RetResponse1.RetOutput.StandardRetur.FejlbeskedTekst);
                     log.Error(message);
                     throw new SoapServiceException(message);
                 }
@@ -764,19 +759,18 @@ namespace Organisation.IntegrationLayer
             }
 
             listRequest request = new listRequest();
-            request.OrganisationFunktionListeRequest = new OrganisationFunktionListeRequestType();
-            request.OrganisationFunktionListeRequest.ListInput = listInput;
-            request.OrganisationFunktionListeRequest.AuthorityContext = new AuthorityContextType();
-            request.OrganisationFunktionListeRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            request.ListRequest1 = new ListRequestType();
+            request.ListRequest1.ListInput = listInput;
+            request.ListRequest1.AuthorityContext = new AuthorityContextType();
+            request.ListRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
-            SecurityToken token = TokenCache.IssueToken(OrganisationFunktionStubHelper.SERVICE);
-            OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "Laes", helper.CreatePort(), token);
+            OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "Laes", helper.CreatePort());
 
             try
             {
                 listResponse response = channel.list(request);
 
-                int statusCode = Int32.Parse(response.OrganisationFunktionListeResponse.ListOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.ListResponse1.ListOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
                     // note that statusCode 44 means that the objects does not exists, so that is a valid response
@@ -792,13 +786,13 @@ namespace Organisation.IntegrationLayer
                     return null;
                 }
 
-                if (response.OrganisationFunktionListeResponse.ListOutput.FiltreretOejebliksbillede == null || response.OrganisationFunktionListeResponse.ListOutput.FiltreretOejebliksbillede.Length == 0)
+                if (response.ListResponse1.ListOutput.FiltreretOejebliksbillede == null || response.ListResponse1.ListOutput.FiltreretOejebliksbillede.Length == 0)
                 {
                     log.Debug("Lookup on OrgFunction with uuids '" + string.Join(",", uuids) + "' returned an empty resultset");
                     return null;
                 }
 
-                return response.OrganisationFunktionListeResponse.ListOutput.FiltreretOejebliksbillede;
+                return response.ListResponse1.ListOutput.FiltreretOejebliksbillede;
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {

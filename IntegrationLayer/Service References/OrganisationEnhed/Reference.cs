@@ -12,7 +12,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -45,7 +45,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -92,7 +92,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(RegistreringType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -194,7 +194,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oio:sagdok:3.0.0")]
     public enum LivscyklusKodeType {
@@ -213,7 +213,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -262,7 +262,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oio:sagdok:3.0.0", IncludeInSchema=false)]
     public enum ItemChoiceType {
@@ -275,7 +275,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -326,7 +326,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -372,7 +372,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -432,7 +432,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -534,7 +534,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -567,7 +567,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oio:sagdok:3.0.0")]
     public enum AktoerTypeKodeType {
@@ -592,7 +592,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -624,7 +624,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -670,7 +670,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -716,7 +716,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oio:sts:organisation:1.1.1")]
     public enum GyldighedStatusKodeType {
@@ -729,7 +729,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -985,7 +985,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1050,7 +1050,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(KlasseFlerRelationType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PersonFlerRelationType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AdresseFlerRelationType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1096,7 +1096,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1105,7 +1105,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1114,7 +1114,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1123,7 +1123,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1132,7 +1132,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1141,7 +1141,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1150,7 +1150,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1159,7 +1159,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1168,7 +1168,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1177,7 +1177,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1186,7 +1186,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1195,7 +1195,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1204,7 +1204,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1213,7 +1213,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1233,7 +1233,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OrganisationEnhedRelationType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(MyndighedRelationType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(KlasseRelationType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1279,7 +1279,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1288,7 +1288,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1297,7 +1297,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1306,7 +1306,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1315,7 +1315,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1324,7 +1324,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1361,7 +1361,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1370,7 +1370,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1379,7 +1379,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1388,7 +1388,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1401,7 +1401,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AktoerType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OrganisationEnhedType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LaesFiltreretOutputType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1435,7 +1435,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AktoerType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OrganisationEnhedType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1445,7 +1445,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OrganisationEnhedType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1454,7 +1454,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1477,7 +1477,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1486,7 +1486,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1533,7 +1533,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(UnikReturType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1579,7 +1579,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1618,7 +1618,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LaesOutputType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OpretOutputType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1650,7 +1650,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1673,7 +1673,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1696,12 +1696,12 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedOpretResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class OpretResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private OpretOutputType opretOutputField;
         
@@ -1729,7 +1729,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OpretInputType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1761,7 +1761,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1812,7 +1812,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1843,7 +1843,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1900,12 +1900,12 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedOpretRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class OpretRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -1960,12 +1960,14 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", ConfigurationName="OrganisationEnhed.OrganisationEnhedPortType")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", ConfigurationName="OrganisationEnhed.OrganisationEnhedPortType")]
     public interface OrganisationEnhedPortType {
         
         // CODEGEN: Generating message contract since the operation opret is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/opret", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://kombit.dk/sts/opoc/organisationenhed/opret", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/opre" +
+            "t", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/opre" +
+            "t", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -1974,12 +1976,15 @@ namespace IntegrationLayer.OrganisationEnhed {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.OrganisationEnhed.opretResponse opret(IntegrationLayer.OrganisationEnhed.opretRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/opret", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/opre" +
+            "t", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.opretResponse> opretAsync(IntegrationLayer.OrganisationEnhed.opretRequest request);
         
         // CODEGEN: Generating message contract since the operation importer is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/importer", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://kombit.dk/sts/opoc/organisationenhed/importer", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/impo" +
+            "rter", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/impo" +
+            "rter", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -1988,12 +1993,15 @@ namespace IntegrationLayer.OrganisationEnhed {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.OrganisationEnhed.importerResponse importer(IntegrationLayer.OrganisationEnhed.importerRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/importer", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/impo" +
+            "rter", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.importerResponse> importerAsync(IntegrationLayer.OrganisationEnhed.importerRequest request);
         
         // CODEGEN: Generating message contract since the operation passiver is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/passiver", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://kombit.dk/sts/opoc/organisationenhed/passiver", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/pass" +
+            "iver", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/pass" +
+            "iver", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -2002,12 +2010,15 @@ namespace IntegrationLayer.OrganisationEnhed {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.OrganisationEnhed.passiverResponse passiver(IntegrationLayer.OrganisationEnhed.passiverRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/passiver", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/pass" +
+            "iver", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.passiverResponse> passiverAsync(IntegrationLayer.OrganisationEnhed.passiverRequest request);
         
         // CODEGEN: Generating message contract since the operation laes is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/laes", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://kombit.dk/sts/opoc/organisationenhed/laes", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/laes" +
+            "", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/laes" +
+            "", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -2016,12 +2027,13 @@ namespace IntegrationLayer.OrganisationEnhed {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.OrganisationEnhed.laesResponse laes(IntegrationLayer.OrganisationEnhed.laesRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/laes", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/laes" +
+            "", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.laesResponse> laesAsync(IntegrationLayer.OrganisationEnhed.laesRequest request);
         
         // CODEGEN: Generating message contract since the operation ret is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/ret", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://kombit.dk/sts/opoc/organisationenhed/ret", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/ret", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/ret", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -2030,12 +2042,14 @@ namespace IntegrationLayer.OrganisationEnhed {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.OrganisationEnhed.retResponse ret(IntegrationLayer.OrganisationEnhed.retRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/ret", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/ret", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.retResponse> retAsync(IntegrationLayer.OrganisationEnhed.retRequest request);
         
         // CODEGEN: Generating message contract since the operation slet is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/slet", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://kombit.dk/sts/opoc/organisationenhed/slet", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/slet" +
+            "", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/slet" +
+            "", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -2044,12 +2058,15 @@ namespace IntegrationLayer.OrganisationEnhed {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.OrganisationEnhed.sletResponse slet(IntegrationLayer.OrganisationEnhed.sletRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/slet", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/slet" +
+            "", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.sletResponse> sletAsync(IntegrationLayer.OrganisationEnhed.sletRequest request);
         
         // CODEGEN: Generating message contract since the operation soeg is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/soeg", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://kombit.dk/sts/opoc/organisationenhed/soeg", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/soeg" +
+            "", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/soeg" +
+            "", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -2058,12 +2075,15 @@ namespace IntegrationLayer.OrganisationEnhed {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.OrganisationEnhed.soegResponse soeg(IntegrationLayer.OrganisationEnhed.soegRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/soeg", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/soeg" +
+            "", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.soegResponse> soegAsync(IntegrationLayer.OrganisationEnhed.soegRequest request);
         
         // CODEGEN: Generating message contract since the operation list is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/list", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://kombit.dk/sts/opoc/organisationenhed/list", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/list" +
+            "", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.OrganisationEnhed.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/list" +
+            "", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -2072,8 +2092,40 @@ namespace IntegrationLayer.OrganisationEnhed {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.OrganisationEnhed.listResponse list(IntegrationLayer.OrganisationEnhed.listRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/opoc/organisationenhed/list", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/list" +
+            "", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.listResponse> listAsync(IntegrationLayer.OrganisationEnhed.listRequest request);
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+    public partial class RequestHeaderType : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string transactionUUIDField;
+        
+        /// <remarks/>
+        public string TransactionUUID {
+            get {
+                return this.transactionUUIDField;
+            }
+            set {
+                this.transactionUUIDField = value;
+                this.RaisePropertyChanged("TransactionUUID");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2082,14 +2134,18 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class opretRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedOpretRequestType OrganisationEnhedOpretRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="OpretRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.OpretRequestType OpretRequest1;
         
         public opretRequest() {
         }
         
-        public opretRequest(IntegrationLayer.OrganisationEnhed.OrganisationEnhedOpretRequestType OrganisationEnhedOpretRequest) {
-            this.OrganisationEnhedOpretRequest = OrganisationEnhedOpretRequest;
+        public opretRequest(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.OpretRequestType OpretRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.OpretRequest1 = OpretRequest1;
         }
     }
     
@@ -2099,24 +2155,28 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class opretResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedOpretResponseType OrganisationEnhedOpretResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="OpretResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.OpretResponseType OpretResponse1;
         
         public opretResponse() {
         }
         
-        public opretResponse(IntegrationLayer.OrganisationEnhed.OrganisationEnhedOpretResponseType OrganisationEnhedOpretResponse) {
-            this.OrganisationEnhedOpretResponse = OrganisationEnhedOpretResponse;
+        public opretResponse(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.OpretResponseType OpretResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.OpretResponse1 = OpretResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedImporterRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class ImporterRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2171,7 +2231,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2203,12 +2263,12 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedImporterResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class ImporterResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private BasicOutputType importOutputField;
         
@@ -2240,14 +2300,18 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class importerRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedImporterRequestType OrganisationEnhedImporterRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ImporterRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.ImporterRequestType ImporterRequest1;
         
         public importerRequest() {
         }
         
-        public importerRequest(IntegrationLayer.OrganisationEnhed.OrganisationEnhedImporterRequestType OrganisationEnhedImporterRequest) {
-            this.OrganisationEnhedImporterRequest = OrganisationEnhedImporterRequest;
+        public importerRequest(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.ImporterRequestType ImporterRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.ImporterRequest1 = ImporterRequest1;
         }
     }
     
@@ -2257,24 +2321,28 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class importerResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedImporterResponseType OrganisationEnhedImporterResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ImporterResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.ImporterResponseType ImporterResponse1;
         
         public importerResponse() {
         }
         
-        public importerResponse(IntegrationLayer.OrganisationEnhed.OrganisationEnhedImporterResponseType OrganisationEnhedImporterResponse) {
-            this.OrganisationEnhedImporterResponse = OrganisationEnhedImporterResponse;
+        public importerResponse(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.ImporterResponseType ImporterResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.ImporterResponse1 = ImporterResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedPassiverRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class PassiverRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2329,7 +2397,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2375,12 +2443,12 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedPassiverResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class PassiverResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private BasicOutputType passiverOutputField;
         
@@ -2412,14 +2480,18 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class passiverRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedPassiverRequestType OrganisationEnhedPassiverRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="PassiverRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.PassiverRequestType PassiverRequest1;
         
         public passiverRequest() {
         }
         
-        public passiverRequest(IntegrationLayer.OrganisationEnhed.OrganisationEnhedPassiverRequestType OrganisationEnhedPassiverRequest) {
-            this.OrganisationEnhedPassiverRequest = OrganisationEnhedPassiverRequest;
+        public passiverRequest(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.PassiverRequestType PassiverRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.PassiverRequest1 = PassiverRequest1;
         }
     }
     
@@ -2429,24 +2501,28 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class passiverResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedPassiverResponseType OrganisationEnhedPassiverResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="PassiverResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.PassiverResponseType PassiverResponse1;
         
         public passiverResponse() {
         }
         
-        public passiverResponse(IntegrationLayer.OrganisationEnhed.OrganisationEnhedPassiverResponseType OrganisationEnhedPassiverResponse) {
-            this.OrganisationEnhedPassiverResponse = OrganisationEnhedPassiverResponse;
+        public passiverResponse(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.PassiverResponseType PassiverResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.PassiverResponse1 = PassiverResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedLaesRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class LaesRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2501,7 +2577,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2589,12 +2665,12 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedLaesResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class LaesResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private LaesOutputType laesOutputField;
         
@@ -2626,14 +2702,18 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class laesRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedLaesRequestType OrganisationEnhedLaesRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="LaesRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.LaesRequestType LaesRequest1;
         
         public laesRequest() {
         }
         
-        public laesRequest(IntegrationLayer.OrganisationEnhed.OrganisationEnhedLaesRequestType OrganisationEnhedLaesRequest) {
-            this.OrganisationEnhedLaesRequest = OrganisationEnhedLaesRequest;
+        public laesRequest(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.LaesRequestType LaesRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.LaesRequest1 = LaesRequest1;
         }
     }
     
@@ -2643,24 +2723,28 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class laesResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedLaesResponseType OrganisationEnhedLaesResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="LaesResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.LaesResponseType LaesResponse1;
         
         public laesResponse() {
         }
         
-        public laesResponse(IntegrationLayer.OrganisationEnhed.OrganisationEnhedLaesResponseType OrganisationEnhedLaesResponse) {
-            this.OrganisationEnhedLaesResponse = OrganisationEnhedLaesResponse;
+        public laesResponse(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.LaesResponseType LaesResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.LaesResponse1 = LaesResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedRetRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class RetRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2715,7 +2799,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2767,7 +2851,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(RetInputType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2813,12 +2897,12 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedRetResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class RetResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private BasicOutputType retOutputField;
         
@@ -2850,14 +2934,18 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class retRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedRetRequestType OrganisationEnhedRetRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="RetRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.RetRequestType RetRequest1;
         
         public retRequest() {
         }
         
-        public retRequest(IntegrationLayer.OrganisationEnhed.OrganisationEnhedRetRequestType OrganisationEnhedRetRequest) {
-            this.OrganisationEnhedRetRequest = OrganisationEnhedRetRequest;
+        public retRequest(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.RetRequestType RetRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.RetRequest1 = RetRequest1;
         }
     }
     
@@ -2867,24 +2955,28 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class retResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedRetResponseType OrganisationEnhedRetResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="RetResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.RetResponseType RetResponse1;
         
         public retResponse() {
         }
         
-        public retResponse(IntegrationLayer.OrganisationEnhed.OrganisationEnhedRetResponseType OrganisationEnhedRetResponse) {
-            this.OrganisationEnhedRetResponse = OrganisationEnhedRetResponse;
+        public retResponse(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.RetResponseType RetResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.RetResponse1 = RetResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedSletRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class SletRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2939,12 +3031,12 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedSletResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class SletResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private BasicOutputType sletOutputField;
         
@@ -2976,14 +3068,18 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class sletRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedSletRequestType OrganisationEnhedSletRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SletRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.SletRequestType SletRequest1;
         
         public sletRequest() {
         }
         
-        public sletRequest(IntegrationLayer.OrganisationEnhed.OrganisationEnhedSletRequestType OrganisationEnhedSletRequest) {
-            this.OrganisationEnhedSletRequest = OrganisationEnhedSletRequest;
+        public sletRequest(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.SletRequestType SletRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.SletRequest1 = SletRequest1;
         }
     }
     
@@ -2993,24 +3089,28 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class sletResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedSletResponseType OrganisationEnhedSletResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SletResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.SletResponseType SletResponse1;
         
         public sletResponse() {
         }
         
-        public sletResponse(IntegrationLayer.OrganisationEnhed.OrganisationEnhedSletResponseType OrganisationEnhedSletResponse) {
-            this.OrganisationEnhedSletResponse = OrganisationEnhedSletResponse;
+        public sletResponse(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.SletResponseType SletResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.SletResponse1 = SletResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedSoegRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class SoegRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -3065,7 +3165,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3117,7 +3217,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(SoegInputType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3191,7 +3291,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3279,7 +3379,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3381,12 +3481,12 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedSoegResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class SoegResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private SoegOutputType soegOutputField;
         
@@ -3413,7 +3513,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3465,14 +3565,18 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class soegRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedSoegRequestType OrganisationEnhedSoegRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SoegRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.SoegRequestType SoegRequest1;
         
         public soegRequest() {
         }
         
-        public soegRequest(IntegrationLayer.OrganisationEnhed.OrganisationEnhedSoegRequestType OrganisationEnhedSoegRequest) {
-            this.OrganisationEnhedSoegRequest = OrganisationEnhedSoegRequest;
+        public soegRequest(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.SoegRequestType SoegRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.SoegRequest1 = SoegRequest1;
         }
     }
     
@@ -3482,24 +3586,28 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class soegResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedSoegResponseType OrganisationEnhedSoegResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SoegResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.SoegResponseType SoegResponse1;
         
         public soegResponse() {
         }
         
-        public soegResponse(IntegrationLayer.OrganisationEnhed.OrganisationEnhedSoegResponseType OrganisationEnhedSoegResponse) {
-            this.OrganisationEnhedSoegResponse = OrganisationEnhedSoegResponse;
+        public soegResponse(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.SoegResponseType SoegResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.SoegResponse1 = SoegResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedListeRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class ListRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -3554,7 +3662,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3642,12 +3750,12 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/")]
-    public partial class OrganisationEnhedListeResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/")]
+    public partial class ListResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private ListOutputType1 listOutputField;
         
@@ -3674,7 +3782,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3698,7 +3806,7 @@ namespace IntegrationLayer.OrganisationEnhed {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ListOutputType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3735,14 +3843,18 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class listRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedListeRequestType OrganisationEnhedListeRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.ListRequestType ListRequest1;
         
         public listRequest() {
         }
         
-        public listRequest(IntegrationLayer.OrganisationEnhed.OrganisationEnhedListeRequestType OrganisationEnhedListeRequest) {
-            this.OrganisationEnhedListeRequest = OrganisationEnhedListeRequest;
+        public listRequest(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.ListRequestType ListRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.ListRequest1 = ListRequest1;
         }
     }
     
@@ -3752,14 +3864,18 @@ namespace IntegrationLayer.OrganisationEnhed {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class listResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/1/", Order=0)]
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedListeResponseType OrganisationEnhedListeResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/OrganisationEnhed/2/", Order=0)]
+        public IntegrationLayer.OrganisationEnhed.ListResponseType ListResponse1;
         
         public listResponse() {
         }
         
-        public listResponse(IntegrationLayer.OrganisationEnhed.OrganisationEnhedListeResponseType OrganisationEnhedListeResponse) {
-            this.OrganisationEnhedListeResponse = OrganisationEnhedListeResponse;
+        public listResponse(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.ListResponseType ListResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.ListResponse1 = ListResponse1;
         }
     }
     
@@ -3795,11 +3911,13 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.opret(request);
         }
         
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedOpretResponseType opret(IntegrationLayer.OrganisationEnhed.OrganisationEnhedOpretRequestType OrganisationEnhedOpretRequest) {
+        public IntegrationLayer.OrganisationEnhed.OpretResponseType opret(ref IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.OpretRequestType OpretRequest1) {
             IntegrationLayer.OrganisationEnhed.opretRequest inValue = new IntegrationLayer.OrganisationEnhed.opretRequest();
-            inValue.OrganisationEnhedOpretRequest = OrganisationEnhedOpretRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.OpretRequest1 = OpretRequest1;
             IntegrationLayer.OrganisationEnhed.opretResponse retVal = ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).opret(inValue);
-            return retVal.OrganisationEnhedOpretResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.OpretResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3807,9 +3925,10 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.opretAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.opretResponse> opretAsync(IntegrationLayer.OrganisationEnhed.OrganisationEnhedOpretRequestType OrganisationEnhedOpretRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.opretResponse> opretAsync(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.OpretRequestType OpretRequest1) {
             IntegrationLayer.OrganisationEnhed.opretRequest inValue = new IntegrationLayer.OrganisationEnhed.opretRequest();
-            inValue.OrganisationEnhedOpretRequest = OrganisationEnhedOpretRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.OpretRequest1 = OpretRequest1;
             return ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).opretAsync(inValue);
         }
         
@@ -3818,11 +3937,13 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.importer(request);
         }
         
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedImporterResponseType importer(IntegrationLayer.OrganisationEnhed.OrganisationEnhedImporterRequestType OrganisationEnhedImporterRequest) {
+        public IntegrationLayer.OrganisationEnhed.ImporterResponseType importer(ref IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.ImporterRequestType ImporterRequest1) {
             IntegrationLayer.OrganisationEnhed.importerRequest inValue = new IntegrationLayer.OrganisationEnhed.importerRequest();
-            inValue.OrganisationEnhedImporterRequest = OrganisationEnhedImporterRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.ImporterRequest1 = ImporterRequest1;
             IntegrationLayer.OrganisationEnhed.importerResponse retVal = ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).importer(inValue);
-            return retVal.OrganisationEnhedImporterResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.ImporterResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3830,9 +3951,10 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.importerAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.importerResponse> importerAsync(IntegrationLayer.OrganisationEnhed.OrganisationEnhedImporterRequestType OrganisationEnhedImporterRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.importerResponse> importerAsync(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.ImporterRequestType ImporterRequest1) {
             IntegrationLayer.OrganisationEnhed.importerRequest inValue = new IntegrationLayer.OrganisationEnhed.importerRequest();
-            inValue.OrganisationEnhedImporterRequest = OrganisationEnhedImporterRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.ImporterRequest1 = ImporterRequest1;
             return ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).importerAsync(inValue);
         }
         
@@ -3841,11 +3963,13 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.passiver(request);
         }
         
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedPassiverResponseType passiver(IntegrationLayer.OrganisationEnhed.OrganisationEnhedPassiverRequestType OrganisationEnhedPassiverRequest) {
+        public IntegrationLayer.OrganisationEnhed.PassiverResponseType passiver(ref IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.PassiverRequestType PassiverRequest1) {
             IntegrationLayer.OrganisationEnhed.passiverRequest inValue = new IntegrationLayer.OrganisationEnhed.passiverRequest();
-            inValue.OrganisationEnhedPassiverRequest = OrganisationEnhedPassiverRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.PassiverRequest1 = PassiverRequest1;
             IntegrationLayer.OrganisationEnhed.passiverResponse retVal = ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).passiver(inValue);
-            return retVal.OrganisationEnhedPassiverResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.PassiverResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3853,9 +3977,10 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.passiverAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.passiverResponse> passiverAsync(IntegrationLayer.OrganisationEnhed.OrganisationEnhedPassiverRequestType OrganisationEnhedPassiverRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.passiverResponse> passiverAsync(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.PassiverRequestType PassiverRequest1) {
             IntegrationLayer.OrganisationEnhed.passiverRequest inValue = new IntegrationLayer.OrganisationEnhed.passiverRequest();
-            inValue.OrganisationEnhedPassiverRequest = OrganisationEnhedPassiverRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.PassiverRequest1 = PassiverRequest1;
             return ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).passiverAsync(inValue);
         }
         
@@ -3864,11 +3989,13 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.laes(request);
         }
         
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedLaesResponseType laes(IntegrationLayer.OrganisationEnhed.OrganisationEnhedLaesRequestType OrganisationEnhedLaesRequest) {
+        public IntegrationLayer.OrganisationEnhed.LaesResponseType laes(ref IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.LaesRequestType LaesRequest1) {
             IntegrationLayer.OrganisationEnhed.laesRequest inValue = new IntegrationLayer.OrganisationEnhed.laesRequest();
-            inValue.OrganisationEnhedLaesRequest = OrganisationEnhedLaesRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.LaesRequest1 = LaesRequest1;
             IntegrationLayer.OrganisationEnhed.laesResponse retVal = ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).laes(inValue);
-            return retVal.OrganisationEnhedLaesResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.LaesResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3876,9 +4003,10 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.laesAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.laesResponse> laesAsync(IntegrationLayer.OrganisationEnhed.OrganisationEnhedLaesRequestType OrganisationEnhedLaesRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.laesResponse> laesAsync(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.LaesRequestType LaesRequest1) {
             IntegrationLayer.OrganisationEnhed.laesRequest inValue = new IntegrationLayer.OrganisationEnhed.laesRequest();
-            inValue.OrganisationEnhedLaesRequest = OrganisationEnhedLaesRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.LaesRequest1 = LaesRequest1;
             return ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).laesAsync(inValue);
         }
         
@@ -3887,11 +4015,13 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.ret(request);
         }
         
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedRetResponseType ret(IntegrationLayer.OrganisationEnhed.OrganisationEnhedRetRequestType OrganisationEnhedRetRequest) {
+        public IntegrationLayer.OrganisationEnhed.RetResponseType ret(ref IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.RetRequestType RetRequest1) {
             IntegrationLayer.OrganisationEnhed.retRequest inValue = new IntegrationLayer.OrganisationEnhed.retRequest();
-            inValue.OrganisationEnhedRetRequest = OrganisationEnhedRetRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.RetRequest1 = RetRequest1;
             IntegrationLayer.OrganisationEnhed.retResponse retVal = ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).ret(inValue);
-            return retVal.OrganisationEnhedRetResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.RetResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3899,9 +4029,10 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.retAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.retResponse> retAsync(IntegrationLayer.OrganisationEnhed.OrganisationEnhedRetRequestType OrganisationEnhedRetRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.retResponse> retAsync(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.RetRequestType RetRequest1) {
             IntegrationLayer.OrganisationEnhed.retRequest inValue = new IntegrationLayer.OrganisationEnhed.retRequest();
-            inValue.OrganisationEnhedRetRequest = OrganisationEnhedRetRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.RetRequest1 = RetRequest1;
             return ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).retAsync(inValue);
         }
         
@@ -3910,11 +4041,13 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.slet(request);
         }
         
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedSletResponseType slet(IntegrationLayer.OrganisationEnhed.OrganisationEnhedSletRequestType OrganisationEnhedSletRequest) {
+        public IntegrationLayer.OrganisationEnhed.SletResponseType slet(ref IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.SletRequestType SletRequest1) {
             IntegrationLayer.OrganisationEnhed.sletRequest inValue = new IntegrationLayer.OrganisationEnhed.sletRequest();
-            inValue.OrganisationEnhedSletRequest = OrganisationEnhedSletRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.SletRequest1 = SletRequest1;
             IntegrationLayer.OrganisationEnhed.sletResponse retVal = ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).slet(inValue);
-            return retVal.OrganisationEnhedSletResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.SletResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3922,9 +4055,10 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.sletAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.sletResponse> sletAsync(IntegrationLayer.OrganisationEnhed.OrganisationEnhedSletRequestType OrganisationEnhedSletRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.sletResponse> sletAsync(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.SletRequestType SletRequest1) {
             IntegrationLayer.OrganisationEnhed.sletRequest inValue = new IntegrationLayer.OrganisationEnhed.sletRequest();
-            inValue.OrganisationEnhedSletRequest = OrganisationEnhedSletRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.SletRequest1 = SletRequest1;
             return ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).sletAsync(inValue);
         }
         
@@ -3933,11 +4067,13 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.soeg(request);
         }
         
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedSoegResponseType soeg(IntegrationLayer.OrganisationEnhed.OrganisationEnhedSoegRequestType OrganisationEnhedSoegRequest) {
+        public IntegrationLayer.OrganisationEnhed.SoegResponseType soeg(ref IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.SoegRequestType SoegRequest1) {
             IntegrationLayer.OrganisationEnhed.soegRequest inValue = new IntegrationLayer.OrganisationEnhed.soegRequest();
-            inValue.OrganisationEnhedSoegRequest = OrganisationEnhedSoegRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.SoegRequest1 = SoegRequest1;
             IntegrationLayer.OrganisationEnhed.soegResponse retVal = ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).soeg(inValue);
-            return retVal.OrganisationEnhedSoegResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.SoegResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3945,9 +4081,10 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.soegAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.soegResponse> soegAsync(IntegrationLayer.OrganisationEnhed.OrganisationEnhedSoegRequestType OrganisationEnhedSoegRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.soegResponse> soegAsync(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.SoegRequestType SoegRequest1) {
             IntegrationLayer.OrganisationEnhed.soegRequest inValue = new IntegrationLayer.OrganisationEnhed.soegRequest();
-            inValue.OrganisationEnhedSoegRequest = OrganisationEnhedSoegRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.SoegRequest1 = SoegRequest1;
             return ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).soegAsync(inValue);
         }
         
@@ -3956,11 +4093,13 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.list(request);
         }
         
-        public IntegrationLayer.OrganisationEnhed.OrganisationEnhedListeResponseType list(IntegrationLayer.OrganisationEnhed.OrganisationEnhedListeRequestType OrganisationEnhedListeRequest) {
+        public IntegrationLayer.OrganisationEnhed.ListResponseType list(ref IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.ListRequestType ListRequest1) {
             IntegrationLayer.OrganisationEnhed.listRequest inValue = new IntegrationLayer.OrganisationEnhed.listRequest();
-            inValue.OrganisationEnhedListeRequest = OrganisationEnhedListeRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.ListRequest1 = ListRequest1;
             IntegrationLayer.OrganisationEnhed.listResponse retVal = ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).list(inValue);
-            return retVal.OrganisationEnhedListeResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.ListResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3968,9 +4107,10 @@ namespace IntegrationLayer.OrganisationEnhed {
             return base.Channel.listAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.listResponse> listAsync(IntegrationLayer.OrganisationEnhed.OrganisationEnhedListeRequestType OrganisationEnhedListeRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.OrganisationEnhed.listResponse> listAsync(IntegrationLayer.OrganisationEnhed.RequestHeaderType RequestHeader, IntegrationLayer.OrganisationEnhed.ListRequestType ListRequest1) {
             IntegrationLayer.OrganisationEnhed.listRequest inValue = new IntegrationLayer.OrganisationEnhed.listRequest();
-            inValue.OrganisationEnhedListeRequest = OrganisationEnhedListeRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.ListRequest1 = ListRequest1;
             return ((IntegrationLayer.OrganisationEnhed.OrganisationEnhedPortType)(this)).listAsync(inValue);
         }
     }

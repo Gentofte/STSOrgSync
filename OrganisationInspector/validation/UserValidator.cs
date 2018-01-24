@@ -137,7 +137,7 @@ namespace OrganisationInspector
 
         private bool ValidateUserAddressType(string type)
         {
-            return type.Equals(UUIDConstants.USER_ADDRESS_TYPE);
+            return type.Equals(UUIDConstants.ADDRESS_TYPE_ADDRESS);
         }
 
         private bool ValidateRole(string rolle)

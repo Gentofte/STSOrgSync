@@ -10,6 +10,7 @@ namespace Organisation.BusinessLayer
         private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private OrganisationEnhedStub organisationEnhedStub = new OrganisationEnhedStub();
         private OrganisationFunktionStub organisationFunktionStub = new OrganisationFunktionStub();
+        private OrganisationStub organisationStub = new OrganisationStub();
         private InspectorService inspectorService = new InspectorService();
 
         /// <summary>
@@ -93,6 +94,12 @@ namespace Organisation.BusinessLayer
                 }
 
                 organisationEnhedStub.Importer(orgUnitData);
+
+                // if this is the root, we need to update the Organisation object
+                if (string.IsNullOrEmpty(orgUnitData.ParentOrgUnitUuid))
+                {
+                    organisationStub.Ret(orgUnitData.Uuid);
+                }
 
                 log.Debug("Create successful on OrgUnit '" + registration.Uuid + "'");
             }
@@ -333,6 +340,12 @@ namespace Organisation.BusinessLayer
                     #endregion
 
                     organisationEnhedStub.Ret(orgUnitData);
+
+                    // if this is the root, we need to update the Organisation object
+                    if (string.IsNullOrEmpty(orgUnitData.ParentOrgUnitUuid))
+                    {
+                        organisationStub.Ret(orgUnitData.Uuid);
+                    }
 
                     log.Debug("Update successful on OrgUnit '" + registration.Uuid + "'");
                 }

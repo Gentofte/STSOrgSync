@@ -205,6 +205,6 @@
         public const string SELECT_ITSYSTEMS = @"select itsystem_uuid from orgunits_itsystems where unit_id = @id";
         public const string SELECT_CONTACT_PLACES = @"select contact_place_uuid, task from orgunits_contact_places where unit_id = @id";
 
-        public const string DELETE = @"delete from orgunits where uuid = @uuid";
+        public const string DELETE = @"delete from orgunits where id = @id";
     }
 }

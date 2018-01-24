@@ -2,12 +2,11 @@
 {
     internal static class UUIDConstants
     {
-        // These UUIDs are copied from "Anvisninger til anvendelse af STS-Organisation v 1.0"
+        // These UUIDs are copied from "Anvisninger til anvendelse af STS-Organisation v 1.1"
 
         // These are the UUIDs used to indicate a specific type of address
-        public const string ORGUNIT_ADDRESS_TYPE = "9b33c0a0-a566-4ec0-8200-325cb1e5bb9ac";
-        public const string USER_ADDRESS_TYPE = "71a08d28-3af7-4bb4-9964-bc2b76b93d64";
-        public const string ITSYSTEM_ADDRESS_TYPE = "fe5092b8-aee7-488f-a881-6dd088227bf4";
+        public const string ADDRESS_TYPE_ADDRESS = "68719027-5061-49da-9b31-53b348408f68";
+        public const string ADDRESS_TYPE_DAR = ""; // unknown, not included in version 1.1 of the specs
 
         // The are the UUIDs used to indicate the role of the address
         public const string ADDRESS_ROLE_POST = "80b610c6-314b-485a-a014-a9a1d7070bc4";

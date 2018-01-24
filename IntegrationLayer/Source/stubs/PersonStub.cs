@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IdentityModel.Tokens;
 using IntegrationLayer.Person;
 using System.ServiceModel;
 using System.IO;
@@ -36,22 +35,21 @@ namespace Organisation.IntegrationLayer
 
             // construct request
             importerRequest request = new importerRequest();
-            request.PersonImporterRequest = new PersonImporterRequestType();
-            request.PersonImporterRequest.ImportInput = importInput;
-            request.PersonImporterRequest.AuthorityContext = new AuthorityContextType();
-            request.PersonImporterRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            request.ImporterRequest1 = new ImporterRequestType();
+            request.ImporterRequest1.ImportInput = importInput;
+            request.ImporterRequest1.AuthorityContext = new AuthorityContextType();
+            request.ImporterRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
             // send request
-            SecurityToken token = TokenCache.IssueToken(PersonStubHelper.SERVICE);
-            PersonPortType channel = StubUtil.CreateChannel<PersonPortType>(PersonStubHelper.SERVICE,  "Import", helper.CreatePort(), token);
+            PersonPortType channel = StubUtil.CreateChannel<PersonPortType>(PersonStubHelper.SERVICE,  "Import", helper.CreatePort());
 
             try
             {
                 importerResponse response = channel.importer(request);
-                int statusCode = Int32.Parse(response.PersonImporterResponse.ImportOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.ImporterResponse1.ImportOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
-                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Import", PersonStubHelper.SERVICE, response.PersonImporterResponse.ImportOutput.StandardRetur.FejlbeskedTekst);
+                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Import", PersonStubHelper.SERVICE, response.ImporterResponse1.ImportOutput.StandardRetur.FejlbeskedTekst);
                     log.Error(message);
                     throw new SoapServiceException(message);
                 }
@@ -79,8 +77,7 @@ namespace Organisation.IntegrationLayer
                 return;
             }
 
-            SecurityToken token = TokenCache.IssueToken(PersonStubHelper.SERVICE);
-            PersonPortType channel = StubUtil.CreateChannel<PersonPortType>(PersonStubHelper.SERVICE, "Ret", helper.CreatePort(), token);
+            PersonPortType channel = StubUtil.CreateChannel<PersonPortType>(PersonStubHelper.SERVICE, "Ret", helper.CreatePort());
 
             try
             {
@@ -126,17 +123,17 @@ namespace Organisation.IntegrationLayer
 
                 // send Ret request
                 retRequest request = new retRequest();
-                request.PersonRetRequest = new PersonRetRequestType();
-                request.PersonRetRequest.RetInput = input;
-                request.PersonRetRequest.AuthorityContext = new AuthorityContextType();
-                request.PersonRetRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+                request.RetRequest1 = new RetRequestType();
+                request.RetRequest1.RetInput = input;
+                request.RetRequest1.AuthorityContext = new AuthorityContextType();
+                request.RetRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
                 retResponse response = channel.ret(request);
 
-                int statusCode = Int32.Parse(response.PersonRetResponse.RetOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.RetResponse1.RetOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
-                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Ret", PersonStubHelper.SERVICE, response.PersonRetResponse.RetOutput.StandardRetur.FejlbeskedTekst);
+                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Ret", PersonStubHelper.SERVICE, response.RetResponse1.RetOutput.StandardRetur.FejlbeskedTekst);
                     log.Error(message);
                     throw new SoapServiceException(message);
                 }
@@ -170,19 +167,18 @@ namespace Organisation.IntegrationLayer
             }
 
             listRequest request = new listRequest();
-            request.PersonListeRequest = new PersonListeRequestType();
-            request.PersonListeRequest.ListInput = listInput;
-            request.PersonListeRequest.AuthorityContext = new AuthorityContextType();
-            request.PersonListeRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            request.ListRequest1 = new ListRequestType();
+            request.ListRequest1.ListInput = listInput;
+            request.ListRequest1.AuthorityContext = new AuthorityContextType();
+            request.ListRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
-            SecurityToken token = TokenCache.IssueToken(PersonStubHelper.SERVICE);
-            PersonPortType channel = StubUtil.CreateChannel<PersonPortType>(PersonStubHelper.SERVICE, "Laes", helper.CreatePort(), token);
+            PersonPortType channel = StubUtil.CreateChannel<PersonPortType>(PersonStubHelper.SERVICE, "Laes", helper.CreatePort());
 
             try
             {
                 listResponse response = channel.list(request);
 
-                int statusCode = Int32.Parse(response.PersonListeResponse.ListOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.ListResponse1.ListOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
                     // note that statusCode 44 means that the object does not exists, so that is a valid response
@@ -190,13 +186,13 @@ namespace Organisation.IntegrationLayer
                     return null; 
                 }
 
-                if (response.PersonListeResponse.ListOutput.FiltreretOejebliksbillede.Length != 1)
+                if (response.ListResponse1.ListOutput.FiltreretOejebliksbillede.Length != 1)
                 {
                     log.Warn("Lookup Person with uuid '" + uuid + "' returned multiple objects");
                     return null;
                 }
 
-                RegistreringType1[] resultSet = response.PersonListeResponse.ListOutput.FiltreretOejebliksbillede[0].Registrering;
+                RegistreringType1[] resultSet = response.ListResponse1.ListOutput.FiltreretOejebliksbillede[0].Registrering;
                 if (resultSet.Length == 0)
                 {
                     log.Warn("Person with uuid '" + uuid + "' exists, but has no registration");

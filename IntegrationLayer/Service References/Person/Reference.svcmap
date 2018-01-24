@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a2f79b5f-0b7e-4041-83d7-344ea15797e5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ee69a3c1-c3ab-4fa1-99b8-af98619c4d5a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,19 +19,22 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="\\vmware-host\Shared Folders\brian\projects\organisation-synchronisation-component\IntegrationLayer\Resources\sp-schema\Person\PersonService.wsdl" Protocol="file" SourceId="1" />
+    <MetadataSource Address="\\VBOXSVR\brian\projects\organisation-synchronisation-component\IntegrationLayer\Resources\sp-new-schema\Person\wsdl\context\PersonService.wsdl" Protocol="file" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="PersonService.wsdl" MetadataType="Wsdl" ID="77cc0a3c-aebc-4283-9251-cd7ef7a3fdc6" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/PersonService.wsdl" />
-    <MetadataFile FileName="GenerelleDefinitioner.xsd" MetadataType="Schema" ID="48c9ff2c-8b87-4926-b7c6-a86efd3759ab" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/xsd/1.1.STS-1/GenerelleDefinitioner.xsd" />
-    <MetadataFile FileName="PersonOperationer.xsd" MetadataType="Schema" ID="2efcd472-46e2-45a2-b147-d909e2306c82" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/xsd/1.1.STS-1/PersonOperationer.xsd" />
-    <MetadataFile FileName="PersonServiceMsg.xsd" MetadataType="Schema" ID="8c64e3f7-002f-4cb1-a2b5-5ea75c4ad419" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/PersonServiceMsg.xsd" />
-    <MetadataFile FileName="AuthorityContext_1.xsd" MetadataType="Schema" ID="265ac8aa-216f-46f8-80cc-fdb0be8bd175" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/AuthorityContext_1.xsd" />
-    <MetadataFile FileName="CallContext_1.xsd" MetadataType="Schema" ID="596aed7e-29b3-45ae-8e10-13df5b260970" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/CallContext_1.xsd" />
-    <MetadataFile FileName="SagDokObjekt.xsd" MetadataType="Schema" ID="e338c58d-dfdb-407f-a2e0-53aba887ef1a" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/xsd/1.1.STS-1/SagDokObjekt.xsd" />
-    <MetadataFile FileName="Part.xsd" MetadataType="Schema" ID="6b8c71dd-c9ec-4252-98f7-e3b9d51edf37" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/xsd/1.1.STS-1/Part.xsd" />
-    <MetadataFile FileName="ServiceplatformFault_1.xsd" MetadataType="Schema" ID="3a463c12-714a-4be1-aa12-c6332b8fdaef" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/ServiceplatformFault_1.xsd" />
-    <MetadataFile FileName="Person.xsd" MetadataType="Schema" ID="a80ae807-f9b0-4f65-8515-85eb87b0f37b" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Person/xsd/1.1.STS-1/Person.xsd" />
+    <MetadataFile FileName="Person.xsd" MetadataType="Schema" ID="ce82b4bc-7a17-4048-ac2f-351588aa6bb9" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/SF1500_EP_FS10/xsd/1.1.STS-1/Person.xsd" />
+    <MetadataFile FileName="ServiceplatformFaultMessage.wsdl" MetadataType="Wsdl" ID="dbf0d590-a7de-4378-8f7d-57342c5b82e3" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/sp/ServiceplatformFaultMessage_1.wsdl" />
+    <MetadataFile FileName="PersonServiceMsg.xsd" MetadataType="Schema" ID="cce22e42-de36-4a3e-9ee9-bf3b0a2e75e3" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/PersonServiceMsg.xsd" />
+    <MetadataFile FileName="SagDokObjekt.xsd" MetadataType="Schema" ID="049581db-506a-41b5-bf2c-a6a5263f51fd" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/SF1500_EP_FS10/xsd/1.1.STS-1/SagDokObjekt.xsd" />
+    <MetadataFile FileName="AuthorityContext_1.xsd" MetadataType="Schema" ID="853d94bb-2f41-4c0c-a111-8fc9e47ab1c3" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/sp/AuthorityContext_1.xsd" />
+    <MetadataFile FileName="GenerelleDefinitioner.xsd" MetadataType="Schema" ID="0be26911-63d7-42f7-b625-1cc9471f20f3" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/SF1500_EP_FS10/xsd/1.1.STS-1/GenerelleDefinitioner.xsd" />
+    <MetadataFile FileName="policies.wsdl" MetadataType="Wsdl" ID="ffae60e9-172c-4aa6-80d3-fe98e3cc21cf" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/wsdl/context/policies.wsdl" />
+    <MetadataFile FileName="ServiceplatformFault_1.xsd" MetadataType="Schema" ID="6051ec04-57e1-48a5-8406-38c8c9dcc720" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/sp/ServiceplatformFault_1.xsd" />
+    <MetadataFile FileName="PersonOperationer.xsd" MetadataType="Schema" ID="5b2087fc-35d4-4db6-b595-d877a0714110" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/SF1500_EP_FS10/xsd/1.1.STS-1/PersonOperationer.xsd" />
+    <MetadataFile FileName="RequestHeader.xsd" MetadataType="Schema" ID="326ba1ad-09fd-4057-bfed-9a47453674cc" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/SF1500_EP_FS10/xsd/common/RequestHeader.xsd" />
+    <MetadataFile FileName="PersonService.wsdl" MetadataType="Wsdl" ID="9850fb07-76dc-4e4c-be95-71b6264e802a" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/wsdl/context/PersonService.wsdl" />
+    <MetadataFile FileName="Part.xsd" MetadataType="Schema" ID="106bf4f9-ad9a-4231-92aa-846154bcb52c" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/SF1500_EP_FS10/xsd/1.1.STS-1/Part.xsd" />
+    <MetadataFile FileName="CallContext_1.xsd" MetadataType="Schema" ID="00e3e27e-8186-4e31-8361-471a9062219d" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Person/sp/CallContext_1.xsd" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

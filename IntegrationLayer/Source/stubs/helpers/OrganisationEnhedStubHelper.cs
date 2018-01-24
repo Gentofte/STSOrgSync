@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using IntegrationLayer.OrganisationEnhed;
 using System.Security.Cryptography.X509Certificates;
+using System.ServiceModel;
 
 namespace Organisation.IntegrationLayer
 {
@@ -188,7 +189,7 @@ namespace Organisation.IntegrationLayer
         internal AdresseFlerRelationType CreateAddressReference(string uuid, int indeks, string roleUuid, VirkningType virkning)
         {
             UnikIdType type = new UnikIdType();
-            type.Item = UUIDConstants.ORGUNIT_ADDRESS_TYPE;
+            type.Item = UUIDConstants.ADDRESS_TYPE_ADDRESS;
             type.ItemElementName = ItemChoiceType.UUIDIdentifikator;
 
             UnikIdType role = new UnikIdType();
@@ -289,13 +290,11 @@ namespace Organisation.IntegrationLayer
 
         internal OrganisationEnhedPortTypeClient CreatePort()
         {
-            CustomLibBasBinding binding = new CustomLibBasBinding();
+            BasicHttpBinding binding = new BasicHttpBinding();
+            binding.Security.Mode = BasicHttpSecurityMode.Transport;
+            binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Certificate;
 
-            // TODO: old STS tcode
-            // OrganisationEnhedPortTypeClient port = new OrganisationEnhedPortTypeClient(binding, StubUtil.GetEndPointAddress(SERVICE));
-
-            // TODO: new SP code (pre-token)
-            OrganisationEnhedPortTypeClient port = new OrganisationEnhedPortTypeClient(binding, StubUtil.GetEndPointAddress("OrganisationEnhed/1"));
+            OrganisationEnhedPortTypeClient port = new OrganisationEnhedPortTypeClient(binding, StubUtil.GetEndPointAddress("OrganisationEnhed/2"));
             port.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindByThumbprint, registryProperties.ClientCertThumbprint);
 
             // Disable revocation checking

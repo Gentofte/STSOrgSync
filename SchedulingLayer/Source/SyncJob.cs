@@ -25,8 +25,16 @@ namespace Organisation.SchedulingLayer
 //                itSystemCount = HandleItSystems();
                 userCount = HandleUsers();
                 ouCount = HandleOUs();
-//                log.Debug("Scheduler finished: itSystems=" + itSystemCount + ", users=" + userCount + ", ous=" + ouCount);
-                log.Debug("Scheduler finished: users=" + userCount + ", ous=" + ouCount);
+                //                log.Debug("Scheduler finished: itSystems=" + itSystemCount + ", users=" + userCount + ", ous=" + ouCount);
+
+                if (userCount > 0 || ouCount > 0)
+                {
+                    log.Info("Scheduler finished: users=" + userCount + ", ous=" + ouCount);
+                }
+                else
+                {
+                    log.Debug("Nothing to synchronize!");
+                }
 
                 errorCount = 0;
             }
@@ -73,7 +81,7 @@ namespace Organisation.SchedulingLayer
                     }
 
                     count++;
-                    dao.Delete(user.Uuid);
+                    dao.Delete(user.Id);
                 }
                 catch (TemporaryFailureException ex)
                 {
@@ -83,7 +91,7 @@ namespace Organisation.SchedulingLayer
                 catch (Exception ex)
                 {
                     log.Error("Could not handle user '" + user.Uuid + "'", ex);
-                    dao.Delete(user.Uuid);
+                    dao.Delete(user.Id);
                 }
             }
 
@@ -153,7 +161,7 @@ namespace Organisation.SchedulingLayer
 
                     count++;
 
-                    dao.Delete(ou.Uuid);
+                    dao.Delete(ou.Id);
                 }
                 catch (TemporaryFailureException ex)
                 {
@@ -163,7 +171,7 @@ namespace Organisation.SchedulingLayer
                 catch (Exception ex)
                 {
                     log.Error("Could not handle ou '" + ou.Uuid + "'", ex);
-                    dao.Delete(ou.Uuid);
+                    dao.Delete(ou.Id);
                 }
             }
 

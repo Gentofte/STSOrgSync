@@ -12,7 +12,7 @@ namespace IntegrationLayer.Person {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -45,7 +45,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -92,7 +92,7 @@ namespace IntegrationLayer.Person {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(RegistreringType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -194,7 +194,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oio:sagdok:3.0.0")]
     public enum LivscyklusKodeType {
@@ -213,7 +213,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -262,7 +262,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oio:sagdok:3.0.0", IncludeInSchema=false)]
     public enum ItemChoiceType {
@@ -275,7 +275,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -327,7 +327,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -401,7 +401,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -503,7 +503,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -536,7 +536,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oio:sagdok:3.0.0")]
     public enum AktoerTypeKodeType {
@@ -561,7 +561,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -579,7 +579,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -600,7 +600,7 @@ namespace IntegrationLayer.Person {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LaesFiltreretOutputType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PartType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PersonType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -632,7 +632,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -642,7 +642,7 @@ namespace IntegrationLayer.Person {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PersonType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -651,7 +651,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -674,7 +674,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -721,7 +721,7 @@ namespace IntegrationLayer.Person {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(UnikReturType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -767,7 +767,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -806,7 +806,7 @@ namespace IntegrationLayer.Person {
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OpretOutputType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LaesOutputType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -838,7 +838,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -861,7 +861,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -884,12 +884,12 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonOpretResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class OpretResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private OpretOutputType opretOutputField;
         
@@ -917,7 +917,7 @@ namespace IntegrationLayer.Person {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OpretInputType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -949,7 +949,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1001,7 +1001,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1032,7 +1032,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1089,12 +1089,12 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonOpretRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class OpretRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -1149,104 +1149,135 @@ namespace IntegrationLayer.Person {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", ConfigurationName="Person.PersonPortType")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", ConfigurationName="Person.PersonPortType")]
     public interface PersonPortType {
         
         // CODEGEN: Generating message contract since the operation opret is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/opret", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/person/opret", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/opret", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/opret", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Person.opretResponse opret(IntegrationLayer.Person.opretRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/opret", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/opret", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Person.opretResponse> opretAsync(IntegrationLayer.Person.opretRequest request);
         
         // CODEGEN: Generating message contract since the operation importer is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/importer", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/person/importer", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/importer", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/importer", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Person.importerResponse importer(IntegrationLayer.Person.importerRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/importer", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/importer", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Person.importerResponse> importerAsync(IntegrationLayer.Person.importerRequest request);
         
         // CODEGEN: Generating message contract since the operation passiver is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/passiver", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/person/passiver", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/passiver", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/passiver", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Person.passiverResponse passiver(IntegrationLayer.Person.passiverRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/passiver", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/passiver", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Person.passiverResponse> passiverAsync(IntegrationLayer.Person.passiverRequest request);
         
         // CODEGEN: Generating message contract since the operation laes is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/laes", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/person/laes", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/laes", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/laes", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Person.laesResponse laes(IntegrationLayer.Person.laesRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/laes", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/laes", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Person.laesResponse> laesAsync(IntegrationLayer.Person.laesRequest request);
         
         // CODEGEN: Generating message contract since the operation ret is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/ret", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/person/ret", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/ret", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/ret", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Person.retResponse ret(IntegrationLayer.Person.retRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/ret", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/ret", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Person.retResponse> retAsync(IntegrationLayer.Person.retRequest request);
         
         // CODEGEN: Generating message contract since the operation slet is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/slet", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/person/slet", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/slet", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/slet", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Person.sletResponse slet(IntegrationLayer.Person.sletRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/slet", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/slet", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Person.sletResponse> sletAsync(IntegrationLayer.Person.sletRequest request);
         
         // CODEGEN: Generating message contract since the operation soeg is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/soeg", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/person/soeg", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/soeg", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/soeg", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Person.soegResponse soeg(IntegrationLayer.Person.soegRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/soeg", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/soeg", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Person.soegResponse> soegAsync(IntegrationLayer.Person.soegRequest request);
         
         // CODEGEN: Generating message contract since the operation list is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/list", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/person/list", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/list", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Person.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/list", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Person.listResponse list(IntegrationLayer.Person.listRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/person/list", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/list", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Person.listResponse> listAsync(IntegrationLayer.Person.listRequest request);
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+    public partial class RequestHeaderType : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string transactionUUIDField;
+        
+        /// <remarks/>
+        public string TransactionUUID {
+            get {
+                return this.transactionUUIDField;
+            }
+            set {
+                this.transactionUUIDField = value;
+                this.RaisePropertyChanged("TransactionUUID");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1255,14 +1286,18 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class opretRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonOpretRequestType PersonOpretRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="OpretRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.OpretRequestType OpretRequest1;
         
         public opretRequest() {
         }
         
-        public opretRequest(IntegrationLayer.Person.PersonOpretRequestType PersonOpretRequest) {
-            this.PersonOpretRequest = PersonOpretRequest;
+        public opretRequest(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.OpretRequestType OpretRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.OpretRequest1 = OpretRequest1;
         }
     }
     
@@ -1272,24 +1307,28 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class opretResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonOpretResponseType PersonOpretResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="OpretResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.OpretResponseType OpretResponse1;
         
         public opretResponse() {
         }
         
-        public opretResponse(IntegrationLayer.Person.PersonOpretResponseType PersonOpretResponse) {
-            this.PersonOpretResponse = PersonOpretResponse;
+        public opretResponse(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.OpretResponseType OpretResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.OpretResponse1 = OpretResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonImporterRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class ImporterRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -1344,7 +1383,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1376,12 +1415,12 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonImporterResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class ImporterResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private BasicOutputType importOutputField;
         
@@ -1413,14 +1452,18 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class importerRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonImporterRequestType PersonImporterRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ImporterRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.ImporterRequestType ImporterRequest1;
         
         public importerRequest() {
         }
         
-        public importerRequest(IntegrationLayer.Person.PersonImporterRequestType PersonImporterRequest) {
-            this.PersonImporterRequest = PersonImporterRequest;
+        public importerRequest(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.ImporterRequestType ImporterRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.ImporterRequest1 = ImporterRequest1;
         }
     }
     
@@ -1430,24 +1473,28 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class importerResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonImporterResponseType PersonImporterResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ImporterResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.ImporterResponseType ImporterResponse1;
         
         public importerResponse() {
         }
         
-        public importerResponse(IntegrationLayer.Person.PersonImporterResponseType PersonImporterResponse) {
-            this.PersonImporterResponse = PersonImporterResponse;
+        public importerResponse(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.ImporterResponseType ImporterResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.ImporterResponse1 = ImporterResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonPassiverRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class PassiverRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -1502,7 +1549,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1548,12 +1595,12 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonPassiverResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class PassiverResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private BasicOutputType passiverOutputField;
         
@@ -1585,14 +1632,18 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class passiverRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonPassiverRequestType PersonPassiverRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="PassiverRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.PassiverRequestType PassiverRequest1;
         
         public passiverRequest() {
         }
         
-        public passiverRequest(IntegrationLayer.Person.PersonPassiverRequestType PersonPassiverRequest) {
-            this.PersonPassiverRequest = PersonPassiverRequest;
+        public passiverRequest(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.PassiverRequestType PassiverRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.PassiverRequest1 = PassiverRequest1;
         }
     }
     
@@ -1602,24 +1653,28 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class passiverResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonPassiverResponseType PersonPassiverResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="PassiverResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.PassiverResponseType PassiverResponse1;
         
         public passiverResponse() {
         }
         
-        public passiverResponse(IntegrationLayer.Person.PersonPassiverResponseType PersonPassiverResponse) {
-            this.PersonPassiverResponse = PersonPassiverResponse;
+        public passiverResponse(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.PassiverResponseType PassiverResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.PassiverResponse1 = PassiverResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonLaesRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class LaesRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -1674,7 +1729,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1762,12 +1817,12 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonLaesResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class LaesResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private LaesOutputType laesOutputField;
         
@@ -1799,14 +1854,18 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class laesRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonLaesRequestType PersonLaesRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="LaesRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.LaesRequestType LaesRequest1;
         
         public laesRequest() {
         }
         
-        public laesRequest(IntegrationLayer.Person.PersonLaesRequestType PersonLaesRequest) {
-            this.PersonLaesRequest = PersonLaesRequest;
+        public laesRequest(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.LaesRequestType LaesRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.LaesRequest1 = LaesRequest1;
         }
     }
     
@@ -1816,24 +1875,28 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class laesResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonLaesResponseType PersonLaesResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="LaesResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.LaesResponseType LaesResponse1;
         
         public laesResponse() {
         }
         
-        public laesResponse(IntegrationLayer.Person.PersonLaesResponseType PersonLaesResponse) {
-            this.PersonLaesResponse = PersonLaesResponse;
+        public laesResponse(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.LaesResponseType LaesResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.LaesResponse1 = LaesResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonRetRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class RetRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -1888,7 +1951,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1941,7 +2004,7 @@ namespace IntegrationLayer.Person {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(RetInputType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1987,12 +2050,12 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonRetResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class RetResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private BasicOutputType retOutputField;
         
@@ -2024,14 +2087,18 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class retRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonRetRequestType PersonRetRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="RetRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.RetRequestType RetRequest1;
         
         public retRequest() {
         }
         
-        public retRequest(IntegrationLayer.Person.PersonRetRequestType PersonRetRequest) {
-            this.PersonRetRequest = PersonRetRequest;
+        public retRequest(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.RetRequestType RetRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.RetRequest1 = RetRequest1;
         }
     }
     
@@ -2041,24 +2108,28 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class retResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonRetResponseType PersonRetResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="RetResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.RetResponseType RetResponse1;
         
         public retResponse() {
         }
         
-        public retResponse(IntegrationLayer.Person.PersonRetResponseType PersonRetResponse) {
-            this.PersonRetResponse = PersonRetResponse;
+        public retResponse(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.RetResponseType RetResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.RetResponse1 = RetResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonSletRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class SletRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2113,12 +2184,12 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonSletResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class SletResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private BasicOutputType sletOutputField;
         
@@ -2150,14 +2221,18 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class sletRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonSletRequestType PersonSletRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SletRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.SletRequestType SletRequest1;
         
         public sletRequest() {
         }
         
-        public sletRequest(IntegrationLayer.Person.PersonSletRequestType PersonSletRequest) {
-            this.PersonSletRequest = PersonSletRequest;
+        public sletRequest(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.SletRequestType SletRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.SletRequest1 = SletRequest1;
         }
     }
     
@@ -2167,24 +2242,28 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class sletResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonSletResponseType PersonSletResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SletResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.SletResponseType SletResponse1;
         
         public sletResponse() {
         }
         
-        public sletResponse(IntegrationLayer.Person.PersonSletResponseType PersonSletResponse) {
-            this.PersonSletResponse = PersonSletResponse;
+        public sletResponse(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.SletResponseType SletResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.SletResponse1 = SletResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonSoegRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class SoegRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2239,7 +2318,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2292,7 +2371,7 @@ namespace IntegrationLayer.Person {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(SoegInputType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2366,7 +2445,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2454,7 +2533,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2556,12 +2635,12 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonSoegResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class SoegResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private SoegOutputType soegOutputField;
         
@@ -2588,7 +2667,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2640,14 +2719,18 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class soegRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonSoegRequestType PersonSoegRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SoegRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.SoegRequestType SoegRequest1;
         
         public soegRequest() {
         }
         
-        public soegRequest(IntegrationLayer.Person.PersonSoegRequestType PersonSoegRequest) {
-            this.PersonSoegRequest = PersonSoegRequest;
+        public soegRequest(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.SoegRequestType SoegRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.SoegRequest1 = SoegRequest1;
         }
     }
     
@@ -2657,24 +2740,28 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class soegResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonSoegResponseType PersonSoegResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SoegResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.SoegResponseType SoegResponse1;
         
         public soegResponse() {
         }
         
-        public soegResponse(IntegrationLayer.Person.PersonSoegResponseType PersonSoegResponse) {
-            this.PersonSoegResponse = PersonSoegResponse;
+        public soegResponse(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.SoegResponseType SoegResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.SoegResponse1 = SoegResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonListeRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class ListRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2729,7 +2816,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2817,12 +2904,12 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/")]
-    public partial class PersonListeResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/")]
+    public partial class ListResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private ListOutputType1 listOutputField;
         
@@ -2849,7 +2936,7 @@ namespace IntegrationLayer.Person {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2873,7 +2960,7 @@ namespace IntegrationLayer.Person {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ListOutputType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2910,14 +2997,18 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class listRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonListeRequestType PersonListeRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.ListRequestType ListRequest1;
         
         public listRequest() {
         }
         
-        public listRequest(IntegrationLayer.Person.PersonListeRequestType PersonListeRequest) {
-            this.PersonListeRequest = PersonListeRequest;
+        public listRequest(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.ListRequestType ListRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.ListRequest1 = ListRequest1;
         }
     }
     
@@ -2927,14 +3018,18 @@ namespace IntegrationLayer.Person {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class listResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/1/", Order=0)]
-        public IntegrationLayer.Person.PersonListeResponseType PersonListeResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Person.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Person/2/", Order=0)]
+        public IntegrationLayer.Person.ListResponseType ListResponse1;
         
         public listResponse() {
         }
         
-        public listResponse(IntegrationLayer.Person.PersonListeResponseType PersonListeResponse) {
-            this.PersonListeResponse = PersonListeResponse;
+        public listResponse(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.ListResponseType ListResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.ListResponse1 = ListResponse1;
         }
     }
     
@@ -2970,11 +3065,13 @@ namespace IntegrationLayer.Person {
             return base.Channel.opret(request);
         }
         
-        public IntegrationLayer.Person.PersonOpretResponseType opret(IntegrationLayer.Person.PersonOpretRequestType PersonOpretRequest) {
+        public IntegrationLayer.Person.OpretResponseType opret(ref IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.OpretRequestType OpretRequest1) {
             IntegrationLayer.Person.opretRequest inValue = new IntegrationLayer.Person.opretRequest();
-            inValue.PersonOpretRequest = PersonOpretRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.OpretRequest1 = OpretRequest1;
             IntegrationLayer.Person.opretResponse retVal = ((IntegrationLayer.Person.PersonPortType)(this)).opret(inValue);
-            return retVal.PersonOpretResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.OpretResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2982,9 +3079,10 @@ namespace IntegrationLayer.Person {
             return base.Channel.opretAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Person.opretResponse> opretAsync(IntegrationLayer.Person.PersonOpretRequestType PersonOpretRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Person.opretResponse> opretAsync(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.OpretRequestType OpretRequest1) {
             IntegrationLayer.Person.opretRequest inValue = new IntegrationLayer.Person.opretRequest();
-            inValue.PersonOpretRequest = PersonOpretRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.OpretRequest1 = OpretRequest1;
             return ((IntegrationLayer.Person.PersonPortType)(this)).opretAsync(inValue);
         }
         
@@ -2993,11 +3091,13 @@ namespace IntegrationLayer.Person {
             return base.Channel.importer(request);
         }
         
-        public IntegrationLayer.Person.PersonImporterResponseType importer(IntegrationLayer.Person.PersonImporterRequestType PersonImporterRequest) {
+        public IntegrationLayer.Person.ImporterResponseType importer(ref IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.ImporterRequestType ImporterRequest1) {
             IntegrationLayer.Person.importerRequest inValue = new IntegrationLayer.Person.importerRequest();
-            inValue.PersonImporterRequest = PersonImporterRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.ImporterRequest1 = ImporterRequest1;
             IntegrationLayer.Person.importerResponse retVal = ((IntegrationLayer.Person.PersonPortType)(this)).importer(inValue);
-            return retVal.PersonImporterResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.ImporterResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3005,9 +3105,10 @@ namespace IntegrationLayer.Person {
             return base.Channel.importerAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Person.importerResponse> importerAsync(IntegrationLayer.Person.PersonImporterRequestType PersonImporterRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Person.importerResponse> importerAsync(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.ImporterRequestType ImporterRequest1) {
             IntegrationLayer.Person.importerRequest inValue = new IntegrationLayer.Person.importerRequest();
-            inValue.PersonImporterRequest = PersonImporterRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.ImporterRequest1 = ImporterRequest1;
             return ((IntegrationLayer.Person.PersonPortType)(this)).importerAsync(inValue);
         }
         
@@ -3016,11 +3117,13 @@ namespace IntegrationLayer.Person {
             return base.Channel.passiver(request);
         }
         
-        public IntegrationLayer.Person.PersonPassiverResponseType passiver(IntegrationLayer.Person.PersonPassiverRequestType PersonPassiverRequest) {
+        public IntegrationLayer.Person.PassiverResponseType passiver(ref IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.PassiverRequestType PassiverRequest1) {
             IntegrationLayer.Person.passiverRequest inValue = new IntegrationLayer.Person.passiverRequest();
-            inValue.PersonPassiverRequest = PersonPassiverRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.PassiverRequest1 = PassiverRequest1;
             IntegrationLayer.Person.passiverResponse retVal = ((IntegrationLayer.Person.PersonPortType)(this)).passiver(inValue);
-            return retVal.PersonPassiverResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.PassiverResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3028,9 +3131,10 @@ namespace IntegrationLayer.Person {
             return base.Channel.passiverAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Person.passiverResponse> passiverAsync(IntegrationLayer.Person.PersonPassiverRequestType PersonPassiverRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Person.passiverResponse> passiverAsync(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.PassiverRequestType PassiverRequest1) {
             IntegrationLayer.Person.passiverRequest inValue = new IntegrationLayer.Person.passiverRequest();
-            inValue.PersonPassiverRequest = PersonPassiverRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.PassiverRequest1 = PassiverRequest1;
             return ((IntegrationLayer.Person.PersonPortType)(this)).passiverAsync(inValue);
         }
         
@@ -3039,11 +3143,13 @@ namespace IntegrationLayer.Person {
             return base.Channel.laes(request);
         }
         
-        public IntegrationLayer.Person.PersonLaesResponseType laes(IntegrationLayer.Person.PersonLaesRequestType PersonLaesRequest) {
+        public IntegrationLayer.Person.LaesResponseType laes(ref IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.LaesRequestType LaesRequest1) {
             IntegrationLayer.Person.laesRequest inValue = new IntegrationLayer.Person.laesRequest();
-            inValue.PersonLaesRequest = PersonLaesRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.LaesRequest1 = LaesRequest1;
             IntegrationLayer.Person.laesResponse retVal = ((IntegrationLayer.Person.PersonPortType)(this)).laes(inValue);
-            return retVal.PersonLaesResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.LaesResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3051,9 +3157,10 @@ namespace IntegrationLayer.Person {
             return base.Channel.laesAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Person.laesResponse> laesAsync(IntegrationLayer.Person.PersonLaesRequestType PersonLaesRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Person.laesResponse> laesAsync(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.LaesRequestType LaesRequest1) {
             IntegrationLayer.Person.laesRequest inValue = new IntegrationLayer.Person.laesRequest();
-            inValue.PersonLaesRequest = PersonLaesRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.LaesRequest1 = LaesRequest1;
             return ((IntegrationLayer.Person.PersonPortType)(this)).laesAsync(inValue);
         }
         
@@ -3062,11 +3169,13 @@ namespace IntegrationLayer.Person {
             return base.Channel.ret(request);
         }
         
-        public IntegrationLayer.Person.PersonRetResponseType ret(IntegrationLayer.Person.PersonRetRequestType PersonRetRequest) {
+        public IntegrationLayer.Person.RetResponseType ret(ref IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.RetRequestType RetRequest1) {
             IntegrationLayer.Person.retRequest inValue = new IntegrationLayer.Person.retRequest();
-            inValue.PersonRetRequest = PersonRetRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.RetRequest1 = RetRequest1;
             IntegrationLayer.Person.retResponse retVal = ((IntegrationLayer.Person.PersonPortType)(this)).ret(inValue);
-            return retVal.PersonRetResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.RetResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3074,9 +3183,10 @@ namespace IntegrationLayer.Person {
             return base.Channel.retAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Person.retResponse> retAsync(IntegrationLayer.Person.PersonRetRequestType PersonRetRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Person.retResponse> retAsync(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.RetRequestType RetRequest1) {
             IntegrationLayer.Person.retRequest inValue = new IntegrationLayer.Person.retRequest();
-            inValue.PersonRetRequest = PersonRetRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.RetRequest1 = RetRequest1;
             return ((IntegrationLayer.Person.PersonPortType)(this)).retAsync(inValue);
         }
         
@@ -3085,11 +3195,13 @@ namespace IntegrationLayer.Person {
             return base.Channel.slet(request);
         }
         
-        public IntegrationLayer.Person.PersonSletResponseType slet(IntegrationLayer.Person.PersonSletRequestType PersonSletRequest) {
+        public IntegrationLayer.Person.SletResponseType slet(ref IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.SletRequestType SletRequest1) {
             IntegrationLayer.Person.sletRequest inValue = new IntegrationLayer.Person.sletRequest();
-            inValue.PersonSletRequest = PersonSletRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.SletRequest1 = SletRequest1;
             IntegrationLayer.Person.sletResponse retVal = ((IntegrationLayer.Person.PersonPortType)(this)).slet(inValue);
-            return retVal.PersonSletResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.SletResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3097,9 +3209,10 @@ namespace IntegrationLayer.Person {
             return base.Channel.sletAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Person.sletResponse> sletAsync(IntegrationLayer.Person.PersonSletRequestType PersonSletRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Person.sletResponse> sletAsync(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.SletRequestType SletRequest1) {
             IntegrationLayer.Person.sletRequest inValue = new IntegrationLayer.Person.sletRequest();
-            inValue.PersonSletRequest = PersonSletRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.SletRequest1 = SletRequest1;
             return ((IntegrationLayer.Person.PersonPortType)(this)).sletAsync(inValue);
         }
         
@@ -3108,11 +3221,13 @@ namespace IntegrationLayer.Person {
             return base.Channel.soeg(request);
         }
         
-        public IntegrationLayer.Person.PersonSoegResponseType soeg(IntegrationLayer.Person.PersonSoegRequestType PersonSoegRequest) {
+        public IntegrationLayer.Person.SoegResponseType soeg(ref IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.SoegRequestType SoegRequest1) {
             IntegrationLayer.Person.soegRequest inValue = new IntegrationLayer.Person.soegRequest();
-            inValue.PersonSoegRequest = PersonSoegRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.SoegRequest1 = SoegRequest1;
             IntegrationLayer.Person.soegResponse retVal = ((IntegrationLayer.Person.PersonPortType)(this)).soeg(inValue);
-            return retVal.PersonSoegResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.SoegResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3120,9 +3235,10 @@ namespace IntegrationLayer.Person {
             return base.Channel.soegAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Person.soegResponse> soegAsync(IntegrationLayer.Person.PersonSoegRequestType PersonSoegRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Person.soegResponse> soegAsync(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.SoegRequestType SoegRequest1) {
             IntegrationLayer.Person.soegRequest inValue = new IntegrationLayer.Person.soegRequest();
-            inValue.PersonSoegRequest = PersonSoegRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.SoegRequest1 = SoegRequest1;
             return ((IntegrationLayer.Person.PersonPortType)(this)).soegAsync(inValue);
         }
         
@@ -3131,11 +3247,13 @@ namespace IntegrationLayer.Person {
             return base.Channel.list(request);
         }
         
-        public IntegrationLayer.Person.PersonListeResponseType list(IntegrationLayer.Person.PersonListeRequestType PersonListeRequest) {
+        public IntegrationLayer.Person.ListResponseType list(ref IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.ListRequestType ListRequest1) {
             IntegrationLayer.Person.listRequest inValue = new IntegrationLayer.Person.listRequest();
-            inValue.PersonListeRequest = PersonListeRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.ListRequest1 = ListRequest1;
             IntegrationLayer.Person.listResponse retVal = ((IntegrationLayer.Person.PersonPortType)(this)).list(inValue);
-            return retVal.PersonListeResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.ListResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3143,9 +3261,10 @@ namespace IntegrationLayer.Person {
             return base.Channel.listAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Person.listResponse> listAsync(IntegrationLayer.Person.PersonListeRequestType PersonListeRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Person.listResponse> listAsync(IntegrationLayer.Person.RequestHeaderType RequestHeader, IntegrationLayer.Person.ListRequestType ListRequest1) {
             IntegrationLayer.Person.listRequest inValue = new IntegrationLayer.Person.listRequest();
-            inValue.PersonListeRequest = PersonListeRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.ListRequest1 = ListRequest1;
             return ((IntegrationLayer.Person.PersonPortType)(this)).listAsync(inValue);
         }
     }

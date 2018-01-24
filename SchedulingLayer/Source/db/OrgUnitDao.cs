@@ -323,6 +323,7 @@ namespace Organisation.SchedulingLayer
                                 orgUnitId = (long)reader["id"];
 
                                 orgUnit = new OrgUnitRegistrationExtended();
+                                orgUnit.Id = orgUnitId;
                                 orgUnit.Uuid = GetValue(reader, "uuid");
                                 orgUnit.ShortKey = GetValue(reader, "shortkey");
                                 orgUnit.Name = GetValue(reader, "name");
@@ -463,6 +464,7 @@ namespace Organisation.SchedulingLayer
                                 orgUnitId = (long)reader["id"];
 
                                 orgUnit = new OrgUnitRegistrationExtended();
+                                orgUnit.Id = orgUnitId;
                                 orgUnit.Uuid = GetValue(reader, "uuid");
                                 orgUnit.ShortKey = GetValue(reader, "shortkey");
                                 orgUnit.Name = GetValue(reader, "name");
@@ -575,6 +577,7 @@ namespace Organisation.SchedulingLayer
                                     {
                                         contactPlace = new ContactPlace();
                                         contactPlace.Tasks = new List<string>();
+                                        contactPlace.OrgUnitUuid = contactPlaceUuid;
                                         orgUnit.ContactPlaces.Add(contactPlace);
                                     }
 
@@ -589,7 +592,7 @@ namespace Organisation.SchedulingLayer
             return orgUnit;
         }
 
-        public void Delete(string uuid)
+        public void Delete(long id)
         {
             if (useSqlLite)
             {
@@ -599,7 +602,7 @@ namespace Organisation.SchedulingLayer
 
                     using (SQLiteCommand command = new SQLiteCommand(OrgUnitStatements.DELETE, connection))
                     {
-                        command.Parameters.Add(new SQLiteParameter("@uuid", uuid));
+                        command.Parameters.Add(new SQLiteParameter("@id", id));
                         command.ExecuteNonQuery();
                     }
                 }
@@ -612,7 +615,7 @@ namespace Organisation.SchedulingLayer
 
                     using (SqlCommand command = new SqlCommand(OrgUnitStatements.DELETE, connection))
                     {
-                        command.Parameters.Add(new SqlParameter("@uuid", uuid));
+                        command.Parameters.Add(new SqlParameter("@id", id));
                         command.ExecuteNonQuery();
                     }
                 }

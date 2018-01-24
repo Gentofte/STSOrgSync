@@ -1,7 +1,6 @@
 ﻿using IntegrationLayer.Bruger;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens;
 using System.IO;
 using System.Net;
 using System.ServiceModel;
@@ -45,22 +44,21 @@ namespace Organisation.IntegrationLayer
 
             // construct request
             importerRequest request = new importerRequest();
-            request.BrugerImporterRequest = new BrugerImporterRequestType();
-            request.BrugerImporterRequest.ImportInput = importInput;
-            request.BrugerImporterRequest.AuthorityContext = new AuthorityContextType();
-            request.BrugerImporterRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            request.ImporterRequest1 = new ImporterRequestType();
+            request.ImporterRequest1.ImportInput = importInput;
+            request.ImporterRequest1.AuthorityContext = new AuthorityContextType();
+            request.ImporterRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
             // send request
-            SecurityToken token = TokenCache.IssueToken(BrugerStubHelper.SERVICE);
-            BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Importer", helper.CreatePort(), token);
+            BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Importer", helper.CreatePort());
 
             try
             {
                 importerResponse response = channel.importer(request);
-                int statusCode = Int32.Parse(response.BrugerImporterResponse.ImportOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.ImporterResponse1.ImportOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
-                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Import", BrugerStubHelper.SERVICE, response.BrugerImporterResponse.ImportOutput.StandardRetur.FejlbeskedTekst);
+                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Import", BrugerStubHelper.SERVICE, response.ImporterResponse1.ImportOutput.StandardRetur.FejlbeskedTekst);
                     log.Error(message);
 
                     throw new SoapServiceException(message);
@@ -89,8 +87,7 @@ namespace Organisation.IntegrationLayer
                 return;
             }
 
-            SecurityToken token = TokenCache.IssueToken(BrugerStubHelper.SERVICE);
-            BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Ret", helper.CreatePort(), token);
+            BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Ret", helper.CreatePort());
 
             try
             {
@@ -104,17 +101,17 @@ namespace Organisation.IntegrationLayer
                 helper.SetTilstandToInactive(virkning, registration, timestamp);
 
                 retRequest request = new retRequest();
-                request.BrugerRetRequest = new BrugerRetRequestType();
-                request.BrugerRetRequest.RetInput = input;
-                request.BrugerRetRequest.AuthorityContext = new AuthorityContextType();
-                request.BrugerRetRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+                request.RetRequest1 = new RetRequestType();
+                request.RetRequest1.RetInput = input;
+                request.RetRequest1.AuthorityContext = new AuthorityContextType();
+                request.RetRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
                 retResponse response = channel.ret(request);
 
-                int statusCode = Int32.Parse(response.BrugerRetResponse.RetOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.RetResponse1.RetOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
-                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Ret", BrugerStubHelper.SERVICE, response.BrugerRetResponse.RetOutput.StandardRetur.FejlbeskedTekst);
+                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Ret", BrugerStubHelper.SERVICE, response.RetResponse1.RetOutput.StandardRetur.FejlbeskedTekst);
                     log.Error(message);
                     throw new SoapServiceException(message);
                 }
@@ -142,8 +139,7 @@ namespace Organisation.IntegrationLayer
 
             VirkningType virkning = helper.GetVirkning(user.Timestamp);
 
-            SecurityToken token = TokenCache.IssueToken(BrugerStubHelper.SERVICE);
-            BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Ret", helper.CreatePort(), token);
+            BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Ret", helper.CreatePort());
 
             try
             {
@@ -323,17 +319,17 @@ namespace Organisation.IntegrationLayer
 
                 // send Ret request
                 retRequest request = new retRequest();
-                request.BrugerRetRequest = new BrugerRetRequestType();
-                request.BrugerRetRequest.RetInput = input;
-                request.BrugerRetRequest.AuthorityContext = new AuthorityContextType();
-                request.BrugerRetRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+                request.RetRequest1 = new RetRequestType();
+                request.RetRequest1.RetInput = input;
+                request.RetRequest1.AuthorityContext = new AuthorityContextType();
+                request.RetRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
                 retResponse response = channel.ret(request);
 
-                int statusCode = Int32.Parse(response.BrugerRetResponse.RetOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.RetResponse1.RetOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
-                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Ret", BrugerStubHelper.SERVICE, response.BrugerRetResponse.RetOutput.StandardRetur.FejlbeskedTekst);
+                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Ret", BrugerStubHelper.SERVICE, response.RetResponse1.RetOutput.StandardRetur.FejlbeskedTekst);
                     log.Error(message);
                     throw new SoapServiceException(message);
                 }
@@ -350,8 +346,7 @@ namespace Organisation.IntegrationLayer
 
         public List<string> Soeg()
         {
-            SecurityToken token = TokenCache.IssueToken(BrugerStubHelper.SERVICE);
-            BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Soeg", helper.CreatePort(), token);
+            BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Soeg", helper.CreatePort());
 
             SoegInputType1 soegInput = new SoegInputType1();
             soegInput.AttributListe = new AttributListeType();
@@ -386,18 +381,18 @@ namespace Organisation.IntegrationLayer
 
             // search
             soegRequest request = new soegRequest();
-            request.BrugerSoegRequest = new BrugerSoegRequestType();
-            request.BrugerSoegRequest.SoegInput = soegInput;
-            request.BrugerSoegRequest.AuthorityContext = new AuthorityContextType();
-            request.BrugerSoegRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            request.SoegRequest1 = new SoegRequestType();
+            request.SoegRequest1.SoegInput = soegInput;
+            request.SoegRequest1.AuthorityContext = new AuthorityContextType();
+            request.SoegRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
             try
             {
                 soegResponse response = channel.soeg(request);
-                int statusCode = Int32.Parse(response.BrugerSoegResponse.SoegOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.SoegResponse1.SoegOutput.StandardRetur.StatusKode);
                 if (statusCode != 20 && statusCode != 44) // 44 is empty search result
                 {
-                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Soeg", OrganisationFunktionStubHelper.SERVICE, response.BrugerSoegResponse.SoegOutput.StandardRetur.FejlbeskedTekst);
+                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Soeg", OrganisationFunktionStubHelper.SERVICE, response.SoegResponse1.SoegOutput.StandardRetur.FejlbeskedTekst);
                     log.Error(message);
                     throw new SoapServiceException(message);
                 }
@@ -405,7 +400,7 @@ namespace Organisation.IntegrationLayer
                 List<string> functions = new List<string>();
                 if (statusCode == 20)
                 {
-                    foreach (string id in response.BrugerSoegResponse.SoegOutput.IdListe)
+                    foreach (string id in response.SoegResponse1.SoegOutput.IdListe)
                     {
                         functions.Add(id);
                     }
@@ -440,19 +435,18 @@ namespace Organisation.IntegrationLayer
             }
 
             listRequest request = new listRequest();
-            request.BrugerListeRequest = new BrugerListeRequestType();
-            request.BrugerListeRequest.ListInput = listInput;
-            request.BrugerListeRequest.AuthorityContext = new AuthorityContextType();
-            request.BrugerListeRequest.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            request.ListRequest1 = new ListRequestType();
+            request.ListRequest1.ListInput = listInput;
+            request.ListRequest1.AuthorityContext = new AuthorityContextType();
+            request.ListRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
-            SecurityToken token = TokenCache.IssueToken(BrugerStubHelper.SERVICE);
-            BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Laes", helper.CreatePort(), token);
+            BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Laes", helper.CreatePort());
 
             try
             {
                 listResponse response = channel.list(request);
 
-                int statusCode = Int32.Parse(response.BrugerListeResponse.ListOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.ListResponse1.ListOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
                     // note that statusCode 44 means that the object does not exists, so that is a valid response
@@ -460,13 +454,13 @@ namespace Organisation.IntegrationLayer
                     return null;
                 }
 
-                if (response.BrugerListeResponse.ListOutput.FiltreretOejebliksbillede.Length != 1)
+                if (response.ListResponse1.ListOutput.FiltreretOejebliksbillede.Length != 1)
                 {
                     log.Warn("Lookup Bruger with uuid '" + uuid + "' returned multiple objects");
                     return null;
                 }
 
-                RegistreringType1[] resultSet = response.BrugerListeResponse.ListOutput.FiltreretOejebliksbillede[0].Registrering;
+                RegistreringType1[] resultSet = response.ListResponse1.ListOutput.FiltreretOejebliksbillede[0].Registrering;
                 if (resultSet.Length == 0)
                 {
                     log.Warn("Bruger with uuid '" + uuid + "' exists, but has no registration");

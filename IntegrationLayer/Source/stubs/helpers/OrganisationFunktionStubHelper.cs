@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
+using System.ServiceModel;
 
 namespace Organisation.IntegrationLayer
 {
@@ -266,13 +267,11 @@ namespace Organisation.IntegrationLayer
 
         internal OrganisationFunktionPortTypeClient CreatePort()
         {
-            CustomLibBasBinding binding = new CustomLibBasBinding();
+            BasicHttpBinding binding = new BasicHttpBinding();
+            binding.Security.Mode = BasicHttpSecurityMode.Transport;
+            binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Certificate;
 
-            // TODO: old STS tcode
-            // OrganisationFunktionPortTypeClient port = new OrganisationFunktionPortTypeClient(binding, StubUtil.GetEndPointAddress(SERVICE));
-
-            // TODO: new SP code (pre-token)
-            OrganisationFunktionPortTypeClient port = new OrganisationFunktionPortTypeClient(binding, StubUtil.GetEndPointAddress("OrganisationFunktion/1"));
+            OrganisationFunktionPortTypeClient port = new OrganisationFunktionPortTypeClient(binding, StubUtil.GetEndPointAddress("OrganisationFunktion/2"));
             port.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindByThumbprint, registryProperties.ClientCertThumbprint);
 
             // Disable revocation checking
@@ -318,7 +317,7 @@ namespace Organisation.IntegrationLayer
         internal AdresseFlerRelationType CreateAddressReference(string uuid, int indeks, string roleUuid, VirkningType virkning)
         {
             UnikIdType type = new UnikIdType();
-            type.Item = UUIDConstants.ITSYSTEM_ADDRESS_TYPE;
+            type.Item = UUIDConstants.ADDRESS_TYPE_ADDRESS;
             type.ItemElementName = ItemChoiceType.UUIDIdentifikator;
 
             UnikIdType role = new UnikIdType();

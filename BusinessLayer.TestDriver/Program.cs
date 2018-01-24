@@ -18,7 +18,6 @@ namespace Organisation.BusinessLayer.TestDriver
 
             // This is a small method to build some useful sample data for manuel testing
             //BuildTestData();
-
             TestListAndReadOUs();
             TestListAndReadUsers();
             TestCreateAndUpdateFullUser();
@@ -860,6 +859,9 @@ namespace Organisation.BusinessLayer.TestDriver
             OrgUnitRegistration parentReg2 = OUReg();
             orgUnitService.Update(parentReg2);
 
+            OrgUnitRegistration parentReg3 = OUReg();
+            orgUnitService.Update(parentReg3);
+
             UserRegistration registration = UserReg();
             registration.Email.Value = "EmailValue";
             registration.Location.Value = "LocationValue";
@@ -870,6 +872,12 @@ namespace Organisation.BusinessLayer.TestDriver
             registration.Positions.Add(position);
             position.Name = "PositionNameValue";
             position.OrgUnitUuid = parentReg.Uuid;
+
+            DTO.V1_1.Position position2 = new DTO.V1_1.Position();
+            registration.Positions.Add(position2);
+            position2.Name = "PositionNameValue3";
+            position2.OrgUnitUuid = parentReg3.Uuid;
+
             registration.UserId = "UserIdValue";
             userService.Update(registration);
 
@@ -885,7 +893,7 @@ namespace Organisation.BusinessLayer.TestDriver
             registration.Positions.Clear();
             registration.Positions.Add(position);
             position.Name = "PositionNameValue2";
-            position.OrgUnitUuid = parentReg.Uuid;
+            position.OrgUnitUuid = parentReg2.Uuid;
             registration.UserId = "UserIdValue2";
             userService.Update(registration);
 

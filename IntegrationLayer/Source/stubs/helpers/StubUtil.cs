@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ServiceModel;
-using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.Generic;
 
@@ -17,8 +16,7 @@ namespace Organisation.IntegrationLayer
 
         public static EndpointAddress GetEndPointAddress(string suffix)
         {
-            EndpointIdentity identity = EndpointIdentity.CreateDnsIdentity(registryProperties.ServiceCertAlias);
-            EndpointAddress endPointAddress = new EndpointAddress(new Uri(registryProperties.ServicesBaseUrl + suffix), identity);
+            EndpointAddress endPointAddress = new EndpointAddress(new Uri(registryProperties.ServicesBaseUrl + suffix));
 
             return endPointAddress;
         }
@@ -54,21 +52,16 @@ namespace Organisation.IntegrationLayer
             return reference;
         }
 
-        public static AdressePortType CreateChannel<AdressePortType>(string service, string operation, dynamic port, SecurityToken token)
+        public static AdressePortType CreateChannel<AdressePortType>(string service, string operation, dynamic port)
         {
-            X509Certificate2 cert = CertificateLoader.LoadCertificateFromTrustedPeopleStore(registryProperties.ServiceCertThumbprint);
             Uri uri = GetUri(service);
-
-            port.ChannelFactory.Credentials.ServiceCertificate.ScopedCertificates.Add(uri, cert);
-            port.ChannelFactory.Endpoint.Binding = new CustomLibBasBinding();
-            port.ChannelFactory.Endpoint.EndpointBehaviors.Add(new CustomLibBasClientBehavior());
 
             if (registryProperties.LogRequestResponse)
             {
                 port.ChannelFactory.Endpoint.EndpointBehaviors.Add(new LoggingBehavior(service, operation));
             }
 
-            return port.ChannelFactory.CreateChannelWithIssuedToken(token);
+            return port.ChannelFactory.CreateChannel();
         }
 
         public static EgenskabType GetLatestProperty<EgenskabType>(EgenskabType[] properties)

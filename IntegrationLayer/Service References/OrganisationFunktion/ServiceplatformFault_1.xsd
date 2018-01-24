@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsd:schema xmlns:tns="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/" elementFormDefault="qualified" targetNamespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <xsd:annotation>
-    <xsd:documentation xml:lang="en">
-            Version 0.9
-        </xsd:documentation>
-  </xsd:annotation>
   <xsd:element name="ServiceplatformFault" type="tns:ServiceplatformFaultType" />
   <xsd:complexType name="ServiceplatformFaultType">
     <xsd:sequence>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a0ef5435-6deb-4caa-a6e6-e51cf70be7c7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="20865066-c485-44e5-8135-3315538dc156" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,19 +19,22 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="\\vmware-host\Shared Folders\brian\projects\organisation-synchronisation-component\IntegrationLayer\Resources\sp-schema\Bruger\BrugerService.wsdl" Protocol="file" SourceId="1" />
+    <MetadataSource Address="\\VBOXSVR\brian\projects\organisation-synchronisation-component\IntegrationLayer\Resources\sp-new-schema\Bruger\wsdl\context\BrugerService.wsdl" Protocol="file" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AuthorityContext_1.xsd" MetadataType="Schema" ID="ee47aeff-bbb2-4466-9ef2-5fdab54253ec" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/AuthorityContext_1.xsd" />
-    <MetadataFile FileName="BrugerService.wsdl" MetadataType="Wsdl" ID="6f2a3371-0511-418e-9b29-df9dedb51d92" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/BrugerService.wsdl" />
-    <MetadataFile FileName="CallContext_1.xsd" MetadataType="Schema" ID="6b504d32-6c5d-4076-994b-823dad1a7c38" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/CallContext_1.xsd" />
-    <MetadataFile FileName="Part.xsd" MetadataType="Schema" ID="4dd97cc8-2db8-4b30-b319-8df630e775c9" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/xsd/1.1.STS-1/Part.xsd" />
-    <MetadataFile FileName="BrugerOperationer.xsd" MetadataType="Schema" ID="d0a45ca6-9e0c-4a73-90d5-f01a39615807" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/xsd/1.1.STS-1/BrugerOperationer.xsd" />
-    <MetadataFile FileName="SagDokObjekt.xsd" MetadataType="Schema" ID="a7e0659d-b7ae-410b-9de5-4157a589149a" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/xsd/1.1.STS-1/SagDokObjekt.xsd" />
-    <MetadataFile FileName="BrugerServiceMsg.xsd" MetadataType="Schema" ID="2f531a60-2586-4f33-80ea-c5b97d04aa75" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/BrugerServiceMsg.xsd" />
-    <MetadataFile FileName="Bruger.xsd" MetadataType="Schema" ID="bd940a6e-fcb2-44cd-a79b-df7b0b91098f" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/xsd/1.1.STS-1/Bruger.xsd" />
-    <MetadataFile FileName="OrganisationFaelles.xsd" MetadataType="Schema" ID="658f347b-f36f-42f0-ac7f-f423648fc5f5" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/xsd/1.1.STS-1/OrganisationFaelles.xsd" />
-    <MetadataFile FileName="ServiceplatformFault_1.xsd" MetadataType="Schema" ID="099d4199-51e0-4a02-be77-412a9836bb1a" SourceId="1" SourceUrl="file://vmware-host/Shared Folders/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-schema/Bruger/ServiceplatformFault_1.xsd" />
+    <MetadataFile FileName="policies.wsdl" MetadataType="Wsdl" ID="42e1919c-8d50-4815-9a89-f06f98012699" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/wsdl/context/policies.wsdl" />
+    <MetadataFile FileName="BrugerOperationer.xsd" MetadataType="Schema" ID="3aa6b1ff-b40d-4060-99c7-ccc447e46c37" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/SF1500_EP_FS2/xsd/1.1.STS-1/BrugerOperationer.xsd" />
+    <MetadataFile FileName="CallContext_1.xsd" MetadataType="Schema" ID="91bf2232-f95b-4ec6-8935-fee845ed44ea" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/sp/CallContext_1.xsd" />
+    <MetadataFile FileName="SagDokObjekt.xsd" MetadataType="Schema" ID="97b4a3fb-19b7-44d2-a2ed-1f0dd3b88f2e" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/SF1500_EP_FS2/xsd/1.1.STS-1/SagDokObjekt.xsd" />
+    <MetadataFile FileName="AuthorityContext_1.xsd" MetadataType="Schema" ID="44bd26c1-67f1-48c5-85e2-4134e75f3a74" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/sp/AuthorityContext_1.xsd" />
+    <MetadataFile FileName="BrugerServiceMsg.xsd" MetadataType="Schema" ID="2eaeec9b-83bc-4103-9132-6d57758574df" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/BrugerServiceMsg.xsd" />
+    <MetadataFile FileName="RequestHeader.xsd" MetadataType="Schema" ID="b29c612c-a0f3-4ef7-be9d-7adb887bd644" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/SF1500_EP_FS2/xsd/common/RequestHeader.xsd" />
+    <MetadataFile FileName="Part.xsd" MetadataType="Schema" ID="81894a50-b56c-425f-af35-12474111956a" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/SF1500_EP_FS2/xsd/1.1.STS-1/Part.xsd" />
+    <MetadataFile FileName="ServiceplatformFault_1.xsd" MetadataType="Schema" ID="6a98a943-eea7-46fe-ba20-a10c45d56649" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/sp/ServiceplatformFault_1.xsd" />
+    <MetadataFile FileName="ServiceplatformFaultMessage.wsdl" MetadataType="Wsdl" ID="ba198b5a-2796-4c7f-a18c-5579790acf15" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/sp/ServiceplatformFaultMessage_1.wsdl" />
+    <MetadataFile FileName="OrganisationFaelles.xsd" MetadataType="Schema" ID="8ecc1d7c-e8a9-46dc-af74-47a4592907ca" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/SF1500_EP_FS2/xsd/1.1.STS-1/OrganisationFaelles.xsd" />
+    <MetadataFile FileName="Bruger.xsd" MetadataType="Schema" ID="8b1326e8-5370-4b81-a122-cd66c80ae216" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/SF1500_EP_FS2/xsd/1.1.STS-1/Bruger.xsd" />
+    <MetadataFile FileName="BrugerService.wsdl" MetadataType="Wsdl" ID="ae354f35-76b5-4084-a8cf-c05d01641b5b" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Bruger/wsdl/context/BrugerService.wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

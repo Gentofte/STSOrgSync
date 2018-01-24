@@ -12,7 +12,7 @@ namespace IntegrationLayer.Bruger {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -45,7 +45,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -92,7 +92,7 @@ namespace IntegrationLayer.Bruger {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(RegistreringType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -194,7 +194,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oio:sagdok:3.0.0")]
     public enum LivscyklusKodeType {
@@ -213,7 +213,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -262,7 +262,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oio:sagdok:3.0.0", IncludeInSchema=false)]
     public enum ItemChoiceType {
@@ -275,7 +275,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -326,7 +326,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -372,7 +372,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -446,7 +446,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -548,7 +548,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -581,7 +581,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oio:sagdok:3.0.0")]
     public enum AktoerTypeKodeType {
@@ -606,7 +606,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -638,7 +638,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -684,7 +684,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -730,7 +730,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oio:sts:organisation:1.1.1")]
     public enum GyldighedStatusKodeType {
@@ -743,7 +743,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -915,7 +915,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -980,7 +980,7 @@ namespace IntegrationLayer.Bruger {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(KlasseFlerRelationType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PersonFlerRelationType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AdresseFlerRelationType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1026,7 +1026,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1035,7 +1035,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1044,7 +1044,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1053,7 +1053,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1062,7 +1062,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1071,7 +1071,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1080,7 +1080,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1089,7 +1089,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1098,7 +1098,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1107,7 +1107,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1116,7 +1116,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1125,7 +1125,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1134,7 +1134,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1143,7 +1143,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1163,7 +1163,7 @@ namespace IntegrationLayer.Bruger {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OrganisationEnhedRelationType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(MyndighedRelationType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(KlasseRelationType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1209,7 +1209,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1218,7 +1218,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1227,7 +1227,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1236,7 +1236,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1245,7 +1245,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1254,7 +1254,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1291,7 +1291,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1300,7 +1300,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1309,7 +1309,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1318,7 +1318,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1331,7 +1331,7 @@ namespace IntegrationLayer.Bruger {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AktoerType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BrugerType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LaesFiltreretOutputType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1365,7 +1365,7 @@ namespace IntegrationLayer.Bruger {
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AktoerType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BrugerType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1375,7 +1375,7 @@ namespace IntegrationLayer.Bruger {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(BrugerType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1384,7 +1384,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1407,7 +1407,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1416,7 +1416,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1463,7 +1463,7 @@ namespace IntegrationLayer.Bruger {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(UnikReturType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1509,7 +1509,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1548,7 +1548,7 @@ namespace IntegrationLayer.Bruger {
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LaesOutputType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OpretOutputType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1580,7 +1580,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1603,7 +1603,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1626,12 +1626,12 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerOpretResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class OpretResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private OpretOutputType opretOutputField;
         
@@ -1659,7 +1659,7 @@ namespace IntegrationLayer.Bruger {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OpretInputType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1691,7 +1691,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1742,7 +1742,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1773,7 +1773,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1830,12 +1830,12 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerOpretRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class OpretRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -1890,12 +1890,12 @@ namespace IntegrationLayer.Bruger {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", ConfigurationName="Bruger.BrugerPortType")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", ConfigurationName="Bruger.BrugerPortType")]
     public interface BrugerPortType {
         
         // CODEGEN: Generating message contract since the operation opret is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/opret", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/bruger/opret", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/opret", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/opret", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -1904,12 +1904,12 @@ namespace IntegrationLayer.Bruger {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Bruger.opretResponse opret(IntegrationLayer.Bruger.opretRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/opret", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/opret", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Bruger.opretResponse> opretAsync(IntegrationLayer.Bruger.opretRequest request);
         
         // CODEGEN: Generating message contract since the operation importer is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/importer", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/bruger/importer", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/importer", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/importer", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -1918,12 +1918,12 @@ namespace IntegrationLayer.Bruger {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Bruger.importerResponse importer(IntegrationLayer.Bruger.importerRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/importer", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/importer", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Bruger.importerResponse> importerAsync(IntegrationLayer.Bruger.importerRequest request);
         
         // CODEGEN: Generating message contract since the operation passiver is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/passiver", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/bruger/passiver", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/passiver", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/passiver", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -1932,12 +1932,12 @@ namespace IntegrationLayer.Bruger {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Bruger.passiverResponse passiver(IntegrationLayer.Bruger.passiverRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/passiver", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/passiver", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Bruger.passiverResponse> passiverAsync(IntegrationLayer.Bruger.passiverRequest request);
         
         // CODEGEN: Generating message contract since the operation laes is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/laes", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/bruger/laes", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/laes", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/laes", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -1946,12 +1946,12 @@ namespace IntegrationLayer.Bruger {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Bruger.laesResponse laes(IntegrationLayer.Bruger.laesRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/laes", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/laes", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Bruger.laesResponse> laesAsync(IntegrationLayer.Bruger.laesRequest request);
         
         // CODEGEN: Generating message contract since the operation ret is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/ret", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/bruger/ret", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/ret", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/ret", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -1960,12 +1960,12 @@ namespace IntegrationLayer.Bruger {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Bruger.retResponse ret(IntegrationLayer.Bruger.retRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/ret", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/ret", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Bruger.retResponse> retAsync(IntegrationLayer.Bruger.retRequest request);
         
         // CODEGEN: Generating message contract since the operation slet is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/slet", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/bruger/slet", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/slet", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/slet", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -1974,12 +1974,12 @@ namespace IntegrationLayer.Bruger {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Bruger.sletResponse slet(IntegrationLayer.Bruger.sletRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/slet", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/slet", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Bruger.sletResponse> sletAsync(IntegrationLayer.Bruger.sletRequest request);
         
         // CODEGEN: Generating message contract since the operation soeg is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/soeg", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/bruger/soeg", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/soeg", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/soeg", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -1988,12 +1988,12 @@ namespace IntegrationLayer.Bruger {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Bruger.soegResponse soeg(IntegrationLayer.Bruger.soegRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/soeg", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/soeg", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Bruger.soegResponse> soegAsync(IntegrationLayer.Bruger.soegRequest request);
         
         // CODEGEN: Generating message contract since the operation list is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/list", ReplyAction="*")]
-        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://kombit.dk/sts/organisation/bruger/list", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/list", ReplyAction="*")]
+        [System.ServiceModel.FaultContractAttribute(typeof(IntegrationLayer.Bruger.ServiceplatformFaultType), Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/list", Name="ServiceplatformFault", Namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RegistreringType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(BasicOutputType))]
@@ -2002,8 +2002,39 @@ namespace IntegrationLayer.Bruger {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(OpretInputType))]
         IntegrationLayer.Bruger.listResponse list(IntegrationLayer.Bruger.listRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://kombit.dk/sts/organisation/bruger/list", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/list", ReplyAction="*")]
         System.Threading.Tasks.Task<IntegrationLayer.Bruger.listResponse> listAsync(IntegrationLayer.Bruger.listRequest request);
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+    public partial class RequestHeaderType : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string transactionUUIDField;
+        
+        /// <remarks/>
+        public string TransactionUUID {
+            get {
+                return this.transactionUUIDField;
+            }
+            set {
+                this.transactionUUIDField = value;
+                this.RaisePropertyChanged("TransactionUUID");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2012,14 +2043,18 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class opretRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerOpretRequestType BrugerOpretRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="OpretRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.OpretRequestType OpretRequest1;
         
         public opretRequest() {
         }
         
-        public opretRequest(IntegrationLayer.Bruger.BrugerOpretRequestType BrugerOpretRequest) {
-            this.BrugerOpretRequest = BrugerOpretRequest;
+        public opretRequest(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.OpretRequestType OpretRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.OpretRequest1 = OpretRequest1;
         }
     }
     
@@ -2029,24 +2064,28 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class opretResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerOpretResponseType BrugerOpretResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="OpretResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.OpretResponseType OpretResponse1;
         
         public opretResponse() {
         }
         
-        public opretResponse(IntegrationLayer.Bruger.BrugerOpretResponseType BrugerOpretResponse) {
-            this.BrugerOpretResponse = BrugerOpretResponse;
+        public opretResponse(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.OpretResponseType OpretResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.OpretResponse1 = OpretResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerImporterRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class ImporterRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2101,7 +2140,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2133,12 +2172,12 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerImporterResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class ImporterResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private BasicOutputType importOutputField;
         
@@ -2170,14 +2209,18 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class importerRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerImporterRequestType BrugerImporterRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ImporterRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.ImporterRequestType ImporterRequest1;
         
         public importerRequest() {
         }
         
-        public importerRequest(IntegrationLayer.Bruger.BrugerImporterRequestType BrugerImporterRequest) {
-            this.BrugerImporterRequest = BrugerImporterRequest;
+        public importerRequest(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.ImporterRequestType ImporterRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.ImporterRequest1 = ImporterRequest1;
         }
     }
     
@@ -2187,24 +2230,28 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class importerResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerImporterResponseType BrugerImporterResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ImporterResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.ImporterResponseType ImporterResponse1;
         
         public importerResponse() {
         }
         
-        public importerResponse(IntegrationLayer.Bruger.BrugerImporterResponseType BrugerImporterResponse) {
-            this.BrugerImporterResponse = BrugerImporterResponse;
+        public importerResponse(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.ImporterResponseType ImporterResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.ImporterResponse1 = ImporterResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerPassiverRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class PassiverRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2259,7 +2306,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2305,12 +2352,12 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerPassiverResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class PassiverResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private BasicOutputType passiverOutputField;
         
@@ -2342,14 +2389,18 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class passiverRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerPassiverRequestType BrugerPassiverRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="PassiverRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.PassiverRequestType PassiverRequest1;
         
         public passiverRequest() {
         }
         
-        public passiverRequest(IntegrationLayer.Bruger.BrugerPassiverRequestType BrugerPassiverRequest) {
-            this.BrugerPassiverRequest = BrugerPassiverRequest;
+        public passiverRequest(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.PassiverRequestType PassiverRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.PassiverRequest1 = PassiverRequest1;
         }
     }
     
@@ -2359,24 +2410,28 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class passiverResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerPassiverResponseType BrugerPassiverResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="PassiverResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.PassiverResponseType PassiverResponse1;
         
         public passiverResponse() {
         }
         
-        public passiverResponse(IntegrationLayer.Bruger.BrugerPassiverResponseType BrugerPassiverResponse) {
-            this.BrugerPassiverResponse = BrugerPassiverResponse;
+        public passiverResponse(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.PassiverResponseType PassiverResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.PassiverResponse1 = PassiverResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerLaesRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class LaesRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2431,7 +2486,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2519,12 +2574,12 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerLaesResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class LaesResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private LaesOutputType laesOutputField;
         
@@ -2556,14 +2611,18 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class laesRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerLaesRequestType BrugerLaesRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="LaesRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.LaesRequestType LaesRequest1;
         
         public laesRequest() {
         }
         
-        public laesRequest(IntegrationLayer.Bruger.BrugerLaesRequestType BrugerLaesRequest) {
-            this.BrugerLaesRequest = BrugerLaesRequest;
+        public laesRequest(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.LaesRequestType LaesRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.LaesRequest1 = LaesRequest1;
         }
     }
     
@@ -2573,24 +2632,28 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class laesResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerLaesResponseType BrugerLaesResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="LaesResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.LaesResponseType LaesResponse1;
         
         public laesResponse() {
         }
         
-        public laesResponse(IntegrationLayer.Bruger.BrugerLaesResponseType BrugerLaesResponse) {
-            this.BrugerLaesResponse = BrugerLaesResponse;
+        public laesResponse(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.LaesResponseType LaesResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.LaesResponse1 = LaesResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerRetRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class RetRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2645,7 +2708,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2697,7 +2760,7 @@ namespace IntegrationLayer.Bruger {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(RetInputType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2743,12 +2806,12 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerRetResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class RetResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private BasicOutputType retOutputField;
         
@@ -2780,14 +2843,18 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class retRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerRetRequestType BrugerRetRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="RetRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.RetRequestType RetRequest1;
         
         public retRequest() {
         }
         
-        public retRequest(IntegrationLayer.Bruger.BrugerRetRequestType BrugerRetRequest) {
-            this.BrugerRetRequest = BrugerRetRequest;
+        public retRequest(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.RetRequestType RetRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.RetRequest1 = RetRequest1;
         }
     }
     
@@ -2797,24 +2864,28 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class retResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerRetResponseType BrugerRetResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="RetResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.RetResponseType RetResponse1;
         
         public retResponse() {
         }
         
-        public retResponse(IntegrationLayer.Bruger.BrugerRetResponseType BrugerRetResponse) {
-            this.BrugerRetResponse = BrugerRetResponse;
+        public retResponse(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.RetResponseType RetResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.RetResponse1 = RetResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerSletRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class SletRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2869,12 +2940,12 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerSletResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class SletResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private BasicOutputType sletOutputField;
         
@@ -2906,14 +2977,18 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class sletRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerSletRequestType BrugerSletRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SletRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.SletRequestType SletRequest1;
         
         public sletRequest() {
         }
         
-        public sletRequest(IntegrationLayer.Bruger.BrugerSletRequestType BrugerSletRequest) {
-            this.BrugerSletRequest = BrugerSletRequest;
+        public sletRequest(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.SletRequestType SletRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.SletRequest1 = SletRequest1;
         }
     }
     
@@ -2923,24 +2998,28 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class sletResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerSletResponseType BrugerSletResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SletResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.SletResponseType SletResponse1;
         
         public sletResponse() {
         }
         
-        public sletResponse(IntegrationLayer.Bruger.BrugerSletResponseType BrugerSletResponse) {
-            this.BrugerSletResponse = BrugerSletResponse;
+        public sletResponse(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.SletResponseType SletResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.SletResponse1 = SletResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerSoegRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class SoegRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -2995,7 +3074,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3047,7 +3126,7 @@ namespace IntegrationLayer.Bruger {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(SoegInputType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3121,7 +3200,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3209,7 +3288,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3311,12 +3390,12 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerSoegResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class SoegResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private SoegOutputType soegOutputField;
         
@@ -3343,7 +3422,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3395,14 +3474,18 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class soegRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerSoegRequestType BrugerSoegRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SoegRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.SoegRequestType SoegRequest1;
         
         public soegRequest() {
         }
         
-        public soegRequest(IntegrationLayer.Bruger.BrugerSoegRequestType BrugerSoegRequest) {
-            this.BrugerSoegRequest = BrugerSoegRequest;
+        public soegRequest(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.SoegRequestType SoegRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.SoegRequest1 = SoegRequest1;
         }
     }
     
@@ -3412,24 +3495,28 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class soegResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerSoegResponseType BrugerSoegResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="SoegResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.SoegResponseType SoegResponse1;
         
         public soegResponse() {
         }
         
-        public soegResponse(IntegrationLayer.Bruger.BrugerSoegResponseType BrugerSoegResponse) {
-            this.BrugerSoegResponse = BrugerSoegResponse;
+        public soegResponse(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.SoegResponseType SoegResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.SoegResponse1 = SoegResponse1;
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerListeRequestType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class ListRequestType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private CallContextType callContextField;
         
@@ -3484,7 +3571,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3572,12 +3659,12 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/")]
-    public partial class BrugerListeResponseType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/")]
+    public partial class ListResponseType : object, System.ComponentModel.INotifyPropertyChanged {
         
         private ListOutputType1 listOutputField;
         
@@ -3604,7 +3691,7 @@ namespace IntegrationLayer.Bruger {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3628,7 +3715,7 @@ namespace IntegrationLayer.Bruger {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ListOutputType1))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3665,14 +3752,18 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class listRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerListeRequestType BrugerListeRequest;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListRequest", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.ListRequestType ListRequest1;
         
         public listRequest() {
         }
         
-        public listRequest(IntegrationLayer.Bruger.BrugerListeRequestType BrugerListeRequest) {
-            this.BrugerListeRequest = BrugerListeRequest;
+        public listRequest(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.ListRequestType ListRequest1) {
+            this.RequestHeader = RequestHeader;
+            this.ListRequest1 = ListRequest1;
         }
     }
     
@@ -3682,14 +3773,18 @@ namespace IntegrationLayer.Bruger {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class listResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/1/", Order=0)]
-        public IntegrationLayer.Bruger.BrugerListeResponseType BrugerListeResponse;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://kombit.dk/xml/schemas/RequestHeader/1/")]
+        public IntegrationLayer.Bruger.RequestHeaderType RequestHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="ListResponse", Namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Bruger/2/", Order=0)]
+        public IntegrationLayer.Bruger.ListResponseType ListResponse1;
         
         public listResponse() {
         }
         
-        public listResponse(IntegrationLayer.Bruger.BrugerListeResponseType BrugerListeResponse) {
-            this.BrugerListeResponse = BrugerListeResponse;
+        public listResponse(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.ListResponseType ListResponse1) {
+            this.RequestHeader = RequestHeader;
+            this.ListResponse1 = ListResponse1;
         }
     }
     
@@ -3725,11 +3820,13 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.opret(request);
         }
         
-        public IntegrationLayer.Bruger.BrugerOpretResponseType opret(IntegrationLayer.Bruger.BrugerOpretRequestType BrugerOpretRequest) {
+        public IntegrationLayer.Bruger.OpretResponseType opret(ref IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.OpretRequestType OpretRequest1) {
             IntegrationLayer.Bruger.opretRequest inValue = new IntegrationLayer.Bruger.opretRequest();
-            inValue.BrugerOpretRequest = BrugerOpretRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.OpretRequest1 = OpretRequest1;
             IntegrationLayer.Bruger.opretResponse retVal = ((IntegrationLayer.Bruger.BrugerPortType)(this)).opret(inValue);
-            return retVal.BrugerOpretResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.OpretResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3737,9 +3834,10 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.opretAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.opretResponse> opretAsync(IntegrationLayer.Bruger.BrugerOpretRequestType BrugerOpretRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.opretResponse> opretAsync(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.OpretRequestType OpretRequest1) {
             IntegrationLayer.Bruger.opretRequest inValue = new IntegrationLayer.Bruger.opretRequest();
-            inValue.BrugerOpretRequest = BrugerOpretRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.OpretRequest1 = OpretRequest1;
             return ((IntegrationLayer.Bruger.BrugerPortType)(this)).opretAsync(inValue);
         }
         
@@ -3748,11 +3846,13 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.importer(request);
         }
         
-        public IntegrationLayer.Bruger.BrugerImporterResponseType importer(IntegrationLayer.Bruger.BrugerImporterRequestType BrugerImporterRequest) {
+        public IntegrationLayer.Bruger.ImporterResponseType importer(ref IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.ImporterRequestType ImporterRequest1) {
             IntegrationLayer.Bruger.importerRequest inValue = new IntegrationLayer.Bruger.importerRequest();
-            inValue.BrugerImporterRequest = BrugerImporterRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.ImporterRequest1 = ImporterRequest1;
             IntegrationLayer.Bruger.importerResponse retVal = ((IntegrationLayer.Bruger.BrugerPortType)(this)).importer(inValue);
-            return retVal.BrugerImporterResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.ImporterResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3760,9 +3860,10 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.importerAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.importerResponse> importerAsync(IntegrationLayer.Bruger.BrugerImporterRequestType BrugerImporterRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.importerResponse> importerAsync(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.ImporterRequestType ImporterRequest1) {
             IntegrationLayer.Bruger.importerRequest inValue = new IntegrationLayer.Bruger.importerRequest();
-            inValue.BrugerImporterRequest = BrugerImporterRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.ImporterRequest1 = ImporterRequest1;
             return ((IntegrationLayer.Bruger.BrugerPortType)(this)).importerAsync(inValue);
         }
         
@@ -3771,11 +3872,13 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.passiver(request);
         }
         
-        public IntegrationLayer.Bruger.BrugerPassiverResponseType passiver(IntegrationLayer.Bruger.BrugerPassiverRequestType BrugerPassiverRequest) {
+        public IntegrationLayer.Bruger.PassiverResponseType passiver(ref IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.PassiverRequestType PassiverRequest1) {
             IntegrationLayer.Bruger.passiverRequest inValue = new IntegrationLayer.Bruger.passiverRequest();
-            inValue.BrugerPassiverRequest = BrugerPassiverRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.PassiverRequest1 = PassiverRequest1;
             IntegrationLayer.Bruger.passiverResponse retVal = ((IntegrationLayer.Bruger.BrugerPortType)(this)).passiver(inValue);
-            return retVal.BrugerPassiverResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.PassiverResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3783,9 +3886,10 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.passiverAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.passiverResponse> passiverAsync(IntegrationLayer.Bruger.BrugerPassiverRequestType BrugerPassiverRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.passiverResponse> passiverAsync(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.PassiverRequestType PassiverRequest1) {
             IntegrationLayer.Bruger.passiverRequest inValue = new IntegrationLayer.Bruger.passiverRequest();
-            inValue.BrugerPassiverRequest = BrugerPassiverRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.PassiverRequest1 = PassiverRequest1;
             return ((IntegrationLayer.Bruger.BrugerPortType)(this)).passiverAsync(inValue);
         }
         
@@ -3794,11 +3898,13 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.laes(request);
         }
         
-        public IntegrationLayer.Bruger.BrugerLaesResponseType laes(IntegrationLayer.Bruger.BrugerLaesRequestType BrugerLaesRequest) {
+        public IntegrationLayer.Bruger.LaesResponseType laes(ref IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.LaesRequestType LaesRequest1) {
             IntegrationLayer.Bruger.laesRequest inValue = new IntegrationLayer.Bruger.laesRequest();
-            inValue.BrugerLaesRequest = BrugerLaesRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.LaesRequest1 = LaesRequest1;
             IntegrationLayer.Bruger.laesResponse retVal = ((IntegrationLayer.Bruger.BrugerPortType)(this)).laes(inValue);
-            return retVal.BrugerLaesResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.LaesResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3806,9 +3912,10 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.laesAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.laesResponse> laesAsync(IntegrationLayer.Bruger.BrugerLaesRequestType BrugerLaesRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.laesResponse> laesAsync(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.LaesRequestType LaesRequest1) {
             IntegrationLayer.Bruger.laesRequest inValue = new IntegrationLayer.Bruger.laesRequest();
-            inValue.BrugerLaesRequest = BrugerLaesRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.LaesRequest1 = LaesRequest1;
             return ((IntegrationLayer.Bruger.BrugerPortType)(this)).laesAsync(inValue);
         }
         
@@ -3817,11 +3924,13 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.ret(request);
         }
         
-        public IntegrationLayer.Bruger.BrugerRetResponseType ret(IntegrationLayer.Bruger.BrugerRetRequestType BrugerRetRequest) {
+        public IntegrationLayer.Bruger.RetResponseType ret(ref IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.RetRequestType RetRequest1) {
             IntegrationLayer.Bruger.retRequest inValue = new IntegrationLayer.Bruger.retRequest();
-            inValue.BrugerRetRequest = BrugerRetRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.RetRequest1 = RetRequest1;
             IntegrationLayer.Bruger.retResponse retVal = ((IntegrationLayer.Bruger.BrugerPortType)(this)).ret(inValue);
-            return retVal.BrugerRetResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.RetResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3829,9 +3938,10 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.retAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.retResponse> retAsync(IntegrationLayer.Bruger.BrugerRetRequestType BrugerRetRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.retResponse> retAsync(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.RetRequestType RetRequest1) {
             IntegrationLayer.Bruger.retRequest inValue = new IntegrationLayer.Bruger.retRequest();
-            inValue.BrugerRetRequest = BrugerRetRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.RetRequest1 = RetRequest1;
             return ((IntegrationLayer.Bruger.BrugerPortType)(this)).retAsync(inValue);
         }
         
@@ -3840,11 +3950,13 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.slet(request);
         }
         
-        public IntegrationLayer.Bruger.BrugerSletResponseType slet(IntegrationLayer.Bruger.BrugerSletRequestType BrugerSletRequest) {
+        public IntegrationLayer.Bruger.SletResponseType slet(ref IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.SletRequestType SletRequest1) {
             IntegrationLayer.Bruger.sletRequest inValue = new IntegrationLayer.Bruger.sletRequest();
-            inValue.BrugerSletRequest = BrugerSletRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.SletRequest1 = SletRequest1;
             IntegrationLayer.Bruger.sletResponse retVal = ((IntegrationLayer.Bruger.BrugerPortType)(this)).slet(inValue);
-            return retVal.BrugerSletResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.SletResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3852,9 +3964,10 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.sletAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.sletResponse> sletAsync(IntegrationLayer.Bruger.BrugerSletRequestType BrugerSletRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.sletResponse> sletAsync(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.SletRequestType SletRequest1) {
             IntegrationLayer.Bruger.sletRequest inValue = new IntegrationLayer.Bruger.sletRequest();
-            inValue.BrugerSletRequest = BrugerSletRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.SletRequest1 = SletRequest1;
             return ((IntegrationLayer.Bruger.BrugerPortType)(this)).sletAsync(inValue);
         }
         
@@ -3863,11 +3976,13 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.soeg(request);
         }
         
-        public IntegrationLayer.Bruger.BrugerSoegResponseType soeg(IntegrationLayer.Bruger.BrugerSoegRequestType BrugerSoegRequest) {
+        public IntegrationLayer.Bruger.SoegResponseType soeg(ref IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.SoegRequestType SoegRequest1) {
             IntegrationLayer.Bruger.soegRequest inValue = new IntegrationLayer.Bruger.soegRequest();
-            inValue.BrugerSoegRequest = BrugerSoegRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.SoegRequest1 = SoegRequest1;
             IntegrationLayer.Bruger.soegResponse retVal = ((IntegrationLayer.Bruger.BrugerPortType)(this)).soeg(inValue);
-            return retVal.BrugerSoegResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.SoegResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3875,9 +3990,10 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.soegAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.soegResponse> soegAsync(IntegrationLayer.Bruger.BrugerSoegRequestType BrugerSoegRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.soegResponse> soegAsync(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.SoegRequestType SoegRequest1) {
             IntegrationLayer.Bruger.soegRequest inValue = new IntegrationLayer.Bruger.soegRequest();
-            inValue.BrugerSoegRequest = BrugerSoegRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.SoegRequest1 = SoegRequest1;
             return ((IntegrationLayer.Bruger.BrugerPortType)(this)).soegAsync(inValue);
         }
         
@@ -3886,11 +4002,13 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.list(request);
         }
         
-        public IntegrationLayer.Bruger.BrugerListeResponseType list(IntegrationLayer.Bruger.BrugerListeRequestType BrugerListeRequest) {
+        public IntegrationLayer.Bruger.ListResponseType list(ref IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.ListRequestType ListRequest1) {
             IntegrationLayer.Bruger.listRequest inValue = new IntegrationLayer.Bruger.listRequest();
-            inValue.BrugerListeRequest = BrugerListeRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.ListRequest1 = ListRequest1;
             IntegrationLayer.Bruger.listResponse retVal = ((IntegrationLayer.Bruger.BrugerPortType)(this)).list(inValue);
-            return retVal.BrugerListeResponse;
+            RequestHeader = retVal.RequestHeader;
+            return retVal.ListResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3898,9 +4016,10 @@ namespace IntegrationLayer.Bruger {
             return base.Channel.listAsync(request);
         }
         
-        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.listResponse> listAsync(IntegrationLayer.Bruger.BrugerListeRequestType BrugerListeRequest) {
+        public System.Threading.Tasks.Task<IntegrationLayer.Bruger.listResponse> listAsync(IntegrationLayer.Bruger.RequestHeaderType RequestHeader, IntegrationLayer.Bruger.ListRequestType ListRequest1) {
             IntegrationLayer.Bruger.listRequest inValue = new IntegrationLayer.Bruger.listRequest();
-            inValue.BrugerListeRequest = BrugerListeRequest;
+            inValue.RequestHeader = RequestHeader;
+            inValue.ListRequest1 = ListRequest1;
             return ((IntegrationLayer.Bruger.BrugerPortType)(this)).listAsync(inValue);
         }
     }

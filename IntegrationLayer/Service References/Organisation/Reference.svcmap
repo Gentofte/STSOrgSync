@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a18c53d4-ea5b-4100-83fc-1b831392b075" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="\\VBOXSVR\brian\projects\organisation-synchronisation-component\IntegrationLayer\Resources\sp-new-schema\Organisation\wsdl\context\OrganisationService.wsdl" Protocol="file" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Part.xsd" MetadataType="Schema" ID="94e52ad3-4faa-4a81-8bae-e74426e7db93" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/SF1500_EP_FS8/xsd/1.1.STS-1/Part.xsd" />
+    <MetadataFile FileName="ServiceplatformFaultMessage.wsdl" MetadataType="Wsdl" ID="2e6cd30a-413d-442f-96f1-ba7adc310655" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/sp/ServiceplatformFaultMessage_1.wsdl" />
+    <MetadataFile FileName="RequestHeader.xsd" MetadataType="Schema" ID="701f0f4c-03e0-427e-a1b6-78436fd2529c" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/SF1500_EP_FS8/xsd/common/RequestHeader.xsd" />
+    <MetadataFile FileName="AuthorityContext_1.xsd" MetadataType="Schema" ID="73e54574-94ed-480d-b616-4aaf616f8c24" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/sp/AuthorityContext_1.xsd" />
+    <MetadataFile FileName="OrganisationServiceMsg.xsd" MetadataType="Schema" ID="9bb9715b-fa33-446c-97c1-423b91d71df6" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/OrganisationServiceMsg.xsd" />
+    <MetadataFile FileName="OrganisationOperationer.xsd" MetadataType="Schema" ID="07ab6e5a-3cc9-42f9-bf09-2401b2bd80c6" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/SF1500_EP_FS8/xsd/1.1.STS-1/OrganisationOperationer.xsd" />
+    <MetadataFile FileName="policies.wsdl" MetadataType="Wsdl" ID="d7359410-bcfa-4718-a247-f126fe72cad9" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/wsdl/context/policies.wsdl" />
+    <MetadataFile FileName="OrganisationService.wsdl" MetadataType="Wsdl" ID="d3a4b7d4-a589-4f9c-8ef5-162d9e14fb0d" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/wsdl/context/OrganisationService.wsdl" />
+    <MetadataFile FileName="SagDokObjekt.xsd" MetadataType="Schema" ID="a7f29ff7-7bca-422c-a3c5-99afd69770e0" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/SF1500_EP_FS8/xsd/1.1.STS-1/SagDokObjekt.xsd" />
+    <MetadataFile FileName="ServiceplatformFault_1.xsd" MetadataType="Schema" ID="0b2ea743-6258-4715-aea5-f87b0f293855" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/sp/ServiceplatformFault_1.xsd" />
+    <MetadataFile FileName="Organisation.xsd" MetadataType="Schema" ID="5ab26bfb-ecc5-47bd-9e3b-afa95184c590" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/SF1500_EP_FS8/xsd/1.1.STS-1/Organisation.xsd" />
+    <MetadataFile FileName="CallContext_1.xsd" MetadataType="Schema" ID="e08e4afd-2644-48a2-aa23-e70fdd4ca60e" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/sp/CallContext_1.xsd" />
+    <MetadataFile FileName="OrganisationFaelles.xsd" MetadataType="Schema" ID="ee3fb8e2-bf30-46dd-9357-3e91101d6a0d" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Organisation/SF1500_EP_FS8/xsd/1.1.STS-1/OrganisationFaelles.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

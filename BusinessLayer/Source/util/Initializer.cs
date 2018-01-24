@@ -15,7 +15,6 @@ namespace Organisation.BusinessLayer
             {
                 XmlConfigurator.ConfigureAndWatch(new System.IO.FileInfo("Log.config"));
 
-                TokenCacheUpdater.Init();
                 initialized = true;
             }
         }

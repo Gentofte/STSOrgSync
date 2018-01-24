@@ -215,6 +215,7 @@ namespace Organisation.SchedulingLayer
                             {
                                 user = new UserRegistrationExtended();
                                 user_id = (long)reader["id"];
+                                user.Id = user_id;
 
                                 if (GetValue(reader, "user_phone_value") != null)
                                 {
@@ -305,6 +306,7 @@ namespace Organisation.SchedulingLayer
                             {
                                 user = new UserRegistrationExtended();
                                 user_id = (long)reader["id"];
+                                user.Id = user_id;
 
                                 if (GetValue(reader, "user_phone_value") != null)
                                 {
@@ -353,8 +355,6 @@ namespace Organisation.SchedulingLayer
 
                                 user.Timestamp = (DateTime)reader["timestamp"];
                                 user.Operation = (OperationType)Enum.Parse(typeof(OperationType), GetValue(reader, "operation"));
-
-                                return user;
                             }
                         }
                     }
@@ -387,7 +387,7 @@ namespace Organisation.SchedulingLayer
             return user;
         }
 
-        public void Delete(string uuid)
+        public void Delete(long id)
         {
             if (useSqlLite)
             {
@@ -397,7 +397,7 @@ namespace Organisation.SchedulingLayer
 
                     using (SQLiteCommand command = new SQLiteCommand(UserStatements.DELETE, connection))
                     {
-                        command.Parameters.Add(new SQLiteParameter("@uuid", uuid));
+                        command.Parameters.Add(new SQLiteParameter("@id", id));
                         command.ExecuteNonQuery();
                     }
                 }
@@ -410,7 +410,7 @@ namespace Organisation.SchedulingLayer
 
                     using (SqlCommand command = new SqlCommand(UserStatements.DELETE, connection))
                     {
-                        command.Parameters.Add(new SqlParameter("@uuid", uuid));
+                        command.Parameters.Add(new SqlParameter("@id", id));
                         command.ExecuteNonQuery();
                     }
                 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using IntegrationLayer.Person;
 using System.Security.Cryptography.X509Certificates;
+using System.ServiceModel;
 
 namespace Organisation.IntegrationLayer
 {
@@ -25,13 +26,11 @@ namespace Organisation.IntegrationLayer
 
         internal PersonPortTypeClient CreatePort()
         {
-            CustomLibBasBinding binding = new CustomLibBasBinding();
+            BasicHttpBinding binding = new BasicHttpBinding();
+            binding.Security.Mode = BasicHttpSecurityMode.Transport;
+            binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Certificate;
 
-            // TODO: old STS tcode
-            // PersonPortTypeClient port = new PersonPortTypeClient(binding, StubUtil.GetEndPointAddress(SERVICE));
-
-            // TODO: new SP code (pre-token)
-            PersonPortTypeClient port = new PersonPortTypeClient(binding, StubUtil.GetEndPointAddress("Person/1"));
+            PersonPortTypeClient port = new PersonPortTypeClient(binding, StubUtil.GetEndPointAddress("Person/2"));
             port.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindByThumbprint, registryProperties.ClientCertThumbprint);
 
             // Disable revocation checking

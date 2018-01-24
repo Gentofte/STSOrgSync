@@ -25,7 +25,7 @@
 	            person_shortkey		    NVARCHAR(50),
 	            person_name		        NVARCHAR(64),
 	            person_cpr		        NVARCHAR(11),
-	            operation		        NVARCHAR(16) NOT NULL
+	            operation		        NVARCHAR(16) NOT NULL,
 
 	            CONSTRAINT user_operation_check CHECK (
 		            operation IN('UPDATE', 'DELETE')
@@ -107,6 +107,6 @@
 
         public const string SELECT_POSITIONS = @"select uuid, shortkey, name, orgunit_uuid from user_positions where user_id = @id";
 
-        public const string DELETE = @"DELETE FROM users where user_uuid = @uuid";
+        public const string DELETE = @"DELETE FROM users where id = @id";
     }
 }

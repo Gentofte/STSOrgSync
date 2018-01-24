@@ -4,6 +4,7 @@ namespace Organisation.SchedulingLayer
 {
     public class UserRegistrationExtended : UserRegistration
     {
+        public long Id { get; set; }
         public OperationType Operation { get; set; }   
     } 
 }

@@ -45,18 +45,6 @@
       <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Digst.OioIdws.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Digst.OioIdws.Wsc.1.1.1\lib\net45\Digst.OioIdws.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Digst.OioIdws.LibBas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Digst.OioIdws.Wsc.1.1.1\lib\net45\Digst.OioIdws.LibBas.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Digst.OioIdws.OioWsTrust, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Digst.OioIdws.Wsc.1.1.1\lib\net45\Digst.OioIdws.OioWsTrust.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -99,6 +87,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\Organisation\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\Person\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,8 +99,8 @@
     </Compile>
     <Compile Include="Source\config\Environment.cs" />
     <Compile Include="Source\config\OrganisationRegistryProperties.cs" />
+    <Compile Include="Source\config\ProdEnvironment.cs" />
     <Compile Include="Source\config\TestEnvironment.cs" />
-    <Compile Include="Source\config\STSEnvironment.cs" />
     <Compile Include="Source\dto\AddressData.cs" />
     <Compile Include="Source\dto\OrgFunctionData.cs" />
     <Compile Include="Source\dto\OrgUnitData.cs" />
@@ -121,30 +114,23 @@
     <Compile Include="Source\log\LoggingBehavior.cs" />
     <Compile Include="Source\log\LoggingMessageInspector.cs" />
     <Compile Include="Source\dto\AddressRelation.cs" />
-    <Compile Include="Source\oioidws\CustomAlgorithmSuite.cs" />
-    <Compile Include="Source\oioidws\CustomLibBasBinding.cs" />
-    <Compile Include="Source\oioidws\CustomLibBasClientBehavior.cs" />
-    <Compile Include="Source\oioidws\CustomLibBasMessageInspector.cs" />
     <Compile Include="Source\stubs\AdresseStub.cs" />
     <Compile Include="Source\stubs\BrugerStub.cs" />
     <Compile Include="Source\stubs\helpers\AdresseStubHelper.cs" />
     <Compile Include="Source\stubs\helpers\BrugerStubHelper.cs" />
+    <Compile Include="Source\stubs\helpers\OrganisationStubHelper.cs" />
     <Compile Include="Source\stubs\helpers\OrganisationEnhedStubHelper.cs" />
     <Compile Include="Source\stubs\helpers\OrganisationFunktionStubHelper.cs" />
     <Compile Include="Source\stubs\helpers\PersonStubHelper.cs" />
     <Compile Include="Source\stubs\helpers\IdUtil.cs" />
+    <Compile Include="Source\stubs\OrganisationStub.cs" />
     <Compile Include="Source\stubs\OrganisationEnhedStub.cs" />
     <Compile Include="Source\stubs\OrganisationFunktionStub.cs" />
     <Compile Include="Source\stubs\PersonStub.cs" />
     <Compile Include="Source\stubs\constants\UUIDConstants.cs" />
     <Compile Include="Source\stubs\helpers\StubUtil.cs" />
     <Compile Include="Source\certificates\CertificateLoader.cs" />
-    <Compile Include="Source\token\ConnectionHelper.cs" />
     <Compile Include="Source\exceptions\STSNotFoundException.cs" />
-    <Compile Include="Source\token\MutualCertificateWithMessageSecurityBinding.cs" />
-    <Compile Include="Source\token\TokenCache.cs" />
-    <Compile Include="Source\token\TokenCacheUpdater.cs" />
-    <Compile Include="Source\token\TokenMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="job_scheduling_data_2_0.xsd">
@@ -170,57 +156,65 @@
     <None Include="Service References\Adresse\GenerelleDefinitioner.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Adresse\IntegrationLayer.Adresse.AdresseImporterResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Adresse\IntegrationLayer.Adresse.AdresseLaesResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Adresse\IntegrationLayer.Adresse.AdresseListeResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Adresse\IntegrationLayer.Adresse.AdresseOpretResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Adresse\IntegrationLayer.Adresse.AdressePassiverResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Adresse\IntegrationLayer.Adresse.AdresseRetResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Adresse\IntegrationLayer.Adresse.AdresseSletResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Adresse\IntegrationLayer.Adresse.AdresseSoegResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\Adresse\IntegrationLayer.Adresse.importerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Adresse\IntegrationLayer.Adresse.ImporterResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Adresse\IntegrationLayer.Adresse.laesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Adresse\IntegrationLayer.Adresse.LaesResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Adresse\IntegrationLayer.Adresse.listResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Adresse\IntegrationLayer.Adresse.ListResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Adresse\IntegrationLayer.Adresse.opretResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Adresse\IntegrationLayer.Adresse.OpretResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Adresse\IntegrationLayer.Adresse.passiverResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Adresse\IntegrationLayer.Adresse.PassiverResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Adresse\IntegrationLayer.Adresse.RequestHeaderType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Adresse\IntegrationLayer.Adresse.retResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Adresse\IntegrationLayer.Adresse.RetResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Adresse\IntegrationLayer.Adresse.sletResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Adresse\IntegrationLayer.Adresse.SletResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Adresse\IntegrationLayer.Adresse.soegResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Adresse\IntegrationLayer.Adresse.SoegResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Adresse\policies.wsdl" />
+    <None Include="Service References\Adresse\RequestHeader.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\Adresse\SagDokObjekt.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\Adresse\ServiceplatformFaultMessage.wsdl" />
     <None Include="Service References\Adresse\ServiceplatformFault_1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -240,52 +234,55 @@
     <None Include="Service References\Bruger\CallContext_1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Bruger\IntegrationLayer.Bruger.BrugerImporterResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Bruger\IntegrationLayer.Bruger.BrugerLaesResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Bruger\IntegrationLayer.Bruger.BrugerListeResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Bruger\IntegrationLayer.Bruger.BrugerOpretResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Bruger\IntegrationLayer.Bruger.BrugerPassiverResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Bruger\IntegrationLayer.Bruger.BrugerRetResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Bruger\IntegrationLayer.Bruger.BrugerSletResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Bruger\IntegrationLayer.Bruger.BrugerSoegResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\Bruger\IntegrationLayer.Bruger.importerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Bruger\IntegrationLayer.Bruger.ImporterResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Bruger\IntegrationLayer.Bruger.laesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Bruger\IntegrationLayer.Bruger.LaesResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Bruger\IntegrationLayer.Bruger.listResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Bruger\IntegrationLayer.Bruger.ListResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Bruger\IntegrationLayer.Bruger.opretResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Bruger\IntegrationLayer.Bruger.OpretResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Bruger\IntegrationLayer.Bruger.passiverResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Bruger\IntegrationLayer.Bruger.PassiverResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Bruger\IntegrationLayer.Bruger.RequestHeaderType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Bruger\IntegrationLayer.Bruger.retResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Bruger\IntegrationLayer.Bruger.RetResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Bruger\IntegrationLayer.Bruger.sletResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Bruger\IntegrationLayer.Bruger.SletResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Bruger\IntegrationLayer.Bruger.soegResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Bruger\IntegrationLayer.Bruger.SoegResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Bruger\OrganisationFaelles.xsd">
@@ -294,9 +291,14 @@
     <None Include="Service References\Bruger\Part.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\Bruger\policies.wsdl" />
+    <None Include="Service References\Bruger\RequestHeader.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\Bruger\SagDokObjekt.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\Bruger\ServiceplatformFaultMessage.wsdl" />
     <None Include="Service References\Bruger\ServiceplatformFault_1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -309,49 +311,52 @@
     <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.importerResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.ImporterResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.laesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.LaesResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.listResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.ListResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.opretResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.OrganisationEnhedImporterResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.OrganisationEnhedLaesResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.OrganisationEnhedListeResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.OrganisationEnhedOpretResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.OrganisationEnhedPassiverResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.OrganisationEnhedRetResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.OrganisationEnhedSletResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.OrganisationEnhedSoegResponseType.datasource">
+    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.OpretResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.passiverResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.PassiverResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.RequestHeaderType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.retResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.RetResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.sletResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.SletResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.soegResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationEnhed\IntegrationLayer.OrganisationEnhed.SoegResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\OrganisationEnhed\OrganisationEnhed.xsd">
@@ -370,9 +375,14 @@
     <None Include="Service References\OrganisationEnhed\Part.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\OrganisationEnhed\policies.wsdl" />
+    <None Include="Service References\OrganisationEnhed\RequestHeader.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\OrganisationEnhed\SagDokObjekt.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\OrganisationEnhed\ServiceplatformFaultMessage.wsdl" />
     <None Include="Service References\OrganisationEnhed\ServiceplatformFault_1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -385,49 +395,52 @@
     <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.importerResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.ImporterResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.laesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.LaesResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.listResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.ListResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.opretResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.OrganisationFunktionImporterResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.OrganisationFunktionLaesResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.OrganisationFunktionListeResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.OrganisationFunktionOpretResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.OrganisationFunktionPassiverResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.OrganisationFunktionRetResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.OrganisationFunktionSletResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.OrganisationFunktionSoegResponseType.datasource">
+    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.OpretResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.passiverResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.PassiverResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.RequestHeaderType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.retResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.RetResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.sletResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.SletResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.soegResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationFunktion\IntegrationLayer.OrganisationFunktion.SoegResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\OrganisationFunktion\OrganisationFaelles.xsd">
@@ -446,10 +459,99 @@
     <None Include="Service References\OrganisationFunktion\Part.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\OrganisationFunktion\policies.wsdl" />
+    <None Include="Service References\OrganisationFunktion\RequestHeader.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\OrganisationFunktion\SagDokObjekt.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\OrganisationFunktion\ServiceplatformFaultMessage.wsdl" />
     <None Include="Service References\OrganisationFunktion\ServiceplatformFault_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Organisation\AuthorityContext_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Organisation\CallContext_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.importerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.ImporterResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.laesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.LaesResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.listResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.ListResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.opretResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.OpretResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.passiverResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.PassiverResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.RequestHeaderType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.retResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.RetResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.sletResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.SletResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.soegResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\IntegrationLayer.Organisation.SoegResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Organisation\Organisation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Organisation\OrganisationFaelles.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Organisation\OrganisationOperationer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Organisation\OrganisationService.wsdl" />
+    <None Include="Service References\Organisation\OrganisationServiceMsg.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Organisation\Part.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Organisation\policies.wsdl" />
+    <None Include="Service References\Organisation\RequestHeader.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Organisation\SagDokObjekt.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Organisation\ServiceplatformFaultMessage.wsdl" />
+    <None Include="Service References\Organisation\ServiceplatformFault_1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\Person\AuthorityContext_1.xsd">
@@ -464,49 +566,52 @@
     <None Include="Service References\Person\IntegrationLayer.Person.importerResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Person\IntegrationLayer.Person.ImporterResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Person\IntegrationLayer.Person.laesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Person\IntegrationLayer.Person.LaesResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Person\IntegrationLayer.Person.listResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Person\IntegrationLayer.Person.ListResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Person\IntegrationLayer.Person.opretResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Person\IntegrationLayer.Person.OpretResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Person\IntegrationLayer.Person.passiverResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\Person\IntegrationLayer.Person.PersonImporterResponseType.datasource">
+    <None Include="Service References\Person\IntegrationLayer.Person.PassiverResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\Person\IntegrationLayer.Person.PersonLaesResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Person\IntegrationLayer.Person.PersonListeResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Person\IntegrationLayer.Person.PersonOpretResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Person\IntegrationLayer.Person.PersonPassiverResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Person\IntegrationLayer.Person.PersonRetResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Person\IntegrationLayer.Person.PersonSletResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Person\IntegrationLayer.Person.PersonSoegResponseType.datasource">
+    <None Include="Service References\Person\IntegrationLayer.Person.RequestHeaderType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Person\IntegrationLayer.Person.retResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Person\IntegrationLayer.Person.RetResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Person\IntegrationLayer.Person.sletResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\Person\IntegrationLayer.Person.SletResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Person\IntegrationLayer.Person.soegResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Person\IntegrationLayer.Person.SoegResponseType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Person\Part.xsd">
@@ -522,9 +627,14 @@
     <None Include="Service References\Person\PersonServiceMsg.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\Person\policies.wsdl" />
+    <None Include="Service References\Person\RequestHeader.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\Person\SagDokObjekt.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\Person\ServiceplatformFaultMessage.wsdl" />
     <None Include="Service References\Person\ServiceplatformFault_1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -540,28 +650,35 @@
     <WCFMetadataStorage Include="Service References\Bruger\" />
     <WCFMetadataStorage Include="Service References\OrganisationEnhed\" />
     <WCFMetadataStorage Include="Service References\OrganisationFunktion\" />
+    <WCFMetadataStorage Include="Service References\Organisation\" />
     <WCFMetadataStorage Include="Service References\Person\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Readme.txt" />
-    <None Include="Service References\OrganisationEnhed\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\OrganisationEnhed\configuration.svcinfo" />
-    <None Include="Service References\OrganisationEnhed\configuration91.svcinfo" />
-    <None Include="Service References\OrganisationFunktion\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\OrganisationFunktion\configuration.svcinfo" />
-    <None Include="Service References\OrganisationFunktion\configuration91.svcinfo" />
     <None Include="Service References\Person\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\Person\configuration.svcinfo" />
     <None Include="Service References\Person\configuration91.svcinfo" />
+    <None Include="Service References\OrganisationFunktion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\OrganisationFunktion\configuration.svcinfo" />
+    <None Include="Service References\OrganisationFunktion\configuration91.svcinfo" />
+    <None Include="Service References\OrganisationEnhed\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\OrganisationEnhed\configuration.svcinfo" />
+    <None Include="Service References\OrganisationEnhed\configuration91.svcinfo" />
+    <None Include="Service References\Organisation\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\Organisation\configuration.svcinfo" />
+    <None Include="Service References\Organisation\configuration91.svcinfo" />
     <None Include="Service References\Bruger\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

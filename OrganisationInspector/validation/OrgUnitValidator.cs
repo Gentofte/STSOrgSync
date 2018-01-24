@@ -188,7 +188,7 @@ namespace OrganisationInspector
 
         private bool ValidateOrgUnitAddressType(string type)
         {
-            return type.Equals(UUIDConstants.ORGUNIT_ADDRESS_TYPE);
+            return type.Equals(UUIDConstants.ADDRESS_TYPE_ADDRESS);
         }
 
         private bool ValidateOrgUnitAddressRole(string rolle)
