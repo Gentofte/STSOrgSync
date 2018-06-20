@@ -2,11 +2,13 @@
 using System.ServiceModel;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.Generic;
+using IntegrationLayer.OrganisationFunktion;
 
 namespace Organisation.IntegrationLayer
 {
     internal static class StubUtil
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private static OrganisationRegistryProperties registryProperties = OrganisationRegistryProperties.GetInstance();
 
         public static string GetMunicipalityOrganisationUUID()
@@ -33,10 +35,12 @@ namespace Organisation.IntegrationLayer
 
         public static bool TerminateVirkning(dynamic virkning, DateTime timestamp)
         {
+            DateTime endTime = timestamp.Date + new TimeSpan(0, 0, 0);
+
             object current = virkning.TilTidspunkt.Item;
-            if (current == null || !(current is DateTime))
+            if (current == null || !(current is DateTime) || (current is DateTime && DateTime.Compare((DateTime) current, endTime) > 0))
             {
-                virkning.TilTidspunkt.Item = timestamp.Date + new TimeSpan(0, 0, 0);
+                virkning.TilTidspunkt.Item = endTime;
                 return true;
             }
 
@@ -68,9 +72,10 @@ namespace Organisation.IntegrationLayer
         {
             foreach (dynamic property in properties)
             {
-                // find the first open-ended EgenskabType - objects created by this library does not have end-times associated with them as a rule
                 object endTime = property.Virkning.TilTidspunkt.Item;
-                if (!(endTime is DateTime))
+
+                // either the registration is open-ended, or the set TilTidspunkt is after NOW
+                if (!(endTime is DateTime) || (DateTime.Compare(DateTime.Now, (DateTime)endTime) < 0))
                 {
                     return property;
                 }
@@ -83,9 +88,10 @@ namespace Organisation.IntegrationLayer
         {
             foreach (dynamic state in states)
             {
-                // find the first open-ended GyldighedType - objects created by this library does not have end-times associated with them as a rule
                 object endTime = state.Virkning.TilTidspunkt.Item;
-                if (!(endTime is DateTime))
+                
+                // either the registration is open-ended, or the set TilTidspunkt is after NOW
+                if (!(endTime is DateTime) || (DateTime.Compare(DateTime.Now, (DateTime)endTime) < 0))
                 {
                     return state;
                 }
@@ -147,8 +153,11 @@ namespace Organisation.IntegrationLayer
                         {
                             if ((uuidSubReference && objectInLocal.Uuid.Equals(objectInOrg.ReferenceID.Item)) || (!uuidSubReference && objectInLocal.Equals(objectInOrg.ReferenceID.Item)))
                             {
-                                // DateTime means this relationship has been terminated, and we should not count it as being present
-                                if (!(objectInOrg.Virkning.TilTidspunkt.Item is DateTime))
+                                var endTime = objectInOrg.Virkning.TilTidspunkt.Item;
+
+                                // endTime is bool => ok
+                                // endTime is DateTime, but Now is before endTime => ok
+                                if (!(endTime is DateTime) || (DateTime.Compare(DateTime.Now, (DateTime)endTime) < 0))
                                 {
                                     found = true;
                                 }

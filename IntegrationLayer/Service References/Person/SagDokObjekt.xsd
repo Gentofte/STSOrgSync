@@ -115,6 +115,7 @@
   <element oio:definition="urn:oio:sagdok:adresser:relation:ASDD:2.0.0" name="Adresser" type="sd:AdresseFlerRelationType" />
   <element oio:definition="urn:oio:sagdok:ansatte:relation:ASDD:2.0.0" name="Ansatte" type="sd:PersonFlerRelationType" />
   <element oio:definition="urn:oio:sagdok:branche:relation:ASDD:2.0.0" name="Branche" type="sd:KlasseRelationType" />
+  <element oio:definition="urn:oio:sagdok:interessefaellesskabstype:relation:ASDD:2.0.0" name="Interessefaellesskabstype" type="sd:KlasseRelationType" />
   <element oio:definition="urn:oio:sagdok:myndighed:relation:ASDD:1.0.0" name="Myndighed" type="sd:MyndighedRelationType" />
   <element oio:definition="urn:oio:sagdok:myndighedstype:relation:ASDD:1.0.0" name="Myndighedstype" type="sd:KlasseRelationType" />
   <element oio:definition="urn:oio:sagdok:opgaver:relation:ASDD:2.0.0" name="Opgaver" type="sd:KlasseFlerRelationType" />

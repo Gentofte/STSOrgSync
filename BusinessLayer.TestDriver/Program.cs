@@ -12,12 +12,70 @@ namespace Organisation.BusinessLayer.TestDriver
         private static UserService userService = new UserService();
         private static InspectorService inspectorService = new InspectorService();
 
+        // Korsbæk Compliance test global UUIDs
+        private static string korsbaekKommuneUuid = "e888f84a-483b-482e-9186-8772d23a0f4e";
+        private static string jobcenterUuid = "d945cf4a-9cd7-4869-83d3-6e886d54d05f";
+        private static string ydelseogRaadighedUuid = "e0fa4daf-d4d7-4698-afb4-f22e7d2f4534";
+        private static string folkeregisterUuid = "071847cb-a18e-41d3-9b88-c4fcd9f966f8";
+        private static string oekonomiogStyringUuid = "89dd21e1-83ce-496b-91d1-ebb2d1c375a0";
+        private static string kontrolgruppenUuid = "d4e5fe6f-1181-4d6a-b00a-c765445b77da";
+        private static string pensionUuid = "577628f2-38e9-4382-9c7b-98e91dff704b";
+        private static string beskaeftigelsesomraadetUuid = "4d4969a4-a1e6-4572-8993-db726e81114c";
+        private static string jobogRessourcerUuid = "6f6e3714-62fa-4a96-9ab5-13bcdd0bffff";
+
+        // random values are fine for these, they are not referenced later
+        private static string socialogSundhedsforvaltningenUuid = Guid.NewGuid().ToString().ToLower();
+        private static string ungeomraadetUuid = Guid.NewGuid().ToString().ToLower();
+        private static string jobogKompetencerUuid = Guid.NewGuid().ToString().ToLower();
+        private static string borgerserviceUuid = Guid.NewGuid().ToString().ToLower();
+        private static string infoOmstillingUuid = Guid.NewGuid().ToString().ToLower();
+        private static string boerneogKulturforvaltningenUuid = Guid.NewGuid().ToString().ToLower();
+        private static string oekonomiogAnalyseUuid = Guid.NewGuid().ToString().ToLower();
+        private static string familieograadgivningUuid = Guid.NewGuid().ToString().ToLower();
+        private static string dagtilbudogSundhedUuid = Guid.NewGuid().ToString().ToLower();
+        private static string paedagogiskPsykologiskRaadgivningUuid = Guid.NewGuid().ToString().ToLower();
+        private static string familieafdelingenUuid = Guid.NewGuid().ToString().ToLower();
+        private static string pPRTeam1Uuid = Guid.NewGuid().ToString().ToLower();
+        private static string pPRTeam2Uuid = Guid.NewGuid().ToString().ToLower();
+        private static string socialogHandicapafdelingenUuid = Guid.NewGuid().ToString().ToLower();
+        private static string denBoligsocialeEnhedUuid = Guid.NewGuid().ToString().ToLower();
+        private static string detPsykosocialeomraadeUuid = Guid.NewGuid().ToString().ToLower();
+        private static string handicapraadgivningenUuid = Guid.NewGuid().ToString().ToLower();
+        private static string korsbaekHandicaptilbudUuid = Guid.NewGuid().ToString().ToLower();
+        private static string sundhedUdviklingServiceogkonomiUuid = Guid.NewGuid().ToString().ToLower();
+        private static string kulturFritidogUngeUuid = Guid.NewGuid().ToString().ToLower();
+
+        // Employees in the Korsbaek test-case that has static UUIDs (for testing purposes)
+        private static string thokildHansenUuid = "fa98d62e-83d5-4d3e-a192-4512052f57d3";
+        private static string jakobKarlsenUuid = "43a07fbe-3713-4093-a46d-b91277d14350";
+        private static string anetteMoellerUuid = "20251ced-7617-44d2-9999-7d43ff0fca12";
+        private static string lissiSederquistUuid = "b247e9ff-56ac-4317-a43c-2adb794bb3de";
+        private static string dorteVinkelUuid = "21ae6961-1e3f-43b3-9e7d-4fedb214f0ff";
+        private static string anitaStenbjergUuid = "d67cf40c-0d6c-4c7c-b863-792028dae4bc";
+        private static string markusJensenUuid = "13022073-8665-4064-898d-2f04fca737f8";
+
         static void Main(string[] args)
         {
             Initializer.Init();
 
             // This is a small method to build some useful sample data for manuel testing
-            //BuildTestData();
+            // BuildTestData();
+
+            // these are completed
+            KorsbaekData_Init();
+
+            // KorsbaekData_511(); // flyt afdeling
+            // KorsbaekData_512(); // luk afdeling
+            // KorsbaekData_521(); // omplacering af medarbejder
+            // KorsbaekData_522(); // afslutning af medarbejder
+            // KorsbaekData_531(); // tilknytte henvendelsessted
+            // KorsbaekData_532(); // ændre henvendelsessted
+            // KorsbaekData_541(); // tilknytte udbetalingsenhed
+            // KorsbaekData_551(); // tilknytte it-system
+            // KorsbaekData_552(); // fjerne it-system
+
+            /* ordinary tests */
+            /*
             TestListAndReadOUs();
             TestListAndReadUsers();
             TestCreateAndUpdateFullUser();
@@ -25,12 +83,67 @@ namespace Organisation.BusinessLayer.TestDriver
             TestCreateDeleteUpdateUser();
             TestCreateDeleteUpdateOU();
             TestUpdateWithoutChanges();
-            TestItSystemUsage();
             TestPayoutUnits();
             TestPositions();
             TestContactPlaces();
+            TestUpdateAndSearch();
+            TestMultipleAddresses();
+            TestItSystemUsage();
+            */
 
             System.Environment.Exit(0);
+        }
+
+        private static void TestMultipleAddresses()
+        {
+            var reg = OUReg();
+            reg.Email = new Address() { Value = "email@email.com" };
+            reg.Phone = new Address() { Value = "12345678" };
+            orgUnitService.Update(reg);
+
+            var ou = orgUnitService.Read(reg.Uuid);
+            if (!"12345678".Equals(ou.Phone?.Value))
+            {
+                throw new Exception("Wrong phone");
+            }
+            else if (!"email@email.com".Equals(ou.Email?.Value))
+            {
+                throw new Exception("Wrong email");
+            }
+        }
+
+        private static void TestUpdateAndSearch()
+        {
+            var ouReg1 = OUReg();
+            ouReg1.Name = "ou1";
+            orgUnitService.Update(ouReg1);
+
+            var ouReg2 = OUReg();
+            ouReg2.Name = "ou2";
+            orgUnitService.Update(ouReg2);
+
+            var userReg = UserReg();
+            userReg.Person.Name = "name";            
+            userReg.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "position 1",
+                OrgUnitUuid = ouReg1.Uuid                
+            });
+            userReg.Positions.Add(new DTO.V1_1.Position()
+            {
+                Name = "position 2",
+                OrgUnitUuid = ouReg2.Uuid
+            });
+            userService.Update(userReg);
+
+            userReg.Positions.Remove(userReg.Positions[0]);
+            userService.Update(userReg);
+
+            var user = userService.Read(userReg.Uuid);
+            if (user.Positions.Count != 1)
+            {
+                throw new Exception("User position count should be 1 not " + user.Positions.Count);
+            }
         }
 
         private static void TestListAndReadUsers()
@@ -200,6 +313,8 @@ namespace Organisation.BusinessLayer.TestDriver
             registration1.ItSystemUuids.Add(Uuid());
             orgUnitService.Update(registration1);
 
+            orgUnitService.Read(registration1.Uuid);
+
             OrgUnitRegistration registration2 = OUReg();
             registration2.Name = "ou2";
             registration2.Email.Value = "email2@email.com";
@@ -208,7 +323,7 @@ namespace Organisation.BusinessLayer.TestDriver
             registration2.ItSystemUuids.Add(Uuid());
             orgUnitService.Update(registration2);
 
-            /* TODO: reenable this test once search takes Tilstand into consideration - it currently fails because of a bug @KMD
+            /* TODO: a KMD bug prevents this test from working...
             OrgUnitRegistration registration3 = OUReg();
             registration3.Name = "ou3";
             registration3.Email.Value = "email3@email.com";
@@ -216,7 +331,7 @@ namespace Organisation.BusinessLayer.TestDriver
             registration3.ItSystemUuids.Add(Uuid());
             registration3.ItSystemUuids.Add(Uuid());
             orgUnitService.Update(registration3);
-            orgUnitService.Delete(registration3, DateTime.Now);
+            orgUnitService.Delete(registration3.Uuid, DateTime.Now);
             */
 
             List<string> ous = orgUnitService.List();
@@ -523,6 +638,763 @@ namespace Organisation.BusinessLayer.TestDriver
             Validate(ou, unit);
         }
 
+        // 5.1.1 - flyt en afdeling
+        private static void KorsbaekData_511()
+        {
+            var orgUnitReg = orgUnitService.Read(kontrolgruppenUuid);
+            orgUnitReg.ParentOrgUnitUuid = oekonomiogStyringUuid;
+            orgUnitService.Update(orgUnitReg);
+        }
+
+        // 5.1.2 - luk afdeling
+        private static void KorsbaekData_512()
+        {
+            orgUnitService.Delete(pensionUuid, DateTime.Now);
+
+            var userReg = userService.Read(thokildHansenUuid);
+            userReg.Positions.Clear();
+            userService.Update(userReg);
+
+            userReg = userService.Read(jakobKarlsenUuid);
+            userReg.Positions.Clear();
+            userService.Update(userReg);
+
+            userReg = userService.Read(anetteMoellerUuid);
+            userReg.Positions.Clear();
+            userService.Update(userReg);
+
+            userReg = userService.Read(lissiSederquistUuid);
+            userReg.Positions.Clear();
+            userService.Update(userReg);
+
+            userReg = userService.Read(dorteVinkelUuid);
+            userReg.Positions.Clear();
+            userService.Update(userReg);
+        }
+
+        // 5.2.1 - omplacering af medarbejder
+        private static void KorsbaekData_521()
+        {
+            var userReg = userService.Read(anitaStenbjergUuid);
+            userReg.Positions.Add(new DTO.V1_1.Position { Name = "Assistent01", OrgUnitUuid = folkeregisterUuid });
+            userService.Update(userReg);
+        }
+
+        // 5.2.2 - afslut medarbejder
+        private static void KorsbaekData_522()
+        {
+            userService.Delete(markusJensenUuid, DateTime.Now);
+        }
+
+        // 5.3.1 - tilknytte henvendelsessted
+        private static void KorsbaekData_531()
+        {
+            var orgUnitReg = orgUnitService.Read(korsbaekKommuneUuid);
+            orgUnitReg.ContactPlaces.Add(new DTO.V1_1.ContactPlace()
+            {
+                OrgUnitUuid = jobcenterUuid,
+                Tasks = new List<string> {
+                    "ef0384a8-4d12-47b7-b834-17f5c56174c3",
+                    "97ae950d-f1d9-4024-85f1-1ac1407292ed",
+                    "356e5f68-e0af-4a80-ae13-6e1393a581ce",
+                    "c0349e20-630b-4831-9239-773bc42eab3b",
+                    "35601dc0-ccfe-460f-a1f4-2195a92801b3",
+                    "fd3b5a52-78f0-450d-9863-c5b51fd02a6d",
+                    "d67d8fda-3129-4119-be70-218c481cf891",
+                    "2d99694c-9093-422f-b6e5-a92599f02c1a",
+                    "54c0f130-d684-4ac5-afd9-d6b386de9f62",
+                    "9144f628-5ab7-49c7-a58d-d3a52ba79b6c",
+                    "c11086d8-3dd1-44c1-8339-37588f9817d2",
+                    "6c89562c-9b33-4e37-8bac-58660f2af39a",
+                    "5059fb7d-d7bb-4916-adb0-9ad70139a9ad",
+                    "dbb1b318-3c85-11e3-9ae0-0050c2490048",
+                    "dbb1b318-3c85-11e3-9ae1-0050c2490048",
+                    "dbb1b318-3c85-11e3-9ae2-0050c2490048",
+                    "1343e2b1-a913-11e3-9a40-0050c2490048",
+                    "2c912c3b-b360-11e4-a829-0050c2490048",
+                    "e3f432bb-1d99-11e6-a265-0050c2490048"
+                }
+            });
+
+            orgUnitService.Update(orgUnitReg);
+        }
+
+        // 5.3.2 - ændre henvendelssted
+        private static void KorsbaekData_532()
+        {
+            var orgUnitReg = orgUnitService.Read(jobogRessourcerUuid);
+            orgUnitReg.ContactPlaces[0].OrgUnitUuid = jobcenterUuid;
+            orgUnitService.Update(orgUnitReg);
+        }
+
+        // 5.4.1 - udbetalingsenhed (broken - the compliance test does not require this to be linked to any OU, which is bad)
+        private static void KorsbaekData_541()
+        {
+            var orgUnitReg = orgUnitService.Read(ydelseogRaadighedUuid);
+            orgUnitReg.LOSShortName = new Address()
+            {
+                ShortKey = "LOS YDRÅD",
+                Value = "YDRÅD"
+            };
+            orgUnitService.Update(orgUnitReg);
+
+            // TODO: as we create Udbetalingsenhed relations through a direct link, we need
+            //       to hook this up to something - we pick Korsbæk Kommune
+            orgUnitReg = orgUnitService.Read(korsbaekKommuneUuid);
+            orgUnitReg.PayoutUnitUuid = ydelseogRaadighedUuid;
+            orgUnitService.Update(orgUnitReg);
+        }
+
+        // 5.5.1 - it anvendelse
+        private static void KorsbaekData_551()
+        {
+            var orgUnitReg = orgUnitService.Read(beskaeftigelsesomraadetUuid);
+            orgUnitReg.ItSystemUuids.Add("1bd6d5d1-7e35-4c2a-9298-200c17ed64b2");
+            orgUnitService.Update(orgUnitReg);
+
+            orgUnitReg = orgUnitService.Read(jobcenterUuid);
+            orgUnitReg.ItSystemUuids.Add("1bd6d5d1-7e35-4c2a-9298-200c17ed64b2");
+            orgUnitService.Update(orgUnitReg);
+
+            orgUnitReg = orgUnitService.Read(ydelseogRaadighedUuid);
+            orgUnitReg.ItSystemUuids.Add("1bd6d5d1-7e35-4c2a-9298-200c17ed64b2");
+            orgUnitService.Update(orgUnitReg);
+        }
+
+        // 5.5.2 - it anvendelse (nedlæg)
+        private static void KorsbaekData_552()
+        {
+            var orgUnitReg = orgUnitService.Read(beskaeftigelsesomraadetUuid);
+            orgUnitReg.ItSystemUuids.Clear();
+            orgUnitService.Update(orgUnitReg);
+
+            orgUnitReg = orgUnitService.Read(jobcenterUuid);
+            orgUnitReg.ItSystemUuids.Clear();
+            orgUnitService.Update(orgUnitReg);
+
+            orgUnitReg = orgUnitService.Read(ydelseogRaadighedUuid);
+            orgUnitReg.ItSystemUuids.Clear();
+            orgUnitService.Update(orgUnitReg);
+        }
+
+        private static void KorsbaekData_Init()
+        {
+            List<OrgUnitRegistration> ous = new List<OrgUnitRegistration>();
+            List<UserRegistration> users = new List<UserRegistration>();
+
+            //////////////////// OUS //////////////////////
+
+            var korsbaekKommune = new OrgUnitRegistration();
+            korsbaekKommune.Uuid = korsbaekKommuneUuid;
+            korsbaekKommune.Name = "Korsbæk Kommune";
+            korsbaekKommune.ShortKey = "Korsbæk Kommune";
+            ous.Add(korsbaekKommune);
+
+            var socialogSundhedsforvaltningen = new OrgUnitRegistration();
+            socialogSundhedsforvaltningen.Uuid = socialogSundhedsforvaltningenUuid;
+            socialogSundhedsforvaltningen.Name = "Social og Sundhedsforvaltningen";
+            socialogSundhedsforvaltningen.ShortKey = "Social og Sundhedsforvaltningen";
+            socialogSundhedsforvaltningen.ParentOrgUnitUuid = korsbaekKommuneUuid;
+            ous.Add(socialogSundhedsforvaltningen);
+
+            var beskaeftigelsesomraadet = new OrgUnitRegistration();
+            beskaeftigelsesomraadet.Uuid = beskaeftigelsesomraadetUuid;
+            beskaeftigelsesomraadet.Name = "Beskæftigelsesområdet";
+            beskaeftigelsesomraadet.ShortKey = "Beskæftigelsesområdet";
+            beskaeftigelsesomraadet.ParentOrgUnitUuid = socialogSundhedsforvaltningenUuid;
+            ous.Add(beskaeftigelsesomraadet);
+
+            var ungeomraadet = new OrgUnitRegistration();
+            ungeomraadet.Uuid = ungeomraadetUuid;
+            ungeomraadet.Name = "Ungeområdet";
+            ungeomraadet.ShortKey = "Ungeområdet";
+            ungeomraadet.ParentOrgUnitUuid = beskaeftigelsesomraadetUuid;
+            ous.Add(ungeomraadet);
+
+            var jobcenter = new OrgUnitRegistration();
+            jobcenter.Uuid = jobcenterUuid;
+            jobcenter.Name = "Jobcenter";
+            jobcenter.ShortKey = "Jobcenter";
+            jobcenter.ParentOrgUnitUuid = beskaeftigelsesomraadetUuid;
+            ous.Add(jobcenter);
+
+            var ydelseogRaadighed = new OrgUnitRegistration();
+            ydelseogRaadighed.Uuid = ydelseogRaadighedUuid;
+            ydelseogRaadighed.Name = "Ydelse og Rådighed";
+            ydelseogRaadighed.ShortKey = "Ydelse og Rådighed";
+            ydelseogRaadighed.ParentOrgUnitUuid = jobcenterUuid;
+            ydelseogRaadighed.PayoutUnitUuid = oekonomiogStyringUuid;
+            ous.Add(ydelseogRaadighed);
+
+            // TODO: der er ingen angivelse af hvilke Opgaver som Borgerservice er kontaktsted for, så der er indsat 0000...
+            var jobogRessourcer = new OrgUnitRegistration();
+            jobogRessourcer.Uuid = jobogRessourcerUuid;
+            jobogRessourcer.Name = "Job og Ressourcer";
+            jobogRessourcer.ShortKey = "Job og Ressourcer";
+            jobogRessourcer.ParentOrgUnitUuid = jobcenterUuid;
+            jobogRessourcer.ContactPlaces.Add(new DTO.V1_1.ContactPlace() { OrgUnitUuid = borgerserviceUuid, Tasks = new List<string> { "00000000-0000-4000-0000-000000000000" } });
+            ous.Add(jobogRessourcer);
+
+            var jobogKompetencer = new OrgUnitRegistration();
+            jobogKompetencer.Uuid = jobogKompetencerUuid;
+            jobogKompetencer.Name = "Job og Kompetencer";
+            jobogKompetencer.ShortKey = "Job og Kompetencer";
+            jobogKompetencer.ParentOrgUnitUuid = jobcenterUuid;
+            ous.Add(jobogKompetencer);
+
+            var borgerservice = new OrgUnitRegistration();
+            borgerservice.Uuid = borgerserviceUuid;
+            borgerservice.Name = "Borgerservice";
+            borgerservice.ShortKey = "Borgerservice";
+            borgerservice.ParentOrgUnitUuid = sundhedUdviklingServiceogkonomiUuid;
+            ous.Add(borgerservice);
+
+            // TODO: denne enhed havde ikke noget LOS navn, men det skal den have da den er udbetalende enhed
+            var oekonomiogStyring = new OrgUnitRegistration();
+            oekonomiogStyring.Uuid = oekonomiogStyringUuid;
+            oekonomiogStyring.Name = "Økonomi og Styring";
+            oekonomiogStyring.ShortKey = "Økonomi og Styring";
+            oekonomiogStyring.LOSShortName = new Address { Value = "OEKOGSTYR" };
+            oekonomiogStyring.ParentOrgUnitUuid = sundhedUdviklingServiceogkonomiUuid;
+            ous.Add(oekonomiogStyring);
+
+            var folkeregister = new OrgUnitRegistration();
+            folkeregister.Uuid = folkeregisterUuid;
+            folkeregister.Name = "Folkeregister";
+            folkeregister.ShortKey = "Folkeregister";
+            folkeregister.ParentOrgUnitUuid = borgerserviceUuid;
+            ous.Add(folkeregister);
+
+            var pension = new OrgUnitRegistration();
+            pension.Uuid = pensionUuid;
+            pension.Name = "Pension";
+            pension.ShortKey = "Pension";
+            pension.ParentOrgUnitUuid = borgerserviceUuid;
+            ous.Add(pension);
+
+            var kontrolgruppen = new OrgUnitRegistration();
+            kontrolgruppen.Uuid = kontrolgruppenUuid;
+            kontrolgruppen.Name = "Kontrolgruppen";
+            kontrolgruppen.ShortKey = "Kontrolgruppen";
+            kontrolgruppen.ParentOrgUnitUuid = borgerserviceUuid;
+            ous.Add(kontrolgruppen);
+
+            var infoOmstilling = new OrgUnitRegistration();
+            infoOmstilling.Uuid = infoOmstillingUuid;
+            infoOmstilling.Name = "Info-Omstilling";
+            infoOmstilling.ShortKey = "Info-Omstilling";
+            infoOmstilling.ParentOrgUnitUuid = borgerserviceUuid;
+            ous.Add(infoOmstilling);
+
+            var boerneogKulturforvaltningen = new OrgUnitRegistration();
+            boerneogKulturforvaltningen.Uuid = boerneogKulturforvaltningenUuid;
+            boerneogKulturforvaltningen.Name = "Børne og Kulturforvaltningen";
+            boerneogKulturforvaltningen.ShortKey = "Børne og Kulturforvaltningen";
+            boerneogKulturforvaltningen.ParentOrgUnitUuid = korsbaekKommuneUuid;
+            ous.Add(boerneogKulturforvaltningen);
+
+            var oekonomiogAnalyse = new OrgUnitRegistration();
+            oekonomiogAnalyse.Uuid = oekonomiogAnalyseUuid;
+            oekonomiogAnalyse.Name = "Økonomi og Analyse";
+            oekonomiogAnalyse.ShortKey = "Økonomi og Analyse";
+            oekonomiogAnalyse.ParentOrgUnitUuid = boerneogKulturforvaltningenUuid;
+            ous.Add(oekonomiogAnalyse);
+
+            var familieograadgivning = new OrgUnitRegistration();
+            familieograadgivning.Uuid = familieograadgivningUuid;
+            familieograadgivning.Name = "Familie og rådgivning";
+            familieograadgivning.ShortKey = "Familie og rådgivning";
+            familieograadgivning.ParentOrgUnitUuid = boerneogKulturforvaltningenUuid;
+            ous.Add(familieograadgivning);
+
+            var dagtilbudogSundhed = new OrgUnitRegistration();
+            dagtilbudogSundhed.Uuid = dagtilbudogSundhedUuid;
+            dagtilbudogSundhed.Name = "Dagtilbud og Sundhed";
+            dagtilbudogSundhed.ShortKey = "Dagtilbud og Sundhed";
+            dagtilbudogSundhed.ParentOrgUnitUuid = boerneogKulturforvaltningenUuid;
+            ous.Add(dagtilbudogSundhed);
+
+            var paedagogiskPsykologiskRaadgivning = new OrgUnitRegistration();
+            paedagogiskPsykologiskRaadgivning.Uuid = paedagogiskPsykologiskRaadgivningUuid;
+            paedagogiskPsykologiskRaadgivning.Name = "Pædagogisk Psykologisk Rådgivning";
+            paedagogiskPsykologiskRaadgivning.ShortKey = "Pædagogisk Psykologisk Rådgivning";
+            paedagogiskPsykologiskRaadgivning.ParentOrgUnitUuid = familieograadgivningUuid;
+            ous.Add(paedagogiskPsykologiskRaadgivning);
+
+            var familieafdelingen = new OrgUnitRegistration();
+            familieafdelingen.Uuid = familieafdelingenUuid;
+            familieafdelingen.Name = "Familieafdelingen";
+            familieafdelingen.ShortKey = "Familieafdelingen";
+            familieafdelingen.ParentOrgUnitUuid = familieograadgivningUuid;
+            ous.Add(familieafdelingen);
+
+            var pPRTeam1 = new OrgUnitRegistration();
+            pPRTeam1.Uuid = pPRTeam1Uuid;
+            pPRTeam1.Name = "PPR Team 1";
+            pPRTeam1.ShortKey = "PPR Team 1";
+            pPRTeam1.ParentOrgUnitUuid = paedagogiskPsykologiskRaadgivningUuid;
+            ous.Add(pPRTeam1);
+
+            var pPRTeam2 = new OrgUnitRegistration();
+            pPRTeam2.Uuid = pPRTeam2Uuid;
+            pPRTeam2.Name = "PPR Team 2";
+            pPRTeam2.ShortKey = "PPR Team 2";
+            pPRTeam2.ParentOrgUnitUuid = paedagogiskPsykologiskRaadgivningUuid;
+            ous.Add(pPRTeam2);
+
+            var socialogHandicapafdelingen = new OrgUnitRegistration();
+            socialogHandicapafdelingen.Uuid = socialogHandicapafdelingenUuid;
+            socialogHandicapafdelingen.Name = "Social og Handicapafdelingen";
+            socialogHandicapafdelingen.ShortKey = "Social og Handicapafdelingen";
+            socialogHandicapafdelingen.ParentOrgUnitUuid = socialogSundhedsforvaltningenUuid;
+            ous.Add(socialogHandicapafdelingen);
+
+            var denBoligsocialeEnhed = new OrgUnitRegistration();
+            denBoligsocialeEnhed.Uuid = denBoligsocialeEnhedUuid;
+            denBoligsocialeEnhed.Name = "Den Boligsociale Enhed";
+            denBoligsocialeEnhed.ShortKey = "Den Boligsociale Enhed";
+            denBoligsocialeEnhed.ParentOrgUnitUuid = socialogHandicapafdelingenUuid;
+            ous.Add(denBoligsocialeEnhed);
+
+            var detPsykosocialeomraade = new OrgUnitRegistration();
+            detPsykosocialeomraade.Uuid = detPsykosocialeomraadeUuid;
+            detPsykosocialeomraade.Name = "Det Psykosociale område";
+            detPsykosocialeomraade.ShortKey = "Det Psykosociale område";
+            detPsykosocialeomraade.ParentOrgUnitUuid = socialogHandicapafdelingenUuid;
+            ous.Add(detPsykosocialeomraade);
+
+            var handicapraadgivningen = new OrgUnitRegistration();
+            handicapraadgivningen.Uuid = handicapraadgivningenUuid;
+            handicapraadgivningen.Name = "Handicaprådgivningen";
+            handicapraadgivningen.ShortKey = "Handicaprådgivningen";
+            handicapraadgivningen.ParentOrgUnitUuid = socialogHandicapafdelingenUuid;
+            ous.Add(handicapraadgivningen);
+
+            var korsbaekHandicaptilbud = new OrgUnitRegistration();
+            korsbaekHandicaptilbud.Uuid = korsbaekHandicaptilbudUuid;
+            korsbaekHandicaptilbud.Name = "Korsbæk Handicaptilbud";
+            korsbaekHandicaptilbud.ShortKey = "Korsbæk Handicaptilbud";
+            korsbaekHandicaptilbud.ParentOrgUnitUuid = socialogHandicapafdelingenUuid;
+            ous.Add(korsbaekHandicaptilbud);
+
+            var sundhedUdviklingServiceogkonomi = new OrgUnitRegistration();
+            sundhedUdviklingServiceogkonomi.Uuid = sundhedUdviklingServiceogkonomiUuid;
+            sundhedUdviklingServiceogkonomi.Name = "Sundhed, Udvikling, Service og Økonomi";
+            sundhedUdviklingServiceogkonomi.ShortKey = "Sundhed, Udvikling, Service og Økonomi";
+            sundhedUdviklingServiceogkonomi.ParentOrgUnitUuid = socialogSundhedsforvaltningenUuid;
+            ous.Add(sundhedUdviklingServiceogkonomi);
+
+            var kulturFritidogUnge = new OrgUnitRegistration();
+            kulturFritidogUnge.Uuid = kulturFritidogUngeUuid;
+            kulturFritidogUnge.Name = "Kultur, Fritid og Unge";
+            kulturFritidogUnge.ShortKey = "Kultur, Fritid og Unge";
+            kulturFritidogUnge.ParentOrgUnitUuid = boerneogKulturforvaltningenUuid;
+            ous.Add(kulturFritidogUnge);
+
+            //////////////////// USERS //////////////////////
+
+            var piaStenberg = new UserRegistration();
+            piaStenberg.Uuid = Guid.NewGuid().ToString().ToLower();
+            piaStenberg.UserId = "PIASTE";
+            piaStenberg.ShortKey = "PIASTE";
+            piaStenberg.Email = new Address { Value = "piaste@korsbaek.dk" };
+            piaStenberg.Person.ShortKey = "P_PIASTE";
+            piaStenberg.Person.Name = "Pia Stenberg";
+            piaStenberg.Positions.Add(new DTO.V1_1.Position { Name = "YR. Medarb. 01", OrgUnitUuid = ydelseogRaadighedUuid });
+            users.Add(piaStenberg);
+
+            var catrineKristensen = new UserRegistration();
+            catrineKristensen.Uuid = Guid.NewGuid().ToString().ToLower();
+            catrineKristensen.UserId = "AMCATK";
+            catrineKristensen.ShortKey = "AMCATK";
+            catrineKristensen.Email = new Address { Value = "amcatk@korsbaek.dk" };
+            catrineKristensen.Person.ShortKey = "P_AMCATK";
+            catrineKristensen.Person.Name = "Catrine Kristensen";
+            catrineKristensen.Positions.Add(new DTO.V1_1.Position { Name = "YR. Medarb. 02", OrgUnitUuid = ydelseogRaadighedUuid });
+            users.Add(catrineKristensen);
+
+            var dortheLangager = new UserRegistration();
+            dortheLangager.Uuid = Guid.NewGuid().ToString().ToLower();
+            dortheLangager.UserId = "BEDOLG";
+            dortheLangager.ShortKey = "BEDOLG";
+            dortheLangager.Email = new Address { Value = "bedolg@korsbaek.dk" };
+            dortheLangager.Person.ShortKey = "P_BEDOLG";
+            dortheLangager.Person.Name = "Dorthe Langager";
+            dortheLangager.Positions.Add(new DTO.V1_1.Position { Name = "YR. Medarb. 03", OrgUnitUuid = ydelseogRaadighedUuid });
+            users.Add(dortheLangager);
+
+            var frederikDijon = new UserRegistration();
+            frederikDijon.Uuid = Guid.NewGuid().ToString().ToLower();
+            frederikDijon.UserId = "SOFCDJ";
+            frederikDijon.ShortKey = "SOFCDJ";
+            frederikDijon.Email = new Address { Value = "sofcdj@korsbaek.dk" };
+            frederikDijon.Person.ShortKey = "P_SOFCDJ";
+            frederikDijon.Person.Name = "Frederik Dijon";
+            frederikDijon.Positions.Add(new DTO.V1_1.Position { Name = "YR. Medarb. 04", OrgUnitUuid = ydelseogRaadighedUuid });
+            users.Add(frederikDijon);
+
+            var frederikkeGertsen = new UserRegistration();
+            frederikkeGertsen.Uuid = Guid.NewGuid().ToString().ToLower();
+            frederikkeGertsen.UserId = "SOFDGE";
+            frederikkeGertsen.ShortKey = "SOFDGE";
+            frederikkeGertsen.Email = new Address { Value = "sofdge@korsbaek.dk" };
+            frederikkeGertsen.Person.ShortKey = "P_SOFDGE";
+            frederikkeGertsen.Person.Name = "Frederikke Gertsen";
+            frederikkeGertsen.Positions.Add(new DTO.V1_1.Position { Name = "YR. Medarb. 05", OrgUnitUuid = ydelseogRaadighedUuid });
+            users.Add(frederikkeGertsen);
+
+            var leneBallen = new UserRegistration();
+            leneBallen.Uuid = Guid.NewGuid().ToString().ToLower();
+            leneBallen.UserId = "FLEBAL";
+            leneBallen.ShortKey = "FLEBAL";
+            leneBallen.Email = new Address { Value = "flebal@korsbaek.dk" };
+            leneBallen.Person.ShortKey = "P_FLEBAL";
+            leneBallen.Person.Name = "Lene Ballen";
+            leneBallen.Positions.Add(new DTO.V1_1.Position { Name = "YR. Medarb. 06", OrgUnitUuid = ydelseogRaadighedUuid });
+            users.Add(leneBallen);
+
+            var henrikJacobsen = new UserRegistration();
+            henrikJacobsen.Uuid = Guid.NewGuid().ToString().ToLower();
+            henrikJacobsen.UserId = "HENJAC";
+            henrikJacobsen.ShortKey = "HENJAC";
+            henrikJacobsen.Email = new Address { Value = "henjac@korsbaek.dk" };
+            henrikJacobsen.Person.ShortKey = "P_HENJAC";
+            henrikJacobsen.Person.Name = "Henrik Jacobsen";
+            henrikJacobsen.Positions.Add(new DTO.V1_1.Position { Name = "JR. Medarb. 01", OrgUnitUuid = jobogRessourcerUuid });
+            users.Add(henrikJacobsen);
+
+            var sofieDamager = new UserRegistration();
+            sofieDamager.Uuid = Guid.NewGuid().ToString().ToLower();
+            sofieDamager.UserId = "SOFJDM";
+            sofieDamager.ShortKey = "SOFJDM";
+            sofieDamager.Email = new Address { Value = "sofjdm@korsbaek.dk" };
+            sofieDamager.Person.ShortKey = "P_SOFJDM";
+            sofieDamager.Person.Name = "Sofie Damager";
+            sofieDamager.Positions.Add(new DTO.V1_1.Position { Name = "JR. Medarb. 02", OrgUnitUuid = jobogRessourcerUuid });
+            users.Add(sofieDamager);
+
+            var jannieBodoe = new UserRegistration();
+            jannieBodoe.Uuid = Guid.NewGuid().ToString().ToLower();
+            jannieBodoe.UserId = "JANBOD";
+            jannieBodoe.ShortKey = "JANBOD";
+            jannieBodoe.Email = new Address { Value = "janbod@korsbaek.dk" };
+            jannieBodoe.Person.ShortKey = "P_JANBOD";
+            jannieBodoe.Person.Name = "Jannie Bodø";
+            jannieBodoe.Positions.Add(new DTO.V1_1.Position { Name = "JR. Medarb. 03", OrgUnitUuid = jobogRessourcerUuid });
+            users.Add(jannieBodoe);
+
+            var katrineKaustisk = new UserRegistration();
+            katrineKaustisk.Uuid = Guid.NewGuid().ToString().ToLower();
+            katrineKaustisk.UserId = "KATKAU";
+            katrineKaustisk.ShortKey = "KATKAU";
+            katrineKaustisk.Email = new Address { Value = "katkau@korsbaek.dk" };
+            katrineKaustisk.Person.ShortKey = "P_KATKAU";
+            katrineKaustisk.Person.Name = "Katrine Kaustisk";
+            katrineKaustisk.Positions.Add(new DTO.V1_1.Position { Name = "JR. Medarb. 04", OrgUnitUuid = jobogRessourcerUuid });
+            users.Add(katrineKaustisk);
+
+            var louiseDier = new UserRegistration();
+            louiseDier.Uuid = Guid.NewGuid().ToString().ToLower();
+            louiseDier.UserId = "LOUDIE";
+            louiseDier.ShortKey = "LOUDIE";
+            louiseDier.Email = new Address { Value = "loudie@korsbaek.dk" };
+            louiseDier.Person.ShortKey = "P_LOUDIE";
+            louiseDier.Person.Name = "Louise Dier";
+            louiseDier.Positions.Add(new DTO.V1_1.Position { Name = "JR. Medarb. 05", OrgUnitUuid = jobogRessourcerUuid });
+            users.Add(louiseDier);
+
+            var anneBjerregaard = new UserRegistration();
+            anneBjerregaard.Uuid = Guid.NewGuid().ToString().ToLower();
+            anneBjerregaard.UserId = "ANJBJE";
+            anneBjerregaard.ShortKey = "ANJBJE";
+            anneBjerregaard.Email = new Address { Value = "anjbje@korsbaek.dk" };
+            anneBjerregaard.Person.ShortKey = "P_ANJBJE";
+            anneBjerregaard.Person.Name = "Anne Bjerregård";
+            anneBjerregaard.Positions.Add(new DTO.V1_1.Position { Name = "FR. Medarb. 01", OrgUnitUuid = folkeregisterUuid });
+            users.Add(anneBjerregaard);
+
+            var anetteHemsfeldt = new UserRegistration();
+            anetteHemsfeldt.Uuid = Guid.NewGuid().ToString().ToLower();
+            anetteHemsfeldt.UserId = "SOFAHM";
+            anetteHemsfeldt.ShortKey = "SOFAHM";
+            anetteHemsfeldt.Email = new Address { Value = "sofahm@korsbaek.dk" };
+            anetteHemsfeldt.Person.ShortKey = "P_SOFAHM";
+            anetteHemsfeldt.Person.Name = "Anette Hemsfeldt";
+            anetteHemsfeldt.Positions.Add(new DTO.V1_1.Position { Name = "FR. Medarb. 02", OrgUnitUuid = folkeregisterUuid });
+            users.Add(anetteHemsfeldt);
+
+            var charlieLarsen = new UserRegistration();
+            charlieLarsen.Uuid = Guid.NewGuid().ToString().ToLower();
+            charlieLarsen.UserId = "CHAMIL";
+            charlieLarsen.ShortKey = "CHAMIL";
+            charlieLarsen.Email = new Address { Value = "chamil@korsbaek.dk" };
+            charlieLarsen.Person.ShortKey = "P_CHAMIL";
+            charlieLarsen.Person.Name = "Charlie Larsen";
+            charlieLarsen.Positions.Add(new DTO.V1_1.Position { Name = "FR. Medarb. 03", OrgUnitUuid = folkeregisterUuid });
+            users.Add(charlieLarsen);
+
+            var evalinaBoesen = new UserRegistration();
+            evalinaBoesen.Uuid = Guid.NewGuid().ToString().ToLower();
+            evalinaBoesen.UserId = "EBOLIS";
+            evalinaBoesen.ShortKey = "EBOLIS";
+            evalinaBoesen.Email = new Address { Value = "ebolis@korsbaek.dk" };
+            evalinaBoesen.Person.ShortKey = "P_EBOLIS";
+            evalinaBoesen.Person.Name = "Evalina Boesen";
+            evalinaBoesen.Positions.Add(new DTO.V1_1.Position { Name = "FR. Medarb. 04", OrgUnitUuid = folkeregisterUuid });
+            users.Add(evalinaBoesen);
+
+            var nickieAagerup = new UserRegistration();
+            nickieAagerup.Uuid = Guid.NewGuid().ToString().ToLower();
+            nickieAagerup.UserId = "NICAAG";
+            nickieAagerup.ShortKey = "NICAAG";
+            nickieAagerup.Email = new Address { Value = "nicaag@korsbaek.dk" };
+            nickieAagerup.Person.ShortKey = "P_NICAAG";
+            nickieAagerup.Person.Name = "Nickie Aagerup";
+            nickieAagerup.Positions.Add(new DTO.V1_1.Position { Name = "FR. Medarb. 05", OrgUnitUuid = folkeregisterUuid });
+            users.Add(nickieAagerup);
+
+            var lindaLassen = new UserRegistration();
+            lindaLassen.Uuid = Guid.NewGuid().ToString().ToLower();
+            lindaLassen.UserId = "CSFLLA";
+            lindaLassen.ShortKey = "CSFLLA";
+            lindaLassen.Email = new Address { Value = "csflla@korsbaek.dk" };
+            lindaLassen.Person.ShortKey = "P_CSFLLA";
+            lindaLassen.Person.Name = "Linda Lassen";
+            lindaLassen.Positions.Add(new DTO.V1_1.Position { Name = "TL FR+Info", OrgUnitUuid = folkeregisterUuid });
+            users.Add(lindaLassen);
+
+            var anitaStenbjerg = new UserRegistration();
+            anitaStenbjerg.Uuid = anitaStenbjergUuid;
+            anitaStenbjerg.UserId = "CSFALS";
+            anitaStenbjerg.ShortKey = "CSFALS";
+            anitaStenbjerg.Email = new Address { Value = "csfals@korsbaek.dk" };
+            anitaStenbjerg.Person.ShortKey = "P_CSFALS";
+            anitaStenbjerg.Person.Name = "Anita Stenbjerg";
+            anitaStenbjerg.Positions.Add(new DTO.V1_1.Position { Name = "Omst. Medarb. 01", OrgUnitUuid = infoOmstillingUuid });
+            users.Add(anitaStenbjerg);
+
+            var birgitteNielsen = new UserRegistration();
+            birgitteNielsen.Uuid = Guid.NewGuid().ToString().ToLower();
+            birgitteNielsen.UserId = "BIANNI";
+            birgitteNielsen.ShortKey = "BIANNI";
+            birgitteNielsen.Email = new Address { Value = "bianni@korsbaek.dk" };
+            birgitteNielsen.Person.ShortKey = "P_BIANNI";
+            birgitteNielsen.Person.Name = "Birgitte Nielsen";
+            birgitteNielsen.Positions.Add(new DTO.V1_1.Position { Name = "Omst. Medarb. 02", OrgUnitUuid = infoOmstillingUuid });
+            users.Add(birgitteNielsen);
+
+            var brigitteRosendahl = new UserRegistration();
+            brigitteRosendahl.Uuid = Guid.NewGuid().ToString().ToLower();
+            brigitteRosendahl.UserId = "SOFBFR";
+            brigitteRosendahl.ShortKey = "SOFBFR";
+            brigitteRosendahl.Email = new Address { Value = "sofbfr@korsbaek.dk" };
+            brigitteRosendahl.Person.ShortKey = "P_SOFBFR";
+            brigitteRosendahl.Person.Name = "Brigitte Rosendahl";
+            brigitteRosendahl.Positions.Add(new DTO.V1_1.Position { Name = "Omst. Medarb. 03", OrgUnitUuid = infoOmstillingUuid });
+            users.Add(brigitteRosendahl);
+
+            var markusJensen = new UserRegistration();
+            markusJensen.Uuid = markusJensenUuid;
+            markusJensen.UserId = "MAKOJE";
+            markusJensen.ShortKey = "MAKOJE";
+            markusJensen.Email = new Address { Value = "makoje@korsbaek.dk" };
+            markusJensen.Person.ShortKey = "P_MAKOJE";
+            markusJensen.Person.Name = "Markus Jensen";
+            markusJensen.Positions.Add(new DTO.V1_1.Position { Name = "Chef Borgerservice", OrgUnitUuid = borgerserviceUuid });
+            users.Add(markusJensen);
+
+            var farrukhShah = new UserRegistration();
+            farrukhShah.Uuid = Guid.NewGuid().ToString().ToLower();
+            farrukhShah.UserId = "FARSHA";
+            farrukhShah.ShortKey = "FARSHA";
+            farrukhShah.Email = new Address { Value = "farsha@korsbaek.dk" };
+            farrukhShah.Person.ShortKey = "P_FARSHA";
+            farrukhShah.Person.Name = "Farrukh Shah";
+            farrukhShah.Positions.Add(new DTO.V1_1.Position { Name = "Kontrol medarb. 01", OrgUnitUuid = kontrolgruppenUuid });
+            users.Add(farrukhShah);
+
+            var tinaKragenaes = new UserRegistration();
+            tinaKragenaes.Uuid = Guid.NewGuid().ToString().ToLower();
+            tinaKragenaes.UserId = "SOFTKR";
+            tinaKragenaes.ShortKey = "SOFTKR";
+            tinaKragenaes.Email = new Address { Value = "softkr@korsbaek.dk" };
+            tinaKragenaes.Person.ShortKey = "P_SOFTKR";
+            tinaKragenaes.Person.Name = "Tina Kragenæs";
+            tinaKragenaes.Positions.Add(new DTO.V1_1.Position { Name = "Kontrol medarb. 02", OrgUnitUuid = kontrolgruppenUuid });
+            users.Add(tinaKragenaes);
+
+            var jannikKoberboel = new UserRegistration();
+            jannikKoberboel.Uuid = Guid.NewGuid().ToString().ToLower();
+            jannikKoberboel.UserId = "JAKOLA";
+            jannikKoberboel.ShortKey = "JAKOLA";
+            jannikKoberboel.Email = new Address { Value = "jakola@korsbaek.dk" };
+            jannikKoberboel.Person.ShortKey = "P_JAKOLA";
+            jannikKoberboel.Person.Name = "Jannik Koberbøl";
+            jannikKoberboel.Positions.Add(new DTO.V1_1.Position { Name = "Kontrol medarb. 03", OrgUnitUuid = kontrolgruppenUuid });
+            users.Add(jannikKoberboel);
+
+            var anetteMoeller = new UserRegistration();
+            anetteMoeller.Uuid = anetteMoellerUuid;
+            anetteMoeller.UserId = "SOFAJN";
+            anetteMoeller.ShortKey = "SOFAJN";
+            anetteMoeller.Email = new Address { Value = "sofajn@korsbaek.dk" };
+            anetteMoeller.Person.ShortKey = "P_SOFAJN";
+            anetteMoeller.Person.Name = "Anette Møller";
+            anetteMoeller.Positions.Add(new DTO.V1_1.Position { Name = "Pens. Medarb. 01", OrgUnitUuid = pensionUuid });
+            users.Add(anetteMoeller);
+
+            var lissiSederquist = new UserRegistration();
+            lissiSederquist.Uuid = lissiSederquistUuid;
+            lissiSederquist.UserId = "LICEKI";
+            lissiSederquist.ShortKey = "LICEKI";
+            lissiSederquist.Email = new Address { Value = "liceki@korsbaek.dk" };
+            lissiSederquist.Person.ShortKey = "P_LICEKI";
+            lissiSederquist.Person.Name = "Lissi Sederquist";
+            lissiSederquist.Positions.Add(new DTO.V1_1.Position { Name = "Pens. Medarb. 02", OrgUnitUuid = pensionUuid });
+            users.Add(lissiSederquist);
+
+            var jakobKarlsen = new UserRegistration();
+            jakobKarlsen.Uuid = jakobKarlsenUuid;
+            jakobKarlsen.UserId = "JAKARA";
+            jakobKarlsen.ShortKey = "JAKARA";
+            jakobKarlsen.Email = new Address { Value = "jakara@korsbaek.dk" };
+            jakobKarlsen.Person.ShortKey = "P_JAKARA";
+            jakobKarlsen.Person.Name = "Jakob Karlsen";
+            jakobKarlsen.Positions.Add(new DTO.V1_1.Position { Name = "Pens. Medarb. 03", OrgUnitUuid = pensionUuid });
+            users.Add(jakobKarlsen);
+
+            var thokildHansen = new UserRegistration();
+            thokildHansen.Uuid = thokildHansenUuid;
+            thokildHansen.UserId = "TOWEHA";
+            thokildHansen.ShortKey = "TOWEHA";
+            thokildHansen.Email = new Address { Value = "toweha@korsbaek.dk" };
+            thokildHansen.Person.ShortKey = "P_TOWEHA";
+            thokildHansen.Person.Name = "Thokild Hansen";
+            thokildHansen.Positions.Add(new DTO.V1_1.Position { Name = "Pens. Medarb. 04", OrgUnitUuid = pensionUuid });
+            users.Add(thokildHansen);
+
+            var dorteVinkel = new UserRegistration();
+            dorteVinkel.Uuid = dorteVinkelUuid;
+            dorteVinkel.UserId = "LINVIN";
+            dorteVinkel.ShortKey = "LINVIN";
+            dorteVinkel.Email = new Address { Value = "linvin@korsbaek.dk" };
+            dorteVinkel.Person.ShortKey = "P_LINVIN";
+            dorteVinkel.Person.Name = "Dorte Vinkel";
+            dorteVinkel.Positions.Add(new DTO.V1_1.Position { Name = "Pens. Medarb. 05", OrgUnitUuid = pensionUuid });
+            users.Add(dorteVinkel);
+
+            var lotteSigurdsen = new UserRegistration();
+            lotteSigurdsen.Uuid = Guid.NewGuid().ToString().ToLower();
+            lotteSigurdsen.UserId = "CSFLSI";
+            lotteSigurdsen.ShortKey = "CSFLSI";
+            lotteSigurdsen.Email = new Address { Value = "csflsi@korsbaek.dk" };
+            lotteSigurdsen.Person.ShortKey = "P_CSFLSI";
+            lotteSigurdsen.Person.Name = "Lotte Sigurdsen";
+            lotteSigurdsen.Positions.Add(new DTO.V1_1.Position { Name = "TL Pension+Kontrol", OrgUnitUuid = pensionUuid });
+            users.Add(lotteSigurdsen);
+
+            var leneMortensen = new UserRegistration();
+            leneMortensen.Uuid = Guid.NewGuid().ToString().ToLower();
+            leneMortensen.UserId = "INLEMO";
+            leneMortensen.ShortKey = "INLEMO";
+            leneMortensen.Email = new Address { Value = "inlemo@korsbaek.dk" };
+            leneMortensen.Person.ShortKey = "P_INLEMO";
+            leneMortensen.Person.Name = "Lene Mortensen";
+            leneMortensen.Positions.Add(new DTO.V1_1.Position { Name = "Assistenter", OrgUnitUuid = oekonomiogStyringUuid });
+            users.Add(leneMortensen);
+
+            var annePedersen = new UserRegistration();
+            annePedersen.Uuid = Guid.NewGuid().ToString().ToLower();
+            annePedersen.UserId = "ANNPED";
+            annePedersen.ShortKey = "ANNPED";
+            annePedersen.Email = new Address { Value = "annped@korsbaek.dk" };
+            annePedersen.Person.ShortKey = "P_ANNPED";
+            annePedersen.Person.Name = "Anne Pedersen";
+            annePedersen.Positions.Add(new DTO.V1_1.Position { Name = "Assistenter", OrgUnitUuid = oekonomiogStyringUuid });
+            users.Add(annePedersen);
+
+            var dianaJensen = new UserRegistration();
+            dianaJensen.Uuid = Guid.NewGuid().ToString().ToLower();
+            dianaJensen.UserId = "DIEAJE";
+            dianaJensen.ShortKey = "DIEAJE";
+            dianaJensen.Email = new Address { Value = "dieaje@korsbaek.dk" };
+            dianaJensen.Person.ShortKey = "P_DIEAJE";
+            dianaJensen.Person.Name = "Diana Jensen";
+            dianaJensen.Positions.Add(new DTO.V1_1.Position { Name = "Assistenter", OrgUnitUuid = oekonomiogStyringUuid });
+            users.Add(dianaJensen);
+
+            var gertrudGregersen = new UserRegistration();
+            gertrudGregersen.Uuid = Guid.NewGuid().ToString().ToLower();
+            gertrudGregersen.UserId = "GERGRE";
+            gertrudGregersen.ShortKey = "GERGRE";
+            gertrudGregersen.Email = new Address { Value = "gergre@korsbaek.dk" };
+            gertrudGregersen.Person.ShortKey = "P_GERGRE";
+            gertrudGregersen.Person.Name = "Gertrud Gregersen";
+            gertrudGregersen.Positions.Add(new DTO.V1_1.Position { Name = "Udbetaling", OrgUnitUuid = oekonomiogStyringUuid });
+            users.Add(gertrudGregersen);
+
+            var thorValentin = new UserRegistration();
+            thorValentin.Uuid = Guid.NewGuid().ToString().ToLower();
+            thorValentin.UserId = "THOEVA";
+            thorValentin.ShortKey = "THOEVA";
+            thorValentin.Email = new Address { Value = "thoeva@korsbaek.dk" };
+            thorValentin.Person.ShortKey = "P_THOEVA";
+            thorValentin.Person.Name = "Thor Valentin";
+            thorValentin.Positions.Add(new DTO.V1_1.Position { Name = "Udbetaling", OrgUnitUuid = oekonomiogStyringUuid });
+            users.Add(thorValentin);
+
+            var bjoernEriksen = new UserRegistration();
+            bjoernEriksen.Uuid = Guid.NewGuid().ToString().ToLower();
+            bjoernEriksen.UserId = "BJORGE";
+            bjoernEriksen.ShortKey = "BJORGE";
+            bjoernEriksen.Email = new Address { Value = "bjorge@korsbaek.dk" };
+            bjoernEriksen.Person.ShortKey = "P_BJORGE";
+            bjoernEriksen.Person.Name = "Bjørn Eriksen";
+            bjoernEriksen.Positions.Add(new DTO.V1_1.Position { Name = "Udbetaling", OrgUnitUuid = oekonomiogStyringUuid });
+            users.Add(bjoernEriksen);
+
+            var jensNathansen = new UserRegistration();
+            jensNathansen.Uuid = Guid.NewGuid().ToString().ToLower();
+            jensNathansen.UserId = "JEMONA";
+            jensNathansen.ShortKey = "JEMONA";
+            jensNathansen.Email = new Address { Value = "jemona@korsbaek.dk" };
+            jensNathansen.Person.ShortKey = "P_JEMONA";
+            jensNathansen.Person.Name = "Jens Nathansen";
+            jensNathansen.Positions.Add(new DTO.V1_1.Position { Name = "Debitor", OrgUnitUuid = oekonomiogStyringUuid });
+            users.Add(jensNathansen);
+
+            var lauraNielsen = new UserRegistration();
+            lauraNielsen.Uuid = Guid.NewGuid().ToString().ToLower();
+            lauraNielsen.UserId = "LAULNI";
+            lauraNielsen.ShortKey = "LAULNI";
+            lauraNielsen.Email = new Address { Value = "laulni@korsbaek.dk" };
+            lauraNielsen.Person.ShortKey = "P_LAULNI";
+            lauraNielsen.Person.Name = "Laura Nielsen";
+            lauraNielsen.Positions.Add(new DTO.V1_1.Position { Name = "Debitor", OrgUnitUuid = oekonomiogStyringUuid });
+            users.Add(lauraNielsen);
+
+            var martinNielsen = new UserRegistration();
+            martinNielsen.Uuid = Guid.NewGuid().ToString().ToLower();
+            martinNielsen.UserId = "MARNIS";
+            martinNielsen.ShortKey = "MARNIS";
+            martinNielsen.Email = new Address { Value = "marnis@korsbaek.dk" };
+            martinNielsen.Person.ShortKey = "P_MARNIS";
+            martinNielsen.Person.Name = "Martin Nielsen";
+            martinNielsen.Positions.Add(new DTO.V1_1.Position { Name = "Debitor", OrgUnitUuid = oekonomiogStyringUuid });
+            users.Add(martinNielsen);
+
+            // import everything
+            foreach (var ou in ous)
+            {
+                orgUnitService.Update(ou);
+            }
+
+            foreach (var user in users)
+            {
+                userService.Update(user);
+            }
+        }
+
         private static void BuildTestData()
         {
             OrgUnitRegistration root = OUReg();
@@ -739,6 +1611,7 @@ namespace Organisation.BusinessLayer.TestDriver
             OU ou = inspectorService.ReadOUObject(orgUnitRegistration.Uuid);
             Validate(ou, orgUnitRegistration);
 
+            /*
             orgUnitRegistration.ItSystemUuids.Add(itSystem3);
             orgUnitService.Update(orgUnitRegistration);
 
@@ -750,6 +1623,7 @@ namespace Organisation.BusinessLayer.TestDriver
 
             ou = inspectorService.ReadOUObject(orgUnitRegistration.Uuid);
             Validate(ou, orgUnitRegistration);
+            */
         }
 
         private static void TestCreateDeleteUpdateOU()
@@ -986,11 +1860,11 @@ namespace Organisation.BusinessLayer.TestDriver
                 if (address is Email && !address.Uuid.Equals(registration.Email.Uuid))
                 {
                     throw new Exception("Email is not the same");
-                }
+                } /* TODO: not currently supported
                 else if (address is Location && !address.Uuid.Equals(registration.Location.Uuid))
                 {
                     throw new Exception("Location is not the same");
-                }
+                } */
                 else if (address is Phone && !address.Uuid.Equals(registration.Phone.Uuid))
                 {
                     throw new Exception("Phone is not the same");
@@ -1131,15 +2005,15 @@ namespace Organisation.BusinessLayer.TestDriver
                 else if (address is Phone && !address.Uuid.Equals(registration.Phone.Uuid))
                 {
                     throw new Exception("Phone is not the same");
-                }
+                } /*
                 else if (address is Location && !address.Uuid.Equals(registration.Location.Uuid))
                 {
                     throw new Exception("Location is not the same");
-                }
+                } */
                 else if (address is LOSShortName && !address.Uuid.Equals(registration.LOSShortName.Uuid))
                 {
                     throw new Exception("LOSShortName is not the same");
-                }
+                } /*
                 else if (address is PhoneHours && !address.Uuid.Equals(registration.PhoneOpenHours.Uuid))
                 {
                     throw new Exception("PhoneHours is not the same");
@@ -1147,23 +2021,23 @@ namespace Organisation.BusinessLayer.TestDriver
                 else if (address is EmailRemarks && !address.Uuid.Equals(registration.EmailRemarks.Uuid))
                 {
                     throw new Exception("EmailRemarks is not the same");
-                }
+                } */
                 else if (address is Contact && !address.Uuid.Equals(registration.Contact.Uuid))
                 {
                     throw new Exception("Contact is not the same");
-                }
+                } /*
                 else if (address is PostReturn && !address.Uuid.Equals(registration.PostReturn.Uuid))
                 {
                     throw new Exception("PostReturn is not the same");
-                }
+                } */
                 else if (address is Ean && !address.Uuid.Equals(registration.Ean.Uuid))
                 {
                     throw new Exception("Ean is not the same");
-                }
+                } /*
                 else if (address is ContactHours && !address.Uuid.Equals(registration.ContactOpenHours.Uuid))
                 {
                     throw new Exception("ContactHours is not the same");
-                }
+                }*/
             }
         }
     }

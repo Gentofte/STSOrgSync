@@ -11,7 +11,7 @@ namespace Organisation.IntegrationLayer
         {
             try
             {
-                stub.GetLatestRegistration(Guid.NewGuid().ToString().ToLower(), true);
+                stub.GetLatestRegistration(Guid.NewGuid().ToString().ToLower());
             }
             catch (Exception ex)
             {

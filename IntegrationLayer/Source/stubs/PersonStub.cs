@@ -70,7 +70,7 @@ namespace Organisation.IntegrationLayer
             log.Debug("Attempting Ret on Person with uuid " + uuid);
 
             // this should never fail - we always import the Person before the User, and we have a User with a reference to this object
-            RegistreringType1 registration = GetLatestRegistration(uuid, false);
+            RegistreringType1 registration = GetLatestRegistration(uuid);
             if (registration == null)
             {
                 log.Debug("Cannot call Ret on Person with uuid " + uuid + " because it does not exist in Organisation");
@@ -91,12 +91,6 @@ namespace Organisation.IntegrationLayer
                 EgenskabType latestProperty = StubUtil.GetLatestProperty(input.AttributListe);
                 if (latestProperty == null || !latestProperty.NavnTekst.Equals(newName) || (latestProperty.CPRNummerTekst == null && newCpr != null) || (latestProperty.CPRNummerTekst != null && !latestProperty.CPRNummerTekst.Equals(newCpr)) || (newShortKey != null && !latestProperty.BrugervendtNoegleTekst.Equals(newShortKey)))
                 {
-                    // end the validity of open-ended property
-                    if (latestProperty != null)
-                    {
-                        StubUtil.TerminateVirkning(latestProperty.Virkning, timestamp);
-                    }
-
                     // create a new property
                     EgenskabType newProperty = new EgenskabType();
                     newProperty.Virkning = helper.GetVirkning(timestamp);
@@ -104,14 +98,9 @@ namespace Organisation.IntegrationLayer
                     newProperty.NavnTekst = newName;
                     newProperty.CPRNummerTekst = newCpr;
 
-                    // create a new set of properties
-                    EgenskabType[] oldProperties = input.AttributListe;
-                    input.AttributListe = new EgenskabType[oldProperties.Length + 1];
-                    for (int i = 0; i < oldProperties.Length; i++)
-                    {
-                        input.AttributListe[i] = oldProperties[i];
-                    }
-                    input.AttributListe[oldProperties.Length] = newProperty;
+                    // overwrite existing property set
+                    input.AttributListe = new EgenskabType[1];
+                    input.AttributListe[0] = newProperty;
                 }
                 else
                 {
@@ -148,37 +137,24 @@ namespace Organisation.IntegrationLayer
             }
         }
 
-        // TODO: this method contains a work-around.
-        //       KMD released version 1.4 of Organisation, containing a series of changes to how reading and searching for data works, unfortunately this new functionality
-        //       does not cover the actually required use-cases (e.g. reading actual state), but luckily they forgot to change the List() operation, so we are using List()
-        //       instead of Laes() until Laes() is fixed in a later release of Organisation.
-        public RegistreringType1 GetLatestRegistration(string uuid, bool actualStateOnly)
+        public RegistreringType1 GetLatestRegistration(string uuid)
         {
-            ListInputType listInput = new ListInputType();
-            listInput.UUIDIdentifikator = new string[] { uuid };
+            LaesInputType laesInput = new LaesInputType();
+            laesInput.UUIDIdentifikator = uuid;
 
-            // this ensures that we get the full history when reading, and not just what is valid right now
-            if (!actualStateOnly)
-            {
-                listInput.VirkningFraFilter = new TidspunktType();
-                listInput.VirkningFraFilter.Item = true;
-                listInput.VirkningTilFilter = new TidspunktType();
-                listInput.VirkningTilFilter.Item = true;
-            }
-
-            listRequest request = new listRequest();
-            request.ListRequest1 = new ListRequestType();
-            request.ListRequest1.ListInput = listInput;
-            request.ListRequest1.AuthorityContext = new AuthorityContextType();
-            request.ListRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            laesRequest request = new laesRequest();
+            request.LaesRequest1 = new LaesRequestType();
+            request.LaesRequest1.LaesInput = laesInput;
+            request.LaesRequest1.AuthorityContext = new AuthorityContextType();
+            request.LaesRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
 
             PersonPortType channel = StubUtil.CreateChannel<PersonPortType>(PersonStubHelper.SERVICE, "Laes", helper.CreatePort());
 
             try
             {
-                listResponse response = channel.list(request);
+                laesResponse response = channel.laes(request);
 
-                int statusCode = Int32.Parse(response.ListResponse1.ListOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.LaesResponse1.LaesOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
                     // note that statusCode 44 means that the object does not exists, so that is a valid response
@@ -186,13 +162,7 @@ namespace Organisation.IntegrationLayer
                     return null; 
                 }
 
-                if (response.ListResponse1.ListOutput.FiltreretOejebliksbillede.Length != 1)
-                {
-                    log.Warn("Lookup Person with uuid '" + uuid + "' returned multiple objects");
-                    return null;
-                }
-
-                RegistreringType1[] resultSet = response.ListResponse1.ListOutput.FiltreretOejebliksbillede[0].Registrering;
+                RegistreringType1[] resultSet = response.LaesResponse1.LaesOutput.FiltreretOejebliksbillede.Registrering;
                 if (resultSet.Length == 0)
                 {
                     log.Warn("Person with uuid '" + uuid + "' exists, but has no registration");
@@ -218,6 +188,13 @@ namespace Organisation.IntegrationLayer
                 else
                 {
                     result = resultSet[0];
+                }
+
+                // we cannot perform any kind of updates on Slettet/Passiveret, så it makes sense to filter them out on lookup,
+                // so the rest of the code will default to Import op top of this
+                if (result.LivscyklusKode.Equals(LivscyklusKodeType.Slettet) || result.LivscyklusKode.Equals(LivscyklusKodeType.Passiveret))
+                {
+                    return null;
                 }
 
                 return result;

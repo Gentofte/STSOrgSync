@@ -159,7 +159,7 @@ namespace Organisation.BusinessLayer
 
             try
             {
-                var result = organisationEnhedStub.GetLatestRegistration(registration.Uuid, true);
+                var result = organisationEnhedStub.GetLatestRegistration(registration.Uuid);
                 if (result == null)
                 {
                     log.Debug("Update on OrgUnit '" + registration.Uuid + "' changed to a Create because it does not exists as an active object within Organisation");
@@ -174,34 +174,34 @@ namespace Organisation.BusinessLayer
                     { 
                         foreach (var orgAddress in result.RelationListe.Adresser)
                         {
-                            if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_PHONE))
+                            if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_PHONE))
                             {
                                 orgPhoneUuid = orgAddress.ReferenceID.Item;
                             }
-                            else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_EMAIL))
+                            else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_EMAIL))
                             {
                                 orgEmailUuid = orgAddress.ReferenceID.Item;
-                            }
+                            } /*
                             else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_LOCATION))
                             {
                                 orgLocationUuid = orgAddress.ReferenceID.Item;
-                            }
-                            else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_LOSSHORTNAME))
+                            } */
+                            else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_LOSSHORTNAME))
                             {
                                 orgLOSShortNameUuid = orgAddress.ReferenceID.Item;
                             }
-                            else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_EAN))
+                            else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_EAN))
                             {
                                 orgEanUuid = orgAddress.ReferenceID.Item;
-                            }
+                            } /*
                             else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_PHONE_OPEN_HOURS))
                             {
                                 orgPhoneHoursUuid = orgAddress.ReferenceID.Item;
-                            }
-                            else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_POST))
+                            } */
+                            else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_POST))
                             {
                                 orgPostUuid = orgAddress.ReferenceID.Item;
-                            }
+                            } /*
                             else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_CONTACT_ADDRESS_OPEN_HOURS))
                             {
                                 orgContactHoursUuid = orgAddress.ReferenceID.Item;
@@ -217,7 +217,7 @@ namespace Organisation.BusinessLayer
                             else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_EMAIL_REMARKS))
                             {
                                 orgEmailRemarksUuid = orgAddress.ReferenceID.Item;
-                            }
+                            } */
                         }
                     }
 
@@ -285,7 +285,7 @@ namespace Organisation.BusinessLayer
                             string orgUnitUuid = null;
 
                             // see if we can read the existing function
-                            var orgContactPlace = organisationFunktionStub.GetLatestRegistration(functionUuid, true);
+                            var orgContactPlace = organisationFunktionStub.GetLatestRegistration(functionUuid);
                             if (orgContactPlace == null)
                             {
                                 log.Warn("OrgUnit " + registration.Uuid + " has a relation to a ContactPlaces function " + functionUuid + " that does not exist");
@@ -385,6 +385,17 @@ namespace Organisation.BusinessLayer
                 registration.ShortKey = ou.ShortKey;
                 registration.Uuid = uuid;
 
+                if (ou.ContactPlaces != null)
+                {
+                    foreach (var cp in ou.ContactPlaces)
+                    {
+                        registration.ContactPlaces.Add(new DTO.V1_1.ContactPlace()
+                        {
+                            OrgUnitUuid = cp.OrgUnit.Uuid,
+                            Tasks = cp.Tasks
+                        });
+                    }
+                }
                 foreach (var itSystem in ou.ItSystems)
                 {
                     registration.ItSystemUuids.Add(itSystem);

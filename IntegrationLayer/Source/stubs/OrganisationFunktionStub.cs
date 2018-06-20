@@ -82,7 +82,7 @@ namespace Organisation.IntegrationLayer
         {
             log.Debug("Attempting Ret on OrganisationFunction with uuid " + orgFunction.Uuid);
 
-            RegistreringType1 registration = GetLatestRegistration(orgFunction.Uuid, false);
+            RegistreringType1 registration = GetLatestRegistration(orgFunction.Uuid);
             if (registration == null)
             {
                 log.Debug("Cannot call Ret on OrganisationFunktion with uuid " + orgFunction.Uuid + " because it does not exist in Organisation");
@@ -109,31 +109,23 @@ namespace Organisation.IntegrationLayer
                 EgenskabType latestProperty = StubUtil.GetLatestProperty(input.AttributListe.Egenskab);
                 if (latestProperty == null || (orgFunction.Name != null && !latestProperty.FunktionNavn.Equals(orgFunction.Name)) || (orgFunction.ShortKey != null && !latestProperty.BrugervendtNoegleTekst.Equals(orgFunction.ShortKey)))
                 {
-                    // end the validity of open-ended property
-                    if (latestProperty != null)
-                    {
-                        StubUtil.TerminateVirkning(latestProperty.Virkning, orgFunction.Timestamp);
-                    }
-                    else
+                    if (latestProperty == null)
                     {
                         orgFunction.ShortKey = (orgFunction.ShortKey != null) ? orgFunction.ShortKey : IdUtil.GenerateShortKey();
-                        orgFunction.Name = (orgFunction.Name != null) ? orgFunction.Name : "Unknown Function"; // special case where editing a function that has been orphaned, without supplying a name - should never really happen, but the API allows it
+
+                        // special case where editing a function that has been orphaned, without supplying a name - should never really happen, but the API allows it
+                        orgFunction.Name = (orgFunction.Name != null) ? orgFunction.Name : "Unknown Function";
                     }
 
                     // create a new property
                     EgenskabType newProperty = new EgenskabType();
                     newProperty.Virkning = helper.GetVirkning(orgFunction.Timestamp);
-                    newProperty.BrugervendtNoegleTekst = ((orgFunction.ShortKey != null) ? orgFunction.ShortKey : latestProperty.BrugervendtNoegleTekst);
-                    newProperty.FunktionNavn = ((orgFunction.Name != null) ? orgFunction.Name : latestProperty.FunktionNavn);
+                    newProperty.BrugervendtNoegleTekst = (orgFunction.ShortKey != null) ? orgFunction.ShortKey : latestProperty.BrugervendtNoegleTekst;
+                    newProperty.FunktionNavn = (orgFunction.Name != null) ? orgFunction.Name : latestProperty.FunktionNavn;
 
                     // create a new set of properties
-                    EgenskabType[] oldProperties = input.AttributListe.Egenskab;
-                    input.AttributListe.Egenskab = new EgenskabType[oldProperties.Length + 1];
-                    for (int i = 0; i < oldProperties.Length; i++)
-                    {
-                        input.AttributListe.Egenskab[i] = oldProperties[i];
-                    }
-                    input.AttributListe.Egenskab[oldProperties.Length] = newProperty;
+                    input.AttributListe.Egenskab = new EgenskabType[1];
+                    input.AttributListe.Egenskab[0] = newProperty;
 
                     changes = true;
                 }
@@ -281,7 +273,10 @@ namespace Organisation.IntegrationLayer
 
                         // update the Virkning on the TilknyttedeOrganisationer relationship if needed (undelete feature)
                         object endTime = orgRelation.Virkning.TilTidspunkt.Item;
-                        if (!(endTime is DateTime)) // if it is not a DateTime, the relationship is still valid (as we never teminate into the future)
+
+                        // endTime is bool => ok
+                        // endTime is DateTime, but Now is before endTime => ok
+                        if (!(endTime is DateTime) || (DateTime.Compare(DateTime.Now, (DateTime)endTime) < 0))
                         {
                             foundExistingValidOrganisationRelation = true;
                         }
@@ -327,7 +322,7 @@ namespace Organisation.IntegrationLayer
                                 switch (addressInLocal.Type)
                                 {
                                     case AddressRelationType.URL:
-                                        roleUuid = UUIDConstants.ADDRESS_ROLE_URL;
+                                        roleUuid = UUIDConstants.ADDRESS_ROLE_ORGFUNCTION_URL;
                                         break;
                                     default:
                                         log.Warn("Cannot add relationship to address of type " + addressInLocal.Type + " with uuid " + addressInLocal.Uuid + " as the type is unknown");
@@ -379,10 +374,7 @@ namespace Organisation.IntegrationLayer
             }
         }
 
-        // TODO: This is a work-around that "fixes" the bug in the KMD implementation, by first searching, and then reading each
-        //       individual object to check if they matches the criteria, filtering away those that do not
-        //
-        //       This method returns the full object (might as well, since we just read them, could be useful for saving a call later
+/* these two methods are the good ones, but we cannot use them because of a bug in search
         public List<FiltreretOejebliksbilledeType> SoegAndGetLatestRegistration(string functionsTypeUuid, string userUuid, string unitUuid, string itSystemUuid)
         {
             List<FiltreretOejebliksbilledeType> result = new List<FiltreretOejebliksbilledeType>();
@@ -394,13 +386,50 @@ namespace Organisation.IntegrationLayer
                 return result;
             }
 
-            FiltreretOejebliksbilledeType[] resultCandidates = GetLatestRegistrations(uuidCandidates.ToArray(), true); // searching is always done on ActualState
+            FiltreretOejebliksbilledeType[] resultCandidates = GetLatestRegistrations(uuidCandidates.ToArray());
             if (resultCandidates == null || resultCandidates.Length == 0)
             {
                 return result;
             }
 
-            // check that each result from the search actually matches the search criteria (because KMDs implementation doesn't do it corectly :( )
+            foreach (FiltreretOejebliksbilledeType resultCandidate in resultCandidates)
+            {
+                result.Add(resultCandidate);
+            }
+
+            return result;
+        }
+
+        public List<string> SoegAndGetUuids(string functionsTypeUuid, string userUuid, string unitUuid, string itSystemUuid)
+        {
+            List<string> uuids = Soeg(functionsTypeUuid, userUuid, unitUuid, itSystemUuid);
+            if (uuids == null)
+            {
+                return new List<string>();
+            }
+
+            return uuids;
+        }
+*/
+
+        /* these two are the bad ones, but they contain the workaround for the bug on search */
+        public List<FiltreretOejebliksbilledeType> SoegAndGetLatestRegistration(string functionsTypeUuid, string userUuid, string unitUuid, string itSystemUuid)
+        {
+            List<FiltreretOejebliksbilledeType> result = new List<FiltreretOejebliksbilledeType>();
+
+            // perform a search and then retrieve all the objects that matches the search criteria
+            List<string> uuidCandidates = Soeg(functionsTypeUuid, userUuid, unitUuid, itSystemUuid);
+            if (uuidCandidates == null || uuidCandidates.Count == 0)
+            {
+                return result;
+            }
+
+            FiltreretOejebliksbilledeType[] resultCandidates = GetLatestRegistrations(uuidCandidates.ToArray());
+            if (resultCandidates == null || resultCandidates.Length == 0)
+            {
+                return result;
+            }
+
             foreach (FiltreretOejebliksbilledeType resultCandidate in resultCandidates)
             {
                 if (resultCandidate.Registrering == null || resultCandidate.Registrering.Length == 0)
@@ -492,23 +521,115 @@ namespace Organisation.IntegrationLayer
             return result;
         }
 
-        // TODO: This is a work-around that "fixes" the bug in the KMD implementation, by first searching, and then reading each
-        //       individual object to check if they matches the criteria, filtering away those that do not
         public List<string> SoegAndGetUuids(string functionsTypeUuid, string userUuid, string unitUuid, string itSystemUuid)
         {
-            List<string> uuidResult = new List<string>();
+            List<string> result = new List<string>();
 
-            List<FiltreretOejebliksbilledeType> result = SoegAndGetLatestRegistration(functionsTypeUuid, userUuid, unitUuid, itSystemUuid);
-            foreach (FiltreretOejebliksbilledeType reg in result)
+            // perform a search and then retrieve all the objects that matches the search criteria
+            List<string> uuidCandidates = Soeg(functionsTypeUuid, userUuid, unitUuid, itSystemUuid);
+            if (uuidCandidates == null || uuidCandidates.Count == 0)
             {
-                uuidResult.Add(reg.ObjektType.UUIDIdentifikator);
+                return result;
             }
 
-            return uuidResult;
+            FiltreretOejebliksbilledeType[] resultCandidates = GetLatestRegistrations(uuidCandidates.ToArray());
+            if (resultCandidates == null || resultCandidates.Length == 0)
+            {
+                return result;
+            }
+
+            // check that each result from the search actually matches the search criteria (because KMDs implementation doesn't do it corectly :( )
+            foreach (FiltreretOejebliksbilledeType resultCandidate in resultCandidates)
+            {
+                if (resultCandidate.Registrering == null || resultCandidate.Registrering.Length == 0)
+                {
+                    log.Warn("Result candidate with uuid " + resultCandidate.ObjektType.UUIDIdentifikator + " does not have a registration - it is skipped in the result");
+                    continue;
+                }
+
+                if (resultCandidate.Registrering.Length > 1)
+                {
+                    log.Warn("Result candidate with uuid " + resultCandidate.ObjektType.UUIDIdentifikator + " has more than one registration - it is skipped in the result");
+                    continue;
+                }
+
+                RegistreringType1 registration = resultCandidate.Registrering[0];
+
+                if (userUuid != null)
+                {
+                    bool found = false;
+
+                    if (registration.RelationListe.TilknyttedeBrugere != null)
+                    {
+                        foreach (var userRelation in registration.RelationListe.TilknyttedeBrugere)
+                        {
+                            if (userUuid.Equals(userRelation.ReferenceID?.Item))
+                            {
+                                found = true;
+                            }
+
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        log.Debug("Filtering OrgFunction with uuid " + resultCandidate.ObjektType.UUIDIdentifikator + " because it does not have a correct user relation");
+                        continue;
+                    }
+                }
+
+                if (unitUuid != null)
+                {
+                    bool found = false;
+
+                    if (registration.RelationListe.TilknyttedeEnheder != null)
+                    {
+                        foreach (var unitRelation in registration.RelationListe.TilknyttedeEnheder)
+                        {
+                            if (unitUuid.Equals(unitRelation.ReferenceID?.Item))
+                            {
+                                found = true;
+                            }
+
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        log.Debug("Filtering OrgFunction with uuid " + resultCandidate.ObjektType.UUIDIdentifikator + " because it does not have a correct unit relation");
+                        continue;
+                    }
+                }
+
+                if (itSystemUuid != null)
+                {
+                    bool found = false;
+
+                    if (registration.RelationListe.TilknyttedeItSystemer != null)
+                    {
+                        foreach (var itSystemRelation in registration.RelationListe.TilknyttedeItSystemer)
+                        {
+                            if (itSystemUuid.Equals(itSystemRelation.ReferenceID?.Item))
+                            {
+                                found = true;
+                            }
+
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        log.Debug("Filtering OrgFunction with uuid " + resultCandidate.ObjektType.UUIDIdentifikator + " because it does not have a correct itSystem relation");
+                        continue;
+                    }
+                }
+
+                result.Add(resultCandidate.ObjektType.UUIDIdentifikator);
+            }
+
+            return result;
         }
 
-        // TODO: KMDs implementation of Soeg() is broken, so we will get false positives in the result from time to time, which we should handle carefully
-        // TODO: I've made the method private, so it cannot be called outside this class - instead use the filtered versions above (they remove the wrong results from Soeg())
         private List<string> Soeg(string functionsTypeUuid, string userUuid, string unitUuid, string itSystemUuid)
         {
             OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "Soeg", helper.CreatePort());
@@ -516,14 +637,7 @@ namespace Organisation.IntegrationLayer
             SoegInputType1 soegInput = new SoegInputType1();
             soegInput.AttributListe = new AttributListeType();
             soegInput.RelationListe = new RelationListeType();
-            soegInput.SoegRegistrering = new SoegRegistreringType();
-            soegInput.SoegVirkning = new SoegVirkningType();
             soegInput.TilstandListe = new TilstandListeType();
-
-            // TODO: This is not working - it appears that we get the full list, even those where the Virkning on the reference is not valid
-            // we are only interested in relationships that are currently valid
-            soegInput.SoegVirkning.FraTidspunkt = new TidspunktType();
-            soegInput.SoegVirkning.FraTidspunkt.Item = DateTime.Now;
 
             // only return objects that have a Tilhører relationship top-level Organisation
             UnikIdType orgReference = StubUtil.GetReference<UnikIdType>(registry.MunicipalityOrganisationUUID, ItemChoiceType.UUIDIdentifikator);
@@ -562,13 +676,6 @@ namespace Organisation.IntegrationLayer
                 soegInput.RelationListe.TilknyttedeEnheder = new OrganisationEnhedFlerRelationType[1];
                 soegInput.RelationListe.TilknyttedeEnheder[0] = new OrganisationEnhedFlerRelationType();
                 soegInput.RelationListe.TilknyttedeEnheder[0].ReferenceID = reference;
-
-                /*
-                // TODO: this should not be here - it is just for testing
-                soegInput.RelationListe.TilknyttedeEnheder[0].Virkning = new VirkningType();
-                soegInput.RelationListe.TilknyttedeEnheder[0].Virkning.FraTidspunkt = new TidspunktType();
-                soegInput.RelationListe.TilknyttedeEnheder[0].Virkning.FraTidspunkt.Item = DateTime.Now;
-                */
             }
 
             if (!String.IsNullOrEmpty(itSystemUuid))
@@ -623,7 +730,7 @@ namespace Organisation.IntegrationLayer
         {
             log.Debug("Attempting Deactivate on OrganisationFunktion with uuid " + uuid);
 
-            RegistreringType1 registration = GetLatestRegistration(uuid, false);
+            RegistreringType1 registration = GetLatestRegistration(uuid);
             if (registration == null)
             {
                 log.Debug("Cannot call Deactivate on OrganisationFunktion with uuid " + uuid + " because it does not exist in Organisation");
@@ -697,13 +804,9 @@ namespace Organisation.IntegrationLayer
             }
         }
 
-        // TODO: this method contains a work-around.
-        //       KMD released version 1.4 of Organisation, containing a series of changes to how reading and searching for data works, unfortunately this new functionality
-        //       does not cover the actually required use-cases (e.g. reading actual state), but luckily they forgot to change the List() operation, so we are using List()
-        //       instead of Laes() until Laes() is fixed in a later release of Organisation.
-        public RegistreringType1 GetLatestRegistration(string uuid, bool actualStateOnly)
+        public RegistreringType1 GetLatestRegistration(string uuid)
         {
-            FiltreretOejebliksbilledeType[] registrations = GetLatestRegistrations(new string[] { uuid }, actualStateOnly);
+            FiltreretOejebliksbilledeType[] registrations = GetLatestRegistrations(new string[] { uuid });
             if (registrations == null || registrations.Length == 0)
             {
                 return null;
@@ -737,26 +840,20 @@ namespace Organisation.IntegrationLayer
                 result = resultSet[0];
             }
 
+            // we cannot perform any kind of updates on Slettet/Passiveret, så it makes sense to filter them out on lookup,
+            // so the rest of the code will default to Import op top of this
+            if (result.LivscyklusKode.Equals(LivscyklusKodeType.Slettet) || result.LivscyklusKode.Equals(LivscyklusKodeType.Passiveret))
+            {
+                return null;
+            }
+
             return result;
         }
 
-        // TODO: this method contains a work-around.
-        //       KMD released version 1.4 of Organisation, containing a series of changes to how reading and searching for data works, unfortunately this new functionality
-        //       does not cover the actually required use-cases (e.g. reading actual state), but luckily they forgot to change the List() operation, so we are using List()
-        //       instead of Laes() until Laes() is fixed in a later release of Organisation.
-        public FiltreretOejebliksbilledeType[] GetLatestRegistrations(string[] uuids, bool actualStateOnly)
+        public FiltreretOejebliksbilledeType[] GetLatestRegistrations(string[] uuids)
         {
             ListInputType listInput = new ListInputType();
             listInput.UUIDIdentifikator = uuids;
-
-            // this ensures that we get the full history when reading, and not just what is valid right now
-            if (!actualStateOnly)
-            {
-                listInput.VirkningFraFilter = new TidspunktType();
-                listInput.VirkningFraFilter.Item = true;
-                listInput.VirkningTilFilter = new TidspunktType();
-                listInput.VirkningTilFilter.Item = true;
-            }
 
             listRequest request = new listRequest();
             request.ListRequest1 = new ListRequestType();

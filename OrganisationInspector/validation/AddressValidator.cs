@@ -13,27 +13,28 @@ namespace OrganisationInspector
         - Attribute fields that MUST be filled out
         - AdresseTekst [X]
     */
-public class AddressValidator : Validator
-{
-    private const string ADRESSE_TEKST_MSG = "Adressetekst is mandatory";
-
-    private AdresseStub adresseStub = new AdresseStub();
-    private string organisationUuid;
-
-    public AddressValidator(string uuid) {
-        this.organisationUuid = uuid;
-    }
-
-    public List<string> Validate(string uuid)
+    public class AddressValidator : Validator
     {
-    List<String> errors = new List<string>();
-            IntegrationLayer.Adresse.RegistreringType1 adresse = adresseStub.GetLatestRegistration(uuid, false);
+        private const string ADRESSE_TEKST_MSG = "Adressetekst is mandatory";
+
+        private AdresseStub adresseStub = new AdresseStub();
+        private string organisationUuid;
+
+        public AddressValidator(string uuid)
+        {
+            this.organisationUuid = uuid;
+        }
+
+        public List<string> Validate(string uuid)
+        {
+            List<String> errors = new List<string>();
+            IntegrationLayer.Adresse.RegistreringType1 adresse = adresseStub.GetLatestRegistration(uuid);
 
             if (string.IsNullOrEmpty(adresse.AttributListe?[0]?.AdresseTekst))
             {
                 errors.Add(ADRESSE_TEKST_MSG);
             }
             return errors;
-        }     
+        }
     }
 }

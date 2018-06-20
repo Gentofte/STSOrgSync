@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<schema xmlns:sd="urn:oio:sagdok:3.0.0" xmlns:oio="urn:oio:definitions:1.0.0" xmlns:orgfunk="urn:oio:sts:organisation:organisationfunktion:1.1.1" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:oio:sts:organisation:organisationfunktion:1.1.1" oio:mapping="urn:oio:sagdok:MPD:3.0.0" xmlns="http://www.w3.org/2001/XMLSchema">
-  <import schemaLocation="SagDokObjekt.xsd" namespace="urn:oio:sagdok:3.0.0" />
+<schema xmlns:sd="urn:oio:sagdok:3.0.0" xmlns:orgfaelles="urn:oio:sts:organisation:1.1.2.0" xmlns:oio="urn:oio:definitions:1.0.0" xmlns:orgfunk="urn:oio:sts:organisation:organisationfunktion:1.1.2.0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:oio:sts:organisation:organisationfunktion:1.1.2.0" oio:mapping="urn:oio:sagdok:MPD:3.0.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import schemaLocation="../common/SagDokObjekt.xsd" namespace="urn:oio:sagdok:3.0.0" />
   <include schemaLocation="OrganisationFunktion.xsd" />
-  <import schemaLocation="OrganisationFaelles.xsd" namespace="urn:oio:sts:organisation:1.1.1" />
+  <import schemaLocation="OrganisationFaelles.xsd" namespace="urn:oio:sts:organisation:1.1.2.0" />
   <element oio:definition="urn:oio:sagdok:organisationfunktionimportinput:ADD:2.0.0" name="ImportInput" type="orgfunk:ImportInputType" />
   <element oio:definition="urn:oio:sagdok:organisationfunktionimportoutput:ASDD:2.0.0" name="ImportOutput" type="sd:BasicOutputType" />
   <element oio:definition="urn:oio:sagdok:organisationfunktionopretinput:ADD:2.0.0" name="OpretInput" type="orgfunk:OpretInputType" />

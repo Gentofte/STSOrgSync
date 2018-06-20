@@ -259,13 +259,19 @@ namespace Organisation.BusinessLayer
         {
             uuid = null;
 
+            // catch-all: in case no shortkey is supplied, generate one
+            if (string.IsNullOrEmpty(newAddress.ShortKey))
+            {
+                newAddress.ShortKey = Guid.NewGuid().ToString().ToLower();
+            }
+
             if (uuidOfOldAddress == null || !uuidOfOldAddress.Equals(newAddress.Uuid))
             {
                 adresseStub.Importer(newAddress);
             }
             else // same uuid (or no uuid supplied), so update latest registration of existing object
             {
-                var result = adresseStub.GetLatestRegistration(uuidOfOldAddress, false);
+                var result = adresseStub.GetLatestRegistration(uuidOfOldAddress);
                 if (result == null)
                 {
                     adresseStub.Importer(newAddress);
@@ -367,7 +373,7 @@ namespace Organisation.BusinessLayer
 
         internal static string GetItSystemForRole(string itSystemRole)
         {
-            var registration = organisationFunktionStub.GetLatestRegistration(itSystemRole, true);
+            var registration = organisationFunktionStub.GetLatestRegistration(itSystemRole);
             if (registration.RelationListe.TilknyttedeItSystemer != null && registration.RelationListe.TilknyttedeItSystemer.Length > 0)
             {
                 return registration.RelationListe.TilknyttedeItSystemer[0].ReferenceID.Item;

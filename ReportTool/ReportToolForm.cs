@@ -30,7 +30,7 @@ namespace ReportTool
                 if (model != null)
                 {
                     controller.ParseAndWrite(model, "output.html");
-                    System.Diagnostics.Process.Start("output.html");
+                    System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\output.html");
                 }
             }
             else

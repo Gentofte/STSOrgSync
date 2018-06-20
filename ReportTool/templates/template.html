@@ -53,11 +53,89 @@
             <tbody>
                 @foreach(var user in Model.Users) {
                 <tr>
-                    <td>@user.Name</td>
+                    <td>@user.Name<br/>(@user.Uuid)</td>
                     <td>@user.UserId</td>
                     <td>@user.Cpr</td>
                     <td>
                         <pre>@user.AddressDetails</pre>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <h1>Udbetalingsenheder</h1>
+        <table id="payout-table" class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-2">Enhed</th>
+                    <th class="col-md-3">Enhed UUID</th>
+                    <th class="col-md-2">Udbetalingsenhed</th>
+                    <th class="col-md-3">Udbetalingsenhed UUID</th>
+                    <th class="col-md-2">LOS Kaldenavn Kort</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var payoutUnit in Model.PayoutUnits) {
+                <tr>
+                    <td>@payoutUnit.UnitName</td>
+                    <td>@payoutUnit.UnitUuid</td>
+                    <td>@payoutUnit.PayoutUnitName</td>
+                    <td>@payoutUnit.PayoutUnitUuid</td>
+                    <td>@payoutUnit.PayoutUnitLOSShortKey</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <h1>Henvendelsessteder</h1>
+        <table id="contact-table" class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-2">Enhed</th>
+                    <th class="col-md-3">Enhed UUID</th>
+                    <th class="col-md-2">Henvendelsesenhed</th>
+                    <th class="col-md-3">Henvendelsesenhed UUID</th>
+                    <th class="col-md-2">Opgaver</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var contactPlace in Model.ContactPlaces) {
+                <tr>
+                    <td>@contactPlace.UnitName</td>
+                    <td>@contactPlace.UnitUuid</td>
+                    <td>@contactPlace.ContactUnitName</td>
+                    <td>@contactPlace.ContactUnitUuid</td>
+                    <td>
+                        <ul>
+                            @foreach(var opgave in contactPlace.Opgaver) {
+                                <li>@opgave</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <h1>It-Systemer</h1>
+        <table id="contact-table" class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-4">ItSystem</th>
+                    <th class="col-md-8">Enheder</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var itSystem in Model.ItSystems) {
+                <tr>
+                    <td>@itSystem.Uuid</td>
+                    <td>
+                        <ul>
+                            @foreach(var enhed in itSystem.Enheder) {
+                            <li>@enhed</li>
+                            }
+                        </ul>
                     </td>
                 </tr>
                 }
@@ -70,8 +148,13 @@
 
     <script>
         $(document).ready(function () {
-            $('#ou-table').DataTable();
-            $('#user-table').DataTable();
+            $('#ou-table').DataTable({
+                'pagelength': 100
+            });
+
+            $('#user-table').DataTable({
+                'pagelength': 100
+            });
         });
     </script>
 </body>

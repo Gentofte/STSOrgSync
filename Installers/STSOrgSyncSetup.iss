@@ -2,9 +2,9 @@
 ; To generate the installer, define the variable MyAppSourceDir MUST point to the Directory where the dll's should be copied from
 ; The script may be executed from the console-mode compiler - iscc "c:\isetup\samples\my script.iss" or from the Inno Setup Compiler UI
 #define AppId "{{0a90431b-110a-462f-8b19-b1edffda64a7}"
-#define AppSourceDir "\\VBOXSVR\brian\projects\STSOrgSync\WindowsService\bin\Debug"
+#define AppSourceDir "\\vmware-host\Shared Folders\brian\projects\organisation-synchronisation-component\WindowsService\bin\Debug"
 #define AppName "STSOrgSync"
-#define AppVersion "1.2.0"
+#define AppVersion "1.1"
 #define AppPublisher "Digital Identity"
 #define AppURL "http://digital-identity.dk/"
 #define AppExeName "STSOrgSync.exe"
@@ -50,6 +50,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Source: "BusinessLayer.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Common.Logging.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Common.Logging.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Digst.OioIdws.Common.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Digst.OioIdws.LibBas.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "IntegrationLayer.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Log.config"; DestDir: "{app}"; Flags: onlyifdoesntexist
 Source: "log4net.dll"; DestDir: "{app}"; Flags: ignoreversion

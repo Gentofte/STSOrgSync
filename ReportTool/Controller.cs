@@ -53,6 +53,8 @@ namespace Organisation.ReportTool
 
             TreeNode<OU> tree = BuildTree(root, ous);
 
+            List<OUItSystem> itSystems = new List<OUItSystem>();
+
             List<OUModel> ouModels = new List<OUModel>();
             foreach (OU ou in ous)
             {
@@ -63,6 +65,32 @@ namespace Organisation.ReportTool
                 ouModel.EmployeesDetails = GetDetailEmployees(ou, users);
                 ouModel.BrugervendtNoegle = ou.ShortKey;
                 ouModels.Add(ouModel);
+
+                if (ou.ItSystems != null)
+                {
+                    foreach (string x in ou.ItSystems)
+                    {
+                        bool found = false;
+
+                        foreach (OUItSystem it in itSystems)
+                        {
+                            if (it.Uuid.Equals(x))
+                            {
+                                found = true;
+                                it.Enheder.Add(ou.Name);
+                            }
+                        }
+
+                        if (!found)
+                        {
+                            OUItSystem it = new OUItSystem();
+                            it.Uuid = x;
+                            it.Enheder.Add(ou.Name);
+
+                            itSystems.Add(it);
+                        }
+                    }
+                }
             }
 
             List<UserModel> userModels = new List<UserModel>();
@@ -78,10 +106,70 @@ namespace Organisation.ReportTool
                 userModels.Add(userModel);
             }
 
+            List<PayoutUnitModel> payoutUnitModels = new List<PayoutUnitModel>();
+            foreach (OU ou in ous)
+            {
+                if (ou.PayoutOU != null)
+                {
+                    foreach (OU payoutUnit in ous)
+                    {
+                        if (payoutUnit.Uuid.Equals(ou.PayoutOU.Uuid))
+                        {
+                            PayoutUnitModel payoutUnitModel = new PayoutUnitModel();
+                            payoutUnitModel.UnitName = ou.Name;
+                            payoutUnitModel.UnitUuid = ou.Uuid;
+                            payoutUnitModel.PayoutUnitName = payoutUnit.Name;
+                            payoutUnitModel.PayoutUnitUuid = payoutUnit.Uuid;
+
+                            foreach (AddressHolder address in payoutUnit.Addresses)
+                            {
+                                if (address is LOSShortName)
+                                {
+                                    payoutUnitModel.PayoutUnitLOSShortKey = address.Value;
+                                    break;
+                                }
+                            }
+
+                            payoutUnitModels.Add(payoutUnitModel);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            List<ContactPlacesModel> contactPlacesModels = new List<ContactPlacesModel>();
+            foreach (OU ou in ous)
+            {
+                if (ou.ContactPlaces != null)
+                {
+                    foreach (ContactPlace cp in ou.ContactPlaces)
+                    {
+                        foreach (OU contactPlace in ous)
+                        {
+                            if (contactPlace.Uuid.Equals(cp.OrgUnit.Uuid))
+                            {
+                                ContactPlacesModel cpModel = new ContactPlacesModel();
+                                cpModel.ContactUnitName = contactPlace.Name;
+                                cpModel.ContactUnitUuid = contactPlace.Uuid;
+                                cpModel.UnitName = ou.Name;
+                                cpModel.UnitUuid = ou.Uuid;
+                                cpModel.Opgaver = cp.Tasks;
+
+                                contactPlacesModels.Add(cpModel);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
             Model model = new Model();
             model.AsciiTreeRepresentation = tree.PrintPretty("", false);
             model.OUs = ouModels;
             model.Users = userModels;
+            model.PayoutUnits = payoutUnitModels;
+            model.ContactPlaces = contactPlacesModels;
+            model.ItSystems = itSystems;
 
             return model;
         }
@@ -93,9 +181,9 @@ namespace Organisation.ReportTool
 
         public void ParseAndWrite(Model model, string outputFileName)
         {
-            log.AppendText("Writing output");
+            log.AppendText("Writing output to: " + System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "\\" + outputFileName);
             string htmlPage = Engine.Razor.RunCompile(File.ReadAllText("templates/template.html"), "templateKey", null, model);
-            File.WriteAllText(outputFileName, htmlPage);
+            File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "\\" + outputFileName, htmlPage);
         }
 
         private string GetDetailAddresses(List<AddressHolder> addresses)
@@ -151,7 +239,11 @@ namespace Organisation.ReportTool
             foreach (string uuid in users)
             {
                 User user = inspectorService.ReadUserObject(uuid);
-                result.Add(user);
+                // TODO: a bug in the Search function returns inactive results
+                if (user.Status.Equals(Status.ACTIVE))
+                {
+                    result.Add(user);
+                }
 
                 if (count++ % pixelStep == 0)
                 {
@@ -180,7 +272,12 @@ namespace Organisation.ReportTool
             foreach (string uuid in ous)
             {
                 OU ou = inspectorService.ReadOUObject(uuid, ReadAddresses.YES, ReadParentDetails.NO, ReadPayoutUnit.YES, ReadPositions.YES);
-                result.Add(ou);
+
+                // TODO: a bug in the Search function returns inactive results
+                if (ou.Status.Equals(Status.ACTIVE))
+                {
+                    result.Add(ou);
+                }
 
                 if (count++ % pixelStep == 0)
                 {

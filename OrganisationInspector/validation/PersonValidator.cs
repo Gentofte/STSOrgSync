@@ -24,7 +24,7 @@ namespace OrganisationInspector
              - NavnTekst [X]
              */
             List<String> errors = new List<string>();
-            IntegrationLayer.Person.RegistreringType1 person = personStub.GetLatestRegistration(uuid, false);
+            IntegrationLayer.Person.RegistreringType1 person = personStub.GetLatestRegistration(uuid);
 
             if (string.IsNullOrEmpty(person.AttributListe?[0]?.NavnTekst))
             {

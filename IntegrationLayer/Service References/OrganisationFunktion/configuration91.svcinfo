@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="mvCu9DC/7K2l6F+A2Nv6StsDAu0=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="7LuLzYEG2dorn/xQKoAFlo8O3Ag=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="OrganisationFunktionBinding">
       <properties>
@@ -221,10 +221,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="OrganisationFunktionPort" contract="OrganisationFunktion.OrganisationFunktionPortType" bindingType="basicHttpBinding" address="https://localhost:8080/service/Organisation/OrganisationFunktion/2" bindingConfiguration="OrganisationFunktionBinding">
+    <endpoint name="OrganisationFunktionPort" contract="OrganisationFunktion.OrganisationFunktionPortType" bindingType="basicHttpBinding" address="https://localhost:8080/service/Organisation/OrganisationFunktion/4" bindingConfiguration="OrganisationFunktionBinding">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>https://localhost:8080/service/Organisation/OrganisationFunktion/2</serializedValue>
+          <serializedValue>https://localhost:8080/service/Organisation/OrganisationFunktion/4</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

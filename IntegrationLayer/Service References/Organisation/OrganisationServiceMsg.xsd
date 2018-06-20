@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:callctx="http://serviceplatformen.dk/xml/schemas/CallContext/1/" xmlns:org="urn:oio:sts:organisation:organisation:1.1.1" xmlns:tns="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Organisation/2/" xmlns:authctx="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Organisation/2/" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:callctx="http://serviceplatformen.dk/xml/schemas/CallContext/1/" xmlns:org="urn:oio:sts:organisation:organisation:1.1.2.0" xmlns:tns="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Organisation/4/" xmlns:authctx="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Organisation/4/" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <xsd:import schemaLocation="sp/CallContext_1.xsd" namespace="http://serviceplatformen.dk/xml/schemas/CallContext/1/" />
   <xsd:import schemaLocation="sp/AuthorityContext_1.xsd" namespace="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" />
-  <xsd:import schemaLocation="SF1500_EP_FS8/xsd/1.1.STS-1/OrganisationOperationer.xsd" namespace="urn:oio:sts:organisation:organisation:1.1.1" />
+  <xsd:import schemaLocation="SF1500_EP_FS8/xsd/1.1.STS-2/OrganisationOperationer.xsd" namespace="urn:oio:sts:organisation:organisation:1.1.2.0" />
   <xsd:element name="ImporterRequest" type="tns:ImporterRequestType" />
   <xsd:complexType name="ImporterRequestType">
     <xsd:sequence>

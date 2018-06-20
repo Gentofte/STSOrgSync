@@ -59,7 +59,7 @@ namespace Organisation.BusinessLayer
 
             try
             {
-                var result = brugerStub.GetLatestRegistration(user.Uuid, true);
+                var result = brugerStub.GetLatestRegistration(user.Uuid);
                 if (result == null)
                 {
                     log.Debug("Update on User '" + user.Uuid + "' changed to a Create because it does not exists as an active object within Organisation");
@@ -74,18 +74,18 @@ namespace Organisation.BusinessLayer
                     {
                         foreach (var orgAddress in result.RelationListe.Adresser)
                         {
-                            if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_PHONE))
+                            if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_USER_PHONE))
                             {
                                 orgPhoneUuid = orgAddress.ReferenceID.Item;
                             }
-                            else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_EMAIL))
+                            else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_USER_EMAIL))
                             {
                                 orgEmailUuid = orgAddress.ReferenceID.Item;
-                            }
+                            } /*
                             else if (orgAddress.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_LOCATION))
                             {
                                 orgLocationUuid = orgAddress.ReferenceID.Item;
-                            }
+                            } */
                         }
                     }
 

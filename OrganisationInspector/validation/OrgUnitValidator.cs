@@ -62,7 +62,7 @@ namespace OrganisationInspector
         public List<string> Validate(string uuid)
         {
             List<String> errors = new List<string>();
-            RegistreringType1 orgEnhed = organisationEnhedStub.GetLatestRegistration(uuid, true);
+            RegistreringType1 orgEnhed = organisationEnhedStub.GetLatestRegistration(uuid);
 
             if (string.IsNullOrEmpty(orgEnhed.AttributListe?.Egenskab?[0]?.BrugervendtNoegleTekst))
             {
@@ -146,7 +146,7 @@ namespace OrganisationInspector
             {
                 // can only be PAYOUT_UNIT or CONTACT_UNIT
                 string funcUUID = orgFunc.ReferenceID.Item;
-                var orgFuncRegistration = organisationFunktionStub.GetLatestRegistration(funcUUID, true);
+                var orgFuncRegistration = organisationFunktionStub.GetLatestRegistration(funcUUID);
                 string type = orgFuncRegistration.RelationListe?.Funktionstype?.ReferenceID?.Item;
 
                 if (!UUIDConstants.ORGFUN_PAYOUT_UNIT.Equals(type) && !UUIDConstants.ORGFUN_CONTACT_UNIT.Equals(type))
@@ -188,22 +188,22 @@ namespace OrganisationInspector
 
         private bool ValidateOrgUnitAddressType(string type)
         {
-            return type.Equals(UUIDConstants.ADDRESS_TYPE_ADDRESS);
+            return type.Equals(UUIDConstants.ADDRESS_TYPE_ORGUNIT);
         }
 
         private bool ValidateOrgUnitAddressRole(string rolle)
         {
-            return (rolle.Equals(UUIDConstants.ADDRESS_ROLE_CONTACT_ADDRESS) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_CONTACT_ADDRESS_OPEN_HOURS) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_EAN) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_EMAIL) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_EMAIL_REMARKS) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_LOCATION) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_LOSSHORTNAME) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_PHONE) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_PHONE_OPEN_HOURS) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_POST) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_POST_RETURN));
+            return (//rolle.Equals(UUIDConstants.ADDRESS_ROLE_CONTACT_ADDRESS) ||
+                    //        rolle.Equals(UUIDConstants.ADDRESS_ROLE_CONTACT_ADDRESS_OPEN_HOURS) ||
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_EAN) ||
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_EMAIL) ||
+                //          rolle.Equals(UUIDConstants.ADDRESS_ROLE_EMAIL_REMARKS) ||
+                //            rolle.Equals(UUIDConstants.ADDRESS_ROLE_LOCATION) ||
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_LOSSHORTNAME) ||
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_PHONE) ||
+                //              rolle.Equals(UUIDConstants.ADDRESS_ROLE_PHONE_OPEN_HOURS) ||
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_POST));
+//                rolle.Equals(UUIDConstants.ADDRESS_ROLE_POST_RETURN));
         }
     }
 }

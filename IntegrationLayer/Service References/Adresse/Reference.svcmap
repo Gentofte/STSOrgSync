@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="03304e6d-1109-4f85-a72c-0b5a9c504aef" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="70589b10-ca45-4373-a003-c03a04ff98db" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,21 +19,21 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="\\VBOXSVR\brian\projects\organisation-synchronisation-component\IntegrationLayer\Resources\sp-new-schema\Adresse\wsdl\context\AdresseService.wsdl" Protocol="file" SourceId="1" />
+    <MetadataSource Address="\\VBOXSVR\brian\projects\organisation-synchronisation-component\IntegrationLayer\Resources\sp-v4\Adresse\wsdl\context\AdresseService.wsdl" Protocol="file" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="RequestHeader.xsd" MetadataType="Schema" ID="00293f85-1867-49f1-84d2-7bc0a0cc7865" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Adresse/SF1500_EP_FS1/xsd/common/RequestHeader.xsd" />
-    <MetadataFile FileName="SagDokObjekt.xsd" MetadataType="Schema" ID="80ac435e-321c-4ed8-93ec-a1e12e365ff1" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Adresse/SF1500_EP_FS1/xsd/1.1.STS-1/SagDokObjekt.xsd" />
-    <MetadataFile FileName="AdresseService.wsdl" MetadataType="Wsdl" ID="abcf3875-1b45-4843-a90b-0407e58acb37" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Adresse/wsdl/context/AdresseService.wsdl" />
-    <MetadataFile FileName="AuthorityContext_1.xsd" MetadataType="Schema" ID="c5fe6d3c-6e43-4951-81bc-6f222499d1cb" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Adresse/sp/AuthorityContext_1.xsd" />
-    <MetadataFile FileName="policies.wsdl" MetadataType="Wsdl" ID="9c5be1e3-84e6-43ab-bbe7-1b0d753e679d" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Adresse/wsdl/context/policies.wsdl" />
-    <MetadataFile FileName="CallContext_1.xsd" MetadataType="Schema" ID="308e808d-b1f8-4d1a-9ed1-1ed97c44687a" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Adresse/sp/CallContext_1.xsd" />
-    <MetadataFile FileName="ServiceplatformFaultMessage.wsdl" MetadataType="Wsdl" ID="237a7b24-2953-4fde-a6db-c2fe94c046f1" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Adresse/sp/ServiceplatformFaultMessage_1.wsdl" />
-    <MetadataFile FileName="AdresseServiceMsg.xsd" MetadataType="Schema" ID="acf7778e-6d42-40ab-a3e9-1aaf04bbe1d0" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Adresse/AdresseServiceMsg.xsd" />
-    <MetadataFile FileName="AdresseOperationer.xsd" MetadataType="Schema" ID="fd3600be-9ac8-4dd3-8016-0eaea33d45e8" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Adresse/SF1500_EP_FS1/xsd/1.1.STS-1/AdresseOperationer.xsd" />
-    <MetadataFile FileName="GenerelleDefinitioner.xsd" MetadataType="Schema" ID="e479ff97-9080-444b-a858-9900eb15c6d7" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Adresse/SF1500_EP_FS1/xsd/1.1.STS-1/GenerelleDefinitioner.xsd" />
-    <MetadataFile FileName="Adresse.xsd" MetadataType="Schema" ID="4044aef8-ccba-4c95-ac67-193ec0f30540" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Adresse/SF1500_EP_FS1/xsd/1.1.STS-1/Adresse.xsd" />
-    <MetadataFile FileName="ServiceplatformFault_1.xsd" MetadataType="Schema" ID="76bc7703-5136-40a5-9fca-30d940df84ae" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-new-schema/Adresse/sp/ServiceplatformFault_1.xsd" />
+    <MetadataFile FileName="ServiceplatformFaultMessage.wsdl" MetadataType="Wsdl" ID="3a699e52-4b62-4c42-9ce5-ff60f37a55fc" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/Adresse/sp/ServiceplatformFaultMessage_1.wsdl" />
+    <MetadataFile FileName="policies.wsdl" MetadataType="Wsdl" ID="2467b17d-114f-4a1d-911d-6343910e962d" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/Adresse/wsdl/context/policies.wsdl" />
+    <MetadataFile FileName="AuthorityContext_1.xsd" MetadataType="Schema" ID="27e422fa-3746-4ae8-b3b2-60b4d7d3b888" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/Adresse/sp/AuthorityContext_1.xsd" />
+    <MetadataFile FileName="RequestHeader.xsd" MetadataType="Schema" ID="89200a18-fd6b-488a-90b6-77cb8a356908" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/Adresse/SF1500_EP_FS1/xsd/common/RequestHeader.xsd" />
+    <MetadataFile FileName="AdresseServiceMsg.xsd" MetadataType="Schema" ID="2811ce9b-7013-4b5a-afa9-0d9ecb91e17b" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/Adresse/AdresseServiceMsg.xsd" />
+    <MetadataFile FileName="SagDokObjekt.xsd" MetadataType="Schema" ID="4a866b99-37bb-459a-845c-5e9a3a193ac1" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/Adresse/SF1500_EP_FS1/xsd/common/SagDokObjekt.xsd" />
+    <MetadataFile FileName="CallContext_1.xsd" MetadataType="Schema" ID="3d52d5a8-f800-4790-8664-0f82fc50011b" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/Adresse/sp/CallContext_1.xsd" />
+    <MetadataFile FileName="Adresse.xsd" MetadataType="Schema" ID="51e95c4f-01ac-49b8-85d5-7dc6709102ad" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/Adresse/SF1500_EP_FS1/xsd/1.1.STS-2/Adresse.xsd" />
+    <MetadataFile FileName="AdresseOperationer.xsd" MetadataType="Schema" ID="53ec8f65-88d7-4d2a-a34e-19672fb8079a" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/Adresse/SF1500_EP_FS1/xsd/1.1.STS-2/AdresseOperationer.xsd" />
+    <MetadataFile FileName="GenerelleDefinitioner.xsd" MetadataType="Schema" ID="35cc40e2-87c5-4b8b-8c7c-96f8afd0fc7b" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/Adresse/SF1500_EP_FS1/xsd/1.1.STS-2/GenerelleDefinitioner.xsd" />
+    <MetadataFile FileName="AdresseService.wsdl" MetadataType="Wsdl" ID="034c496f-36e7-43de-8c87-0085e94a70c7" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/Adresse/wsdl/context/AdresseService.wsdl" />
+    <MetadataFile FileName="ServiceplatformFault_1.xsd" MetadataType="Schema" ID="7f0ed8c8-1421-4364-aa31-74d25b2e6cfc" SourceId="1" SourceUrl="file://vboxsvr/brian/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/Adresse/sp/ServiceplatformFault_1.xsd" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
