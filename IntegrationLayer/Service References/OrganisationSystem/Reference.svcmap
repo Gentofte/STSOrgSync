@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="35a0255d-c66b-43af-988b-dfe652dc14a4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/wsdl/context/OrganisationSystemService.wsdl" Protocol="file" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OrganisationSystemOperationer.xsd" MetadataType="Schema" ID="f48997dc-bda1-4b51-b1f7-41b0cc5e32f6" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/OrganisationSystemOperationer.xsd" />
+    <MetadataFile FileName="OrganisationFaelles.xsd" MetadataType="Schema" ID="206a153f-cba4-4431-aa77-bf3aa9486db8" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/OrganisationFaelles.xsd" />
+    <MetadataFile FileName="ServiceplatformFaultMessage.wsdl" MetadataType="Wsdl" ID="b5f1747d-355a-49b2-a86e-92a2838b0818" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/sp/ServiceplatformFaultMessage_1.wsdl" />
+    <MetadataFile FileName="ItSystemOperationer.xsd" MetadataType="Schema" ID="ef85ef5e-6af2-4d14-a4b8-ed8fd94aeb4d" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/ItSystemOperationer.xsd" />
+    <MetadataFile FileName="ItSystem.xsd" MetadataType="Schema" ID="cb40092b-ae5d-4427-affc-f8444dbac9a1" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/ItSystem.xsd" />
+    <MetadataFile FileName="Virksomhed.xsd" MetadataType="Schema" ID="1f1a42ab-3151-446f-bdd5-82ca7f024322" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/Virksomhed.xsd" />
+    <MetadataFile FileName="OrganisationFunktion.xsd" MetadataType="Schema" ID="bc08eb25-366f-4ef4-8b2a-c06665c19375" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/OrganisationFunktion.xsd" />
+    <MetadataFile FileName="Myndighed.xsd" MetadataType="Schema" ID="917c365d-fb1f-4312-8e92-9a697175fe13" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/Myndighed.xsd" />
+    <MetadataFile FileName="Person.xsd" MetadataType="Schema" ID="53266e38-232d-436e-91da-d54e6b8eac15" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/Person.xsd" />
+    <MetadataFile FileName="MyndighedOperationer.xsd" MetadataType="Schema" ID="2ec31382-b2dd-425c-8be0-dc78c805f9c0" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/MyndighedOperationer.xsd" />
+    <MetadataFile FileName="SagDokObjekt.xsd" MetadataType="Schema" ID="d0585fc6-7772-4421-9062-6995f24a5ea3" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/common/SagDokObjekt.xsd" />
+    <MetadataFile FileName="CallContext_1.xsd" MetadataType="Schema" ID="5eda342a-2eef-4660-ae8a-b5eeb92b9d19" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/sp/CallContext_1.xsd" />
+    <MetadataFile FileName="OrganisationEnhed.xsd" MetadataType="Schema" ID="17491b58-8af4-42f6-8ba9-7795a3b69948" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/OrganisationEnhed.xsd" />
+    <MetadataFile FileName="AuthorityContext_1.xsd" MetadataType="Schema" ID="b8056cc5-c8d4-4ec9-9916-3ba20752dc3d" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/sp/AuthorityContext_1.xsd" />
+    <MetadataFile FileName="InteressefaellesskabOperationer.xsd" MetadataType="Schema" ID="f9788162-7034-43d6-81da-14c0ec87e811" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/InteressefaellesskabOperationer.xsd" />
+    <MetadataFile FileName="Part.xsd" MetadataType="Schema" ID="a0013333-10e2-4419-a47a-8b73910c8765" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/Part.xsd" />
+    <MetadataFile FileName="GenerelleDefinitioner.xsd" MetadataType="Schema" ID="691e889d-57f8-4877-92c8-498ca9e896c1" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/GenerelleDefinitioner.xsd" />
+    <MetadataFile FileName="policies.wsdl" MetadataType="Wsdl" ID="02e167e2-c55c-4758-b81f-53df28b2428b" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/wsdl/context/policies.wsdl" />
+    <MetadataFile FileName="Bruger.xsd" MetadataType="Schema" ID="a5c741a1-9243-432e-bd7a-a1e5f8994626" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/Bruger.xsd" />
+    <MetadataFile FileName="BrugerOperationer.xsd" MetadataType="Schema" ID="a36bba17-02be-4c7c-ac08-65e5a647b997" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/BrugerOperationer.xsd" />
+    <MetadataFile FileName="OrganisationSystemServiceMsg.xsd" MetadataType="Schema" ID="8bf86dcd-04b6-4600-b8f2-fa5de5f1e9fc" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/OrganisationSystemServiceMsg.xsd" />
+    <MetadataFile FileName="VirksomhedOperationer.xsd" MetadataType="Schema" ID="0663bd5b-d7bd-46aa-919d-7e700c7d60ad" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/VirksomhedOperationer.xsd" />
+    <MetadataFile FileName="AdresseOperationer.xsd" MetadataType="Schema" ID="31773bfa-e38e-40d7-89aa-63deb7e06efc" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/AdresseOperationer.xsd" />
+    <MetadataFile FileName="OrganisationEnhedOperationer.xsd" MetadataType="Schema" ID="acd4dcc1-bb66-4adb-89f3-d648f749f00c" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/OrganisationEnhedOperationer.xsd" />
+    <MetadataFile FileName="ServiceplatformFault_1.xsd" MetadataType="Schema" ID="32378fed-aa94-400c-ab71-bf7f9e94355f" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/sp/ServiceplatformFault_1.xsd" />
+    <MetadataFile FileName="Organisation.xsd" MetadataType="Schema" ID="2804b5cf-9cfa-4456-bb98-ddee516bc800" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/Organisation.xsd" />
+    <MetadataFile FileName="OrganisationSystemService.wsdl" MetadataType="Wsdl" ID="e35b8e43-6a2d-4bf5-911c-e92b4bdcaa99" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/wsdl/context/OrganisationSystemService.wsdl" />
+    <MetadataFile FileName="PersonOperationer.xsd" MetadataType="Schema" ID="d04ad8fd-22e7-401c-beac-26086ab7d349" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/PersonOperationer.xsd" />
+    <MetadataFile FileName="Adresse.xsd" MetadataType="Schema" ID="7c915185-f4bd-41e7-a1e6-8018ae8a9008" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/Adresse.xsd" />
+    <MetadataFile FileName="OrganisationOperationer.xsd" MetadataType="Schema" ID="68a98dc8-8001-448a-a010-2335d65795d1" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/OrganisationOperationer.xsd" />
+    <MetadataFile FileName="Interessefaellesskab.xsd" MetadataType="Schema" ID="a1db5fc0-1c77-4511-9754-b8af20f4fc31" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/Interessefaellesskab.xsd" />
+    <MetadataFile FileName="OrganisationFunktionOperationer.xsd" MetadataType="Schema" ID="f148bbea-a240-42b3-abb8-cf2f7598ebb1" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/1.1.STS-2/OrganisationFunktionOperationer.xsd" />
+    <MetadataFile FileName="RequestHeader.xsd" MetadataType="Schema" ID="339582a9-674a-4882-b03e-bd150ecc1654" SourceId="1" SourceUrl="file:///e:/projects/organisation-synchronisation-component/IntegrationLayer/Resources/sp-v4/OrganisationSystem/SF1500_EP_FS9/xsd/common/RequestHeader.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

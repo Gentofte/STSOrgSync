@@ -47,7 +47,7 @@ namespace Organisation.IntegrationLayer
             request.ImporterRequest1 = new ImporterRequestType();
             request.ImporterRequest1.ImportInput = importInput;
             request.ImporterRequest1.AuthorityContext = new AuthorityContextType();
-            request.ImporterRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            request.ImporterRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
 
             // send request
             BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Importer", helper.CreatePort());
@@ -80,7 +80,7 @@ namespace Organisation.IntegrationLayer
         {
             log.Debug("Attempting Deactivate on Bruger with uuid " + uuid);
 
-            RegistreringType1 registration = GetLatestRegistration(uuid, false);
+            RegistreringType1 registration = GetLatestRegistration(uuid);
             if (registration == null)
             {
                 log.Debug("Cannot Deactivate Bruger with uuid " + uuid + " because it does not exist in Organisation");
@@ -104,7 +104,7 @@ namespace Organisation.IntegrationLayer
                 request.RetRequest1 = new RetRequestType();
                 request.RetRequest1.RetInput = input;
                 request.RetRequest1.AuthorityContext = new AuthorityContextType();
-                request.RetRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
+                request.RetRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
 
                 retResponse response = channel.ret(request);
 
@@ -130,7 +130,7 @@ namespace Organisation.IntegrationLayer
         {
             log.Debug("Attempting Ret on Bruger with uuid " + user.Uuid);
 
-            RegistreringType1 registration = GetLatestRegistration(user.Uuid, false);
+            RegistreringType1 registration = GetLatestRegistration(user.Uuid);
             if (registration == null)
             {
                 log.Debug("Cannot call Ret on Bruger with uuid " + user.Uuid + " because it does not exist in Organisation");
@@ -161,11 +161,7 @@ namespace Organisation.IntegrationLayer
                 if (latestProperty == null || !latestProperty.BrugerNavn.Equals(user.UserId) || (user.ShortKey != null && !latestProperty.BrugervendtNoegleTekst.Equals(user.ShortKey)))
                 {
                     // end the validity of open-ended property
-                    if (latestProperty != null)
-                    {
-                        StubUtil.TerminateVirkning(latestProperty.Virkning, user.Timestamp);
-                    }
-                    else
+                    if (latestProperty == null)
                     {
                         // create ShortKey if not supplied
                         EnsureKeys(user);
@@ -178,13 +174,8 @@ namespace Organisation.IntegrationLayer
                     newProperty.BrugerNavn = user.UserId;
 
                     // create a new set of properties
-                    EgenskabType[] oldProperties = input.AttributListe.Egenskab;
-                    input.AttributListe.Egenskab = new EgenskabType[oldProperties.Length + 1];
-                    for (int i = 0; i < oldProperties.Length; i++)
-                    {
-                        input.AttributListe.Egenskab[i] = oldProperties[i];
-                    }
-                    input.AttributListe.Egenskab[oldProperties.Length] = newProperty;
+                    input.AttributListe.Egenskab = new EgenskabType[1];
+                    input.AttributListe.Egenskab[0] = newProperty;
 
                     changes = true;
                 }
@@ -221,13 +212,13 @@ namespace Organisation.IntegrationLayer
                                 switch (addressInLocal.Type)
                                 {
                                     case AddressRelationType.EMAIL:
-                                        roleUuid = UUIDConstants.ADDRESS_ROLE_EMAIL;
+                                        roleUuid = UUIDConstants.ADDRESS_ROLE_USER_EMAIL;
                                         break;
                                     case AddressRelationType.PHONE:
-                                        roleUuid = UUIDConstants.ADDRESS_ROLE_PHONE;
+                                        roleUuid = UUIDConstants.ADDRESS_ROLE_USER_PHONE;
                                         break;
                                     case AddressRelationType.LOCATION:
-                                        roleUuid = UUIDConstants.ADDRESS_ROLE_LOCATION;
+                                        roleUuid = UUIDConstants.ADDRESS_ROLE_USER_LOCATION;
                                         break;
                                     default:
                                         log.Warn("Cannot add relationship to address of type " + addressInLocal.Type + " with uuid " + addressInLocal.Uuid + " as the type is unknown");
@@ -256,7 +247,8 @@ namespace Organisation.IntegrationLayer
 
                     // update the Virkning on the Tilhører relationship if needed (undelete feature)
                     object endTime = registration.RelationListe.Tilhoerer.Virkning.TilTidspunkt.Item;
-                    if (endTime is DateTime) // if it is a DateTime, it means that it has been terminated, otherwise it would be a boolean
+
+                    if (endTime is DateTime && (DateTime.Compare(DateTime.Now, (DateTime)endTime) >= 0))
                     {
                         log.Debug("Re-establishing relationship with Organisation for Bruger " + user.Uuid);
                         registration.RelationListe.Tilhoerer.Virkning = virkning;
@@ -322,7 +314,7 @@ namespace Organisation.IntegrationLayer
                 request.RetRequest1 = new RetRequestType();
                 request.RetRequest1.RetInput = input;
                 request.RetRequest1.AuthorityContext = new AuthorityContextType();
-                request.RetRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
+                request.RetRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
 
                 retResponse response = channel.ret(request);
 
@@ -344,6 +336,89 @@ namespace Organisation.IntegrationLayer
             }
         }
 
+        public Dictionary<string, RegistreringType1> GetLatestRegistrations(List<string> userUuids)
+        {
+            var result = new Dictionary<string, RegistreringType1>();
+
+            ListInputType listInput = new ListInputType();
+            listInput.UUIDIdentifikator = userUuids.ToArray();
+
+            listRequest request = new listRequest();
+            request.ListRequest1 = new ListRequestType();
+            request.ListRequest1.ListInput = listInput;
+            request.ListRequest1.AuthorityContext = new AuthorityContextType();
+            request.ListRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
+
+            BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "List", helper.CreatePort());
+
+            try
+            {
+                listResponse response = channel.list(request);
+
+                int statusCode = Int32.Parse(response.ListResponse1.ListOutput.StandardRetur.StatusKode);
+                if (statusCode != 20)
+                {
+                    // note that statusCode 44 means that the object does not exists, so that is a valid response
+                    log.Debug("List on Bruger failed with statuscode " + statusCode);
+                    return result;
+                }
+
+                if (response.ListResponse1.ListOutput.FiltreretOejebliksbillede == null || response.ListResponse1.ListOutput.FiltreretOejebliksbillede.Length == 0)
+                {
+                    log.Debug("List on Bruger has 0 hits");
+                    return result;
+                }
+
+                foreach (var user in response.ListResponse1.ListOutput.FiltreretOejebliksbillede)
+                {
+                    RegistreringType1[] resultSet = user.Registrering;
+                    if (resultSet.Length == 0)
+                    {
+                        log.Warn("Bruger with uuid '" + user.ObjektType.UUIDIdentifikator + "' exists, but has no registration");
+                        continue;
+                    }
+
+                    RegistreringType1 reg = null;
+                    if (resultSet.Length > 1)
+                    {
+                        log.Warn("Bruger with uuid " + user.ObjektType.UUIDIdentifikator + " has more than one registration when reading latest registration, this should never happen");
+
+                        DateTime winner = DateTime.MinValue;
+                        foreach (RegistreringType1 res in resultSet)
+                        {
+                            // first time through will always result in a True evaluation here
+                            if (DateTime.Compare(winner, res.Tidspunkt) < 0)
+                            {
+                                reg = res;
+                                winner = res.Tidspunkt;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        reg = resultSet[0];
+                    }
+
+                    // we cannot perform any kind of updates on Slettet/Passiveret, så it makes sense to filter them out on lookup,
+                    // so the rest of the code will default to Import op top of this
+                    if (reg.LivscyklusKode.Equals(LivscyklusKodeType.Slettet) || reg.LivscyklusKode.Equals(LivscyklusKodeType.Passiveret))
+                    {
+                        continue;
+                    }
+
+                    result.Add(user.ObjektType.UUIDIdentifikator, reg);
+                }
+
+                return result;
+            }
+            catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
+            {
+                string message = "Failed to establish connection to the List service on Bruger";
+                log.Error(message, ex);
+                throw new ServiceNotFoundException(message, ex);
+            }
+        }
+
         public List<string> Soeg()
         {
             BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Soeg", helper.CreatePort());
@@ -351,40 +426,37 @@ namespace Organisation.IntegrationLayer
             SoegInputType1 soegInput = new SoegInputType1();
             soegInput.AttributListe = new AttributListeType();
             soegInput.RelationListe = new RelationListeType();
-            soegInput.SoegRegistrering = new SoegRegistreringType();
-            soegInput.SoegVirkning = new SoegVirkningType();
             soegInput.TilstandListe = new TilstandListeType();
-            soegInput.MaksimalAntalKvantitet = "5000"; // the default limit is 500, and for the report tool, we need to extract ALL OUs/Users, which can be a higher number
-
-            // TODO: This is not working because KMDs implementation does not take Virkning into consideration when searching. We are waiting for a fix from KMD
-            // only search in "actual state"
-            soegInput.SoegVirkning.FraTidspunkt = new TidspunktType();
-            soegInput.SoegVirkning.FraTidspunkt.Item = DateTime.Now;
+            soegInput.MaksimalAntalKvantitet = "20000"; // the default limit is 500, and for the report tool, we need to extract ALL OUs/Users, which can be a higher number
 
             // only search for Active users
-            // TODO: It shouldn't be required to add a Virkning to the individual fields in search(), but we get an errorcode 40 (bad request) if we leave it out (another bug @KMD I think)
-            // TODO: This code causes the KMD services to throw an SQL Exception - this has been reported to KMD, and we are waiting for a fix. This means that we get inactive users back when searching
-            /*
             soegInput.TilstandListe.Gyldighed = new GyldighedType[1];
             soegInput.TilstandListe.Gyldighed[0] = new GyldighedType();
             soegInput.TilstandListe.Gyldighed[0].GyldighedStatusKode = GyldighedStatusKodeType.Aktiv;
+            // TODO: these three lines should be removeable once KMD fixes their end
             soegInput.TilstandListe.Gyldighed[0].Virkning = new VirkningType();
             soegInput.TilstandListe.Gyldighed[0].Virkning.FraTidspunkt = new TidspunktType();
             soegInput.TilstandListe.Gyldighed[0].Virkning.FraTidspunkt.Item = DateTime.Now;
-            */
 
             // only return objects that have a Tilhører relationship top-level Organisation
-            UnikIdType orgReference = StubUtil.GetReference<UnikIdType>(registry.MunicipalityOrganisationUUID, ItemChoiceType.UUIDIdentifikator);
+            UnikIdType orgReference = StubUtil.GetReference<UnikIdType>(registry.MunicipalityOrganisationUUID[OrganisationRegistryProperties.GetMunicipality()], ItemChoiceType.UUIDIdentifikator);
             OrganisationRelationType organisationRelationType = new OrganisationRelationType();
             organisationRelationType.ReferenceID = orgReference;
             soegInput.RelationListe.Tilhoerer = organisationRelationType;
+
+            /*
+            // TODO: see if this gives us what we want
+            soegInput.SoegRegistrering = new SoegRegistreringType();
+            soegInput.SoegRegistrering.FraTidspunkt = new TidspunktType();
+            soegInput.SoegRegistrering.FraTidspunkt.Item = new DateTime(2018, 8, 29, 14, 10, 00, DateTimeKind.Local);
+            */
 
             // search
             soegRequest request = new soegRequest();
             request.SoegRequest1 = new SoegRequestType();
             request.SoegRequest1.SoegInput = soegInput;
             request.SoegRequest1.AuthorityContext = new AuthorityContextType();
-            request.SoegRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            request.SoegRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
 
             try
             {
@@ -392,7 +464,7 @@ namespace Organisation.IntegrationLayer
                 int statusCode = Int32.Parse(response.SoegResponse1.SoegOutput.StandardRetur.StatusKode);
                 if (statusCode != 20 && statusCode != 44) // 44 is empty search result
                 {
-                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Soeg", OrganisationFunktionStubHelper.SERVICE, response.SoegResponse1.SoegOutput.StandardRetur.FejlbeskedTekst);
+                    string message = StubUtil.ConstructSoapErrorMessage(statusCode, "Soeg", BrugerStubHelper.SERVICE, response.SoegResponse1.SoegOutput.StandardRetur.FejlbeskedTekst);
                     log.Error(message);
                     throw new SoapServiceException(message);
                 }
@@ -416,37 +488,24 @@ namespace Organisation.IntegrationLayer
             }
         }
 
-        // TODO: this method contains a work-around.
-        //       KMD released version 1.4 of Organisation, containing a series of changes to how reading and searching for data works, unfortunately this new functionality
-        //       does not cover the actually required use-cases (e.g. reading actual state), but luckily they forgot to change the List() operation, so we are using List()
-        //       instead of Laes() until Laes() is fixed in a later release of Organisation.
-        public RegistreringType1 GetLatestRegistration(string uuid, bool actualStateOnly)
+        public RegistreringType1 GetLatestRegistration(string uuid)
         {
-            ListInputType listInput = new ListInputType();
-            listInput.UUIDIdentifikator = new string[] { uuid };
+            LaesInputType laesInput = new LaesInputType();
+            laesInput.UUIDIdentifikator = uuid;
 
-            // this ensures that we get the full history when reading, and not just what is valid right now
-            if (!actualStateOnly)
-            {
-                listInput.VirkningFraFilter = new TidspunktType();
-                listInput.VirkningFraFilter.Item = true;
-                listInput.VirkningTilFilter = new TidspunktType();
-                listInput.VirkningTilFilter.Item = true;
-            }
-
-            listRequest request = new listRequest();
-            request.ListRequest1 = new ListRequestType();
-            request.ListRequest1.ListInput = listInput;
-            request.ListRequest1.AuthorityContext = new AuthorityContextType();
-            request.ListRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            laesRequest request = new laesRequest();
+            request.LaesRequest1 = new LaesRequestType();
+            request.LaesRequest1.LaesInput = laesInput;
+            request.LaesRequest1.AuthorityContext = new AuthorityContextType();
+            request.LaesRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
 
             BrugerPortType channel = StubUtil.CreateChannel<BrugerPortType>(BrugerStubHelper.SERVICE, "Laes", helper.CreatePort());
 
             try
             {
-                listResponse response = channel.list(request);
+                laesResponse response = channel.laes(request);
 
-                int statusCode = Int32.Parse(response.ListResponse1.ListOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.LaesResponse1.LaesOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
                     // note that statusCode 44 means that the object does not exists, so that is a valid response
@@ -454,13 +513,7 @@ namespace Organisation.IntegrationLayer
                     return null;
                 }
 
-                if (response.ListResponse1.ListOutput.FiltreretOejebliksbillede.Length != 1)
-                {
-                    log.Warn("Lookup Bruger with uuid '" + uuid + "' returned multiple objects");
-                    return null;
-                }
-
-                RegistreringType1[] resultSet = response.ListResponse1.ListOutput.FiltreretOejebliksbillede[0].Registrering;
+                RegistreringType1[] resultSet = response.LaesResponse1.LaesOutput.FiltreretOejebliksbillede.Registrering;
                 if (resultSet.Length == 0)
                 {
                     log.Warn("Bruger with uuid '" + uuid + "' exists, but has no registration");
@@ -486,6 +539,13 @@ namespace Organisation.IntegrationLayer
                 else
                 {
                     result = resultSet[0];
+                }
+
+                // we cannot perform any kind of updates on Slettet/Passiveret, så it makes sense to filter them out on lookup,
+                // so the rest of the code will default to Import op top of this
+                if (result.LivscyklusKode.Equals(LivscyklusKodeType.Slettet) || result.LivscyklusKode.Equals(LivscyklusKodeType.Passiveret))
+                {
+                    return null;
                 }
 
                 return result;

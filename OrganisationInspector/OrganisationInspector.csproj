@@ -98,7 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="di.ico" />
-    <Content Include="validation\rules.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">

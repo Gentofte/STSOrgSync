@@ -80,11 +80,11 @@ namespace OrganisationInspector
         {
             this.organisationUuid = uuid;
         }
+
         public List<string> Validate(string uuid)
         {
-
             List<String> errors = new List<string>();
-            var orgFunction = organisationFunktionStub.GetLatestRegistration(uuid, true);
+            var orgFunction = organisationFunktionStub.GetLatestRegistration(uuid);
 
             if (orgFunction.RelationListe.TilknyttedeInteressefaellesskaber != null)
             {
@@ -154,14 +154,14 @@ namespace OrganisationInspector
                     else
                     {
                         string orgEnhedUUID = orgFunction.RelationListe.TilknyttedeEnheder[0].ReferenceID.Item;
-                        var orgEnhed = organisationEnhedStub.GetLatestRegistration(orgEnhedUUID, true);
+                        var orgEnhed = organisationEnhedStub.GetLatestRegistration(orgEnhedUUID);
 
                         bool found = false;
                         foreach (var address in orgEnhed?.RelationListe?.Adresser ?? Enumerable.Empty<global::IntegrationLayer.OrganisationEnhed.AdresseFlerRelationType>())
                         {
                             string role = address.Rolle?.Item;
 
-                            if (UUIDConstants.ADDRESS_ROLE_LOSSHORTNAME.Equals(role))
+                            if (UUIDConstants.ADDRESS_ROLE_ORGUNIT_LOSSHORTNAME.Equals(role))
                             {
                                 found = true;
                             }

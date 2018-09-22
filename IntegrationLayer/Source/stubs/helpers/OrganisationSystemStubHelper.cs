@@ -1,0 +1,32 @@
+﻿using System;
+using IntegrationLayer.OrganisationSystem;
+using System.Security.Cryptography.X509Certificates;
+using System.ServiceModel;
+
+namespace Organisation.IntegrationLayer
+{
+    internal class OrganisationSystemStubHelper
+    {
+        internal const string SERVICE = "organisationsystem";
+        private static OrganisationRegistryProperties registryProperties = OrganisationRegistryProperties.GetInstance();
+
+        internal OrganisationSystemPortTypeClient CreatePort()
+        {
+            BasicHttpBinding binding = new BasicHttpBinding();
+            binding.Security.Mode = BasicHttpSecurityMode.Transport;
+            binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Certificate;
+            binding.MaxReceivedMessageSize = Int32.MaxValue;
+
+            OrganisationSystemPortTypeClient port = new OrganisationSystemPortTypeClient(binding, StubUtil.GetEndPointAddress("OrganisationSystem/4"));
+            port.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindByThumbprint, registryProperties.ClientCertThumbprint);
+
+            // Disable revocation checking
+            if (registryProperties.DisableRevocationCheck)
+            {
+                port.ClientCredentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
+            }
+
+            return port;
+        }
+    }
+}

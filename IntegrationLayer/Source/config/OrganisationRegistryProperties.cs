@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 
 namespace Organisation.IntegrationLayer
 {
@@ -24,10 +25,13 @@ namespace Organisation.IntegrationLayer
         public bool LogRequestResponse { get; set; }
         public bool DisableRevocationCheck { get; set; }
         public string ServiceCertAlias { get; set; }
-        public string MunicipalityOrganisationUUID { get; set; }
-        public string Municipality { get; set; }
+        public Dictionary<string, string> MunicipalityOrganisationUUID { get; set; }
         public string DBConnectionString { get; set; }
         public bool UseSSL { get; set; }
+        public string DefaultMunicipality { get; set; }
+
+        [ThreadStatic]
+        public static string Municipality;
 
         private OrganisationRegistryProperties()
         {
@@ -54,17 +58,37 @@ namespace Organisation.IntegrationLayer
             return (instance = new OrganisationRegistryProperties());
         }
 
+        public static string GetMunicipality()
+        {
+            if (string.IsNullOrEmpty(Municipality))
+            {
+                return GetInstance().DefaultMunicipality;
+            }
+
+            return Municipality;
+        }
+
         private void Init()
         {
             var key = Registry.LocalMachine.OpenSubKey(REGISTRY_LOCATION);
 
-            MunicipalityOrganisationUUID = (string)key.GetValue(ORGANISATION_UUID_KEY);
             ClientCertThumbprint = (string)key.GetValue(CLIENTCERT_THUMBPRINT_KEY);
+            DefaultMunicipality = (string)key.GetValue(MUNICIPALITY_KEY);
             LogRequestResponse = "true".Equals((string)key.GetValue(LOG_REQUEST_RESPONSE));
-            Municipality = (string)key.GetValue(MUNICIPALITY_KEY);
             DBConnectionString = (string)key.GetValue(DB_CONNECTION_STRING_KEY);
             DisableRevocationCheck = "true".Equals((string)key.GetValue(REVOCATION_CHECK_KEY));
             UseSSL = "true".Equals((string)key.GetValue(USE_SSL_KEY));
+
+            // read all cvr:uuid mappings
+            MunicipalityOrganisationUUID = new Dictionary<string, string>();
+            string municipalityMap = (string)key.GetValue(ORGANISATION_UUID_KEY);
+            string[] tokens = municipalityMap.Split(';');
+            foreach (var token in tokens)
+            {
+                string[] pair = token.Split(':');
+
+                MunicipalityOrganisationUUID[pair[0]] = pair[1];
+            }
 
             // strip out nasty characters that sometimes are added when copy/pasting thumbprints from Windows UI's
             string tmp = "";

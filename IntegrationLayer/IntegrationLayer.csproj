@@ -87,6 +87,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\OrganisationSystem\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\Organisation\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -118,11 +123,13 @@
     <Compile Include="Source\stubs\BrugerStub.cs" />
     <Compile Include="Source\stubs\helpers\AdresseStubHelper.cs" />
     <Compile Include="Source\stubs\helpers\BrugerStubHelper.cs" />
+    <Compile Include="Source\stubs\helpers\OrganisationSystemStubHelper.cs" />
     <Compile Include="Source\stubs\helpers\OrganisationStubHelper.cs" />
     <Compile Include="Source\stubs\helpers\OrganisationEnhedStubHelper.cs" />
     <Compile Include="Source\stubs\helpers\OrganisationFunktionStubHelper.cs" />
     <Compile Include="Source\stubs\helpers\PersonStubHelper.cs" />
     <Compile Include="Source\stubs\helpers\IdUtil.cs" />
+    <Compile Include="Source\stubs\OrganisationSystemStub.cs" />
     <Compile Include="Source\stubs\OrganisationStub.cs" />
     <Compile Include="Source\stubs\OrganisationEnhedStub.cs" />
     <Compile Include="Source\stubs\OrganisationFunktionStub.cs" />
@@ -470,6 +477,114 @@
     <None Include="Service References\OrganisationFunktion\ServiceplatformFault_1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\OrganisationSystem\Adresse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\AdresseOperationer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\AuthorityContext_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\Bruger.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\BrugerOperationer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\CallContext_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\GenerelleDefinitioner.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\IntegrationLayer.OrganisationSystem.fremsoegobjekthierarkiResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationSystem\IntegrationLayer.OrganisationSystem.FremsoegobjekthierarkiResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationSystem\IntegrationLayer.OrganisationSystem.importResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationSystem\IntegrationLayer.OrganisationSystem.ImportResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationSystem\IntegrationLayer.OrganisationSystem.RequestHeaderType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OrganisationSystem\Interessefaellesskab.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\InteressefaellesskabOperationer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\ItSystem.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\ItSystemOperationer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\Myndighed.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\MyndighedOperationer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\Organisation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\OrganisationEnhed.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\OrganisationEnhedOperationer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\OrganisationFaelles.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\OrganisationFunktion.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\OrganisationFunktionOperationer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\OrganisationOperationer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\OrganisationSystemOperationer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\OrganisationSystemService.wsdl" />
+    <None Include="Service References\OrganisationSystem\OrganisationSystemServiceMsg.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\Part.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\Person.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\PersonOperationer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\policies.wsdl" />
+    <None Include="Service References\OrganisationSystem\RequestHeader.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\SagDokObjekt.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\ServiceplatformFaultMessage.wsdl" />
+    <None Include="Service References\OrganisationSystem\ServiceplatformFault_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\Virksomhed.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrganisationSystem\VirksomhedOperationer.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\Organisation\AuthorityContext_1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -650,11 +765,18 @@
     <WCFMetadataStorage Include="Service References\Bruger\" />
     <WCFMetadataStorage Include="Service References\OrganisationEnhed\" />
     <WCFMetadataStorage Include="Service References\OrganisationFunktion\" />
+    <WCFMetadataStorage Include="Service References\OrganisationSystem\" />
     <WCFMetadataStorage Include="Service References\Organisation\" />
     <WCFMetadataStorage Include="Service References\Person\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Readme.txt" />
+    <None Include="Service References\OrganisationSystem\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\OrganisationSystem\configuration.svcinfo" />
+    <None Include="Service References\OrganisationSystem\configuration91.svcinfo" />
     <None Include="Service References\Person\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -679,18 +801,18 @@
     </None>
     <None Include="Service References\Organisation\configuration.svcinfo" />
     <None Include="Service References\Organisation\configuration91.svcinfo" />
-    <None Include="Service References\Bruger\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\Bruger\configuration.svcinfo" />
-    <None Include="Service References\Bruger\configuration91.svcinfo" />
     <None Include="Service References\Adresse\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\Adresse\configuration.svcinfo" />
     <None Include="Service References\Adresse\configuration91.svcinfo" />
+    <None Include="Service References\Bruger\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\Bruger\configuration.svcinfo" />
+    <None Include="Service References\Bruger\configuration91.svcinfo" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

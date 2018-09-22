@@ -13,8 +13,8 @@ namespace ReportTool
         {
             InitializeComponent();
 
-            cvrTextBox.Text = Organisation.IntegrationLayer.OrganisationRegistryProperties.GetInstance().Municipality;
-            uuidTextBox.Text = Organisation.IntegrationLayer.OrganisationRegistryProperties.GetInstance().MunicipalityOrganisationUUID;
+            cvrTextBox.Text = Organisation.IntegrationLayer.OrganisationRegistryProperties.GetMunicipality();
+            uuidTextBox.Text = Organisation.IntegrationLayer.OrganisationRegistryProperties.GetInstance().MunicipalityOrganisationUUID[Organisation.IntegrationLayer.OrganisationRegistryProperties.GetMunicipality()];
         }
 
         private void generateButtonClick(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace ReportTool
                 if (model != null)
                 {
                     controller.ParseAndWrite(model, "output.html");
-                    System.Diagnostics.Process.Start("output.html");
+                    System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\output.html");
                 }
             }
             else

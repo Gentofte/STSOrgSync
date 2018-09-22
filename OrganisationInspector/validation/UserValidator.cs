@@ -51,11 +51,11 @@ namespace OrganisationInspector
         {
             this.organisationUuid = uuid;
         }
+
         public List<string> Validate(string uuid)
         {
-
             List<String> errors = new List<string>();
-            IntegrationLayer.Bruger.RegistreringType1 bruger = brugerStub.GetLatestRegistration(uuid, false);
+            IntegrationLayer.Bruger.RegistreringType1 bruger = brugerStub.GetLatestRegistration(uuid);
             if (!string.IsNullOrEmpty(bruger.AttributListe.Egenskab?[0]?.BrugerTypeTekst))
             {
                 errors.Add(BRUGERTYPE_TEKST_MSG);
@@ -137,22 +137,15 @@ namespace OrganisationInspector
 
         private bool ValidateUserAddressType(string type)
         {
-            return type.Equals(UUIDConstants.ADDRESS_TYPE_ADDRESS);
+            return type.Equals(UUIDConstants.ADDRESS_TYPE_USER);
         }
 
         private bool ValidateRole(string rolle)
         {
-            return (rolle.Equals(UUIDConstants.ADDRESS_ROLE_CONTACT_ADDRESS) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_CONTACT_ADDRESS_OPEN_HOURS) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_EAN) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_EMAIL) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_EMAIL_REMARKS) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_LOCATION) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_LOSSHORTNAME) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_PHONE) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_PHONE_OPEN_HOURS) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_POST) ||
-                rolle.Equals(UUIDConstants.ADDRESS_ROLE_POST_RETURN));
+            return (
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_USER_EMAIL) ||
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_USER_PHONE) ||
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_USER_LOCATION));
         }
     }
 }

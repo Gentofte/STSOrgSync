@@ -29,8 +29,9 @@ namespace Organisation.IntegrationLayer
             BasicHttpBinding binding = new BasicHttpBinding();
             binding.Security.Mode = BasicHttpSecurityMode.Transport;
             binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Certificate;
+            binding.MaxReceivedMessageSize = Int32.MaxValue;
 
-            PersonPortTypeClient port = new PersonPortTypeClient(binding, StubUtil.GetEndPointAddress("Person/2"));
+            PersonPortTypeClient port = new PersonPortTypeClient(binding, StubUtil.GetEndPointAddress("Person/4"));
             port.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindByThumbprint, registryProperties.ClientCertThumbprint);
 
             // Disable revocation checking

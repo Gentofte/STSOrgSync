@@ -116,8 +116,9 @@ namespace Organisation.IntegrationLayer
             BasicHttpBinding binding = new BasicHttpBinding();
             binding.Security.Mode = BasicHttpSecurityMode.Transport;
             binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Certificate;
+            binding.MaxReceivedMessageSize = Int32.MaxValue;
 
-            BrugerPortTypeClient port = new BrugerPortTypeClient(binding, StubUtil.GetEndPointAddress("Bruger/2"));
+            BrugerPortTypeClient port = new BrugerPortTypeClient(binding, StubUtil.GetEndPointAddress("Bruger/4"));
             port.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindByThumbprint, registryProperties.ClientCertThumbprint);
 
             // Disable revocation checking
@@ -181,7 +182,7 @@ namespace Organisation.IntegrationLayer
         internal AdresseFlerRelationType CreateAddressReference(string uuid, int indeks, string roleUuid, VirkningType virkning)
         {
             UnikIdType type = new UnikIdType();
-            type.Item = UUIDConstants.ADDRESS_TYPE_ADDRESS;
+            type.Item = UUIDConstants.ADDRESS_TYPE_USER;
             type.ItemElementName = ItemChoiceType.UUIDIdentifikator;
 
             UnikIdType role = new UnikIdType();
@@ -217,15 +218,15 @@ namespace Organisation.IntegrationLayer
                 switch (addressRelation.Type)
                 {
                     case AddressRelationType.EMAIL:
-                        AdresseFlerRelationType emailAddress = CreateAddressReference(addressRelation.Uuid, (i + 1), UUIDConstants.ADDRESS_ROLE_EMAIL, virkning);
+                        AdresseFlerRelationType emailAddress = CreateAddressReference(addressRelation.Uuid, (i + 1), UUIDConstants.ADDRESS_ROLE_USER_EMAIL, virkning);
                         registration.RelationListe.Adresser[i] = emailAddress;
                         break;
                     case AddressRelationType.PHONE:
-                        AdresseFlerRelationType phoneAddress = CreateAddressReference(addressRelation.Uuid, (i + 1), UUIDConstants.ADDRESS_ROLE_PHONE, virkning);
+                        AdresseFlerRelationType phoneAddress = CreateAddressReference(addressRelation.Uuid, (i + 1), UUIDConstants.ADDRESS_ROLE_USER_PHONE, virkning);
                         registration.RelationListe.Adresser[i] = phoneAddress;
                         break;
                     case AddressRelationType.LOCATION:
-                        AdresseFlerRelationType locationAddres = CreateAddressReference(addressRelation.Uuid, (i + 1), UUIDConstants.ADDRESS_ROLE_LOCATION, virkning);
+                        AdresseFlerRelationType locationAddres = CreateAddressReference(addressRelation.Uuid, (i + 1), UUIDConstants.ADDRESS_ROLE_USER_LOCATION, virkning);
                         registration.RelationListe.Adresser[i] = locationAddres;
                         break;
                     default:
@@ -259,7 +260,10 @@ namespace Organisation.IntegrationLayer
             {
                 // find the first open-ended PersonFlerRelationType - objects created by this library does not have end-times associated with them as a rule
                 object endTime = person.Virkning.TilTidspunkt.Item;
-                if (!(endTime is DateTime))
+
+                // endTime is bool => ok
+                // endTime is DateTime, but Now is before endTime => ok
+                if (!(endTime is DateTime) || (DateTime.Compare(DateTime.Now, (DateTime)endTime) < 0))
                 {
                     return person;
                 }

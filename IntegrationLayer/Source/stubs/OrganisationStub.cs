@@ -12,14 +12,42 @@ namespace Organisation.IntegrationLayer
         private OrganisationStubHelper helper = new OrganisationStubHelper();
         private OrganisationRegistryProperties registry = OrganisationRegistryProperties.GetInstance();
 
+        public void Soeg()
+        {
+            SoegInputType1 input = new SoegInputType1();
+            //input.SoegVirkning = new SoegVirkningType();
+            input.AttributListe = new AttributListeType();
+            input.RelationListe = new RelationListeType();
+            input.TilstandListe = new TilstandListeType();
+
+            soegRequest request = new soegRequest();
+            request.SoegRequest1 = new SoegRequestType();
+            request.SoegRequest1.SoegInput = input;
+            request.SoegRequest1.AuthorityContext = new AuthorityContextType();
+            request.SoegRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
+
+            OrganisationPortType channel = StubUtil.CreateChannel<OrganisationPortType>(OrganisationStubHelper.SERVICE, "Soeg", helper.CreatePort());
+
+            try
+            {
+                channel.soeg(request);
+            }
+            catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
+            {
+                string message = "Failed to establish connection to the Laes service on Organisation";
+                log.Error(message, ex);
+                throw new ServiceNotFoundException(message, ex);
+            }
+        }
+
         public void Ret(string overordnetUuid)
         {
-            log.Debug("Attempting Ret on Organisation with uuid " + registry.MunicipalityOrganisationUUID);
+            log.Debug("Attempting Ret on Organisation with uuid " + registry.MunicipalityOrganisationUUID[OrganisationRegistryProperties.GetMunicipality()]);
 
-            RegistreringType1 registration = GetLatestRegistration(registry.MunicipalityOrganisationUUID, false);
+            RegistreringType1 registration = GetLatestRegistration(registry.MunicipalityOrganisationUUID[OrganisationRegistryProperties.GetMunicipality()]);
             if (registration == null)
             {
-                log.Error("Cannot call Ret on Organisation with uuid " + registry.MunicipalityOrganisationUUID + " because it does not exist in Organisation");
+                log.Error("Cannot call Ret on Organisation with uuid " + registry.MunicipalityOrganisationUUID[OrganisationRegistryProperties.GetMunicipality()] + " because it does not exist in Organisation");
                 return;
             }
 
@@ -32,24 +60,24 @@ namespace Organisation.IntegrationLayer
                 bool changes = false;
 
                 RetInputType1 input = new RetInputType1();
-                input.UUIDIdentifikator = registry.MunicipalityOrganisationUUID;
+                input.UUIDIdentifikator = registry.MunicipalityOrganisationUUID[OrganisationRegistryProperties.GetMunicipality()];
                 input.AttributListe = registration.AttributListe;
                 input.TilstandListe = registration.TilstandListe;
                 input.RelationListe = registration.RelationListe;
-                
+
                 if (registration.RelationListe.Overordnet != null)
                 {
                     // we have an existing Overordnet, let us see if we need to change it
                     bool expired = false;
                     object endDate = registration.RelationListe.Overordnet.Virkning.TilTidspunkt.Item;
-                    if (endDate != null && endDate is DateTime)
+
+                    if (endDate != null && endDate is DateTime && DateTime.Compare(DateTime.Now, (DateTime)endDate) >= 0)
                     {
                         expired = true;
                     }
 
                     if (expired || !registration.RelationListe.Overordnet.ReferenceID.Item.Equals(overordnetUuid))
                     {
-                        // overwrite the existing values (we cannot create multiple references on this, so it is the best we can do with regards to storing full history in the latest registration)
                         registration.RelationListe.Overordnet.ReferenceID = StubUtil.GetReference<UnikIdType>(overordnetUuid, ItemChoiceType.UUIDIdentifikator);
                         registration.RelationListe.Overordnet.Virkning = virkning;
                         changes = true;
@@ -65,7 +93,7 @@ namespace Organisation.IntegrationLayer
                 // if no changes are made, we do not call the service
                 if (!changes)
                 {
-                    log.Debug("Ret on Organisation with uuid " + registry.MunicipalityOrganisationUUID + " cancelled because of no changes");
+                    log.Debug("Ret on Organisation with uuid " + registry.MunicipalityOrganisationUUID[OrganisationRegistryProperties.GetMunicipality()] + " cancelled because of no changes");
                     return;
                 }
 
@@ -74,7 +102,7 @@ namespace Organisation.IntegrationLayer
                 request.RetRequest1 = new RetRequestType();
                 request.RetRequest1.RetInput = input;
                 request.RetRequest1.AuthorityContext = new AuthorityContextType();
-                request.RetRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
+                request.RetRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
 
                 retResponse response = channel.ret(request);
 
@@ -96,37 +124,24 @@ namespace Organisation.IntegrationLayer
             }
         }
 
-        // TODO: this method contains a work-around.
-        //       KMD released version 1.4 of Organisation, containing a series of changes to how reading and searching for data works, unfortunately this new functionality
-        //       does not cover the actually required use-cases (e.g. reading actual state), but luckily they forgot to change the List() operation, so we are using List()
-        //       instead of Laes() until Laes() is fixed in a later release of Organisation.
-        public RegistreringType1 GetLatestRegistration(string uuid, bool actualStateOnly)
+        public RegistreringType1 GetLatestRegistration(string uuid)
         {
-            ListInputType listInput = new ListInputType();
-            listInput.UUIDIdentifikator = new string[] { uuid };
+            LaesInputType laesInput = new LaesInputType();
+            laesInput.UUIDIdentifikator = uuid;
 
-            // this ensures that we get the full history when reading, and not just what is valid right now
-            if (!actualStateOnly)
-            {
-                listInput.VirkningFraFilter = new TidspunktType();
-                listInput.VirkningFraFilter.Item = true;
-                listInput.VirkningTilFilter = new TidspunktType();
-                listInput.VirkningTilFilter.Item = true;
-            }
-
-            listRequest request = new listRequest();
-            request.ListRequest1 = new ListRequestType();
-            request.ListRequest1.ListInput = listInput;
-            request.ListRequest1.AuthorityContext = new AuthorityContextType();
-            request.ListRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            laesRequest request = new laesRequest();
+            request.LaesRequest1 = new LaesRequestType();
+            request.LaesRequest1.LaesInput = laesInput;
+            request.LaesRequest1.AuthorityContext = new AuthorityContextType();
+            request.LaesRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
 
             OrganisationPortType channel = StubUtil.CreateChannel<OrganisationPortType>(OrganisationStubHelper.SERVICE, "Laes", helper.CreatePort());
 
             try
             {
-                listResponse response = channel.list(request);
+                laesResponse response = channel.laes(request);
 
-                int statusCode = Int32.Parse(response.ListResponse1.ListOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.LaesResponse1.LaesOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
                     // note that statusCode 44 means that the object does not exists, so that is a valid response
@@ -134,13 +149,7 @@ namespace Organisation.IntegrationLayer
                     return null;
                 }
 
-                if (response.ListResponse1.ListOutput.FiltreretOejebliksbillede.Length != 1)
-                {
-                    log.Warn("Lookup Organisation with uuid '" + uuid + "' returned multiple objects");
-                    return null;
-                }
-
-                RegistreringType1[] resultSet = response.ListResponse1.ListOutput.FiltreretOejebliksbillede[0].Registrering;
+                RegistreringType1[] resultSet = response.LaesResponse1.LaesOutput.FiltreretOejebliksbillede.Registrering;
                 if (resultSet.Length == 0)
                 {
                     log.Warn("Organisation with uuid '" + uuid + "' exists, but has no registration");
@@ -150,7 +159,7 @@ namespace Organisation.IntegrationLayer
                 RegistreringType1 result = null;
                 if (resultSet.Length > 1)
                 {
-                    log.Warn("Organisatino with uuid " + uuid + " has more than one registration when reading latest registration, this should never happen");
+                    log.Warn("Organisation with uuid " + uuid + " has more than one registration when reading latest registration, this should never happen");
 
                     DateTime winner = DateTime.MinValue;
                     foreach (RegistreringType1 res in resultSet)
@@ -166,6 +175,13 @@ namespace Organisation.IntegrationLayer
                 else
                 {
                     result = resultSet[0];
+                }
+
+                // we cannot perform any kind of updates on Slettet/Passiveret, så it makes sense to filter them out on lookup,
+                // so the rest of the code will default to Import op top of this
+                if (result.LivscyklusKode.Equals(LivscyklusKodeType.Slettet) || result.LivscyklusKode.Equals(LivscyklusKodeType.Passiveret))
+                {
+                    return null;
                 }
 
                 return result;

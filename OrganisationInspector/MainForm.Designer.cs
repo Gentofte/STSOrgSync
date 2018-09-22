@@ -49,7 +49,7 @@
             // 
             // runButton
             // 
-            this.runButton.Location = new System.Drawing.Point(835, 678);
+            this.runButton.Location = new System.Drawing.Point(753, 289);
             this.runButton.Name = "runButton";
             this.runButton.Size = new System.Drawing.Size(112, 23);
             this.runButton.TabIndex = 0;
@@ -62,7 +62,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(19, 44);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1046, 628);
+            this.webBrowser1.Size = new System.Drawing.Size(846, 228);
             this.webBrowser1.TabIndex = 1;
             // 
             // textBox1
@@ -176,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1103, 757);
+            this.ClientSize = new System.Drawing.Size(1103, 650);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

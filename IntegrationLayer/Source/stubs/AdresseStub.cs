@@ -1,5 +1,6 @@
 ﻿using IntegrationLayer.Adresse;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.ServiceModel;
@@ -38,7 +39,7 @@ namespace Organisation.IntegrationLayer
             request.ImporterRequest1 = new ImporterRequestType();
             request.ImporterRequest1.ImportInput = inportInput;
             request.ImporterRequest1.AuthorityContext = new AuthorityContextType();
-            request.ImporterRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            request.ImporterRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
 
             // send request
             AdressePortType channel = StubUtil.CreateChannel<AdressePortType>(AdresseStubHelper.SERVICE, "Importer", helper.CreatePort());
@@ -91,12 +92,6 @@ namespace Organisation.IntegrationLayer
                 EgenskabType latestProperty = StubUtil.GetLatestProperty(input.AttributListe);
                 if (latestProperty == null || !latestProperty.AdresseTekst.Equals(newValue) || (newShortKey != null && !latestProperty.BrugervendtNoegleTekst.Equals(newShortKey)))
                 {
-                    // end the validity of open-ended property
-                    if (latestProperty != null)
-                    {
-                        StubUtil.TerminateVirkning(latestProperty.Virkning, timestamp);
-                    }
-
                     // create a new property
                     EgenskabType newProperty = new EgenskabType();
                     newProperty.Virkning = helper.GetVirkning(timestamp);
@@ -104,17 +99,13 @@ namespace Organisation.IntegrationLayer
                     newProperty.AdresseTekst = newValue;
 
                     // create a new set of properties
-                    EgenskabType[] oldProperties = input.AttributListe;
-                    input.AttributListe = new EgenskabType[oldProperties.Length + 1];
-                    for (int i = 0; i < oldProperties.Length; i++)
-                    {
-                        input.AttributListe[i] = oldProperties[i];
-                    }
-                    input.AttributListe[oldProperties.Length] = newProperty;
+                    input.AttributListe = new EgenskabType[1];
+                    input.AttributListe[0] = newProperty;
                 }
                 else
                 {
                     log.Debug("No changes on Address, so returning without calling Organisation");
+
                     // if there are no changes to the attributes, we do not call the Organisation service
                     return;
                 }
@@ -124,7 +115,7 @@ namespace Organisation.IntegrationLayer
                 request.RetRequest1 = new RetRequestType();
                 request.RetRequest1.RetInput = input;
                 request.RetRequest1.AuthorityContext = new AuthorityContextType();
-                request.RetRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
+                request.RetRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
 
                 retResponse response = channel.ret(request);
 
@@ -146,37 +137,24 @@ namespace Organisation.IntegrationLayer
             }
         }
 
-        // TODO: this method contains a work-around.
-        //       KMD released version 1.4 of Organisation, containing a series of changes to how reading and searching for data works, unfortunately this new functionality
-        //       does not cover the actually required use-cases (e.g. reading actual state), but luckily they forgot to change the List() operation, so we are using List()
-        //       instead of Laes() until Laes() is fixed in a later release of Organisation.
-        public RegistreringType1 GetLatestRegistration(string uuid, bool actualStateOnly)
+        public RegistreringType1 GetLatestRegistration(string uuid)
         {
-            ListInputType listInput = new ListInputType();
-            listInput.UUIDIdentifikator = new string[] { uuid };
+            LaesInputType laesInput = new LaesInputType();
+            laesInput.UUIDIdentifikator = uuid;
 
-            // this ensures that we get the full history when reading, and not just what is valid right now
-            if (!actualStateOnly)
-            {
-                listInput.VirkningFraFilter = new TidspunktType();
-                listInput.VirkningFraFilter.Item = true;
-                listInput.VirkningTilFilter = new TidspunktType();
-                listInput.VirkningTilFilter.Item = true;
-            }
-
-            listRequest request = new listRequest();
-            request.ListRequest1 = new ListRequestType();
-            request.ListRequest1.ListInput = listInput;
-            request.ListRequest1.AuthorityContext = new AuthorityContextType();
-            request.ListRequest1.AuthorityContext.MunicipalityCVR = registry.Municipality;
+            laesRequest request = new laesRequest();
+            request.LaesRequest1 = new LaesRequestType();
+            request.LaesRequest1.LaesInput = laesInput;
+            request.LaesRequest1.AuthorityContext = new AuthorityContextType();
+            request.LaesRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
 
             AdressePortType channel = StubUtil.CreateChannel<AdressePortType>(AdresseStubHelper.SERVICE, "Laes", helper.CreatePort());
 
             try
             {
-                listResponse response = channel.list(request);
+                laesResponse response = channel.laes(request);
 
-                int statusCode = Int32.Parse(response.ListResponse1.ListOutput.StandardRetur.StatusKode);
+                int statusCode = Int32.Parse(response.LaesResponse1.LaesOutput.StandardRetur.StatusKode);
                 if (statusCode != 20)
                 {
                     // note that statusCode 44 means that the object does not exists, so that is a valid response
@@ -184,13 +162,7 @@ namespace Organisation.IntegrationLayer
                     return null;
                 }
 
-                if (response.ListResponse1.ListOutput.FiltreretOejebliksbillede.Length != 1)
-                {
-                    log.Warn("Lookup Adresse with uuid '" + uuid + "' returned multiple objects");
-                    return null;
-                }
-
-                RegistreringType1[] resultSet = response.ListResponse1.ListOutput.FiltreretOejebliksbillede[0].Registrering;
+                RegistreringType1[] resultSet = response.LaesResponse1.LaesOutput.FiltreretOejebliksbillede.Registrering;
                 if (resultSet.Length == 0)
                 {
                     log.Warn("Adresse with uuid '" + uuid + "' exists, but has no registration");
@@ -218,11 +190,101 @@ namespace Organisation.IntegrationLayer
                     result = resultSet[0];
                 }
 
+                // we cannot perform any kind of updates on Slettet/Passiveret, så it makes sense to filter them out on lookup,
+                // so the rest of the code will default to Import op top of this
+                if (result.LivscyklusKode.Equals(LivscyklusKodeType.Slettet) || result.LivscyklusKode.Equals(LivscyklusKodeType.Passiveret))
+                {
+                    return null;
+                }
+
                 return result;
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
                 string message = "Failed to establish connection to the Laes service on Adresse";
+                log.Error(message, ex);
+                throw new ServiceNotFoundException(message, ex);
+            }
+        }
+
+        public Dictionary<string, RegistreringType1> GetLatestRegistrations(List<string> uuids)
+        {
+            var result = new Dictionary<string, RegistreringType1>();
+
+            ListInputType listInput = new ListInputType();
+            listInput.UUIDIdentifikator = uuids.ToArray();
+
+            listRequest request = new listRequest();
+            request.ListRequest1 = new ListRequestType();
+            request.ListRequest1.ListInput = listInput;
+            request.ListRequest1.AuthorityContext = new AuthorityContextType();
+            request.ListRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
+
+            AdressePortType channel = StubUtil.CreateChannel<AdressePortType>(AdresseStubHelper.SERVICE, "List", helper.CreatePort());
+
+            try
+            {
+                listResponse response = channel.list(request);
+
+                int statusCode = Int32.Parse(response.ListResponse1.ListOutput.StandardRetur.StatusKode);
+                if (statusCode != 20)
+                {
+                    // note that statusCode 44 means that the object does not exists, so that is a valid response
+                    log.Debug("List on Adresse failed with statuscode " + statusCode);
+                    return result;
+                }
+
+                if (response.ListResponse1.ListOutput.FiltreretOejebliksbillede == null || response.ListResponse1.ListOutput.FiltreretOejebliksbillede.Length == 0)
+                {
+                    log.Debug("List on Adresse has 0 hits");
+                    return result;
+                }
+
+                foreach (var adresse in response.ListResponse1.ListOutput.FiltreretOejebliksbillede)
+                {
+                    RegistreringType1[] resultSet = adresse.Registrering;
+                    if (resultSet.Length == 0)
+                    {
+                        log.Warn("Adresse with uuid '" + adresse.ObjektType.UUIDIdentifikator + "' exists, but has no registration");
+                        continue;
+                    }
+
+                    RegistreringType1 reg = null;
+                    if (resultSet.Length > 1)
+                    {
+                        log.Warn("Adresse with uuid " + adresse.ObjektType.UUIDIdentifikator + " has more than one registration when reading latest registration, this should never happen");
+
+                        DateTime winner = DateTime.MinValue;
+                        foreach (RegistreringType1 res in resultSet)
+                        {
+                            // first time through will always result in a True evaluation here
+                            if (DateTime.Compare(winner, res.Tidspunkt) < 0)
+                            {
+                                reg = res;
+                                winner = res.Tidspunkt;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        reg = resultSet[0];
+                    }
+
+                    // we cannot perform any kind of updates on Slettet/Passiveret, så it makes sense to filter them out on lookup,
+                    // so the rest of the code will default to Import op top of this
+                    if (reg.LivscyklusKode.Equals(LivscyklusKodeType.Slettet) || reg.LivscyklusKode.Equals(LivscyklusKodeType.Passiveret))
+                    {
+                        continue;
+                    }
+
+                    result.Add(adresse.ObjektType.UUIDIdentifikator, reg);
+                }
+
+                return result;
+            }
+            catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
+            {
+                string message = "Failed to establish connection to the List service on Adresse";
                 log.Error(message, ex);
                 throw new ServiceNotFoundException(message, ex);
             }

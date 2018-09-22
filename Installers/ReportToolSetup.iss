@@ -2,9 +2,9 @@
 ; To generate the installer, define the variable MyAppSourceDir MUST point to the Directory where the dll's should be copied from
 ; The script may be executed from the console-mode compiler - iscc "c:\isetup\samples\my script.iss" or from the Inno Setup Compiler UI
 #define AppId "{{99fc06ec-8285-4bd1-a018-58c74fca4987}"
-#define AppSourceDir "\\VBOXSVR\brian\projects\STSOrgSync\ReportTool\bin\Debug\"
+#define AppSourceDir "\\VBOXSVR\brian\projects\organisation-synchronisation-component\ReportTool\bin\Debug\"
 #define AppName "ReportTool"
-#define AppVersion "1.2.0"
+#define AppVersion "1.0"
 #define AppPublisher "Digital Identity"
 #define AppURL "http://digital-identity.dk/"
 #define AppExeName "ReportTool.exe"
@@ -35,9 +35,9 @@ Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync";
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; Flags: uninsdeletekey
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}";
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "ClientCertThumbprint"; ValueData: "xx xx xx xx xx xx xx xx xx xx xx"
-Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "DBConnectionString"; ValueData: "xxxx"
+Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "DBConnectionString"; ValueData: "SQLITE"
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "DisableRevocationCheck"; ValueData: "true"
-Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "Environment"; ValueData: "STS"
+Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "Environment"; ValueData: "TEST"
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "LogRequestResponse"; ValueData: "false"
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "Municipality"; ValueData: "xxxxxxxx"
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "OrganisationUUID"; ValueData: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"

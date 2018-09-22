@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="cE2IDph5BWYyG/jqefXzLiF4LNY=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="SoDO1FE4qRN7aoCsne+Wx9pV6tE=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BrugerBinding">
       <properties>
@@ -221,10 +221,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BrugerPort" contract="Bruger.BrugerPortType" bindingType="basicHttpBinding" address="https://localhost:8080/service/Organisation/Bruger/2" bindingConfiguration="BrugerBinding">
+    <endpoint name="BrugerPort" contract="Bruger.BrugerPortType" bindingType="basicHttpBinding" address="https://localhost:8080/service/Organisation/Bruger/4" bindingConfiguration="BrugerBinding">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>https://localhost:8080/service/Organisation/Bruger/2</serializedValue>
+          <serializedValue>https://localhost:8080/service/Organisation/Bruger/4</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

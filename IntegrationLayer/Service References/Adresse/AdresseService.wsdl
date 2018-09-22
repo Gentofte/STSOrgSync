@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:spf="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:header="http://kombit.dk/xml/schemas/RequestHeader/1/" xmlns:tns="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AdresseService" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/2/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:spf="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:header="http://kombit.dk/xml/schemas/RequestHeader/1/" xmlns:tns="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/4/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AdresseService" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/4/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:import namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Security/Policy" location="policies.wsdl" />
   <wsdl:import namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/" location="../../sp/ServiceplatformFaultMessage_1.wsdl" />
   <wsdl:types>
-    <xsd:schema targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/2/">
+    <xsd:schema targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/4/">
       <xsd:include schemaLocation="../../AdresseServiceMsg.xsd" />
       <xsd:import schemaLocation="../../SF1500_EP_FS1/xsd/common/RequestHeader.xsd" namespace="http://kombit.dk/xml/schemas/RequestHeader/1/" />
     </xsd:schema>
@@ -118,7 +118,7 @@
     <wsp:PolicyReference URI="policies.wsdl#ServiceplatformBindingPolicy" />
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="opret">
-      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/2/opret" />
+      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/4/opret" />
       <wsdl:input>
         <soap:header message="tns:OpretRequestMessage" part="header" use="literal" />
         <soap:body use="literal" parts="request" />
@@ -132,7 +132,7 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="importer">
-      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/2/importer" />
+      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/4/importer" />
       <wsdl:input>
         <soap:header message="tns:ImporterRequestMessage" part="header" use="literal" />
         <soap:body use="literal" parts="request" />
@@ -146,7 +146,7 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="passiver">
-      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/2/passiver" />
+      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/4/passiver" />
       <wsdl:input>
         <soap:header message="tns:PassiverRequestMessage" part="header" use="literal" />
         <soap:body use="literal" parts="request" />
@@ -160,7 +160,7 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="laes">
-      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/2/laes" />
+      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/4/laes" />
       <wsdl:input>
         <soap:header message="tns:LaesRequestMessage" part="header" use="literal" />
         <soap:body use="literal" parts="request" />
@@ -174,7 +174,7 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ret">
-      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/2/ret" />
+      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/4/ret" />
       <wsdl:input>
         <soap:header message="tns:RetRequestMessage" part="header" use="literal" />
         <soap:body use="literal" parts="request" />
@@ -188,7 +188,7 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="slet">
-      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/2/slet" />
+      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/4/slet" />
       <wsdl:input>
         <soap:header message="tns:SletRequestMessage" part="header" use="literal" />
         <soap:body use="literal" parts="request" />
@@ -202,7 +202,7 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="soeg">
-      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/2/soeg" />
+      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/4/soeg" />
       <wsdl:input>
         <soap:header message="tns:SoegRequestMessage" part="header" use="literal" />
         <soap:body use="literal" parts="request" />
@@ -216,7 +216,7 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="list">
-      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/2/list" />
+      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/Organisation/Adresse/4/list" />
       <wsdl:input>
         <soap:header message="tns:ListRequestMessage" part="header" use="literal" />
         <soap:body use="literal" parts="request" />
@@ -232,7 +232,7 @@
   </wsdl:binding>
   <wsdl:service name="AdresseService">
     <wsdl:port name="AdressePort" binding="tns:AdresseBinding">
-      <soap:address location="https://localhost:8080/service/Organisation/Adresse/2" />
+      <soap:address location="https://localhost:8080/service/Organisation/Adresse/4" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

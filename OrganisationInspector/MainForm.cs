@@ -23,8 +23,8 @@ namespace OrganisationInspector
             validatorBroker = new ValidatorBroker();
 
             comboBox1.DataSource = formHelper.GetObjectTypeComboBox();
-            cvr_box.Text = Organisation.IntegrationLayer.OrganisationRegistryProperties.GetInstance().Municipality;
-            uuid_box.Text = Organisation.IntegrationLayer.OrganisationRegistryProperties.GetInstance().MunicipalityOrganisationUUID;
+            cvr_box.Text = Organisation.IntegrationLayer.OrganisationRegistryProperties.GetMunicipality();
+            uuid_box.Text = Organisation.IntegrationLayer.OrganisationRegistryProperties.GetInstance().MunicipalityOrganisationUUID[Organisation.IntegrationLayer.OrganisationRegistryProperties.GetMunicipality()];
         }
 
         private void runButton_Click(object sender, System.EventArgs e)

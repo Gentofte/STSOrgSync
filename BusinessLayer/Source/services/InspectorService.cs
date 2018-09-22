@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Organisation.IntegrationLayer;
 using IntegrationLayer.OrganisationFunktion;
+using System.Linq;
 
 namespace Organisation.BusinessLayer
 {
@@ -20,10 +21,12 @@ namespace Organisation.BusinessLayer
         private AdresseStub adresseStub = new AdresseStub();
         private PersonStub personStub = new PersonStub();
         private OrganisationEnhedStub organisationEnhedStub = new OrganisationEnhedStub();
+        private OrganisationSystemStub organisationSystemStub = new OrganisationSystemStub();
+        private OrganisationFunktionStub organisationFunktionStub = new OrganisationFunktionStub();
 
         public string ReadUserRaw(string uuid)
         {
-            var registration = brugerStub.GetLatestRegistration(uuid, false);
+            var registration = brugerStub.GetLatestRegistration(uuid);
             if (registration == null)
             {
                 throw new RegistrationNotFoundException("Could not locate User with uuid '" + uuid + "'");
@@ -34,7 +37,7 @@ namespace Organisation.BusinessLayer
 
         public string ReadFunctionRaw(string uuid)
         {
-            var registration = orgFunctionStub.GetLatestRegistration(uuid, false);
+            var registration = orgFunctionStub.GetLatestRegistration(uuid);
             if (registration == null)
             {
                 throw new RegistrationNotFoundException("Could not locate function with uuid '" + uuid + "'");
@@ -45,7 +48,7 @@ namespace Organisation.BusinessLayer
 
         public string ReadOURaw(string uuid)
         {
-            var registration = organisationEnhedStub.GetLatestRegistration(uuid, false);
+            var registration = organisationEnhedStub.GetLatestRegistration(uuid);
             if (registration == null)
             {
                 throw new RegistrationNotFoundException("Could not locate OU with uuid '" + uuid + "'");
@@ -56,7 +59,7 @@ namespace Organisation.BusinessLayer
 
         public string ReadPersonRaw(string uuid)
         {
-            var registration = personStub.GetLatestRegistration(uuid, false);
+            var registration = personStub.GetLatestRegistration(uuid);
             if (registration == null)
             {
                 throw new RegistrationNotFoundException("Could not locate Person with uuid '" + uuid + "'");
@@ -67,7 +70,7 @@ namespace Organisation.BusinessLayer
 
         public string ReadAddressRaw(string uuid)
         {
-            var registration = adresseStub.GetLatestRegistration(uuid, false);
+            var registration = adresseStub.GetLatestRegistration(uuid);
             if (registration == null)
             {
                 throw new RegistrationNotFoundException("Could not locate Address with uuid '" + uuid + "'");
@@ -78,7 +81,7 @@ namespace Organisation.BusinessLayer
 
         public Person ReadPersonObject(string uuid)
         {
-            global::IntegrationLayer.Person.RegistreringType1 registration = personStub.GetLatestRegistration(uuid, true);
+            global::IntegrationLayer.Person.RegistreringType1 registration = personStub.GetLatestRegistration(uuid);
             if (registration == null)
             {
                 throw new RegistrationNotFoundException("Could not locate Person with uuid '" + uuid + "'");
@@ -100,7 +103,7 @@ namespace Organisation.BusinessLayer
 
         public Function ReadFunctionObject(string uuid)
         {
-            global::IntegrationLayer.OrganisationFunktion.RegistreringType1 registration = orgFunctionStub.GetLatestRegistration(uuid, true);
+            global::IntegrationLayer.OrganisationFunktion.RegistreringType1 registration = orgFunctionStub.GetLatestRegistration(uuid);
             if (registration == null)
             {
                 throw new RegistrationNotFoundException("Could not locate Function with uuid '" + uuid + "'");
@@ -117,7 +120,11 @@ namespace Organisation.BusinessLayer
 
             Status status = Status.ACTIVE;
             var latestState = StubUtil.GetLatestGyldighed(registration.TilstandListe.Gyldighed);
-            if (global::IntegrationLayer.OrganisationFunktion.GyldighedStatusKodeType.Inaktiv.Equals(latestState.GyldighedStatusKode))
+            if (latestState == null)
+            {
+                status = Status.UNKNOWN;
+            }
+            else if (global::IntegrationLayer.OrganisationFunktion.GyldighedStatusKodeType.Inaktiv.Equals(latestState.GyldighedStatusKode))
             {
                 status = Status.INACTIVE;
             }
@@ -134,7 +141,7 @@ namespace Organisation.BusinessLayer
 
         public AddressHolder ReadAddressObject(string uuid)
         {
-            global::IntegrationLayer.Adresse.RegistreringType1 registration = adresseStub.GetLatestRegistration(uuid, true);
+            global::IntegrationLayer.Adresse.RegistreringType1 registration = adresseStub.GetLatestRegistration(uuid);
             if (registration == null)
             {
                 throw new RegistrationNotFoundException("Could not locate Address with uuid '" + uuid + "'");
@@ -151,29 +158,236 @@ namespace Organisation.BusinessLayer
             };
         }
 
+        public void FindAllUsersInOU(OU ou, List<User> users)
+        {
+            List<User> newUsers = new List<User>();
+
+            var orgFunctionRegistrations = orgFunctionStub.SoegAndGetLatestRegistration(UUIDConstants.ORGFUN_POSITION, null, ou.Uuid, null);
+
+            if (orgFunctionRegistrations.Count == 0)
+            {
+                return;
+            }
+
+            // extract relevant references into partial user objects
+            foreach (var orgFunctionRegistration in orgFunctionRegistrations)
+            {
+                string orgFunctionName = "Ukendt";
+
+                if (orgFunctionRegistration.Registrering != null && orgFunctionRegistration.Registrering.Length > 0)
+                {
+                    if (orgFunctionRegistration.Registrering.Length > 1)
+                    {
+                        log.Warn("More than one registration in output for function: " + orgFunctionRegistration.ObjektType.UUIDIdentifikator);
+                    }
+
+                    var orgFunctionProperty = StubUtil.GetLatestProperty(orgFunctionRegistration.Registrering[0].AttributListe.Egenskab);
+                    if (orgFunctionProperty != null)
+                    {
+                        orgFunctionName = orgFunctionProperty.FunktionNavn;
+                    }
+
+                    if (orgFunctionRegistration.Registrering[0].RelationListe.TilknyttedeBrugere != null && orgFunctionRegistration.Registrering[0].RelationListe.TilknyttedeBrugere.Length > 0)
+                    {
+                        // the registration pattern allows for multiple users to share an OrgFunction
+                        foreach (var bruger in orgFunctionRegistration.Registrering[0].RelationListe.TilknyttedeBrugere)
+                        {
+                            bool found = false;
+                            User user = new User();
+
+                            // see if we have the user already and throw away the default new user in that case
+                            foreach (User u in users)
+                            {
+                                if (u.Uuid.Equals(bruger.ReferenceID.Item))
+                                {
+                                    user = u;
+                                    found = true;
+                                    break;
+                                }
+                            }
+
+                            if (!found)
+                            {
+                                user.Uuid = bruger.ReferenceID.Item;
+                                user.Positions = new List<Position>();
+                                users.Add(user);
+                                newUsers.Add(user);
+                            }
+
+                            user.Positions.Add(new Position()
+                            {
+                                Name = orgFunctionName,
+                                OU = new OUReference()
+                                {
+                                    Name = ou.Name,
+                                    Uuid = ou.Uuid
+                                },
+                                User = new UserReference()
+                                {
+                                    Uuid = user.Uuid
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+
+            var personUuids = new List<string>();
+            var emailUuids = new List<string>();
+            var telephoneUuids = new List<string>();
+
+            // enrich users with User object details
+            var userRegistrations = brugerStub.GetLatestRegistrations(newUsers.Select(u => u.Uuid).ToList());
+            foreach (var user in newUsers)
+            {
+                user.Addresses = new List<AddressHolder>();
+                user.Person = new Person();
+
+                foreach (var registration in userRegistrations)
+                {
+                    if (user.Uuid.Equals(registration.Key))
+                    {
+                        var properties = StubUtil.GetLatestProperty(registration.Value.AttributListe.Egenskab);
+                        if (properties != null)
+                        {
+                            user.UserId = properties.BrugerNavn;
+                        }
+
+                        if (registration.Value.RelationListe.Adresser != null)
+                        {
+                            foreach (var address in registration.Value.RelationListe.Adresser)
+                            {
+                                if (UUIDConstants.ADDRESS_ROLE_USER_EMAIL.Equals(address.Rolle.Item))
+                                {
+                                    emailUuids.Add(address.ReferenceID.Item);
+
+                                    user.Addresses.Add(new Email()
+                                    {
+                                        Uuid = address.ReferenceID.Item                                        
+                                    });
+                                }
+                                else if (UUIDConstants.ADDRESS_ROLE_USER_PHONE.Equals(address.Rolle.Item))
+                                {
+                                    telephoneUuids.Add(address.ReferenceID.Item);
+
+                                    user.Addresses.Add(new Phone()
+                                    {
+                                        Uuid = address.ReferenceID.Item
+                                    });
+                                }
+                            }
+                        }
+
+                        if (registration.Value.RelationListe.TilknyttedePersoner != null && registration.Value.RelationListe.TilknyttedePersoner.Length > 0)
+                        {
+                            user.Person.Uuid = registration.Value.RelationListe.TilknyttedePersoner[0].ReferenceID.Item;
+
+                            personUuids.Add(registration.Value.RelationListe.TilknyttedePersoner[0].ReferenceID.Item);
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            // enrich with email address information
+            if (emailUuids.Count > 0)
+            {
+                var emailRegistrations = adresseStub.GetLatestRegistrations(emailUuids);
+                foreach (var user in newUsers)
+                {
+                    foreach (var address in user.Addresses)
+                    {
+                        foreach (var emailRegistration in emailRegistrations)
+                        {
+                            if (emailRegistration.Key.Equals(address.Uuid))
+                            {
+                                var properties = StubUtil.GetLatestProperty(emailRegistration.Value.AttributListe);
+                                if (properties != null)
+                                {
+                                    address.Value = properties.AdresseTekst;
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // enrich with telephone address information
+            if (telephoneUuids.Count > 0)
+            {
+                var phoneRegistrations = adresseStub.GetLatestRegistrations(telephoneUuids);
+                foreach (var user in newUsers)
+                {
+                    foreach (var address in user.Addresses)
+                    {
+                        foreach (var phoneRegistration in phoneRegistrations)
+                        {
+                            if (phoneRegistration.Key.Equals(address.Uuid))
+                            {
+                                var properties = StubUtil.GetLatestProperty(phoneRegistration.Value.AttributListe);
+                                if (properties != null)
+                                {
+                                    address.Value = properties.AdresseTekst;
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // enrich with person information
+            var personRegistrations = personStub.GetLatestRegistrations(personUuids);
+            foreach (var user in newUsers)
+            {
+                foreach (var personRegistration in personRegistrations)
+                {
+                    if (personRegistration.Key.Equals(user.Person?.Uuid))
+                    {
+                        var properties = StubUtil.GetLatestProperty(personRegistration.Value.AttributListe);
+                        if (properties != null)
+                        {
+                            user.Person.Name = properties.NavnTekst;
+                        }
+
+                        break;
+                    }
+                }
+            }
+        }
+
         public OU ReadOUObject(string uuid, ReadAddresses readAddress = ReadAddresses.YES, ReadParentDetails readParentDetails = ReadParentDetails.YES, ReadPayoutUnit readPayoutUnit = ReadPayoutUnit.YES, ReadPositions readPositions = ReadPositions.YES, ReadItSystems readItSystems = ReadItSystems.YES, ReadContactPlaces readContactPlaces = ReadContactPlaces.YES)
         {
-            global::IntegrationLayer.OrganisationEnhed.RegistreringType1 registration = organisationEnhedStub.GetLatestRegistration(uuid, true);
+            global::IntegrationLayer.OrganisationEnhed.RegistreringType1 registration = organisationEnhedStub.GetLatestRegistration(uuid);
             if (registration == null)
             {
                 throw new RegistrationNotFoundException("Could not locate OU with uuid '" + uuid + "'");
             }
 
+            return MapRegistrationToOU(registration, uuid, readAddress, readParentDetails, readPayoutUnit, readPositions, readItSystems, readContactPlaces);
+        }
+
+        private OU MapRegistrationToOU(dynamic registration, string uuid, ReadAddresses readAddress = ReadAddresses.YES, ReadParentDetails readParentDetails = ReadParentDetails.YES, ReadPayoutUnit readPayoutUnit = ReadPayoutUnit.YES, ReadPositions readPositions = ReadPositions.YES, ReadItSystems readItSystems = ReadItSystems.YES, ReadContactPlaces readContactPlaces = ReadContactPlaces.YES)
+        {
             DateTime timestamp = registration.Tidspunkt;
 
-            global::IntegrationLayer.OrganisationEnhed.EgenskabType property = StubUtil.GetLatestProperty(registration.AttributListe.Egenskab);
+            var property = StubUtil.GetLatestProperty(registration.AttributListe.Egenskab);
 
             string ouName = (property != null) ? property.EnhedNavn : null;
             string ouShortKey = (property != null) ? property.BrugervendtNoegleTekst : null;
 
             List<AddressHolder> addresses = new List<AddressHolder>();
 
-            if (readAddress.Equals(ReadAddresses.YES) && registration.RelationListe.Adresser != null)
+            if (readAddress.Equals(ReadAddresses.YES) && registration.RelationListe?.Adresser != null)
             {
-                foreach (global::IntegrationLayer.OrganisationEnhed.AdresseFlerRelationType address in registration.RelationListe.Adresser)
+                foreach (var address in registration.RelationListe.Adresser)
                 {
                     string addressUuid = address.ReferenceID.Item;
-                    global::IntegrationLayer.Adresse.RegistreringType1 addressRegistration = adresseStub.GetLatestRegistration(addressUuid, false);
+                    global::IntegrationLayer.Adresse.RegistreringType1 addressRegistration = adresseStub.GetLatestRegistration(addressUuid);
 
                     string addressValue = "The address object does not exist in Organisation";
                     string addressShortKey = "";
@@ -187,7 +401,7 @@ namespace Organisation.BusinessLayer
                         }
                     }
 
-                    if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_EMAIL))
+                    if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_EMAIL))
                     {
                         addresses.Add(new Email()
                         {
@@ -196,7 +410,7 @@ namespace Organisation.BusinessLayer
                             Value = addressValue
                         });
                     }
-                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_LOCATION))
+                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_LOCATION))
                     {
                         addresses.Add(new Location()
                         {
@@ -205,7 +419,7 @@ namespace Organisation.BusinessLayer
                             Value = addressValue
                         });
                     }
-                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_PHONE))
+                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_PHONE))
                     {
                         addresses.Add(new Phone()
                         {
@@ -214,7 +428,7 @@ namespace Organisation.BusinessLayer
                             Value = addressValue
                         });
                     }
-                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_LOSSHORTNAME))
+                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_LOSSHORTNAME))
                     {
                         addresses.Add(new LOSShortName()
                         {
@@ -223,7 +437,7 @@ namespace Organisation.BusinessLayer
                             Value = addressValue
                         });
                     }
-                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_EAN))
+                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_EAN))
                     {
                         addresses.Add(new Ean()
                         {
@@ -232,7 +446,7 @@ namespace Organisation.BusinessLayer
                             Value = addressValue
                         });
                     }
-                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_CONTACT_ADDRESS_OPEN_HOURS))
+                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_CONTACT_ADDRESS_OPEN_HOURS))
                     {
                         addresses.Add(new ContactHours()
                         {
@@ -241,7 +455,7 @@ namespace Organisation.BusinessLayer
                             Value = addressValue
                         });
                     }
-                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_EMAIL_REMARKS))
+                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_EMAIL_REMARKS))
                     {
                         addresses.Add(new EmailRemarks()
                         {
@@ -250,7 +464,7 @@ namespace Organisation.BusinessLayer
                             Value = addressValue
                         });
                     }
-                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_POST_RETURN))
+                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_POST_RETURN))
                     {
                         addresses.Add(new PostReturn()
                         {
@@ -259,7 +473,7 @@ namespace Organisation.BusinessLayer
                             Value = addressValue
                         });
                     }
-                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_CONTACT_ADDRESS))
+                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_CONTACT_ADDRESS))
                     {
                         addresses.Add(new Contact()
                         {
@@ -268,7 +482,7 @@ namespace Organisation.BusinessLayer
                             Value = addressValue
                         });
                     }
-                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_POST))
+                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_POST))
                     {
                         addresses.Add(new Post()
                         {
@@ -277,7 +491,7 @@ namespace Organisation.BusinessLayer
                             Value = addressValue
                         });
                     }
-                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_PHONE_OPEN_HOURS))
+                    else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_PHONE_OPEN_HOURS))
                     {
                         addresses.Add(new PhoneHours()
                         {
@@ -290,17 +504,17 @@ namespace Organisation.BusinessLayer
             }
 
             OUReference parentOU = null;
-            if (registration.RelationListe.Overordnet != null)
+            if (registration.RelationListe?.Overordnet != null)
             {
                 string parentOUUuid = registration.RelationListe.Overordnet.ReferenceID.Item;
                 string parentOUName = "";
 
                 if (readParentDetails.Equals(ReadParentDetails.YES))
                 {
-                    global::IntegrationLayer.OrganisationEnhed.RegistreringType1 parentRegistration = organisationEnhedStub.GetLatestRegistration(parentOUUuid, true);
+                    var parentRegistration = organisationEnhedStub.GetLatestRegistration(parentOUUuid);
                     if (parentRegistration != null)
                     {
-                        global::IntegrationLayer.OrganisationEnhed.EgenskabType parentProperty = StubUtil.GetLatestProperty(parentRegistration.AttributListe.Egenskab);
+                        var parentProperty = StubUtil.GetLatestProperty(parentRegistration.AttributListe.Egenskab);
                         if (parentProperty != null)
                         {
                             parentOUName = parentProperty.EnhedNavn;
@@ -319,11 +533,11 @@ namespace Organisation.BusinessLayer
             List<ContactPlace> contactPlaces = new List<ContactPlace>();
             if (readPayoutUnit.Equals(ReadPayoutUnit.YES) || readContactPlaces.Equals(ReadContactPlaces.YES))
             {
-                if (registration.RelationListe.TilknyttedeFunktioner != null)
+                if (registration.RelationListe?.TilknyttedeFunktioner != null)
                 {
                     foreach (var function in registration.RelationListe.TilknyttedeFunktioner)
                     {
-                        var functionState = orgFunctionStub.GetLatestRegistration(function.ReferenceID.Item, true);
+                        var functionState = orgFunctionStub.GetLatestRegistration(function.ReferenceID.Item);
 
                         if (functionState.RelationListe.Funktionstype != null)
                         {
@@ -334,10 +548,10 @@ namespace Organisation.BusinessLayer
                                     string payoutUnitUuid = functionState.RelationListe.TilknyttedeEnheder[0].ReferenceID.Item;
                                     string payoutUnitName = "The payout unit does not exist in Organisation";
 
-                                    global::IntegrationLayer.OrganisationEnhed.RegistreringType1 payoutUnitRegistration = organisationEnhedStub.GetLatestRegistration(payoutUnitUuid, true);
+                                    var payoutUnitRegistration = organisationEnhedStub.GetLatestRegistration(payoutUnitUuid);
                                     if (payoutUnitRegistration != null)
                                     {
-                                        global::IntegrationLayer.OrganisationEnhed.EgenskabType payoutUnitProperty = StubUtil.GetLatestProperty(payoutUnitRegistration.AttributListe.Egenskab);
+                                        var payoutUnitProperty = StubUtil.GetLatestProperty(payoutUnitRegistration.AttributListe.Egenskab);
 
                                         if (payoutUnitProperty != null)
                                         {
@@ -370,10 +584,10 @@ namespace Organisation.BusinessLayer
                                     contactUnit.Uuid = functionState.RelationListe.TilknyttedeEnheder[0].ReferenceID.Item;
                                     contactUnit.Name = "The contact unit does not exist in Organisation";
 
-                                    global::IntegrationLayer.OrganisationEnhed.RegistreringType1 payoutUnitRegistration = organisationEnhedStub.GetLatestRegistration(contactUnit.Uuid, true);
+                                    /*global::IntegrationLayer.OrganisationEnhed.RegistreringType1*/ var payoutUnitRegistration = organisationEnhedStub.GetLatestRegistration(contactUnit.Uuid);
                                     if (payoutUnitRegistration != null)
                                     {
-                                        global::IntegrationLayer.OrganisationEnhed.EgenskabType payoutUnitProperty = StubUtil.GetLatestProperty(payoutUnitRegistration.AttributListe.Egenskab);
+                                        /*global::IntegrationLayer.OrganisationEnhed.EgenskabType*/ var payoutUnitProperty = StubUtil.GetLatestProperty(payoutUnitRegistration.AttributListe.Egenskab);
 
                                         if (payoutUnitProperty != null)
                                         {
@@ -407,10 +621,10 @@ namespace Organisation.BusinessLayer
                     };
 
                     // only pick the first one
-                    global::IntegrationLayer.OrganisationFunktion.RegistreringType1 orgFunctionRegistration = orgFunctionStub.GetLatestRegistration(positionUuid, true);
+                    var orgFunctionRegistration = orgFunctionStub.GetLatestRegistration(positionUuid);
                     if (orgFunctionRegistration != null)
                     {
-                        global::IntegrationLayer.OrganisationFunktion.EgenskabType orgFunctionProperty = StubUtil.GetLatestProperty(orgFunctionRegistration.AttributListe.Egenskab);
+                        var orgFunctionProperty = StubUtil.GetLatestProperty(orgFunctionRegistration.AttributListe.Egenskab);
 
                         if (orgFunctionProperty != null)
                         {
@@ -420,21 +634,24 @@ namespace Organisation.BusinessLayer
 
                         if (orgFunctionRegistration.RelationListe.TilknyttedeBrugere != null && orgFunctionRegistration.RelationListe.TilknyttedeBrugere.Length > 0)
                         {
-                            global::IntegrationLayer.OrganisationFunktion.BrugerFlerRelationType bruger = orgFunctionRegistration.RelationListe.TilknyttedeBrugere[0];
-                            string brugerUuid = bruger.ReferenceID.Item;
-                            user.Uuid = brugerUuid;
+                            // the registration pattern allows for multiple users to share an OrgFunction
+                            foreach (var bruger in orgFunctionRegistration.RelationListe.TilknyttedeBrugere)
+                            {
+                                string brugerUuid = bruger.ReferenceID.Item;
+                                user.Uuid = brugerUuid;
+
+                                Position position = new Position()
+                                {
+                                    Name = orgFunctionName,
+                                    User = user,
+                                    ShortKey = orgFunctionShortKey,
+                                    Uuid = positionUuid
+                                };
+
+                                positions.Add(position);
+                            }
                         }
                     }
-
-                    Position position = new Position()
-                    {
-                        Name = orgFunctionName,
-                        User = user,
-                        ShortKey = orgFunctionShortKey,
-                        Uuid = positionUuid
-                    };
-
-                    positions.Add(position);
                 }
             }
 
@@ -444,11 +661,22 @@ namespace Organisation.BusinessLayer
                 itSystems = ServiceHelper.FindItSystemsForOrgUnit(uuid);
             }
 
-            Status status = Status.ACTIVE;
-            var latestState = StubUtil.GetLatestGyldighed(registration.TilstandListe.Gyldighed);
-            if (global::IntegrationLayer.OrganisationEnhed.GyldighedStatusKodeType.Inaktiv.Equals(latestState.GyldighedStatusKode))
+            Status status = Status.UNKNOWN;
+            if (registration.TilstandListe.Gyldighed != null)
             {
-                status = Status.INACTIVE;
+                var latestState = StubUtil.GetLatestGyldighed(registration.TilstandListe.Gyldighed);
+                if (latestState == null)
+                {
+                    status = Status.UNKNOWN;
+                }
+                else if (global::IntegrationLayer.OrganisationEnhed.GyldighedStatusKodeType.Inaktiv.Equals(latestState.GyldighedStatusKode))
+                {
+                    status = Status.INACTIVE;
+                }
+                else
+                {
+                    status = Status.ACTIVE;
+                }
             }
 
             return new OU()
@@ -469,7 +697,7 @@ namespace Organisation.BusinessLayer
 
         public User ReadUserObject(string uuid, ReadAddresses readAddresses = ReadAddresses.YES, ReadParentDetails readParentDetails = ReadParentDetails.YES)
         {
-            global::IntegrationLayer.Bruger.RegistreringType1 registration = brugerStub.GetLatestRegistration(uuid, true);
+            global::IntegrationLayer.Bruger.RegistreringType1 registration = brugerStub.GetLatestRegistration(uuid);
             if (registration == null)
             {
                 throw new RegistrationNotFoundException("Could not locate User with uuid '" + uuid + "'");
@@ -485,12 +713,12 @@ namespace Organisation.BusinessLayer
             List<AddressHolder> addresses = new List<AddressHolder>();
             if (readAddresses.Equals(ReadAddresses.YES))
             {
-                if (registration.RelationListe.Adresser != null)
+                if (registration.RelationListe?.Adresser != null)
                 {
                     foreach (global::IntegrationLayer.Bruger.AdresseFlerRelationType address in registration.RelationListe.Adresser)
                     {
                         string addressUuid = address.ReferenceID.Item;
-                        global::IntegrationLayer.Adresse.RegistreringType1 addressRegistration = adresseStub.GetLatestRegistration(addressUuid, false);
+                        global::IntegrationLayer.Adresse.RegistreringType1 addressRegistration = adresseStub.GetLatestRegistration(addressUuid);
 
                         string addressValue = "The address object does not exist in Organisation";
                         string addressShortKey = "";
@@ -505,7 +733,7 @@ namespace Organisation.BusinessLayer
                             }
                         }
 
-                        if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_EMAIL))
+                        if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_USER_EMAIL))
                         {
                             addresses.Add(new Email()
                             {
@@ -514,7 +742,7 @@ namespace Organisation.BusinessLayer
                                 Value = addressValue
                             });
                         }
-                        else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_LOCATION))
+                        else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_USER_LOCATION))
                         {
                             addresses.Add(new Location()
                             {
@@ -523,7 +751,7 @@ namespace Organisation.BusinessLayer
                                 Value = addressValue
                             });
                         }
-                        else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_PHONE))
+                        else if (address.Rolle.Item.Equals(UUIDConstants.ADDRESS_ROLE_USER_PHONE))
                         {
                             addresses.Add(new Phone()
                             {
@@ -537,12 +765,12 @@ namespace Organisation.BusinessLayer
             }
 
             Person person = null;
-            if (registration.RelationListe.TilknyttedePersoner != null && registration.RelationListe.TilknyttedePersoner.Length > 0)
+            if (registration.RelationListe?.TilknyttedePersoner != null && registration.RelationListe?.TilknyttedePersoner.Length > 0)
             {
                 global::IntegrationLayer.Bruger.PersonFlerRelationType personRelation = registration.RelationListe.TilknyttedePersoner[0];
                 string personUuid = personRelation.ReferenceID.Item;
 
-                global::IntegrationLayer.Person.RegistreringType1 personRegistration = personStub.GetLatestRegistration(personUuid, true);
+                global::IntegrationLayer.Person.RegistreringType1 personRegistration = personStub.GetLatestRegistration(personUuid);
                 string personName = "The person object does not exist in Organisation";
                 string personShortKey = "The person object does not exist in Organisation";
                 string personCpr = "The person object does not exist in Organisation";
@@ -582,7 +810,6 @@ namespace Organisation.BusinessLayer
                         Name = "OrgUnit object does not exist in Organisation"
                     };
 
-                    // TODO: rewrite this to make the inspector show all positions
                     string positionUuid = unitRole.ObjektType.UUIDIdentifikator;
                     RegistreringType1 orgFunctionRegistration = unitRole.Registrering[0];
                     if (orgFunctionRegistration != null)
@@ -603,7 +830,7 @@ namespace Organisation.BusinessLayer
 
                             if (readParentDetails.Equals(ReadParentDetails.YES))
                             {
-                                global::IntegrationLayer.OrganisationEnhed.RegistreringType1 parentRegistration = organisationEnhedStub.GetLatestRegistration(parentOuUuid, true);
+                                global::IntegrationLayer.OrganisationEnhed.RegistreringType1 parentRegistration = organisationEnhedStub.GetLatestRegistration(parentOuUuid);
                                 if (parentRegistration != null)
                                 {
                                     global::IntegrationLayer.OrganisationEnhed.EgenskabType parentProperties = StubUtil.GetLatestProperty(parentRegistration.AttributListe.Egenskab);
@@ -630,7 +857,11 @@ namespace Organisation.BusinessLayer
 
             Status status = Status.ACTIVE;
             var latestState = StubUtil.GetLatestGyldighed(registration.TilstandListe.Gyldighed);
-            if (global::IntegrationLayer.Bruger.GyldighedStatusKodeType.Inaktiv.Equals(latestState.GyldighedStatusKode))
+            if (latestState == null)
+            {
+                status = Status.UNKNOWN;
+            }
+            else if (global::IntegrationLayer.Bruger.GyldighedStatusKodeType.Inaktiv.Equals(latestState.GyldighedStatusKode))
             {
                 status = Status.INACTIVE;
             }
@@ -648,14 +879,139 @@ namespace Organisation.BusinessLayer
             };
         }
 
-        public List<string> FindAllUsers()
+        public List<string> FindAllUsers(List<OU> ous = null)
         {
-            return brugerStub.Soeg();
+            List<string> result = new List<string>();
+
+            if (ous != null)
+            {
+                foreach (var ou in ous)
+                {
+                    if (ou.Positions != null)
+                    {
+                        foreach (var position in ou.Positions)
+                        {
+                            result.Add(position.User.Uuid);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                result = brugerStub.Soeg();
+            }
+
+            return result;
         }
 
         public List<string> FindAllOUs()
         {
             return organisationEnhedStub.Soeg();
+        }
+
+        public List<OU> ReadOUHierarchy(ReadAddresses readAddress = ReadAddresses.YES, ReadParentDetails readParentDetails = ReadParentDetails.YES, ReadPayoutUnit readPayoutUnit = ReadPayoutUnit.YES, ReadPositions readPositions = ReadPositions.YES, ReadItSystems readItSystems = ReadItSystems.YES, ReadContactPlaces readContactPlaces = ReadContactPlaces.YES)
+        {
+            List<OU> result = new List<OU>();
+
+            var registrations = new List<OrgUnitRegWrapper>();
+            int offset = 0, hardstop = 0;
+            while (true)
+            {
+                // TODO: KMD BUG - change this back once fixed - they do not allow more than 2 reads before breaking
+                if (hardstop++ >= 2)
+//              if (hardstop++ >= 100)
+                {
+                    log.Warn("Did 100 pages on object hierarchy, without seeing the end - aborting!");
+                    break;
+                }
+
+                var res = organisationSystemStub.Read("500", "" + offset);
+                offset += res.Count;
+
+                if (res.Count == 0)
+                {
+                    break;
+                }
+
+                registrations.AddRange(res);
+            }
+
+            foreach (var reg in registrations)
+            {
+                var ou = MapRegistrationToOU(reg.Registration, reg.Uuid, readAddress, readParentDetails, readPayoutUnit, readPositions, readItSystems, readContactPlaces);
+
+                result.Add(ou);
+            }
+
+            return result;
+        }
+
+        public Hierarchy ReadHiearchy()
+        {
+            Hierarchy result = new Hierarchy();
+
+            var ous = ReadOUHierarchy(ReadAddresses.NO, ReadParentDetails.NO, ReadPayoutUnit.NO, ReadPositions.NO, ReadItSystems.NO, ReadContactPlaces.NO);
+            foreach (var ou in ous)
+            {
+                BasicOU basicOU = new BasicOU()
+                {
+                    Name = ou.Name,
+                    ParentOU = ou.ParentOU?.Uuid,
+                    Uuid = ou.Uuid
+                };
+
+                result.OUs.Add(basicOU);
+            }
+
+            log.Debug("ReadHierarchy: " + ous.Count + " ous read!");
+
+            var users = new List<User>();
+            foreach (var ou in ous)
+            {
+                int count = users.Count;
+                FindAllUsersInOU(ou, users);
+
+                if ((users.Count - count) > 0)
+                {
+                    log.Debug("ReadHierarchy: " + (users.Count - count) + " users read from " + ou.Name);
+                }
+            }
+
+            log.Debug("ReadHierarchy: " + users.Count + " users read in total");
+
+            foreach (var user in users)
+            {
+                BasicUser basicUser = new BasicUser()
+                {
+                    Name = user.Person?.Name,
+                    UserId = user.UserId,
+                    Uuid = user.Uuid
+                };
+
+                foreach (var position in user.Positions)
+                {
+                    basicUser.Positions.Add(new BasicPosition() {
+                        Uuid = position.OU.Uuid,
+                        Name = position.Name
+                    });
+                }
+
+                foreach (var address in user.Addresses)
+                {
+                    if (address is Email)
+                    {
+                        basicUser.Email = address.Value;
+                    }
+                    else if (address is Phone)
+                    {
+                        basicUser.Telephone = address.Value;
+                    }
+                }
+
+                result.Users.Add(basicUser);
+            }
+
+            return result;
         }
     }
 }

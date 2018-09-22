@@ -50,6 +50,7 @@
     <Compile Include="Source\dto\read\Ean.cs" />
     <Compile Include="Source\dto\read\ContactHours.cs" />
     <Compile Include="Source\dto\read\ContactPlace.cs" />
+    <Compile Include="Source\dto\read\Hierarchy.cs" />
     <Compile Include="Source\dto\read\PostReturn.cs" />
     <Compile Include="Source\dto\read\Contact.cs" />
     <Compile Include="Source\dto\read\Function.cs" />

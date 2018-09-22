@@ -1,5 +1,6 @@
 ﻿using Organisation.BusinessLayer;
 using System.Collections.Generic;
+using System.Linq;
 using System;
 using System.IO;
 using System.Text;
@@ -22,8 +23,8 @@ namespace Organisation.ReportTool
 
             // overwrite settings from registry - this must happen before calling Init() as that will start fetching tokens
             OrganisationRegistryProperties properties = OrganisationRegistryProperties.GetInstance();
-            properties.Municipality = cvr;
-            properties.MunicipalityOrganisationUUID = orgUuid;
+            OrganisationRegistryProperties.Municipality = cvr;
+            properties.MunicipalityOrganisationUUID[OrganisationRegistryProperties.GetMunicipality()] = orgUuid;
 
             Initializer.Init();
 
@@ -39,9 +40,13 @@ namespace Organisation.ReportTool
         {
             
             log.Text+= "Søger efter enheder: ";
-            var ous = ReadOUs(inspectorService.FindAllOUs());
+
+            var ous = inspectorService.ReadOUHierarchy(ReadAddresses.YES, ReadParentDetails.NO, ReadPayoutUnit.YES, ReadPositions.YES, ReadItSystems.YES, ReadContactPlaces.YES);
+            log.Text += "Fandt " + ous.Count + " enheder" + System.Environment.NewLine;
+
             log.Text += "Søger efter brugere: ";
-            var users = ReadUsers(inspectorService.FindAllUsers());
+            var userUuids = inspectorService.FindAllUsers(ous).Distinct().ToList();
+            var users = ReadUsers(userUuids);
 
             log.Text += "Bygger model af data i hukommelsen..." + System.Environment.NewLine;
             OU root = GetRootOUFromList(ous);
@@ -53,35 +58,125 @@ namespace Organisation.ReportTool
 
             TreeNode<OU> tree = BuildTree(root, ous);
 
+            List<OUItSystem> itSystems = new List<OUItSystem>();
+
             List<OUModel> ouModels = new List<OUModel>();
             foreach (OU ou in ous)
             {
                 OUModel ouModel = new OUModel();
                 ouModel.Uuid = ou.Uuid;
                 ouModel.Name = ou.Name;
+                ouModel.Status = ou.Status.ToString();
                 ouModel.AddressDetails = GetDetailAddresses(ou.Addresses);
                 ouModel.EmployeesDetails = GetDetailEmployees(ou, users);
                 ouModel.BrugervendtNoegle = ou.ShortKey;
                 ouModels.Add(ouModel);
+
+                if (ou.ItSystems != null)
+                {
+                    foreach (string x in ou.ItSystems)
+                    {
+                        bool found = false;
+
+                        foreach (OUItSystem it in itSystems)
+                        {
+                            if (it.Uuid.Equals(x))
+                            {
+                                found = true;
+                                it.Enheder.Add(ou.Name);
+                            }
+                        }
+
+                        if (!found)
+                        {
+                            OUItSystem it = new OUItSystem();
+                            it.Uuid = x;
+                            it.Enheder.Add(ou.Name);
+
+                            itSystems.Add(it);
+                        }
+                    }
+                }
             }
 
             List<UserModel> userModels = new List<UserModel>();
             foreach (User user in users)
             {
                 UserModel userModel = new UserModel();
-                userModel.Name = user.Person.Name;
+                userModel.Name = user.Person?.Name;
+                userModel.Status = user.Status.ToString();
                 userModel.Uuid = user.Uuid;
                 userModel.UserId = user.UserId;
                 userModel.ShortKey = user.ShortKey;
-                userModel.Cpr = user.Person.Cpr;
+                userModel.Cpr = user.Person?.Cpr;
                 userModel.AddressDetails = GetDetailAddresses(user.Addresses);
                 userModels.Add(userModel);
+            }
+
+            List<PayoutUnitModel> payoutUnitModels = new List<PayoutUnitModel>();
+            foreach (OU ou in ous)
+            {
+                if (ou.PayoutOU != null)
+                {
+                    foreach (OU payoutUnit in ous)
+                    {
+                        if (payoutUnit.Uuid.Equals(ou.PayoutOU.Uuid))
+                        {
+                            PayoutUnitModel payoutUnitModel = new PayoutUnitModel();
+                            payoutUnitModel.UnitName = ou.Name;
+                            payoutUnitModel.UnitUuid = ou.Uuid;
+                            payoutUnitModel.PayoutUnitName = payoutUnit.Name;
+                            payoutUnitModel.PayoutUnitUuid = payoutUnit.Uuid;
+
+                            foreach (AddressHolder address in payoutUnit.Addresses)
+                            {
+                                if (address is LOSShortName)
+                                {
+                                    payoutUnitModel.PayoutUnitLOSShortKey = address.Value;
+                                    break;
+                                }
+                            }
+
+                            payoutUnitModels.Add(payoutUnitModel);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            List<ContactPlacesModel> contactPlacesModels = new List<ContactPlacesModel>();
+            foreach (OU ou in ous)
+            {
+                if (ou.ContactPlaces != null)
+                {
+                    foreach (ContactPlace cp in ou.ContactPlaces)
+                    {
+                        foreach (OU contactPlace in ous)
+                        {
+                            if (contactPlace.Uuid.Equals(cp.OrgUnit.Uuid))
+                            {
+                                ContactPlacesModel cpModel = new ContactPlacesModel();
+                                cpModel.ContactUnitName = contactPlace.Name;
+                                cpModel.ContactUnitUuid = contactPlace.Uuid;
+                                cpModel.UnitName = ou.Name;
+                                cpModel.UnitUuid = ou.Uuid;
+                                cpModel.Opgaver = cp.Tasks;
+
+                                contactPlacesModels.Add(cpModel);
+                                break;
+                            }
+                        }
+                    }
+                }
             }
 
             Model model = new Model();
             model.AsciiTreeRepresentation = tree.PrintPretty("", false);
             model.OUs = ouModels;
             model.Users = userModels;
+            model.PayoutUnits = payoutUnitModels;
+            model.ContactPlaces = contactPlacesModels;
+            model.ItSystems = itSystems;
 
             return model;
         }
@@ -93,18 +188,21 @@ namespace Organisation.ReportTool
 
         public void ParseAndWrite(Model model, string outputFileName)
         {
-            log.AppendText("Writing output");
+            log.AppendText("Writing output to: " + System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "\\" + outputFileName);
             string htmlPage = Engine.Razor.RunCompile(File.ReadAllText("templates/template.html"), "templateKey", null, model);
-            File.WriteAllText(outputFileName, htmlPage);
+            File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "\\" + outputFileName, htmlPage);
         }
 
         private string GetDetailAddresses(List<AddressHolder> addresses)
         {
             StringBuilder sb = new StringBuilder();
 
-            foreach (AddressHolder address in addresses)
+            if (addresses != null)
             {
-                sb.AppendLine(address.GetType().Name + " = " + address.Value);
+                foreach (AddressHolder address in addresses)
+                {
+                    sb.AppendLine(address.GetType().Name + " = " + address.Value);
+                }
             }
 
             return sb.ToString();
@@ -142,10 +240,9 @@ namespace Organisation.ReportTool
         public List<User> ReadUsers(List<string> users)
         {
             log.Text += "Fandt " + users.Count + " brugere" + System.Environment.NewLine;
-            log.Text += "Læser brugere: ";
+            log.Text += "Læser brugere: [                         ]"; // 25 spaces
 
-            long pixelStep = users.Count / 10 + 1;
-            long count = 0;
+            long pixels = 0;
 
             List<User> result = new List<User>();
             foreach (string uuid in users)
@@ -153,48 +250,48 @@ namespace Organisation.ReportTool
                 User user = inspectorService.ReadUserObject(uuid);
                 result.Add(user);
 
-                if (count++ % pixelStep == 0)
+                if (((100 * result.Count) / users.Count) / 4 > pixels)
                 {
-                    log.Text += "*";
-                    log.Invalidate();
-                    log.Update();
-                    log.Refresh();
-                    Application.DoEvents();
+                    pixels += 1;
+                    if (pixels > 25)
+                    {
+                        pixels = 25;
+                    }
+                    RefreshProgressBar(pixels);
                 }
             }
+            RefreshProgressBar(25);
 
             log.Text += System.Environment.NewLine;
 
             return result;
         }
 
-        public List<OU> ReadOUs(List<string> ous)
+        private void RefreshProgressBar(long pixels)
         {
-            log.Text += "Fandt " + ous.Count + " enheder" + System.Environment.NewLine;
-            log.Text += "Læser enheder: ";
+            int idx = log.Text.LastIndexOf("[");
+            string prefix = log.Text.Substring(0, idx);
 
-            long pixelStep = ous.Count / 10 + 1;
-            long count = 0;
+            prefix += "[";
 
-            List<OU> result = new List<OU>();
-            foreach (string uuid in ous)
+            for (long i = 0; i < pixels; i++)
             {
-                OU ou = inspectorService.ReadOUObject(uuid, ReadAddresses.YES, ReadParentDetails.NO, ReadPayoutUnit.YES, ReadPositions.YES);
-                result.Add(ou);
-
-                if (count++ % pixelStep == 0)
-                {
-                    log.Text += "*";
-                    log.Invalidate();
-                    log.Update();
-                    log.Refresh();
-                    Application.DoEvents();
-                }
+                prefix += "*";
             }
 
-            log.Text += System.Environment.NewLine;
+            for (long i = pixels; i < 25; i++)
+            {
+                prefix += " ";
+            }
 
-            return result;
+            prefix += "]";
+
+            log.Text = prefix;
+            log.Invalidate();
+            log.Update();
+            log.Refresh();
+
+            Application.DoEvents();
         }
 
         private List<OU> GetChilds(OU ou, List<OU> ous)
@@ -228,7 +325,7 @@ namespace Organisation.ReportTool
         {
             foreach (OU ou in ous)
             {
-                if (ou.ParentOU == null)
+                if (ou.ParentOU == null && (ou.Status.Equals(Status.ACTIVE) || ou.Status.Equals(Status.UNKNOWN)))
                 {
                     return ou;
                 }

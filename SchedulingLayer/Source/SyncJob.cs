@@ -23,18 +23,8 @@ namespace Organisation.SchedulingLayer
                 log.Debug("Scheduler started synchronizing objects from queue");
                 // IT systems have been decrecated for now
 //                itSystemCount = HandleItSystems();
-                userCount = HandleUsers();
-                ouCount = HandleOUs();
-                //                log.Debug("Scheduler finished: itSystems=" + itSystemCount + ", users=" + userCount + ", ous=" + ouCount);
-
-                if (userCount > 0 || ouCount > 0)
-                {
-                    log.Info("Scheduler finished: users=" + userCount + ", ous=" + ouCount);
-                }
-                else
-                {
-                    log.Debug("Nothing to synchronize!");
-                }
+                HandleUsers(out userCount);
+                HandleOUs(out ouCount);
 
                 errorCount = 0;
             }
@@ -58,13 +48,18 @@ namespace Organisation.SchedulingLayer
 
                 log.Error("Failed to run scheduler, sleeping until: " + nextRun.ToString("MM/dd/yyyy HH:mm"), ex);
             }
+
+            if (userCount > 0 || ouCount > 0)
+            {
+                log.Info("Scheduler completed " + userCount + " user(s) and " + ouCount + " ou(s)");
+            }
         }
 
-        public static long HandleUsers()
+        public static void HandleUsers(out long count)
         {
             UserService service = new UserService();
             UserDao dao = new UserDao();
-            long count = 0;
+            count = 0;
 
             UserRegistrationExtended user = null;
             while ((user = dao.GetOldestEntry()) != null)
@@ -85,8 +80,8 @@ namespace Organisation.SchedulingLayer
                 }
                 catch (TemporaryFailureException ex)
                 {
-                    log.Error("Could not handle user '" + user.Uuid + "' at the moment, will try later" , ex);
-                    break;
+                    log.Error("Could not handle user '" + user.Uuid + "' at the moment, will try later");
+                    throw ex;
                 }
                 catch (Exception ex)
                 {
@@ -94,8 +89,6 @@ namespace Organisation.SchedulingLayer
                     dao.Delete(user.Id);
                 }
             }
-
-            return count;
         }
 
         /*
@@ -139,11 +132,11 @@ namespace Organisation.SchedulingLayer
         }
         */
 
-        public static long HandleOUs()
+        public static void HandleOUs(out long count)
         {
             OrgUnitService service = new OrgUnitService();
             OrgUnitDao dao = new OrgUnitDao();
-            long count = 0;
+            count = 0;
 
             OrgUnitRegistrationExtended ou = null;
             while ((ou = dao.GetOldestEntry()) != null)
@@ -165,8 +158,8 @@ namespace Organisation.SchedulingLayer
                 }
                 catch (TemporaryFailureException ex)
                 {
-                    log.Error("Could not handle ou '" + ou.Uuid + "' at the moment, will try later" , ex);
-                    break;
+                    log.Error("Could not handle ou '" + ou.Uuid + "' at the moment, will try later");
+                    throw ex;
                 }
                 catch (Exception ex)
                 {
@@ -174,8 +167,6 @@ namespace Organisation.SchedulingLayer
                     dao.Delete(ou.Id);
                 }
             }
-
-            return count;
         }
     }
 }
