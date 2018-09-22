@@ -2,9 +2,9 @@
 ; To generate the installer, define the variable MyAppSourceDir MUST point to the Directory where the dll's should be copied from
 ; The script may be executed from the console-mode compiler - iscc "c:\isetup\samples\my script.iss" or from the Inno Setup Compiler UI
 #define AppId "{{0a90431b-110a-462f-8b19-b1edffda64a7}"
-#define AppSourceDir "\\VBOXSVR\brian\projects\organisation-synchronisation-component\WindowsService\bin\Debug"
+#define AppSourceDir "\\VBOXSVR\brian\projects\STSOrgSync\WindowsService\bin\Release"
 #define AppName "STSOrgSync"
-#define AppVersion "1.1"
+#define AppVersion "1.3.0"
 #define AppPublisher "Digital Identity"
 #define AppURL "http://digital-identity.dk/"
 #define AppExeName "STSOrgSync.exe"
@@ -37,7 +37,7 @@ Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\{#AppName}"; ValueType: string; Va
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\{#AppName}"; ValueType: string; ValueName: "ClientCertThumbprint"; ValueData: "xx xx xx xx xx xx xx xx xx xx xx"; Flags: createvalueifdoesntexist
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\{#AppName}"; ValueType: string; ValueName: "DBConnectionString"; ValueData: "SQLITE"; Flags: createvalueifdoesntexist
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\{#AppName}"; ValueType: string; ValueName: "DisableRevocationCheck"; ValueData: "true"; Flags: createvalueifdoesntexist
-Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\{#AppName}"; ValueType: string; ValueName: "Environment"; ValueData: "TEST"; Flags: createvalueifdoesntexist
+Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\{#AppName}"; ValueType: string; ValueName: "Environment"; ValueData: "PROD"; Flags: createvalueifdoesntexist
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\{#AppName}"; ValueType: string; ValueName: "LogRequestResponse"; ValueData: "false"; Flags: createvalueifdoesntexist
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\{#AppName}"; ValueType: string; ValueName: "Municipality"; ValueData: "xxxxxxxx"; Flags: createvalueifdoesntexist
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\{#AppName}"; ValueType: string; ValueName: "OrganisationUUID"; ValueData: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"; Flags: createvalueifdoesntexist

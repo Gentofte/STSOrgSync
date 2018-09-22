@@ -27,6 +27,13 @@ Initial release of STSOrgSync as installed in Gentofte, Syddjurs and Favrskov
 * fixed wrong UUID on address objects
 * fixed bug with database-queue, which might skip multiple registrations on same object
 
+### 22.09.2018 Release 1.3.0
+* as the STS Organisation service is now able to return "actual state" objects, we no longer maintain full object history on the latest registration
+* updated with new UUID constants according to the latest "anvisninger" document
+* various small fixes to deal with incomplete data
+* can successfully deal with the interim-solution for super-org data, and deals with KOMBIT-owned super-org data without issues
+* updated to latest WSDL/XSD published on the serviceplatform (v4)
+
 #### License (in danish)
 
 Copyright Gentofte Kommune/OS2 Offentlig Digitaliseringsfællesskab. Dette værk er licensieret under opensource
