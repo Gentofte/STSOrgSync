@@ -6,6 +6,18 @@ namespace Organisation.IntegrationLayer
     internal class AddressRelation
     {
         public AddressRelationType Type { get; set; }
-        public string Uuid { get; set; }
+
+        private string uuid;
+        public string Uuid
+        {
+            get
+            {
+                return uuid;
+            }
+            set
+            {
+                uuid = value?.ToLower();
+            }
+        }
     }
 }

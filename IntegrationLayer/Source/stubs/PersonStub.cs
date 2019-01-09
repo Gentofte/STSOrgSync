@@ -59,9 +59,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Importer service on Person";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Importer service on Person", ex);
             }
         }
 
@@ -132,9 +130,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Ret service on Person";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Ret service on Person", ex);
             }
         }
 
@@ -202,9 +198,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Laes service on Person";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Laes service on Person", ex);
             }
         }
 
@@ -285,9 +279,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the List service on Person";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the List service on Person", ex);
             }
         }
 

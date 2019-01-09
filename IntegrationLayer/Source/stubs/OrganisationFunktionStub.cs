@@ -1,5 +1,6 @@
 ﻿using IntegrationLayer.OrganisationFunktion;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -72,9 +73,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Importer service on OrganisationFunktion";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Importer service on OrganisationFunktion", ex);
             }
         }
 
@@ -107,7 +106,9 @@ namespace Organisation.IntegrationLayer
 
                 #region Update attributes if needed
                 EgenskabType latestProperty = StubUtil.GetLatestProperty(input.AttributListe.Egenskab);
-                if (latestProperty == null || (orgFunction.Name != null && !latestProperty.FunktionNavn.Equals(orgFunction.Name)) || (orgFunction.ShortKey != null && !latestProperty.BrugervendtNoegleTekst.Equals(orgFunction.ShortKey)))
+                if (latestProperty == null || latestProperty.FunktionNavn == null ||
+                   (orgFunction.Name != null && !latestProperty.FunktionNavn.Equals(orgFunction.Name)) ||
+                   (orgFunction.ShortKey != null && !latestProperty.BrugervendtNoegleTekst.Equals(orgFunction.ShortKey)))
                 {
                     if (latestProperty == null)
                     {
@@ -368,9 +369,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Ret service on OrganisationFunktion";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Ret service on OrganisationFunktion", ex);
             }
         }
 
@@ -720,9 +719,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Soeg service on OrganisationFunktion";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Soeg service on OrganisationFunktion", ex);
             }
         }
 
@@ -798,9 +795,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Ret service on OrganisationFunktion";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Ret service on OrganisationFunktion", ex);
             }
         }
 
@@ -861,7 +856,7 @@ namespace Organisation.IntegrationLayer
             request.ListRequest1.AuthorityContext = new AuthorityContextType();
             request.ListRequest1.AuthorityContext.MunicipalityCVR = OrganisationRegistryProperties.GetMunicipality();
 
-            OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "Laes", helper.CreatePort());
+            OrganisationFunktionPortType channel = StubUtil.CreateChannel<OrganisationFunktionPortType>(OrganisationFunktionStubHelper.SERVICE, "List", helper.CreatePort());
 
             try
             {
@@ -893,9 +888,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Laes service on OrganisationFunktion";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Laes service on OrganisationFunktion", ex);
             }
         }
 

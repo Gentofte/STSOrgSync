@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\dto\read\Url.cs" />
     <Compile Include="Source\dto\read\Ean.cs" />
     <Compile Include="Source\dto\read\ContactHours.cs" />
     <Compile Include="Source\dto\read\ContactPlace.cs" />

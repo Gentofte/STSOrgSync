@@ -383,7 +383,7 @@ namespace Organisation.BusinessLayer
 
             OrgUnitRegistration registration = null;
 
-            OU ou = inspectorService.ReadOUObject(uuid, ReadAddresses.YES, ReadParentDetails.NO, ReadPayoutUnit.YES, ReadPositions.NO, ReadItSystems.YES, ReadContactPlaces.YES);
+            OU ou = inspectorService.ReadOUObject(uuid, ReadAddresses.YES, ReadPayoutUnit.YES, ReadPositions.NO, ReadItSystems.YES, ReadContactPlaces.YES);
             if (ou != null)
             {
                 registration = new OrgUnitRegistration();

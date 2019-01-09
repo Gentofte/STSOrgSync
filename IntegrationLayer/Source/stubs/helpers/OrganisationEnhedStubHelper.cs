@@ -294,6 +294,11 @@ namespace Organisation.IntegrationLayer
             binding.Security.Mode = BasicHttpSecurityMode.Transport;
             binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Certificate;
             binding.MaxReceivedMessageSize = Int32.MaxValue;
+            binding.OpenTimeout = new TimeSpan(0, 3, 0);
+            binding.CloseTimeout = new TimeSpan(0, 3, 0);
+            binding.ReceiveTimeout = new TimeSpan(0, 3, 0);
+            binding.ReceiveTimeout = new TimeSpan(0, 3, 0);
+            binding.SendTimeout = new TimeSpan(0, 3, 0);
 
             OrganisationEnhedPortTypeClient port = new OrganisationEnhedPortTypeClient(binding, StubUtil.GetEndPointAddress("OrganisationEnhed/4"));
             port.ClientCredentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindByThumbprint, registryProperties.ClientCertThumbprint);

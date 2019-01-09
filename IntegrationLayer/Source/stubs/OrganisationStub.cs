@@ -34,9 +34,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Laes service on Organisation";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Laes service on Organisation", ex);
             }
         }
 
@@ -118,9 +116,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Ret service on Organisation";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Ret service on Organisation", ex);
             }
         }
 
@@ -188,9 +184,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Laes service on Organisation";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Laes service on Organisation", ex);
             }
         }
     }

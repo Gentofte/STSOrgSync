@@ -68,9 +68,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Importer service on OrganisationEnhed";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Importer service on OrganisationEnhed", ex);
             }
         }
 
@@ -334,9 +332,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Ret service on OrganisationEnhed";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Ret service on OrganisationEnhed", ex);
             }
         }
 
@@ -404,9 +400,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Laes service on OrganisationEnhed";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Laes service on OrganisationEnhed", ex);
             }
         }
 
@@ -469,9 +463,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Ret service on OrganisationEnhed";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Ret service on OrganisationEnhed", ex);
             }
         }
 
@@ -500,15 +492,8 @@ namespace Organisation.IntegrationLayer
 
             // TODO: these three lines should be removeable once KMD fixes their end
             soegInput.TilstandListe.Gyldighed[0].Virkning = new VirkningType();
-            /*
             soegInput.TilstandListe.Gyldighed[0].Virkning.FraTidspunkt = new TidspunktType();
             soegInput.TilstandListe.Gyldighed[0].Virkning.FraTidspunkt.Item = DateTime.Now;
-            */
-
-            // TODO: see if this gives us what we want
-            soegInput.SoegRegistrering = new SoegRegistreringType();
-            soegInput.SoegRegistrering.FraTidspunkt = new TidspunktType();
-            soegInput.SoegRegistrering.FraTidspunkt.Item = new DateTime(2018, 9, 10, 9, 45, 00, DateTimeKind.Local);
 
             // only return objects that have a Tilhører relationship top-level Organisation
             UnikIdType orgReference = StubUtil.GetReference<UnikIdType>(registry.MunicipalityOrganisationUUID[OrganisationRegistryProperties.GetMunicipality()], ItemChoiceType.UUIDIdentifikator);
@@ -547,9 +532,7 @@ namespace Organisation.IntegrationLayer
             }
             catch (Exception ex) when (ex is CommunicationException || ex is IOException || ex is TimeoutException || ex is WebException)
             {
-                string message = "Failed to establish connection to the Soeg service on OrganisationEnhed";
-                log.Error(message, ex);
-                throw new ServiceNotFoundException(message, ex);
+                throw new ServiceNotFoundException("Failed to establish connection to the Soeg service on OrganisationEnhed", ex);
             }
         }
 

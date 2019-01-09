@@ -29,6 +29,7 @@ namespace Organisation.BusinessLayer
     [KnownType(typeof(Organisation.BusinessLayer.ContactHours))]
     [KnownType(typeof(Organisation.BusinessLayer.Ean))]
     [KnownType(typeof(Organisation.BusinessLayer.Post))]
+    [KnownType(typeof(Organisation.BusinessLayer.Url))]
     public abstract class AddressHolder
     {
         [DataMember]

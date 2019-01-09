@@ -9,13 +9,17 @@ using RazorEngine.Templating;
 using Organisation.IntegrationLayer;
 using RazorEngine.Configuration;
 using System.Windows.Forms;
+using System.Runtime.CompilerServices;
 
 namespace Organisation.ReportTool
 {
     public class Controller
     {
+        private static log4net.ILog log4n = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private InspectorService inspectorService;
         private RichTextBox log;
+        private long pixels = 0;
 
         public Controller(string cvr, string orgUuid, RichTextBox log)
         {
@@ -38,17 +42,35 @@ namespace Organisation.ReportTool
 
         public Model BuildModel()
         {
-            
-            log.Text+= "Søger efter enheder: ";
+            List<global::IntegrationLayer.OrganisationFunktion.FiltreretOejebliksbilledeType> allUnitRoles;
 
-            var ous = inspectorService.ReadOUHierarchy(ReadAddresses.YES, ReadParentDetails.NO, ReadPayoutUnit.YES, ReadPositions.YES, ReadItSystems.YES, ReadContactPlaces.YES);
-            log.Text += "Fandt " + ous.Count + " enheder" + System.Environment.NewLine;
+            log.Text += "Læser enheder ..." + System.Environment.NewLine;
+            var ous = inspectorService.ReadOUHierarchy(out allUnitRoles, RefreshOUProgressBar, ReadAddresses.YES, ReadPayoutUnit.YES, ReadPositions.YES, ReadItSystems.YES, ReadContactPlaces.YES);
 
-            log.Text += "Søger efter brugere: ";
             var userUuids = inspectorService.FindAllUsers(ous).Distinct().ToList();
-            var users = ReadUsers(userUuids);
+
+            log.Text += "Læser brugere ..." + System.Environment.NewLine;
+            var users = inspectorService.ReadUsers(userUuids, allUnitRoles, RefreshUserProgressBar, ReadAddresses.YES, ReadParentDetails.NO);
 
             log.Text += "Bygger model af data i hukommelsen..." + System.Environment.NewLine;
+
+            return BuildModel(ous, users);
+        }
+
+        public string Parse(Model model)
+        {
+            return Engine.Razor.RunCompile(File.ReadAllText("templates/template.html"), "templateKey", null, model); ;
+        }
+
+        public void ParseAndWrite(Model model, string outputFileName)
+        {
+            log.AppendText("Writing output to: " + System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "\\" + outputFileName);
+            string htmlPage = Engine.Razor.RunCompile(File.ReadAllText("templates/template.html"), "templateKey", null, model);
+            File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "\\" + outputFileName, htmlPage);
+        }
+
+        private Model BuildModel(List<OU> ous, List<User> users)
+        {
             OU root = GetRootOUFromList(ous);
             if (root == null)
             {
@@ -70,6 +92,7 @@ namespace Organisation.ReportTool
                 ouModel.AddressDetails = GetDetailAddresses(ou.Addresses);
                 ouModel.EmployeesDetails = GetDetailEmployees(ou, users);
                 ouModel.BrugervendtNoegle = ou.ShortKey;
+                ouModel.Errors = ou.Errors;
                 ouModels.Add(ouModel);
 
                 if (ou.ItSystems != null)
@@ -110,6 +133,7 @@ namespace Organisation.ReportTool
                 userModel.ShortKey = user.ShortKey;
                 userModel.Cpr = user.Person?.Cpr;
                 userModel.AddressDetails = GetDetailAddresses(user.Addresses);
+                userModel.Errors = user.Errors;
                 userModels.Add(userModel);
             }
 
@@ -181,18 +205,6 @@ namespace Organisation.ReportTool
             return model;
         }
 
-        public string Parse(Model model)
-        {
-            return Engine.Razor.RunCompile(File.ReadAllText("templates/template.html"), "templateKey", null, model); ;
-        }
-
-        public void ParseAndWrite(Model model, string outputFileName)
-        {
-            log.AppendText("Writing output to: " + System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "\\" + outputFileName);
-            string htmlPage = Engine.Razor.RunCompile(File.ReadAllText("templates/template.html"), "templateKey", null, model);
-            File.WriteAllText(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "\\" + outputFileName, htmlPage);
-        }
-
         private string GetDetailAddresses(List<AddressHolder> addresses)
         {
             StringBuilder sb = new StringBuilder();
@@ -221,7 +233,7 @@ namespace Organisation.ReportTool
                     {
                         if (user.Uuid.Equals(position.User.Uuid))
                         {
-                            employeeName = user.Person.Name;
+                            employeeName = user.Person?.Name;
                             break;
                         }
                     }
@@ -235,63 +247,6 @@ namespace Organisation.ReportTool
             }
 
             return sb.ToString();
-        }
-
-        public List<User> ReadUsers(List<string> users)
-        {
-            log.Text += "Fandt " + users.Count + " brugere" + System.Environment.NewLine;
-            log.Text += "Læser brugere: [                         ]"; // 25 spaces
-
-            long pixels = 0;
-
-            List<User> result = new List<User>();
-            foreach (string uuid in users)
-            {
-                User user = inspectorService.ReadUserObject(uuid);
-                result.Add(user);
-
-                if (((100 * result.Count) / users.Count) / 4 > pixels)
-                {
-                    pixels += 1;
-                    if (pixels > 25)
-                    {
-                        pixels = 25;
-                    }
-                    RefreshProgressBar(pixels);
-                }
-            }
-            RefreshProgressBar(25);
-
-            log.Text += System.Environment.NewLine;
-
-            return result;
-        }
-
-        private void RefreshProgressBar(long pixels)
-        {
-            int idx = log.Text.LastIndexOf("[");
-            string prefix = log.Text.Substring(0, idx);
-
-            prefix += "[";
-
-            for (long i = 0; i < pixels; i++)
-            {
-                prefix += "*";
-            }
-
-            for (long i = pixels; i < 25; i++)
-            {
-                prefix += " ";
-            }
-
-            prefix += "]";
-
-            log.Text = prefix;
-            log.Invalidate();
-            log.Update();
-            log.Refresh();
-
-            Application.DoEvents();
         }
 
         private List<OU> GetChilds(OU ou, List<OU> ous)
@@ -332,6 +287,61 @@ namespace Organisation.ReportTool
             }
 
             return null;
+        }
+
+        private long currentOUCount = 0;
+        private long currentUserCount = 0;
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        private bool RefreshUserProgressBar(long added, long total)
+        {
+            currentUserCount += added;
+
+            try
+            {
+                int idx = log.Text.LastIndexOf("Læser brugere ");
+                string prefix = log.Text.Substring(0, idx);
+                prefix += "Læser brugere " + currentUserCount + "/" + total + System.Environment.NewLine;
+
+                log.Text = prefix;
+                log.Invalidate();
+                log.Update();
+                log.Refresh();
+
+                Application.DoEvents();
+            }
+            catch (Exception)
+            {
+                ;
+            }
+
+            return true;
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        private bool RefreshOUProgressBar(long added, long total)
+        {
+            currentOUCount += added;
+
+            try
+            {
+                int idx = log.Text.LastIndexOf("Læser enheder ");
+                string prefix = log.Text.Substring(0, idx);
+                prefix += "Læser enheder " + currentOUCount + "/" + total + System.Environment.NewLine;
+
+                log.Text = prefix;
+                log.Invalidate();
+                log.Update();
+                log.Refresh();
+
+                Application.DoEvents();
+            }
+            catch (Exception)
+            {
+                ;
+            }
+
+            return true;
         }
     }
 }

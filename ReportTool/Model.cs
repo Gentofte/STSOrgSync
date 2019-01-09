@@ -20,6 +20,7 @@ namespace Organisation.ReportTool
         public string EmployeesDetails { get; set; }
         public string BrugervendtNoegle { get; set; }
         public string Status { get; set; }
+        public List<string> Errors { get; set; }
     }
 
     public class UserModel
@@ -31,6 +32,7 @@ namespace Organisation.ReportTool
         public string ShortKey { get; set; }
         public string AddressDetails { get; set; }
         public string Status { get; set; }
+        public List<string> Errors { get; set; }
     }
 
     public class ContactPlacesModel

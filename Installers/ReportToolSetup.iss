@@ -2,7 +2,7 @@
 ; To generate the installer, define the variable MyAppSourceDir MUST point to the Directory where the dll's should be copied from
 ; The script may be executed from the console-mode compiler - iscc "c:\isetup\samples\my script.iss" or from the Inno Setup Compiler UI
 #define AppId "{{99fc06ec-8285-4bd1-a018-58c74fca4987}"
-#define AppSourceDir "\\VBOXSVR\brian\projects\organisation-synchronisation-component\ReportTool\bin\Debug\"
+#define AppSourceDir "\\VBOXSVR\brian\projects\organisation-synchronisation-component\ReportTool\bin\Release\"
 #define AppName "ReportTool"
 #define AppVersion "1.0"
 #define AppPublisher "Digital Identity"
@@ -33,15 +33,15 @@ UninstallDisplayIcon={#AppSourceDir}\..\..\..\Resources\di.ico
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}"; Flags: uninsdeletekey
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync";
 Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}";
-Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "ClientCertThumbprint"; ValueData: "xx xx xx xx xx xx xx xx xx xx xx"
-Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "DBConnectionString"; ValueData: "SQLITE"
-Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "DisableRevocationCheck"; ValueData: "true"
-Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "Environment"; ValueData: "TEST"
-Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "LogRequestResponse"; ValueData: "false"
-Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "Municipality"; ValueData: "xxxxxxxx"
-Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "OrganisationUUID"; ValueData: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "UseSSL"; ValueData: "false"
+Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Flags: createvalueifdoesntexist
+Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "ClientCertThumbprint"; ValueData: "xx xx xx xx xx xx xx xx xx xx xx"; Flags: createvalueifdoesntexist
+Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "DBConnectionString"; ValueData: "SQLITE"; Flags: createvalueifdoesntexist
+Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "DisableRevocationCheck"; ValueData: "true"; Flags: createvalueifdoesntexist
+Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "Environment"; ValueData: "TEST"; Flags: createvalueifdoesntexist
+Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "LogRequestResponse"; ValueData: "false"; Flags: createvalueifdoesntexist
+Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "Municipality"; ValueData: "xxxxxxxx"; Flags: createvalueifdoesntexist
+Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "OrganisationUUID"; ValueData: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"; Flags: createvalueifdoesntexist
+Root: HKLM; Subkey: "SOFTWARE\{#AppPublisher}\STSOrgSync"; ValueType: string; ValueName: "UseSSL"; ValueData: "false"; Flags: createvalueifdoesntexist
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

@@ -22,11 +22,9 @@ namespace Organisation.SchedulingLayer
             {
                 log.Debug("Scheduler started synchronizing objects from queue");
                 // IT systems have been decrecated for now
-//                itSystemCount = HandleItSystems();
-                HandleUsers(out userCount);
+                //                itSystemCount = HandleItSystems();
                 HandleOUs(out ouCount);
-
-                errorCount = 0;
+                HandleUsers(out userCount);
             }
             catch (Exception ex)
             {
@@ -43,8 +41,8 @@ namespace Organisation.SchedulingLayer
                         break;
                 }
 
-                // wait 10 minutes, then 30 minutes and finally 60 minutes between each run
-                nextRun = DateTime.Now.AddMinutes(10 * errorCount);
+                // wait 5 minutes, then 15 minutes and finally 30 minutes between each run
+                nextRun = DateTime.Now.AddMinutes(5 * errorCount);
 
                 log.Error("Failed to run scheduler, sleeping until: " + nextRun.ToString("MM/dd/yyyy HH:mm"), ex);
             }
@@ -77,6 +75,8 @@ namespace Organisation.SchedulingLayer
 
                     count++;
                     dao.Delete(user.Id);
+
+                    errorCount = 0;
                 }
                 catch (TemporaryFailureException ex)
                 {
@@ -153,8 +153,9 @@ namespace Organisation.SchedulingLayer
                     }
 
                     count++;
-
                     dao.Delete(ou.Id);
+
+                    errorCount = 0;
                 }
                 catch (TemporaryFailureException ex)
                 {

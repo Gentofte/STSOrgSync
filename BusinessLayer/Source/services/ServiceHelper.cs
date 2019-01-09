@@ -14,14 +14,53 @@ namespace Organisation.BusinessLayer
         private static AdresseStub adresseStub = new AdresseStub();
         private static PersonStub personStub = new PersonStub();
 
-        internal static List<FiltreretOejebliksbilledeType> FindUnitRolesForUser(string uuid)
+        internal static List<FiltreretOejebliksbilledeType> FindUnitRolesForUser(string uuid, List<FiltreretOejebliksbilledeType> allUnitRoles = null)
         {
-            return organisationFunktionStub.SoegAndGetLatestRegistration(UUIDConstants.ORGFUN_POSITION, uuid, null, null);
+            if (allUnitRoles != null)
+            {
+                var unitRoles = new List<FiltreretOejebliksbilledeType>();
+                foreach (var unitRole in allUnitRoles)
+                {
+                    if (unitRole.Registrering.Length == 0)
+                    {
+                        continue;
+                    }
+
+                    if (unitRole.Registrering[0].RelationListe?.TilknyttedeBrugere == null)
+                    {
+                        continue;
+                    }
+
+                    if (unitRole.Registrering[0].RelationListe.TilknyttedeBrugere.Length == 0)
+                    {
+                        continue;
+                    }
+
+                    foreach (var brugerRelation in unitRole.Registrering[0].RelationListe.TilknyttedeBrugere)
+                    {
+                        if (brugerRelation.ReferenceID.Item.Equals(uuid))
+                        {
+                            unitRoles.Add(unitRole);
+                        }
+                    }
+                }
+
+                return unitRoles;
+            }
+            else
+            {
+                return organisationFunktionStub.SoegAndGetLatestRegistration(UUIDConstants.ORGFUN_POSITION, uuid, null, null);
+            }
         }
 
         internal static List<string> FindUnitRolesForOrgUnit(string uuid)
         {
             return organisationFunktionStub.SoegAndGetUuids(UUIDConstants.ORGFUN_POSITION, null, uuid, null);
+        }
+
+        internal static List<FiltreretOejebliksbilledeType> FindUnitRolesForOrgUnitAsObjects(string uuid)
+        {
+            return organisationFunktionStub.SoegAndGetLatestRegistration(UUIDConstants.ORGFUN_POSITION, null, uuid, null);
         }
 
         internal static List<string> FindOrgUnitRolesForItSystem(string uuid)
@@ -91,7 +130,7 @@ namespace Organisation.BusinessLayer
                     if (existingRoleUuid.Equals(position.Uuid) || (position.Uuid == null && existingRoleOUUuid.Equals(position.OrgUnitUuid)))
                     {
                         if (!existingRoleOUUuid.Equals(position.OrgUnitUuid) ||  // user has moved to a different OU
-                            !existingRoleName.Equals(position.Name) || // the users title has changed
+                            (existingRoleName == null || !existingRoleName.Equals(position.Name)) || // the users title has changed (null check deals with bad GUI data)
                             (position.ShortKey != null && existingRoleShortKey.Equals(position.ShortKey))) // there is a new ShortKey for the position
                         {
                             organisationFunktionStub.Ret(new OrgFunctionData()

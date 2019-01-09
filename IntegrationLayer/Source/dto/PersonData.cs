@@ -8,10 +8,22 @@ namespace Organisation.IntegrationLayer
 {
     internal class PersonData
     {
-        public string Uuid { get; set; }
         public string Name { get; set; }
         public string ShortKey { get; set; }
         public string Cpr { get; set; }
         public DateTime Timestamp { get; set; }
+
+        private string uuid;
+        public string Uuid
+        {
+            get
+            {
+                return uuid;
+            }
+            set
+            {
+                uuid = value?.ToLower();
+            }
+        }
     }
 }

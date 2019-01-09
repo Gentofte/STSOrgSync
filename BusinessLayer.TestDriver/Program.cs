@@ -74,6 +74,7 @@ namespace Organisation.BusinessLayer.TestDriver
             // KorsbaekData_552(); // fjerne it-system
 
             /* ordinary tests */
+            /*
             TestListAndReadOUs();
             TestListAndReadUsers();
             TestCreateAndUpdateFullUser();
@@ -87,7 +88,7 @@ namespace Organisation.BusinessLayer.TestDriver
             TestUpdateAndSearch();
             TestMultipleAddresses();
             TestItSystemUsage();
-
+            */
             //            DeltaReadTest();
 
             System.Environment.Exit(0);

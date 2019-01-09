@@ -34,6 +34,13 @@ Initial release of STSOrgSync as installed in Gentofte, Syddjurs and Favrskov
 * can successfully deal with the interim-solution for super-org data, and deals with KOMBIT-owned super-org data without issues
 * updated to latest WSDL/XSD published on the serviceplatform (v4)
 
+### 09.01.2019 Release 1.3.1
+* This is mainly a maintance release, and it is not necessary to upgrade to this version if everything on 1.3.0 works fine for you
+* Optimizations on dealing with network timeouts
+* All UUIDs are send in lower-case to STS Organisation
+* Improvements to performance on reading data (for the read API)
+
+
 #### License (in danish)
 
 Copyright Gentofte Kommune/OS2 Offentlig Digitaliseringsfællesskab. Dette værk er licensieret under opensource

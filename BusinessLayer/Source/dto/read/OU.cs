@@ -18,5 +18,7 @@ namespace Organisation.BusinessLayer
         public List<Position> Positions { get; set; }
         public List<ContactPlace> ContactPlaces { get; set; }
         public override string ToString() { return this.Name; }
+
+        public List<string> Errors { get; set; } = new List<string>();
     }
 }

@@ -194,14 +194,15 @@ namespace OrganisationInspector
         private bool ValidateOrgUnitAddressRole(string rolle)
         {
             return (rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_CONTACT_ADDRESS) ||
-                            rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_CONTACT_ADDRESS_OPEN_HOURS) ||
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_CONTACT_ADDRESS_OPEN_HOURS) ||
                 rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_EAN) ||
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_URL) ||
                 rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_EMAIL) ||
-                         rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_EMAIL_REMARKS) ||
-                            rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_LOCATION) ||
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_EMAIL_REMARKS) ||
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_LOCATION) ||
                 rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_LOSSHORTNAME) ||
                 rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_PHONE) ||
-                              rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_PHONE_OPEN_HOURS) ||
+                rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_PHONE_OPEN_HOURS) ||
                 rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_POST) ||
                 rolle.Equals(UUIDConstants.ADDRESS_ROLE_ORGUNIT_POST_RETURN));
         }

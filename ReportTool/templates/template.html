@@ -33,8 +33,17 @@
                         @ou.Name <br/>
                         @ou.Uuid
                     </td>
-                    <td>                        
+                    <td>
                         <pre>@ou.AddressDetails</pre>
+                        @if(ou.Errors.Count > 0) {
+                        <span style="color: red;">
+                            <ul>
+                                @foreach(var error in ou.Errors) {
+                                <li>@error</li>
+                                }
+                            </ul>
+                        </span>
+                        }
                     </td>
                     <td>
                         <pre>@ou.EmployeesDetails</pre>
@@ -64,6 +73,16 @@
                     <td>@user.Cpr</td>
                     <td>
                         <pre>@user.AddressDetails</pre>
+                        @if(user.Errors.Count > 0) {
+                        <span style="color: red;">
+                            <ul>
+                                @foreach(var error in user.Errors) {
+                                <li>@error</li>
+                                }
+                            </ul>
+                        </span>
+                        }
+
                     </td>
                 </tr>
                 }
