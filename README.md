@@ -40,6 +40,8 @@ Initial release of STSOrgSync as installed in Gentofte, Syddjurs and Favrskov
 * All UUIDs are send in lower-case to STS Organisation
 * Improvements to performance on reading data (for the read API)
 
+### 07.03.2019 Release 1.3.2
+* Reading a single OU using has been broken since 1.3.1, and is now fixed
 
 #### License (in danish)
 
