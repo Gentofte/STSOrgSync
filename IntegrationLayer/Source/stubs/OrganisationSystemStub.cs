@@ -82,6 +82,6 @@ namespace Organisation.IntegrationLayer
     internal class OrgUnitRegWrapper
     {
         public string Uuid { get; set; }
-        public RegistreringType4 Registration { get; set; }
+        public dynamic Registration { get; set; }
     }
 }

@@ -19,7 +19,6 @@ namespace Organisation.ReportTool
 
         private InspectorService inspectorService;
         private RichTextBox log;
-        private long pixels = 0;
 
         public Controller(string cvr, string orgUuid, RichTextBox log)
         {
