@@ -4,7 +4,7 @@
 #define AppId "{{0a90431b-110a-462f-8b19-b1edffda64a7}"
 #define AppSourceDir "\\VBOXSVR\brian\projects\STSOrgSync\WindowsService\bin\Release"
 #define AppName "STSOrgSync"
-#define AppVersion "1.3.2"
+#define AppVersion "1.3.3"
 #define AppPublisher "Digital Identity"
 #define AppURL "http://digital-identity.dk/"
 #define AppExeName "STSOrgSync.exe"

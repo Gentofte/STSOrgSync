@@ -43,6 +43,9 @@ Initial release of STSOrgSync as installed in Gentofte, Syddjurs and Favrskov
 ### 07.03.2019 Release 1.3.2
 * Reading a single OU using has been broken since 1.3.1, and is now fixed
 
+### 10.05.2019 Release 1.3.3
+* TLS 1.2 is now used when calling the serviceplatform (as required by new change on the serviceplatform)
+
 #### License (in danish)
 
 Copyright Gentofte Kommune/OS2 Offentlig Digitaliseringsfællesskab. Dette værk er licensieret under opensource
