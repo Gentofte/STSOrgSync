@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+
+		<Version>2.0.1</Version>
+		<Authors>Steen D, Camilla O, Brian G</Authors>
+		<Company>Gentofte Kommune</Company>
+		<Description>STSOrgSyncV2 receives AD events from ADXEventService and updates KOMBIT STS accordingly</Description>
+		<Copyright>Copyright © Gentofte Kommune and Digital Identity 2016-2021 (ITA)</Copyright>
+		<Platforms>AnyCPU;x64</Platforms>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ADX.CTRL" Version="2.5.1" />
+		<PackageReference Include="ADX.DTO" Version="2.5.0" />
+		<PackageReference Include="ADX.MAP" Version="2.5.0" />
+		<PackageReference Include="GK.AD" Version="0.9.5" />
+		<PackageReference Include="GK.AppCore" Version="3.4.6" />
+		<PackageReference Include="GK.AppCore.Abstractions" Version="1.2.0" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<DocumentationFile>Docs\STSOSYNCV2.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+</Project>
