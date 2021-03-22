@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+		<IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
 
 		<Version>2.0.1</Version>
 		<Authors>Steen D, Camilla O, Brian G</Authors>
@@ -14,10 +15,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="ADX.CTRL" Version="2.5.1" />
-		<PackageReference Include="ADX.DTO" Version="2.5.0" />
-		<PackageReference Include="ADX.MAP" Version="2.5.0" />
-		<PackageReference Include="GK.AD" Version="0.9.5" />
-		<PackageReference Include="GK.AppCore" Version="3.4.6" />
+		<PackageReference Include="ADX.DTO" Version="2.5.1" />
+		<PackageReference Include="ADX.MAP" Version="2.5.1" />
+		<PackageReference Include="GK.AD" Version="0.9.7" />
+		<PackageReference Include="GK.AppCore" Version="3.4.7" />
 		<PackageReference Include="GK.AppCore.Abstractions" Version="1.2.0" />
 	</ItemGroup>
 
@@ -34,6 +35,12 @@
 		<Content Update="appsettings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Docs\STSOSYNCV2.xml">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>
