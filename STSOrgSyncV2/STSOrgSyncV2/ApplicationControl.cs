@@ -4,7 +4,7 @@ using GK.AppCore.Abstractions;
 using GK.AppCore.Workers;
 
 using Microsoft.Extensions.DependencyInjection;
-
+using STSOrgSyncV2.OS2sync;
 using System;
 using System.Threading.Tasks;
 
@@ -49,6 +49,9 @@ namespace STSOrgSyncV2
         public override async void Start()
         {
             base.Start();
+
+            // TODO: is this the right place to call init?
+            OS2syncInitializer.Init();
 
             if (!_ready)
             {

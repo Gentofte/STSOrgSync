@@ -68,6 +68,29 @@
 	  <None Update="Docs\STSOSYNCV2.xml">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
+	  <None Update="mssql\V1_0_0_0__Init.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="mssql\V1_0_0_1__Success_Failure_Tables.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="mssql\V1_0_1_0__Add_new_kmd_addresses.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="mssql\V1_0_1_1__Fix_error_table.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="mssql\V1_0_2_0__Add_new_dtr_address.sql">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="mssql\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\SDBX\SDBX.csproj" />
 	</ItemGroup>
 
 </Project>
