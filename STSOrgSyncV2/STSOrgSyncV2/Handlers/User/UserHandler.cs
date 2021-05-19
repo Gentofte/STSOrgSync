@@ -68,6 +68,16 @@ namespace STSOrgSyncV2
                         {
                             var sdb = new SDBService(Configuration.GetValue<string>("SDBUrl"));
                             var stsUser = sdb.InspectUser(uuid, user.dn);
+                            if (stsUser == null || stsUser._objectID.Equals(Guid.Empty))
+                            {
+                                throw new Exception("Could not find user in SDB: " + uuid);
+                            }
+
+                            // dirty hack to detect users moved outside "main ou hierarchy"
+                            if (!stsUser.WithinScope)
+                            {
+                                operation = "DELETE";
+                            }
 
                             Organisation.BusinessLayer.DTO.Registration.UserRegistration userReg = new Organisation.BusinessLayer.DTO.Registration.UserRegistration();
                             userReg.Person.Cpr = stsUser.CPR;
