@@ -73,10 +73,20 @@ namespace STSOrgSyncV2
                         var sdb = new SDBService(Configuration.GetValue<string>("SDBUrl"));
                         var stsOu = sdb.InspectOrgUnit(uuid, ou.dn);
 
+                        if (stsOu == null || stsOu._objectID.Equals(Guid.Empty))
+                        {
+                            throw new Exception("OU did not exists in SDB: " + uuid);
+                        }
+
+                        if (!stsOu.WithinScope)
+                        {
+                            operation = "DELETE";
+                        }
+
                         Organisation.BusinessLayer.DTO.Registration.OrgUnitRegistration ouReg = new Organisation.BusinessLayer.DTO.Registration.OrgUnitRegistration();
                         ouReg.Name = stsOu.Name;
                         ouReg.ParentOrgUnitUuid = stsOu._parentID?.ToString()?.ToLower();
-                        ouReg.PayoutUnitUuid = stsOu._payoutUnitID?.ToString()?.ToString();
+                        ouReg.PayoutUnitUuid = stsOu._payoutUnitID?.ToString()?.ToLower();
                         ouReg.ShortKey = stsOu.ShortKey;
                         ouReg.Timestamp = DateTime.Now;
                         ouReg.Type = Organisation.BusinessLayer.DTO.Registration.OrgUnitRegistration.OrgUnitType.DEPARTMENT;
