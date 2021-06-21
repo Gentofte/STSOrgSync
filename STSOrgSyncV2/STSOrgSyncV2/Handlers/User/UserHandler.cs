@@ -47,6 +47,11 @@ namespace STSOrgSyncV2
                 {
                     case ADX.DTO.ADEventType.Create:
                     case ADX.DTO.ADEventType.Raw:
+                        operation = "UPDATE";
+                        break;
+                    case ADX.DTO.ADEventType.Ping:
+                        operation = "UPDATE";
+                        break;
                     case ADX.DTO.ADEventType.Update:
                         operation = "UPDATE";
                         break;
@@ -90,6 +95,7 @@ namespace STSOrgSyncV2
                                     case SDBServices.STS.DTO.AddressType.Placering:
                                         userReg.Location = address._text;
                                         break;
+
                                 }    
                             }
 
